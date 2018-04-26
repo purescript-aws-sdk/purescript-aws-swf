@@ -26,7 +26,7 @@ Encode ActivityId
 
 ``` purescript
 newtype ActivityTask
-  = ActivityTask { taskToken :: TaskToken, activityId :: ActivityId, startedEventId :: EventId, workflowExecution :: WorkflowExecution, activityType :: ActivityType, input :: NullOrUndefined (Data) }
+  = ActivityTask { taskToken :: TaskToken, activityId :: ActivityId, startedEventId :: EventId, workflowExecution :: WorkflowExecution, activityType :: ActivityType, input :: Maybe (Data) }
 ```
 
 <p>Unit of work sent to an activity worker.</p>
@@ -51,7 +51,7 @@ Constructs ActivityTask from required parameters
 #### `newActivityTask'`
 
 ``` purescript
-newActivityTask' :: ActivityId -> ActivityType -> EventId -> TaskToken -> WorkflowExecution -> ({ taskToken :: TaskToken, activityId :: ActivityId, startedEventId :: EventId, workflowExecution :: WorkflowExecution, activityType :: ActivityType, input :: NullOrUndefined (Data) } -> { taskToken :: TaskToken, activityId :: ActivityId, startedEventId :: EventId, workflowExecution :: WorkflowExecution, activityType :: ActivityType, input :: NullOrUndefined (Data) }) -> ActivityTask
+newActivityTask' :: ActivityId -> ActivityType -> EventId -> TaskToken -> WorkflowExecution -> ({ taskToken :: TaskToken, activityId :: ActivityId, startedEventId :: EventId, workflowExecution :: WorkflowExecution, activityType :: ActivityType, input :: Maybe (Data) } -> { taskToken :: TaskToken, activityId :: ActivityId, startedEventId :: EventId, workflowExecution :: WorkflowExecution, activityType :: ActivityType, input :: Maybe (Data) }) -> ActivityTask
 ```
 
 Constructs ActivityTask's fields from required parameters
@@ -94,7 +94,7 @@ Constructs ActivityTaskCancelRequestedEventAttributes's fields from required par
 
 ``` purescript
 newtype ActivityTaskCanceledEventAttributes
-  = ActivityTaskCanceledEventAttributes { details :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId, latestCancelRequestedEventId :: NullOrUndefined (EventId) }
+  = ActivityTaskCanceledEventAttributes { details :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId, latestCancelRequestedEventId :: Maybe (EventId) }
 ```
 
 <p>Provides the details of the <code>ActivityTaskCanceled</code> event.</p>
@@ -119,7 +119,7 @@ Constructs ActivityTaskCanceledEventAttributes from required parameters
 #### `newActivityTaskCanceledEventAttributes'`
 
 ``` purescript
-newActivityTaskCanceledEventAttributes' :: EventId -> EventId -> ({ details :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId, latestCancelRequestedEventId :: NullOrUndefined (EventId) } -> { details :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId, latestCancelRequestedEventId :: NullOrUndefined (EventId) }) -> ActivityTaskCanceledEventAttributes
+newActivityTaskCanceledEventAttributes' :: EventId -> EventId -> ({ details :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId, latestCancelRequestedEventId :: Maybe (EventId) } -> { details :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId, latestCancelRequestedEventId :: Maybe (EventId) }) -> ActivityTaskCanceledEventAttributes
 ```
 
 Constructs ActivityTaskCanceledEventAttributes's fields from required parameters
@@ -128,7 +128,7 @@ Constructs ActivityTaskCanceledEventAttributes's fields from required parameters
 
 ``` purescript
 newtype ActivityTaskCompletedEventAttributes
-  = ActivityTaskCompletedEventAttributes { result :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId }
+  = ActivityTaskCompletedEventAttributes { result :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>ActivityTaskCompleted</code> event.</p>
@@ -153,7 +153,7 @@ Constructs ActivityTaskCompletedEventAttributes from required parameters
 #### `newActivityTaskCompletedEventAttributes'`
 
 ``` purescript
-newActivityTaskCompletedEventAttributes' :: EventId -> EventId -> ({ result :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId } -> { result :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId }) -> ActivityTaskCompletedEventAttributes
+newActivityTaskCompletedEventAttributes' :: EventId -> EventId -> ({ result :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId } -> { result :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId }) -> ActivityTaskCompletedEventAttributes
 ```
 
 Constructs ActivityTaskCompletedEventAttributes's fields from required parameters
@@ -162,7 +162,7 @@ Constructs ActivityTaskCompletedEventAttributes's fields from required parameter
 
 ``` purescript
 newtype ActivityTaskFailedEventAttributes
-  = ActivityTaskFailedEventAttributes { reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId }
+  = ActivityTaskFailedEventAttributes { reason :: Maybe (FailureReason), details :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>ActivityTaskFailed</code> event.</p>
@@ -187,7 +187,7 @@ Constructs ActivityTaskFailedEventAttributes from required parameters
 #### `newActivityTaskFailedEventAttributes'`
 
 ``` purescript
-newActivityTaskFailedEventAttributes' :: EventId -> EventId -> ({ reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId } -> { reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId }) -> ActivityTaskFailedEventAttributes
+newActivityTaskFailedEventAttributes' :: EventId -> EventId -> ({ reason :: Maybe (FailureReason), details :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId } -> { reason :: Maybe (FailureReason), details :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId }) -> ActivityTaskFailedEventAttributes
 ```
 
 Constructs ActivityTaskFailedEventAttributes's fields from required parameters
@@ -196,7 +196,7 @@ Constructs ActivityTaskFailedEventAttributes's fields from required parameters
 
 ``` purescript
 newtype ActivityTaskScheduledEventAttributes
-  = ActivityTaskScheduledEventAttributes { activityType :: ActivityType, activityId :: ActivityId, input :: NullOrUndefined (Data), control :: NullOrUndefined (Data), scheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), scheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), decisionTaskCompletedEventId :: EventId, heartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional) }
+  = ActivityTaskScheduledEventAttributes { activityType :: ActivityType, activityId :: ActivityId, input :: Maybe (Data), control :: Maybe (Data), scheduleToStartTimeout :: Maybe (DurationInSecondsOptional), scheduleToCloseTimeout :: Maybe (DurationInSecondsOptional), startToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), decisionTaskCompletedEventId :: EventId, heartbeatTimeout :: Maybe (DurationInSecondsOptional) }
 ```
 
 <p>Provides the details of the <code>ActivityTaskScheduled</code> event.</p>
@@ -221,7 +221,7 @@ Constructs ActivityTaskScheduledEventAttributes from required parameters
 #### `newActivityTaskScheduledEventAttributes'`
 
 ``` purescript
-newActivityTaskScheduledEventAttributes' :: ActivityId -> ActivityType -> EventId -> TaskList -> ({ activityType :: ActivityType, activityId :: ActivityId, input :: NullOrUndefined (Data), control :: NullOrUndefined (Data), scheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), scheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), decisionTaskCompletedEventId :: EventId, heartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional) } -> { activityType :: ActivityType, activityId :: ActivityId, input :: NullOrUndefined (Data), control :: NullOrUndefined (Data), scheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), scheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), decisionTaskCompletedEventId :: EventId, heartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional) }) -> ActivityTaskScheduledEventAttributes
+newActivityTaskScheduledEventAttributes' :: ActivityId -> ActivityType -> EventId -> TaskList -> ({ activityType :: ActivityType, activityId :: ActivityId, input :: Maybe (Data), control :: Maybe (Data), scheduleToStartTimeout :: Maybe (DurationInSecondsOptional), scheduleToCloseTimeout :: Maybe (DurationInSecondsOptional), startToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), decisionTaskCompletedEventId :: EventId, heartbeatTimeout :: Maybe (DurationInSecondsOptional) } -> { activityType :: ActivityType, activityId :: ActivityId, input :: Maybe (Data), control :: Maybe (Data), scheduleToStartTimeout :: Maybe (DurationInSecondsOptional), scheduleToCloseTimeout :: Maybe (DurationInSecondsOptional), startToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), decisionTaskCompletedEventId :: EventId, heartbeatTimeout :: Maybe (DurationInSecondsOptional) }) -> ActivityTaskScheduledEventAttributes
 ```
 
 Constructs ActivityTaskScheduledEventAttributes's fields from required parameters
@@ -230,7 +230,7 @@ Constructs ActivityTaskScheduledEventAttributes's fields from required parameter
 
 ``` purescript
 newtype ActivityTaskStartedEventAttributes
-  = ActivityTaskStartedEventAttributes { identity :: NullOrUndefined (Identity), scheduledEventId :: EventId }
+  = ActivityTaskStartedEventAttributes { identity :: Maybe (Identity), scheduledEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>ActivityTaskStarted</code> event.</p>
@@ -255,7 +255,7 @@ Constructs ActivityTaskStartedEventAttributes from required parameters
 #### `newActivityTaskStartedEventAttributes'`
 
 ``` purescript
-newActivityTaskStartedEventAttributes' :: EventId -> ({ identity :: NullOrUndefined (Identity), scheduledEventId :: EventId } -> { identity :: NullOrUndefined (Identity), scheduledEventId :: EventId }) -> ActivityTaskStartedEventAttributes
+newActivityTaskStartedEventAttributes' :: EventId -> ({ identity :: Maybe (Identity), scheduledEventId :: EventId } -> { identity :: Maybe (Identity), scheduledEventId :: EventId }) -> ActivityTaskStartedEventAttributes
 ```
 
 Constructs ActivityTaskStartedEventAttributes's fields from required parameters
@@ -298,7 +298,7 @@ Constructs ActivityTaskStatus's fields from required parameters
 
 ``` purescript
 newtype ActivityTaskTimedOutEventAttributes
-  = ActivityTaskTimedOutEventAttributes { timeoutType :: ActivityTaskTimeoutType, scheduledEventId :: EventId, startedEventId :: EventId, details :: NullOrUndefined (LimitedData) }
+  = ActivityTaskTimedOutEventAttributes { timeoutType :: ActivityTaskTimeoutType, scheduledEventId :: EventId, startedEventId :: EventId, details :: Maybe (LimitedData) }
 ```
 
 <p>Provides the details of the <code>ActivityTaskTimedOut</code> event.</p>
@@ -323,7 +323,7 @@ Constructs ActivityTaskTimedOutEventAttributes from required parameters
 #### `newActivityTaskTimedOutEventAttributes'`
 
 ``` purescript
-newActivityTaskTimedOutEventAttributes' :: EventId -> EventId -> ActivityTaskTimeoutType -> ({ timeoutType :: ActivityTaskTimeoutType, scheduledEventId :: EventId, startedEventId :: EventId, details :: NullOrUndefined (LimitedData) } -> { timeoutType :: ActivityTaskTimeoutType, scheduledEventId :: EventId, startedEventId :: EventId, details :: NullOrUndefined (LimitedData) }) -> ActivityTaskTimedOutEventAttributes
+newActivityTaskTimedOutEventAttributes' :: EventId -> EventId -> ActivityTaskTimeoutType -> ({ timeoutType :: ActivityTaskTimeoutType, scheduledEventId :: EventId, startedEventId :: EventId, details :: Maybe (LimitedData) } -> { timeoutType :: ActivityTaskTimeoutType, scheduledEventId :: EventId, startedEventId :: EventId, details :: Maybe (LimitedData) }) -> ActivityTaskTimedOutEventAttributes
 ```
 
 Constructs ActivityTaskTimedOutEventAttributes's fields from required parameters
@@ -382,7 +382,7 @@ Constructs ActivityType's fields from required parameters
 
 ``` purescript
 newtype ActivityTypeConfiguration
-  = ActivityTypeConfiguration { defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultTaskScheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }
+  = ActivityTypeConfiguration { defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultTaskScheduleToStartTimeout :: Maybe (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: Maybe (DurationInSecondsOptional) }
 ```
 
 <p>Configuration settings registered with the activity type.</p>
@@ -407,7 +407,7 @@ Constructs ActivityTypeConfiguration from required parameters
 #### `newActivityTypeConfiguration'`
 
 ``` purescript
-newActivityTypeConfiguration' :: ({ defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultTaskScheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) } -> { defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultTaskScheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }) -> ActivityTypeConfiguration
+newActivityTypeConfiguration' :: ({ defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultTaskScheduleToStartTimeout :: Maybe (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: Maybe (DurationInSecondsOptional) } -> { defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultTaskScheduleToStartTimeout :: Maybe (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: Maybe (DurationInSecondsOptional) }) -> ActivityTypeConfiguration
 ```
 
 Constructs ActivityTypeConfiguration's fields from required parameters
@@ -450,7 +450,7 @@ Constructs ActivityTypeDetail's fields from required parameters
 
 ``` purescript
 newtype ActivityTypeInfo
-  = ActivityTypeInfo { activityType :: ActivityType, status :: RegistrationStatus, description :: NullOrUndefined (Description), creationDate :: Timestamp, deprecationDate :: NullOrUndefined (Timestamp) }
+  = ActivityTypeInfo { activityType :: ActivityType, status :: RegistrationStatus, description :: Maybe (Description), creationDate :: Timestamp, deprecationDate :: Maybe (Timestamp) }
 ```
 
 <p>Detailed information about an activity type.</p>
@@ -475,7 +475,7 @@ Constructs ActivityTypeInfo from required parameters
 #### `newActivityTypeInfo'`
 
 ``` purescript
-newActivityTypeInfo' :: ActivityType -> Timestamp -> RegistrationStatus -> ({ activityType :: ActivityType, status :: RegistrationStatus, description :: NullOrUndefined (Description), creationDate :: Timestamp, deprecationDate :: NullOrUndefined (Timestamp) } -> { activityType :: ActivityType, status :: RegistrationStatus, description :: NullOrUndefined (Description), creationDate :: Timestamp, deprecationDate :: NullOrUndefined (Timestamp) }) -> ActivityTypeInfo
+newActivityTypeInfo' :: ActivityType -> Timestamp -> RegistrationStatus -> ({ activityType :: ActivityType, status :: RegistrationStatus, description :: Maybe (Description), creationDate :: Timestamp, deprecationDate :: Maybe (Timestamp) } -> { activityType :: ActivityType, status :: RegistrationStatus, description :: Maybe (Description), creationDate :: Timestamp, deprecationDate :: Maybe (Timestamp) }) -> ActivityTypeInfo
 ```
 
 Constructs ActivityTypeInfo's fields from required parameters
@@ -500,7 +500,7 @@ Encode ActivityTypeInfoList
 
 ``` purescript
 newtype ActivityTypeInfos
-  = ActivityTypeInfos { typeInfos :: ActivityTypeInfoList, nextPageToken :: NullOrUndefined (PageToken) }
+  = ActivityTypeInfos { typeInfos :: ActivityTypeInfoList, nextPageToken :: Maybe (PageToken) }
 ```
 
 <p>Contains a paginated list of activity type information structures.</p>
@@ -525,7 +525,7 @@ Constructs ActivityTypeInfos from required parameters
 #### `newActivityTypeInfos'`
 
 ``` purescript
-newActivityTypeInfos' :: ActivityTypeInfoList -> ({ typeInfos :: ActivityTypeInfoList, nextPageToken :: NullOrUndefined (PageToken) } -> { typeInfos :: ActivityTypeInfoList, nextPageToken :: NullOrUndefined (PageToken) }) -> ActivityTypeInfos
+newActivityTypeInfos' :: ActivityTypeInfoList -> ({ typeInfos :: ActivityTypeInfoList, nextPageToken :: Maybe (PageToken) } -> { typeInfos :: ActivityTypeInfoList, nextPageToken :: Maybe (PageToken) }) -> ActivityTypeInfos
 ```
 
 Constructs ActivityTypeInfos's fields from required parameters
@@ -634,7 +634,7 @@ Constructs CancelTimerFailedEventAttributes's fields from required parameters
 
 ``` purescript
 newtype CancelWorkflowExecutionDecisionAttributes
-  = CancelWorkflowExecutionDecisionAttributes { details :: NullOrUndefined (Data) }
+  = CancelWorkflowExecutionDecisionAttributes { details :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>CancelWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -659,7 +659,7 @@ Constructs CancelWorkflowExecutionDecisionAttributes from required parameters
 #### `newCancelWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newCancelWorkflowExecutionDecisionAttributes' :: ({ details :: NullOrUndefined (Data) } -> { details :: NullOrUndefined (Data) }) -> CancelWorkflowExecutionDecisionAttributes
+newCancelWorkflowExecutionDecisionAttributes' :: ({ details :: Maybe (Data) } -> { details :: Maybe (Data) }) -> CancelWorkflowExecutionDecisionAttributes
 ```
 
 Constructs CancelWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -766,7 +766,7 @@ Encode ChildPolicy
 
 ``` purescript
 newtype ChildWorkflowExecutionCanceledEventAttributes
-  = ChildWorkflowExecutionCanceledEventAttributes { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, details :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId }
+  = ChildWorkflowExecutionCanceledEventAttributes { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, details :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId }
 ```
 
 <p>Provide details of the <code>ChildWorkflowExecutionCanceled</code> event.</p>
@@ -791,7 +791,7 @@ Constructs ChildWorkflowExecutionCanceledEventAttributes from required parameter
 #### `newChildWorkflowExecutionCanceledEventAttributes'`
 
 ``` purescript
-newChildWorkflowExecutionCanceledEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ({ workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, details :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId } -> { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, details :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId }) -> ChildWorkflowExecutionCanceledEventAttributes
+newChildWorkflowExecutionCanceledEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ({ workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, details :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId } -> { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, details :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId }) -> ChildWorkflowExecutionCanceledEventAttributes
 ```
 
 Constructs ChildWorkflowExecutionCanceledEventAttributes's fields from required parameters
@@ -800,7 +800,7 @@ Constructs ChildWorkflowExecutionCanceledEventAttributes's fields from required 
 
 ``` purescript
 newtype ChildWorkflowExecutionCompletedEventAttributes
-  = ChildWorkflowExecutionCompletedEventAttributes { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, result :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId }
+  = ChildWorkflowExecutionCompletedEventAttributes { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, result :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>ChildWorkflowExecutionCompleted</code> event.</p>
@@ -825,7 +825,7 @@ Constructs ChildWorkflowExecutionCompletedEventAttributes from required paramete
 #### `newChildWorkflowExecutionCompletedEventAttributes'`
 
 ``` purescript
-newChildWorkflowExecutionCompletedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ({ workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, result :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId } -> { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, result :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId }) -> ChildWorkflowExecutionCompletedEventAttributes
+newChildWorkflowExecutionCompletedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ({ workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, result :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId } -> { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, result :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId }) -> ChildWorkflowExecutionCompletedEventAttributes
 ```
 
 Constructs ChildWorkflowExecutionCompletedEventAttributes's fields from required parameters
@@ -834,7 +834,7 @@ Constructs ChildWorkflowExecutionCompletedEventAttributes's fields from required
 
 ``` purescript
 newtype ChildWorkflowExecutionFailedEventAttributes
-  = ChildWorkflowExecutionFailedEventAttributes { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId }
+  = ChildWorkflowExecutionFailedEventAttributes { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, reason :: Maybe (FailureReason), details :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>ChildWorkflowExecutionFailed</code> event.</p>
@@ -859,7 +859,7 @@ Constructs ChildWorkflowExecutionFailedEventAttributes from required parameters
 #### `newChildWorkflowExecutionFailedEventAttributes'`
 
 ``` purescript
-newChildWorkflowExecutionFailedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ({ workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId } -> { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), initiatedEventId :: EventId, startedEventId :: EventId }) -> ChildWorkflowExecutionFailedEventAttributes
+newChildWorkflowExecutionFailedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ({ workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, reason :: Maybe (FailureReason), details :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId } -> { workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, reason :: Maybe (FailureReason), details :: Maybe (Data), initiatedEventId :: EventId, startedEventId :: EventId }) -> ChildWorkflowExecutionFailedEventAttributes
 ```
 
 Constructs ChildWorkflowExecutionFailedEventAttributes's fields from required parameters
@@ -1020,7 +1020,7 @@ Constructs CloseStatusFilter's fields from required parameters
 
 ``` purescript
 newtype CompleteWorkflowExecutionDecisionAttributes
-  = CompleteWorkflowExecutionDecisionAttributes { result :: NullOrUndefined (Data) }
+  = CompleteWorkflowExecutionDecisionAttributes { result :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>CompleteWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -1045,7 +1045,7 @@ Constructs CompleteWorkflowExecutionDecisionAttributes from required parameters
 #### `newCompleteWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newCompleteWorkflowExecutionDecisionAttributes' :: ({ result :: NullOrUndefined (Data) } -> { result :: NullOrUndefined (Data) }) -> CompleteWorkflowExecutionDecisionAttributes
+newCompleteWorkflowExecutionDecisionAttributes' :: ({ result :: Maybe (Data) } -> { result :: Maybe (Data) }) -> CompleteWorkflowExecutionDecisionAttributes
 ```
 
 Constructs CompleteWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -1104,7 +1104,7 @@ Constructs CompleteWorkflowExecutionFailedEventAttributes's fields from required
 
 ``` purescript
 newtype ContinueAsNewWorkflowExecutionDecisionAttributes
-  = ContinueAsNewWorkflowExecutionDecisionAttributes { input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), tagList :: NullOrUndefined (TagList), workflowTypeVersion :: NullOrUndefined (Version), lambdaRole :: NullOrUndefined (Arn) }
+  = ContinueAsNewWorkflowExecutionDecisionAttributes { input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), tagList :: Maybe (TagList), workflowTypeVersion :: Maybe (Version), lambdaRole :: Maybe (Arn) }
 ```
 
 <p>Provides the details of the <code>ContinueAsNewWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>Constrain the following parameters by using a <code>Condition</code> element with the appropriate keys.</p> <ul> <li> <p> <code>tag</code> – A tag used to identify the workflow execution</p> </li> <li> <p> <code>taskList</code> – String constraint. The key is <code>swf:taskList.name</code>.</p> </li> <li> <p> <code>workflowType.version</code> – String constraint. The key is <code>swf:workflowType.version</code>.</p> </li> </ul> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -1129,7 +1129,7 @@ Constructs ContinueAsNewWorkflowExecutionDecisionAttributes from required parame
 #### `newContinueAsNewWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newContinueAsNewWorkflowExecutionDecisionAttributes' :: ({ input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), tagList :: NullOrUndefined (TagList), workflowTypeVersion :: NullOrUndefined (Version), lambdaRole :: NullOrUndefined (Arn) } -> { input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), tagList :: NullOrUndefined (TagList), workflowTypeVersion :: NullOrUndefined (Version), lambdaRole :: NullOrUndefined (Arn) }) -> ContinueAsNewWorkflowExecutionDecisionAttributes
+newContinueAsNewWorkflowExecutionDecisionAttributes' :: ({ input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), tagList :: Maybe (TagList), workflowTypeVersion :: Maybe (Version), lambdaRole :: Maybe (Arn) } -> { input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), tagList :: Maybe (TagList), workflowTypeVersion :: Maybe (Version), lambdaRole :: Maybe (Arn) }) -> ContinueAsNewWorkflowExecutionDecisionAttributes
 ```
 
 Constructs ContinueAsNewWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -1204,7 +1204,7 @@ Encode Count
 
 ``` purescript
 newtype CountClosedWorkflowExecutionsInput
-  = CountClosedWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: NullOrUndefined (ExecutionTimeFilter), closeTimeFilter :: NullOrUndefined (ExecutionTimeFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter), typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), closeStatusFilter :: NullOrUndefined (CloseStatusFilter) }
+  = CountClosedWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: Maybe (ExecutionTimeFilter), closeTimeFilter :: Maybe (ExecutionTimeFilter), executionFilter :: Maybe (WorkflowExecutionFilter), typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), closeStatusFilter :: Maybe (CloseStatusFilter) }
 ```
 
 ##### Instances
@@ -1227,7 +1227,7 @@ Constructs CountClosedWorkflowExecutionsInput from required parameters
 #### `newCountClosedWorkflowExecutionsInput'`
 
 ``` purescript
-newCountClosedWorkflowExecutionsInput' :: DomainName -> ({ domain :: DomainName, startTimeFilter :: NullOrUndefined (ExecutionTimeFilter), closeTimeFilter :: NullOrUndefined (ExecutionTimeFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter), typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), closeStatusFilter :: NullOrUndefined (CloseStatusFilter) } -> { domain :: DomainName, startTimeFilter :: NullOrUndefined (ExecutionTimeFilter), closeTimeFilter :: NullOrUndefined (ExecutionTimeFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter), typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), closeStatusFilter :: NullOrUndefined (CloseStatusFilter) }) -> CountClosedWorkflowExecutionsInput
+newCountClosedWorkflowExecutionsInput' :: DomainName -> ({ domain :: DomainName, startTimeFilter :: Maybe (ExecutionTimeFilter), closeTimeFilter :: Maybe (ExecutionTimeFilter), executionFilter :: Maybe (WorkflowExecutionFilter), typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), closeStatusFilter :: Maybe (CloseStatusFilter) } -> { domain :: DomainName, startTimeFilter :: Maybe (ExecutionTimeFilter), closeTimeFilter :: Maybe (ExecutionTimeFilter), executionFilter :: Maybe (WorkflowExecutionFilter), typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), closeStatusFilter :: Maybe (CloseStatusFilter) }) -> CountClosedWorkflowExecutionsInput
 ```
 
 Constructs CountClosedWorkflowExecutionsInput's fields from required parameters
@@ -1236,7 +1236,7 @@ Constructs CountClosedWorkflowExecutionsInput's fields from required parameters
 
 ``` purescript
 newtype CountOpenWorkflowExecutionsInput
-  = CountOpenWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter) }
+  = CountOpenWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), executionFilter :: Maybe (WorkflowExecutionFilter) }
 ```
 
 ##### Instances
@@ -1259,7 +1259,7 @@ Constructs CountOpenWorkflowExecutionsInput from required parameters
 #### `newCountOpenWorkflowExecutionsInput'`
 
 ``` purescript
-newCountOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ({ domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter) } -> { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter) }) -> CountOpenWorkflowExecutionsInput
+newCountOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ({ domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), executionFilter :: Maybe (WorkflowExecutionFilter) } -> { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), executionFilter :: Maybe (WorkflowExecutionFilter) }) -> CountOpenWorkflowExecutionsInput
 ```
 
 Constructs CountOpenWorkflowExecutionsInput's fields from required parameters
@@ -1348,7 +1348,7 @@ Encode Data
 
 ``` purescript
 newtype Decision
-  = Decision { decisionType :: DecisionType, scheduleActivityTaskDecisionAttributes :: NullOrUndefined (ScheduleActivityTaskDecisionAttributes), requestCancelActivityTaskDecisionAttributes :: NullOrUndefined (RequestCancelActivityTaskDecisionAttributes), completeWorkflowExecutionDecisionAttributes :: NullOrUndefined (CompleteWorkflowExecutionDecisionAttributes), failWorkflowExecutionDecisionAttributes :: NullOrUndefined (FailWorkflowExecutionDecisionAttributes), cancelWorkflowExecutionDecisionAttributes :: NullOrUndefined (CancelWorkflowExecutionDecisionAttributes), continueAsNewWorkflowExecutionDecisionAttributes :: NullOrUndefined (ContinueAsNewWorkflowExecutionDecisionAttributes), recordMarkerDecisionAttributes :: NullOrUndefined (RecordMarkerDecisionAttributes), startTimerDecisionAttributes :: NullOrUndefined (StartTimerDecisionAttributes), cancelTimerDecisionAttributes :: NullOrUndefined (CancelTimerDecisionAttributes), signalExternalWorkflowExecutionDecisionAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionDecisionAttributes), requestCancelExternalWorkflowExecutionDecisionAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionDecisionAttributes), startChildWorkflowExecutionDecisionAttributes :: NullOrUndefined (StartChildWorkflowExecutionDecisionAttributes), scheduleLambdaFunctionDecisionAttributes :: NullOrUndefined (ScheduleLambdaFunctionDecisionAttributes) }
+  = Decision { decisionType :: DecisionType, scheduleActivityTaskDecisionAttributes :: Maybe (ScheduleActivityTaskDecisionAttributes), requestCancelActivityTaskDecisionAttributes :: Maybe (RequestCancelActivityTaskDecisionAttributes), completeWorkflowExecutionDecisionAttributes :: Maybe (CompleteWorkflowExecutionDecisionAttributes), failWorkflowExecutionDecisionAttributes :: Maybe (FailWorkflowExecutionDecisionAttributes), cancelWorkflowExecutionDecisionAttributes :: Maybe (CancelWorkflowExecutionDecisionAttributes), continueAsNewWorkflowExecutionDecisionAttributes :: Maybe (ContinueAsNewWorkflowExecutionDecisionAttributes), recordMarkerDecisionAttributes :: Maybe (RecordMarkerDecisionAttributes), startTimerDecisionAttributes :: Maybe (StartTimerDecisionAttributes), cancelTimerDecisionAttributes :: Maybe (CancelTimerDecisionAttributes), signalExternalWorkflowExecutionDecisionAttributes :: Maybe (SignalExternalWorkflowExecutionDecisionAttributes), requestCancelExternalWorkflowExecutionDecisionAttributes :: Maybe (RequestCancelExternalWorkflowExecutionDecisionAttributes), startChildWorkflowExecutionDecisionAttributes :: Maybe (StartChildWorkflowExecutionDecisionAttributes), scheduleLambdaFunctionDecisionAttributes :: Maybe (ScheduleLambdaFunctionDecisionAttributes) }
 ```
 
 <p>Specifies a decision made by the decider. A decision can be one of these types:</p> <ul> <li> <p> <code>CancelTimer</code> – Cancels a previously started timer and records a <code>TimerCanceled</code> event in the history.</p> </li> <li> <p> <code>CancelWorkflowExecution</code> – Closes the workflow execution and records a <code>WorkflowExecutionCanceled</code> event in the history.</p> </li> <li> <p> <code>CompleteWorkflowExecution</code> – Closes the workflow execution and records a <code>WorkflowExecutionCompleted</code> event in the history .</p> </li> <li> <p> <code>ContinueAsNewWorkflowExecution</code> – Closes the workflow execution and starts a new workflow execution of the same type using the same workflow ID and a unique run Id. A <code>WorkflowExecutionContinuedAsNew</code> event is recorded in the history.</p> </li> <li> <p> <code>FailWorkflowExecution</code> – Closes the workflow execution and records a <code>WorkflowExecutionFailed</code> event in the history.</p> </li> <li> <p> <code>RecordMarker</code> – Records a <code>MarkerRecorded</code> event in the history. Markers can be used for adding custom information in the history for instance to let deciders know that they don't need to look at the history beyond the marker event.</p> </li> <li> <p> <code>RequestCancelActivityTask</code> – Attempts to cancel a previously scheduled activity task. If the activity task was scheduled but has not been assigned to a worker, then it is canceled. If the activity task was already assigned to a worker, then the worker is informed that cancellation has been requested in the response to <a>RecordActivityTaskHeartbeat</a>.</p> </li> <li> <p> <code>RequestCancelExternalWorkflowExecution</code> – Requests that a request be made to cancel the specified external workflow execution and records a <code>RequestCancelExternalWorkflowExecutionInitiated</code> event in the history.</p> </li> <li> <p> <code>ScheduleActivityTask</code> – Schedules an activity task.</p> </li> <li> <p> <code>SignalExternalWorkflowExecution</code> – Requests a signal to be delivered to the specified external workflow execution and records a <code>SignalExternalWorkflowExecutionInitiated</code> event in the history.</p> </li> <li> <p> <code>StartChildWorkflowExecution</code> – Requests that a child workflow execution be started and records a <code>StartChildWorkflowExecutionInitiated</code> event in the history. The child workflow execution is a separate workflow execution with its own history.</p> </li> <li> <p> <code>StartTimer</code> – Starts a timer for this workflow execution and records a <code>TimerStarted</code> event in the history. This timer fires after the specified delay and record a <code>TimerFired</code> event.</p> </li> </ul> <p> <b>Access Control</b> </p> <p>If you grant permission to use <code>RespondDecisionTaskCompleted</code>, you can use IAM policies to express permissions for the list of decisions returned by this action as if they were members of the API. Treating decisions as a pseudo API maintains a uniform conceptual model and helps keep policies readable. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p> <p> <b>Decision Failure</b> </p> <p>Decisions can fail for several reasons</p> <ul> <li> <p>The ordering of decisions should follow a logical flow. Some decisions might not make sense in the current context of the workflow execution and therefore fails.</p> </li> <li> <p>A limit on your account was reached.</p> </li> <li> <p>The decision lacks sufficient permissions.</p> </li> </ul> <p>One of the following events might be added to the history to indicate an error. The event attribute's <code>cause</code> parameter indicates the cause. If <code>cause</code> is set to <code>OPERATION_NOT_PERMITTED</code>, the decision failed because it lacked sufficient permissions. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p> <ul> <li> <p> <code>ScheduleActivityTaskFailed</code> – A <code>ScheduleActivityTask</code> decision failed. This could happen if the activity type specified in the decision isn't registered, is in a deprecated state, or the decision isn't properly configured.</p> </li> <li> <p> <code>RequestCancelActivityTaskFailed</code> – A <code>RequestCancelActivityTask</code> decision failed. This could happen if there is no open activity task with the specified activityId.</p> </li> <li> <p> <code>StartTimerFailed</code> – A <code>StartTimer</code> decision failed. This could happen if there is another open timer with the same timerId.</p> </li> <li> <p> <code>CancelTimerFailed</code> – A <code>CancelTimer</code> decision failed. This could happen if there is no open timer with the specified timerId.</p> </li> <li> <p> <code>StartChildWorkflowExecutionFailed</code> – A <code>StartChildWorkflowExecution</code> decision failed. This could happen if the workflow type specified isn't registered, is deprecated, or the decision isn't properly configured.</p> </li> <li> <p> <code>SignalExternalWorkflowExecutionFailed</code> – A <code>SignalExternalWorkflowExecution</code> decision failed. This could happen if the <code>workflowID</code> specified in the decision was incorrect.</p> </li> <li> <p> <code>RequestCancelExternalWorkflowExecutionFailed</code> – A <code>RequestCancelExternalWorkflowExecution</code> decision failed. This could happen if the <code>workflowID</code> specified in the decision was incorrect.</p> </li> <li> <p> <code>CancelWorkflowExecutionFailed</code> – A <code>CancelWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution.</p> </li> <li> <p> <code>CompleteWorkflowExecutionFailed</code> – A <code>CompleteWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution.</p> </li> <li> <p> <code>ContinueAsNewWorkflowExecutionFailed</code> – A <code>ContinueAsNewWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution or the ContinueAsNewWorkflowExecution decision was not configured correctly.</p> </li> <li> <p> <code>FailWorkflowExecutionFailed</code> – A <code>FailWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution.</p> </li> </ul> <p>The preceding error events might occur due to an error in the decider logic, which might put the workflow execution in an unstable state The cause field in the event structure for the error event indicates the cause of the error.</p> <note> <p>A workflow execution may be closed by the decider by returning one of the following decisions when completing a decision task: <code>CompleteWorkflowExecution</code>, <code>FailWorkflowExecution</code>, <code>CancelWorkflowExecution</code> and <code>ContinueAsNewWorkflowExecution</code>. An <code>UnhandledDecision</code> fault is returned if a workflow closing decision is specified and a signal or activity event had been added to the history while the decision task was being performed by the decider. Unlike the above situations which are logic issues, this fault is always possible because of race conditions in a distributed system. The right action here is to call <a>RespondDecisionTaskCompleted</a> without any decisions. This would result in another decision task with these new events included in the history. The decider should handle the new events and may decide to close the workflow execution.</p> </note> <p> <b>How to Code a Decision</b> </p> <p>You code a decision by first setting the decision type field to one of the above decision values, and then set the corresponding attributes field shown below:</p> <ul> <li> <p> <code> <a>ScheduleActivityTaskDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>RequestCancelActivityTaskDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>CompleteWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>FailWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>CancelWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>ContinueAsNewWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>RecordMarkerDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>StartTimerDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>CancelTimerDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>SignalExternalWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>RequestCancelExternalWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>StartChildWorkflowExecutionDecisionAttributes</a> </code> </p> </li> </ul>
@@ -1373,7 +1373,7 @@ Constructs Decision from required parameters
 #### `newDecision'`
 
 ``` purescript
-newDecision' :: DecisionType -> ({ decisionType :: DecisionType, scheduleActivityTaskDecisionAttributes :: NullOrUndefined (ScheduleActivityTaskDecisionAttributes), requestCancelActivityTaskDecisionAttributes :: NullOrUndefined (RequestCancelActivityTaskDecisionAttributes), completeWorkflowExecutionDecisionAttributes :: NullOrUndefined (CompleteWorkflowExecutionDecisionAttributes), failWorkflowExecutionDecisionAttributes :: NullOrUndefined (FailWorkflowExecutionDecisionAttributes), cancelWorkflowExecutionDecisionAttributes :: NullOrUndefined (CancelWorkflowExecutionDecisionAttributes), continueAsNewWorkflowExecutionDecisionAttributes :: NullOrUndefined (ContinueAsNewWorkflowExecutionDecisionAttributes), recordMarkerDecisionAttributes :: NullOrUndefined (RecordMarkerDecisionAttributes), startTimerDecisionAttributes :: NullOrUndefined (StartTimerDecisionAttributes), cancelTimerDecisionAttributes :: NullOrUndefined (CancelTimerDecisionAttributes), signalExternalWorkflowExecutionDecisionAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionDecisionAttributes), requestCancelExternalWorkflowExecutionDecisionAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionDecisionAttributes), startChildWorkflowExecutionDecisionAttributes :: NullOrUndefined (StartChildWorkflowExecutionDecisionAttributes), scheduleLambdaFunctionDecisionAttributes :: NullOrUndefined (ScheduleLambdaFunctionDecisionAttributes) } -> { decisionType :: DecisionType, scheduleActivityTaskDecisionAttributes :: NullOrUndefined (ScheduleActivityTaskDecisionAttributes), requestCancelActivityTaskDecisionAttributes :: NullOrUndefined (RequestCancelActivityTaskDecisionAttributes), completeWorkflowExecutionDecisionAttributes :: NullOrUndefined (CompleteWorkflowExecutionDecisionAttributes), failWorkflowExecutionDecisionAttributes :: NullOrUndefined (FailWorkflowExecutionDecisionAttributes), cancelWorkflowExecutionDecisionAttributes :: NullOrUndefined (CancelWorkflowExecutionDecisionAttributes), continueAsNewWorkflowExecutionDecisionAttributes :: NullOrUndefined (ContinueAsNewWorkflowExecutionDecisionAttributes), recordMarkerDecisionAttributes :: NullOrUndefined (RecordMarkerDecisionAttributes), startTimerDecisionAttributes :: NullOrUndefined (StartTimerDecisionAttributes), cancelTimerDecisionAttributes :: NullOrUndefined (CancelTimerDecisionAttributes), signalExternalWorkflowExecutionDecisionAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionDecisionAttributes), requestCancelExternalWorkflowExecutionDecisionAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionDecisionAttributes), startChildWorkflowExecutionDecisionAttributes :: NullOrUndefined (StartChildWorkflowExecutionDecisionAttributes), scheduleLambdaFunctionDecisionAttributes :: NullOrUndefined (ScheduleLambdaFunctionDecisionAttributes) }) -> Decision
+newDecision' :: DecisionType -> ({ decisionType :: DecisionType, scheduleActivityTaskDecisionAttributes :: Maybe (ScheduleActivityTaskDecisionAttributes), requestCancelActivityTaskDecisionAttributes :: Maybe (RequestCancelActivityTaskDecisionAttributes), completeWorkflowExecutionDecisionAttributes :: Maybe (CompleteWorkflowExecutionDecisionAttributes), failWorkflowExecutionDecisionAttributes :: Maybe (FailWorkflowExecutionDecisionAttributes), cancelWorkflowExecutionDecisionAttributes :: Maybe (CancelWorkflowExecutionDecisionAttributes), continueAsNewWorkflowExecutionDecisionAttributes :: Maybe (ContinueAsNewWorkflowExecutionDecisionAttributes), recordMarkerDecisionAttributes :: Maybe (RecordMarkerDecisionAttributes), startTimerDecisionAttributes :: Maybe (StartTimerDecisionAttributes), cancelTimerDecisionAttributes :: Maybe (CancelTimerDecisionAttributes), signalExternalWorkflowExecutionDecisionAttributes :: Maybe (SignalExternalWorkflowExecutionDecisionAttributes), requestCancelExternalWorkflowExecutionDecisionAttributes :: Maybe (RequestCancelExternalWorkflowExecutionDecisionAttributes), startChildWorkflowExecutionDecisionAttributes :: Maybe (StartChildWorkflowExecutionDecisionAttributes), scheduleLambdaFunctionDecisionAttributes :: Maybe (ScheduleLambdaFunctionDecisionAttributes) } -> { decisionType :: DecisionType, scheduleActivityTaskDecisionAttributes :: Maybe (ScheduleActivityTaskDecisionAttributes), requestCancelActivityTaskDecisionAttributes :: Maybe (RequestCancelActivityTaskDecisionAttributes), completeWorkflowExecutionDecisionAttributes :: Maybe (CompleteWorkflowExecutionDecisionAttributes), failWorkflowExecutionDecisionAttributes :: Maybe (FailWorkflowExecutionDecisionAttributes), cancelWorkflowExecutionDecisionAttributes :: Maybe (CancelWorkflowExecutionDecisionAttributes), continueAsNewWorkflowExecutionDecisionAttributes :: Maybe (ContinueAsNewWorkflowExecutionDecisionAttributes), recordMarkerDecisionAttributes :: Maybe (RecordMarkerDecisionAttributes), startTimerDecisionAttributes :: Maybe (StartTimerDecisionAttributes), cancelTimerDecisionAttributes :: Maybe (CancelTimerDecisionAttributes), signalExternalWorkflowExecutionDecisionAttributes :: Maybe (SignalExternalWorkflowExecutionDecisionAttributes), requestCancelExternalWorkflowExecutionDecisionAttributes :: Maybe (RequestCancelExternalWorkflowExecutionDecisionAttributes), startChildWorkflowExecutionDecisionAttributes :: Maybe (StartChildWorkflowExecutionDecisionAttributes), scheduleLambdaFunctionDecisionAttributes :: Maybe (ScheduleLambdaFunctionDecisionAttributes) }) -> Decision
 ```
 
 Constructs Decision's fields from required parameters
@@ -1398,7 +1398,7 @@ Encode DecisionList
 
 ``` purescript
 newtype DecisionTask
-  = DecisionTask { taskToken :: TaskToken, startedEventId :: EventId, workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, events :: HistoryEventList, nextPageToken :: NullOrUndefined (PageToken), previousStartedEventId :: NullOrUndefined (EventId) }
+  = DecisionTask { taskToken :: TaskToken, startedEventId :: EventId, workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, events :: HistoryEventList, nextPageToken :: Maybe (PageToken), previousStartedEventId :: Maybe (EventId) }
 ```
 
 <p>A structure that represents a decision task. Decision tasks are sent to deciders in order for them to make decisions.</p>
@@ -1423,7 +1423,7 @@ Constructs DecisionTask from required parameters
 #### `newDecisionTask'`
 
 ``` purescript
-newDecisionTask' :: HistoryEventList -> EventId -> TaskToken -> WorkflowExecution -> WorkflowType -> ({ taskToken :: TaskToken, startedEventId :: EventId, workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, events :: HistoryEventList, nextPageToken :: NullOrUndefined (PageToken), previousStartedEventId :: NullOrUndefined (EventId) } -> { taskToken :: TaskToken, startedEventId :: EventId, workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, events :: HistoryEventList, nextPageToken :: NullOrUndefined (PageToken), previousStartedEventId :: NullOrUndefined (EventId) }) -> DecisionTask
+newDecisionTask' :: HistoryEventList -> EventId -> TaskToken -> WorkflowExecution -> WorkflowType -> ({ taskToken :: TaskToken, startedEventId :: EventId, workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, events :: HistoryEventList, nextPageToken :: Maybe (PageToken), previousStartedEventId :: Maybe (EventId) } -> { taskToken :: TaskToken, startedEventId :: EventId, workflowExecution :: WorkflowExecution, workflowType :: WorkflowType, events :: HistoryEventList, nextPageToken :: Maybe (PageToken), previousStartedEventId :: Maybe (EventId) }) -> DecisionTask
 ```
 
 Constructs DecisionTask's fields from required parameters
@@ -1432,7 +1432,7 @@ Constructs DecisionTask's fields from required parameters
 
 ``` purescript
 newtype DecisionTaskCompletedEventAttributes
-  = DecisionTaskCompletedEventAttributes { executionContext :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId }
+  = DecisionTaskCompletedEventAttributes { executionContext :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>DecisionTaskCompleted</code> event.</p>
@@ -1457,7 +1457,7 @@ Constructs DecisionTaskCompletedEventAttributes from required parameters
 #### `newDecisionTaskCompletedEventAttributes'`
 
 ``` purescript
-newDecisionTaskCompletedEventAttributes' :: EventId -> EventId -> ({ executionContext :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId } -> { executionContext :: NullOrUndefined (Data), scheduledEventId :: EventId, startedEventId :: EventId }) -> DecisionTaskCompletedEventAttributes
+newDecisionTaskCompletedEventAttributes' :: EventId -> EventId -> ({ executionContext :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId } -> { executionContext :: Maybe (Data), scheduledEventId :: EventId, startedEventId :: EventId }) -> DecisionTaskCompletedEventAttributes
 ```
 
 Constructs DecisionTaskCompletedEventAttributes's fields from required parameters
@@ -1466,7 +1466,7 @@ Constructs DecisionTaskCompletedEventAttributes's fields from required parameter
 
 ``` purescript
 newtype DecisionTaskScheduledEventAttributes
-  = DecisionTaskScheduledEventAttributes { taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }
+  = DecisionTaskScheduledEventAttributes { taskList :: TaskList, taskPriority :: Maybe (TaskPriority), startToCloseTimeout :: Maybe (DurationInSecondsOptional) }
 ```
 
 <p>Provides details about the <code>DecisionTaskScheduled</code> event.</p>
@@ -1491,7 +1491,7 @@ Constructs DecisionTaskScheduledEventAttributes from required parameters
 #### `newDecisionTaskScheduledEventAttributes'`
 
 ``` purescript
-newDecisionTaskScheduledEventAttributes' :: TaskList -> ({ taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) } -> { taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }) -> DecisionTaskScheduledEventAttributes
+newDecisionTaskScheduledEventAttributes' :: TaskList -> ({ taskList :: TaskList, taskPriority :: Maybe (TaskPriority), startToCloseTimeout :: Maybe (DurationInSecondsOptional) } -> { taskList :: TaskList, taskPriority :: Maybe (TaskPriority), startToCloseTimeout :: Maybe (DurationInSecondsOptional) }) -> DecisionTaskScheduledEventAttributes
 ```
 
 Constructs DecisionTaskScheduledEventAttributes's fields from required parameters
@@ -1500,7 +1500,7 @@ Constructs DecisionTaskScheduledEventAttributes's fields from required parameter
 
 ``` purescript
 newtype DecisionTaskStartedEventAttributes
-  = DecisionTaskStartedEventAttributes { identity :: NullOrUndefined (Identity), scheduledEventId :: EventId }
+  = DecisionTaskStartedEventAttributes { identity :: Maybe (Identity), scheduledEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>DecisionTaskStarted</code> event.</p>
@@ -1525,7 +1525,7 @@ Constructs DecisionTaskStartedEventAttributes from required parameters
 #### `newDecisionTaskStartedEventAttributes'`
 
 ``` purescript
-newDecisionTaskStartedEventAttributes' :: EventId -> ({ identity :: NullOrUndefined (Identity), scheduledEventId :: EventId } -> { identity :: NullOrUndefined (Identity), scheduledEventId :: EventId }) -> DecisionTaskStartedEventAttributes
+newDecisionTaskStartedEventAttributes' :: EventId -> ({ identity :: Maybe (Identity), scheduledEventId :: EventId } -> { identity :: Maybe (Identity), scheduledEventId :: EventId }) -> DecisionTaskStartedEventAttributes
 ```
 
 Constructs DecisionTaskStartedEventAttributes's fields from required parameters
@@ -1600,7 +1600,7 @@ Encode DecisionType
 
 ``` purescript
 newtype DefaultUndefinedFault
-  = DefaultUndefinedFault { message :: NullOrUndefined (ErrorMessage) }
+  = DefaultUndefinedFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>The <code>StartWorkflowExecution</code> API action was called without the required parameters set.</p> <p>Some workflow execution parameters, such as the decision <code>taskList</code>, must be set to start the execution. However, these parameters might have been set as defaults when the workflow type was registered. In this case, you can omit these parameters from the <code>StartWorkflowExecution</code> call and Amazon SWF uses the values defined in the workflow type.</p> <note> <p>If these parameters aren't set and no default parameters were defined in the workflow type, this error is displayed.</p> </note>
@@ -1625,7 +1625,7 @@ Constructs DefaultUndefinedFault from required parameters
 #### `newDefaultUndefinedFault'`
 
 ``` purescript
-newDefaultUndefinedFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> DefaultUndefinedFault
+newDefaultUndefinedFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> DefaultUndefinedFault
 ```
 
 Constructs DefaultUndefinedFault's fields from required parameters
@@ -1874,7 +1874,7 @@ Encode Description
 
 ``` purescript
 newtype DomainAlreadyExistsFault
-  = DomainAlreadyExistsFault { message :: NullOrUndefined (ErrorMessage) }
+  = DomainAlreadyExistsFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned if the specified domain already exists. You get this fault even if the existing domain is in deprecated status.</p>
@@ -1899,7 +1899,7 @@ Constructs DomainAlreadyExistsFault from required parameters
 #### `newDomainAlreadyExistsFault'`
 
 ``` purescript
-newDomainAlreadyExistsFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> DomainAlreadyExistsFault
+newDomainAlreadyExistsFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> DomainAlreadyExistsFault
 ```
 
 Constructs DomainAlreadyExistsFault's fields from required parameters
@@ -1942,7 +1942,7 @@ Constructs DomainConfiguration's fields from required parameters
 
 ``` purescript
 newtype DomainDeprecatedFault
-  = DomainDeprecatedFault { message :: NullOrUndefined (ErrorMessage) }
+  = DomainDeprecatedFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned when the specified domain has been deprecated.</p>
@@ -1967,7 +1967,7 @@ Constructs DomainDeprecatedFault from required parameters
 #### `newDomainDeprecatedFault'`
 
 ``` purescript
-newDomainDeprecatedFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> DomainDeprecatedFault
+newDomainDeprecatedFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> DomainDeprecatedFault
 ```
 
 Constructs DomainDeprecatedFault's fields from required parameters
@@ -2010,7 +2010,7 @@ Constructs DomainDetail's fields from required parameters
 
 ``` purescript
 newtype DomainInfo
-  = DomainInfo { name :: DomainName, status :: RegistrationStatus, description :: NullOrUndefined (Description) }
+  = DomainInfo { name :: DomainName, status :: RegistrationStatus, description :: Maybe (Description) }
 ```
 
 <p>Contains general information about a domain.</p>
@@ -2035,7 +2035,7 @@ Constructs DomainInfo from required parameters
 #### `newDomainInfo'`
 
 ``` purescript
-newDomainInfo' :: DomainName -> RegistrationStatus -> ({ name :: DomainName, status :: RegistrationStatus, description :: NullOrUndefined (Description) } -> { name :: DomainName, status :: RegistrationStatus, description :: NullOrUndefined (Description) }) -> DomainInfo
+newDomainInfo' :: DomainName -> RegistrationStatus -> ({ name :: DomainName, status :: RegistrationStatus, description :: Maybe (Description) } -> { name :: DomainName, status :: RegistrationStatus, description :: Maybe (Description) }) -> DomainInfo
 ```
 
 Constructs DomainInfo's fields from required parameters
@@ -2060,7 +2060,7 @@ Encode DomainInfoList
 
 ``` purescript
 newtype DomainInfos
-  = DomainInfos { domainInfos :: DomainInfoList, nextPageToken :: NullOrUndefined (PageToken) }
+  = DomainInfos { domainInfos :: DomainInfoList, nextPageToken :: Maybe (PageToken) }
 ```
 
 <p>Contains a paginated collection of DomainInfo structures.</p>
@@ -2085,7 +2085,7 @@ Constructs DomainInfos from required parameters
 #### `newDomainInfos'`
 
 ``` purescript
-newDomainInfos' :: DomainInfoList -> ({ domainInfos :: DomainInfoList, nextPageToken :: NullOrUndefined (PageToken) } -> { domainInfos :: DomainInfoList, nextPageToken :: NullOrUndefined (PageToken) }) -> DomainInfos
+newDomainInfos' :: DomainInfoList -> ({ domainInfos :: DomainInfoList, nextPageToken :: Maybe (PageToken) } -> { domainInfos :: DomainInfoList, nextPageToken :: Maybe (PageToken) }) -> DomainInfos
 ```
 
 Constructs DomainInfos's fields from required parameters
@@ -2222,7 +2222,7 @@ Encode ExecutionStatus
 
 ``` purescript
 newtype ExecutionTimeFilter
-  = ExecutionTimeFilter { oldestDate :: Timestamp, latestDate :: NullOrUndefined (Timestamp) }
+  = ExecutionTimeFilter { oldestDate :: Timestamp, latestDate :: Maybe (Timestamp) }
 ```
 
 <p>Used to filter the workflow executions in visibility APIs by various time-based rules. Each parameter, if specified, defines a rule that must be satisfied by each returned query result. The parameter values are in the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Time format</a>. For example: <code>"oldestDate": 1325376070.</code> </p>
@@ -2247,7 +2247,7 @@ Constructs ExecutionTimeFilter from required parameters
 #### `newExecutionTimeFilter'`
 
 ``` purescript
-newExecutionTimeFilter' :: Timestamp -> ({ oldestDate :: Timestamp, latestDate :: NullOrUndefined (Timestamp) } -> { oldestDate :: Timestamp, latestDate :: NullOrUndefined (Timestamp) }) -> ExecutionTimeFilter
+newExecutionTimeFilter' :: Timestamp -> ({ oldestDate :: Timestamp, latestDate :: Maybe (Timestamp) } -> { oldestDate :: Timestamp, latestDate :: Maybe (Timestamp) }) -> ExecutionTimeFilter
 ```
 
 Constructs ExecutionTimeFilter's fields from required parameters
@@ -2324,7 +2324,7 @@ Constructs ExternalWorkflowExecutionSignaledEventAttributes's fields from requir
 
 ``` purescript
 newtype FailWorkflowExecutionDecisionAttributes
-  = FailWorkflowExecutionDecisionAttributes { reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) }
+  = FailWorkflowExecutionDecisionAttributes { reason :: Maybe (FailureReason), details :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>FailWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -2349,7 +2349,7 @@ Constructs FailWorkflowExecutionDecisionAttributes from required parameters
 #### `newFailWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newFailWorkflowExecutionDecisionAttributes' :: ({ reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) } -> { reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) }) -> FailWorkflowExecutionDecisionAttributes
+newFailWorkflowExecutionDecisionAttributes' :: ({ reason :: Maybe (FailureReason), details :: Maybe (Data) } -> { reason :: Maybe (FailureReason), details :: Maybe (Data) }) -> FailWorkflowExecutionDecisionAttributes
 ```
 
 Constructs FailWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -2472,7 +2472,7 @@ Encode FunctionName
 
 ``` purescript
 newtype GetWorkflowExecutionHistoryInput
-  = GetWorkflowExecutionHistoryInput { domain :: DomainName, execution :: WorkflowExecution, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }
+  = GetWorkflowExecutionHistoryInput { domain :: DomainName, execution :: WorkflowExecution, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }
 ```
 
 ##### Instances
@@ -2495,7 +2495,7 @@ Constructs GetWorkflowExecutionHistoryInput from required parameters
 #### `newGetWorkflowExecutionHistoryInput'`
 
 ``` purescript
-newGetWorkflowExecutionHistoryInput' :: DomainName -> WorkflowExecution -> ({ domain :: DomainName, execution :: WorkflowExecution, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) } -> { domain :: DomainName, execution :: WorkflowExecution, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }) -> GetWorkflowExecutionHistoryInput
+newGetWorkflowExecutionHistoryInput' :: DomainName -> WorkflowExecution -> ({ domain :: DomainName, execution :: WorkflowExecution, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) } -> { domain :: DomainName, execution :: WorkflowExecution, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }) -> GetWorkflowExecutionHistoryInput
 ```
 
 Constructs GetWorkflowExecutionHistoryInput's fields from required parameters
@@ -2504,7 +2504,7 @@ Constructs GetWorkflowExecutionHistoryInput's fields from required parameters
 
 ``` purescript
 newtype History
-  = History { events :: HistoryEventList, nextPageToken :: NullOrUndefined (PageToken) }
+  = History { events :: HistoryEventList, nextPageToken :: Maybe (PageToken) }
 ```
 
 <p>Paginated representation of a workflow history for a workflow execution. This is the up to date, complete and authoritative record of the events related to all tasks and events in the life of the workflow execution.</p>
@@ -2529,7 +2529,7 @@ Constructs History from required parameters
 #### `newHistory'`
 
 ``` purescript
-newHistory' :: HistoryEventList -> ({ events :: HistoryEventList, nextPageToken :: NullOrUndefined (PageToken) } -> { events :: HistoryEventList, nextPageToken :: NullOrUndefined (PageToken) }) -> History
+newHistory' :: HistoryEventList -> ({ events :: HistoryEventList, nextPageToken :: Maybe (PageToken) } -> { events :: HistoryEventList, nextPageToken :: Maybe (PageToken) }) -> History
 ```
 
 Constructs History's fields from required parameters
@@ -2538,7 +2538,7 @@ Constructs History's fields from required parameters
 
 ``` purescript
 newtype HistoryEvent
-  = HistoryEvent { eventTimestamp :: Timestamp, eventType :: EventType, eventId :: EventId, workflowExecutionStartedEventAttributes :: NullOrUndefined (WorkflowExecutionStartedEventAttributes), workflowExecutionCompletedEventAttributes :: NullOrUndefined (WorkflowExecutionCompletedEventAttributes), completeWorkflowExecutionFailedEventAttributes :: NullOrUndefined (CompleteWorkflowExecutionFailedEventAttributes), workflowExecutionFailedEventAttributes :: NullOrUndefined (WorkflowExecutionFailedEventAttributes), failWorkflowExecutionFailedEventAttributes :: NullOrUndefined (FailWorkflowExecutionFailedEventAttributes), workflowExecutionTimedOutEventAttributes :: NullOrUndefined (WorkflowExecutionTimedOutEventAttributes), workflowExecutionCanceledEventAttributes :: NullOrUndefined (WorkflowExecutionCanceledEventAttributes), cancelWorkflowExecutionFailedEventAttributes :: NullOrUndefined (CancelWorkflowExecutionFailedEventAttributes), workflowExecutionContinuedAsNewEventAttributes :: NullOrUndefined (WorkflowExecutionContinuedAsNewEventAttributes), continueAsNewWorkflowExecutionFailedEventAttributes :: NullOrUndefined (ContinueAsNewWorkflowExecutionFailedEventAttributes), workflowExecutionTerminatedEventAttributes :: NullOrUndefined (WorkflowExecutionTerminatedEventAttributes), workflowExecutionCancelRequestedEventAttributes :: NullOrUndefined (WorkflowExecutionCancelRequestedEventAttributes), decisionTaskScheduledEventAttributes :: NullOrUndefined (DecisionTaskScheduledEventAttributes), decisionTaskStartedEventAttributes :: NullOrUndefined (DecisionTaskStartedEventAttributes), decisionTaskCompletedEventAttributes :: NullOrUndefined (DecisionTaskCompletedEventAttributes), decisionTaskTimedOutEventAttributes :: NullOrUndefined (DecisionTaskTimedOutEventAttributes), activityTaskScheduledEventAttributes :: NullOrUndefined (ActivityTaskScheduledEventAttributes), activityTaskStartedEventAttributes :: NullOrUndefined (ActivityTaskStartedEventAttributes), activityTaskCompletedEventAttributes :: NullOrUndefined (ActivityTaskCompletedEventAttributes), activityTaskFailedEventAttributes :: NullOrUndefined (ActivityTaskFailedEventAttributes), activityTaskTimedOutEventAttributes :: NullOrUndefined (ActivityTaskTimedOutEventAttributes), activityTaskCanceledEventAttributes :: NullOrUndefined (ActivityTaskCanceledEventAttributes), activityTaskCancelRequestedEventAttributes :: NullOrUndefined (ActivityTaskCancelRequestedEventAttributes), workflowExecutionSignaledEventAttributes :: NullOrUndefined (WorkflowExecutionSignaledEventAttributes), markerRecordedEventAttributes :: NullOrUndefined (MarkerRecordedEventAttributes), recordMarkerFailedEventAttributes :: NullOrUndefined (RecordMarkerFailedEventAttributes), timerStartedEventAttributes :: NullOrUndefined (TimerStartedEventAttributes), timerFiredEventAttributes :: NullOrUndefined (TimerFiredEventAttributes), timerCanceledEventAttributes :: NullOrUndefined (TimerCanceledEventAttributes), startChildWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (StartChildWorkflowExecutionInitiatedEventAttributes), childWorkflowExecutionStartedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionStartedEventAttributes), childWorkflowExecutionCompletedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionCompletedEventAttributes), childWorkflowExecutionFailedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionFailedEventAttributes), childWorkflowExecutionTimedOutEventAttributes :: NullOrUndefined (ChildWorkflowExecutionTimedOutEventAttributes), childWorkflowExecutionCanceledEventAttributes :: NullOrUndefined (ChildWorkflowExecutionCanceledEventAttributes), childWorkflowExecutionTerminatedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionTerminatedEventAttributes), signalExternalWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionInitiatedEventAttributes), externalWorkflowExecutionSignaledEventAttributes :: NullOrUndefined (ExternalWorkflowExecutionSignaledEventAttributes), signalExternalWorkflowExecutionFailedEventAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionFailedEventAttributes), externalWorkflowExecutionCancelRequestedEventAttributes :: NullOrUndefined (ExternalWorkflowExecutionCancelRequestedEventAttributes), requestCancelExternalWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes), requestCancelExternalWorkflowExecutionFailedEventAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionFailedEventAttributes), scheduleActivityTaskFailedEventAttributes :: NullOrUndefined (ScheduleActivityTaskFailedEventAttributes), requestCancelActivityTaskFailedEventAttributes :: NullOrUndefined (RequestCancelActivityTaskFailedEventAttributes), startTimerFailedEventAttributes :: NullOrUndefined (StartTimerFailedEventAttributes), cancelTimerFailedEventAttributes :: NullOrUndefined (CancelTimerFailedEventAttributes), startChildWorkflowExecutionFailedEventAttributes :: NullOrUndefined (StartChildWorkflowExecutionFailedEventAttributes), lambdaFunctionScheduledEventAttributes :: NullOrUndefined (LambdaFunctionScheduledEventAttributes), lambdaFunctionStartedEventAttributes :: NullOrUndefined (LambdaFunctionStartedEventAttributes), lambdaFunctionCompletedEventAttributes :: NullOrUndefined (LambdaFunctionCompletedEventAttributes), lambdaFunctionFailedEventAttributes :: NullOrUndefined (LambdaFunctionFailedEventAttributes), lambdaFunctionTimedOutEventAttributes :: NullOrUndefined (LambdaFunctionTimedOutEventAttributes), scheduleLambdaFunctionFailedEventAttributes :: NullOrUndefined (ScheduleLambdaFunctionFailedEventAttributes), startLambdaFunctionFailedEventAttributes :: NullOrUndefined (StartLambdaFunctionFailedEventAttributes) }
+  = HistoryEvent { eventTimestamp :: Timestamp, eventType :: EventType, eventId :: EventId, workflowExecutionStartedEventAttributes :: Maybe (WorkflowExecutionStartedEventAttributes), workflowExecutionCompletedEventAttributes :: Maybe (WorkflowExecutionCompletedEventAttributes), completeWorkflowExecutionFailedEventAttributes :: Maybe (CompleteWorkflowExecutionFailedEventAttributes), workflowExecutionFailedEventAttributes :: Maybe (WorkflowExecutionFailedEventAttributes), failWorkflowExecutionFailedEventAttributes :: Maybe (FailWorkflowExecutionFailedEventAttributes), workflowExecutionTimedOutEventAttributes :: Maybe (WorkflowExecutionTimedOutEventAttributes), workflowExecutionCanceledEventAttributes :: Maybe (WorkflowExecutionCanceledEventAttributes), cancelWorkflowExecutionFailedEventAttributes :: Maybe (CancelWorkflowExecutionFailedEventAttributes), workflowExecutionContinuedAsNewEventAttributes :: Maybe (WorkflowExecutionContinuedAsNewEventAttributes), continueAsNewWorkflowExecutionFailedEventAttributes :: Maybe (ContinueAsNewWorkflowExecutionFailedEventAttributes), workflowExecutionTerminatedEventAttributes :: Maybe (WorkflowExecutionTerminatedEventAttributes), workflowExecutionCancelRequestedEventAttributes :: Maybe (WorkflowExecutionCancelRequestedEventAttributes), decisionTaskScheduledEventAttributes :: Maybe (DecisionTaskScheduledEventAttributes), decisionTaskStartedEventAttributes :: Maybe (DecisionTaskStartedEventAttributes), decisionTaskCompletedEventAttributes :: Maybe (DecisionTaskCompletedEventAttributes), decisionTaskTimedOutEventAttributes :: Maybe (DecisionTaskTimedOutEventAttributes), activityTaskScheduledEventAttributes :: Maybe (ActivityTaskScheduledEventAttributes), activityTaskStartedEventAttributes :: Maybe (ActivityTaskStartedEventAttributes), activityTaskCompletedEventAttributes :: Maybe (ActivityTaskCompletedEventAttributes), activityTaskFailedEventAttributes :: Maybe (ActivityTaskFailedEventAttributes), activityTaskTimedOutEventAttributes :: Maybe (ActivityTaskTimedOutEventAttributes), activityTaskCanceledEventAttributes :: Maybe (ActivityTaskCanceledEventAttributes), activityTaskCancelRequestedEventAttributes :: Maybe (ActivityTaskCancelRequestedEventAttributes), workflowExecutionSignaledEventAttributes :: Maybe (WorkflowExecutionSignaledEventAttributes), markerRecordedEventAttributes :: Maybe (MarkerRecordedEventAttributes), recordMarkerFailedEventAttributes :: Maybe (RecordMarkerFailedEventAttributes), timerStartedEventAttributes :: Maybe (TimerStartedEventAttributes), timerFiredEventAttributes :: Maybe (TimerFiredEventAttributes), timerCanceledEventAttributes :: Maybe (TimerCanceledEventAttributes), startChildWorkflowExecutionInitiatedEventAttributes :: Maybe (StartChildWorkflowExecutionInitiatedEventAttributes), childWorkflowExecutionStartedEventAttributes :: Maybe (ChildWorkflowExecutionStartedEventAttributes), childWorkflowExecutionCompletedEventAttributes :: Maybe (ChildWorkflowExecutionCompletedEventAttributes), childWorkflowExecutionFailedEventAttributes :: Maybe (ChildWorkflowExecutionFailedEventAttributes), childWorkflowExecutionTimedOutEventAttributes :: Maybe (ChildWorkflowExecutionTimedOutEventAttributes), childWorkflowExecutionCanceledEventAttributes :: Maybe (ChildWorkflowExecutionCanceledEventAttributes), childWorkflowExecutionTerminatedEventAttributes :: Maybe (ChildWorkflowExecutionTerminatedEventAttributes), signalExternalWorkflowExecutionInitiatedEventAttributes :: Maybe (SignalExternalWorkflowExecutionInitiatedEventAttributes), externalWorkflowExecutionSignaledEventAttributes :: Maybe (ExternalWorkflowExecutionSignaledEventAttributes), signalExternalWorkflowExecutionFailedEventAttributes :: Maybe (SignalExternalWorkflowExecutionFailedEventAttributes), externalWorkflowExecutionCancelRequestedEventAttributes :: Maybe (ExternalWorkflowExecutionCancelRequestedEventAttributes), requestCancelExternalWorkflowExecutionInitiatedEventAttributes :: Maybe (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes), requestCancelExternalWorkflowExecutionFailedEventAttributes :: Maybe (RequestCancelExternalWorkflowExecutionFailedEventAttributes), scheduleActivityTaskFailedEventAttributes :: Maybe (ScheduleActivityTaskFailedEventAttributes), requestCancelActivityTaskFailedEventAttributes :: Maybe (RequestCancelActivityTaskFailedEventAttributes), startTimerFailedEventAttributes :: Maybe (StartTimerFailedEventAttributes), cancelTimerFailedEventAttributes :: Maybe (CancelTimerFailedEventAttributes), startChildWorkflowExecutionFailedEventAttributes :: Maybe (StartChildWorkflowExecutionFailedEventAttributes), lambdaFunctionScheduledEventAttributes :: Maybe (LambdaFunctionScheduledEventAttributes), lambdaFunctionStartedEventAttributes :: Maybe (LambdaFunctionStartedEventAttributes), lambdaFunctionCompletedEventAttributes :: Maybe (LambdaFunctionCompletedEventAttributes), lambdaFunctionFailedEventAttributes :: Maybe (LambdaFunctionFailedEventAttributes), lambdaFunctionTimedOutEventAttributes :: Maybe (LambdaFunctionTimedOutEventAttributes), scheduleLambdaFunctionFailedEventAttributes :: Maybe (ScheduleLambdaFunctionFailedEventAttributes), startLambdaFunctionFailedEventAttributes :: Maybe (StartLambdaFunctionFailedEventAttributes) }
 ```
 
 <p>Event within a workflow execution. A history event can be one of these types:</p> <ul> <li> <p> <code>ActivityTaskCancelRequested</code> – A <code>RequestCancelActivityTask</code> decision was received by the system.</p> </li> <li> <p> <code>ActivityTaskCanceled</code> – The activity task was successfully canceled.</p> </li> <li> <p> <code>ActivityTaskCompleted</code> – An activity worker successfully completed an activity task by calling <a>RespondActivityTaskCompleted</a>.</p> </li> <li> <p> <code>ActivityTaskFailed</code> – An activity worker failed an activity task by calling <a>RespondActivityTaskFailed</a>.</p> </li> <li> <p> <code>ActivityTaskScheduled</code> – An activity task was scheduled for execution.</p> </li> <li> <p> <code>ActivityTaskStarted</code> – The scheduled activity task was dispatched to a worker.</p> </li> <li> <p> <code>ActivityTaskTimedOut</code> – The activity task timed out.</p> </li> <li> <p> <code>CancelTimerFailed</code> – Failed to process CancelTimer decision. This happens when the decision isn't configured properly, for example no timer exists with the specified timer Id.</p> </li> <li> <p> <code>CancelWorkflowExecutionFailed</code> – A request to cancel a workflow execution failed.</p> </li> <li> <p> <code>ChildWorkflowExecutionCanceled</code> – A child workflow execution, started by this workflow execution, was canceled and closed.</p> </li> <li> <p> <code>ChildWorkflowExecutionCompleted</code> – A child workflow execution, started by this workflow execution, completed successfully and was closed.</p> </li> <li> <p> <code>ChildWorkflowExecutionFailed</code> – A child workflow execution, started by this workflow execution, failed to complete successfully and was closed.</p> </li> <li> <p> <code>ChildWorkflowExecutionStarted</code> – A child workflow execution was successfully started.</p> </li> <li> <p> <code>ChildWorkflowExecutionTerminated</code> – A child workflow execution, started by this workflow execution, was terminated.</p> </li> <li> <p> <code>ChildWorkflowExecutionTimedOut</code> – A child workflow execution, started by this workflow execution, timed out and was closed.</p> </li> <li> <p> <code>CompleteWorkflowExecutionFailed</code> – The workflow execution failed to complete.</p> </li> <li> <p> <code>ContinueAsNewWorkflowExecutionFailed</code> – The workflow execution failed to complete after being continued as a new workflow execution.</p> </li> <li> <p> <code>DecisionTaskCompleted</code> – The decider successfully completed a decision task by calling <a>RespondDecisionTaskCompleted</a>.</p> </li> <li> <p> <code>DecisionTaskScheduled</code> – A decision task was scheduled for the workflow execution.</p> </li> <li> <p> <code>DecisionTaskStarted</code> – The decision task was dispatched to a decider.</p> </li> <li> <p> <code>DecisionTaskTimedOut</code> – The decision task timed out.</p> </li> <li> <p> <code>ExternalWorkflowExecutionCancelRequested</code> – Request to cancel an external workflow execution was successfully delivered to the target execution.</p> </li> <li> <p> <code>ExternalWorkflowExecutionSignaled</code> – A signal, requested by this workflow execution, was successfully delivered to the target external workflow execution.</p> </li> <li> <p> <code>FailWorkflowExecutionFailed</code> – A request to mark a workflow execution as failed, itself failed.</p> </li> <li> <p> <code>MarkerRecorded</code> – A marker was recorded in the workflow history as the result of a <code>RecordMarker</code> decision.</p> </li> <li> <p> <code>RecordMarkerFailed</code> – A <code>RecordMarker</code> decision was returned as failed.</p> </li> <li> <p> <code>RequestCancelActivityTaskFailed</code> – Failed to process RequestCancelActivityTask decision. This happens when the decision isn't configured properly.</p> </li> <li> <p> <code>RequestCancelExternalWorkflowExecutionFailed</code> – Request to cancel an external workflow execution failed.</p> </li> <li> <p> <code>RequestCancelExternalWorkflowExecutionInitiated</code> – A request was made to request the cancellation of an external workflow execution.</p> </li> <li> <p> <code>ScheduleActivityTaskFailed</code> – Failed to process ScheduleActivityTask decision. This happens when the decision isn't configured properly, for example the activity type specified isn't registered.</p> </li> <li> <p> <code>SignalExternalWorkflowExecutionFailed</code> – The request to signal an external workflow execution failed.</p> </li> <li> <p> <code>SignalExternalWorkflowExecutionInitiated</code> – A request to signal an external workflow was made.</p> </li> <li> <p> <code>StartActivityTaskFailed</code> – A scheduled activity task failed to start.</p> </li> <li> <p> <code>StartChildWorkflowExecutionFailed</code> – Failed to process StartChildWorkflowExecution decision. This happens when the decision isn't configured properly, for example the workflow type specified isn't registered.</p> </li> <li> <p> <code>StartChildWorkflowExecutionInitiated</code> – A request was made to start a child workflow execution.</p> </li> <li> <p> <code>StartTimerFailed</code> – Failed to process StartTimer decision. This happens when the decision isn't configured properly, for example a timer already exists with the specified timer Id.</p> </li> <li> <p> <code>TimerCanceled</code> – A timer, previously started for this workflow execution, was successfully canceled.</p> </li> <li> <p> <code>TimerFired</code> – A timer, previously started for this workflow execution, fired.</p> </li> <li> <p> <code>TimerStarted</code> – A timer was started for the workflow execution due to a <code>StartTimer</code> decision.</p> </li> <li> <p> <code>WorkflowExecutionCancelRequested</code> – A request to cancel this workflow execution was made.</p> </li> <li> <p> <code>WorkflowExecutionCanceled</code> – The workflow execution was successfully canceled and closed.</p> </li> <li> <p> <code>WorkflowExecutionCompleted</code> – The workflow execution was closed due to successful completion.</p> </li> <li> <p> <code>WorkflowExecutionContinuedAsNew</code> – The workflow execution was closed and a new execution of the same type was created with the same workflowId.</p> </li> <li> <p> <code>WorkflowExecutionFailed</code> – The workflow execution closed due to a failure.</p> </li> <li> <p> <code>WorkflowExecutionSignaled</code> – An external signal was received for the workflow execution.</p> </li> <li> <p> <code>WorkflowExecutionStarted</code> – The workflow execution was started.</p> </li> <li> <p> <code>WorkflowExecutionTerminated</code> – The workflow execution was terminated.</p> </li> <li> <p> <code>WorkflowExecutionTimedOut</code> – The workflow execution was closed because a time out was exceeded.</p> </li> </ul>
@@ -2563,7 +2563,7 @@ Constructs HistoryEvent from required parameters
 #### `newHistoryEvent'`
 
 ``` purescript
-newHistoryEvent' :: EventId -> Timestamp -> EventType -> ({ eventTimestamp :: Timestamp, eventType :: EventType, eventId :: EventId, workflowExecutionStartedEventAttributes :: NullOrUndefined (WorkflowExecutionStartedEventAttributes), workflowExecutionCompletedEventAttributes :: NullOrUndefined (WorkflowExecutionCompletedEventAttributes), completeWorkflowExecutionFailedEventAttributes :: NullOrUndefined (CompleteWorkflowExecutionFailedEventAttributes), workflowExecutionFailedEventAttributes :: NullOrUndefined (WorkflowExecutionFailedEventAttributes), failWorkflowExecutionFailedEventAttributes :: NullOrUndefined (FailWorkflowExecutionFailedEventAttributes), workflowExecutionTimedOutEventAttributes :: NullOrUndefined (WorkflowExecutionTimedOutEventAttributes), workflowExecutionCanceledEventAttributes :: NullOrUndefined (WorkflowExecutionCanceledEventAttributes), cancelWorkflowExecutionFailedEventAttributes :: NullOrUndefined (CancelWorkflowExecutionFailedEventAttributes), workflowExecutionContinuedAsNewEventAttributes :: NullOrUndefined (WorkflowExecutionContinuedAsNewEventAttributes), continueAsNewWorkflowExecutionFailedEventAttributes :: NullOrUndefined (ContinueAsNewWorkflowExecutionFailedEventAttributes), workflowExecutionTerminatedEventAttributes :: NullOrUndefined (WorkflowExecutionTerminatedEventAttributes), workflowExecutionCancelRequestedEventAttributes :: NullOrUndefined (WorkflowExecutionCancelRequestedEventAttributes), decisionTaskScheduledEventAttributes :: NullOrUndefined (DecisionTaskScheduledEventAttributes), decisionTaskStartedEventAttributes :: NullOrUndefined (DecisionTaskStartedEventAttributes), decisionTaskCompletedEventAttributes :: NullOrUndefined (DecisionTaskCompletedEventAttributes), decisionTaskTimedOutEventAttributes :: NullOrUndefined (DecisionTaskTimedOutEventAttributes), activityTaskScheduledEventAttributes :: NullOrUndefined (ActivityTaskScheduledEventAttributes), activityTaskStartedEventAttributes :: NullOrUndefined (ActivityTaskStartedEventAttributes), activityTaskCompletedEventAttributes :: NullOrUndefined (ActivityTaskCompletedEventAttributes), activityTaskFailedEventAttributes :: NullOrUndefined (ActivityTaskFailedEventAttributes), activityTaskTimedOutEventAttributes :: NullOrUndefined (ActivityTaskTimedOutEventAttributes), activityTaskCanceledEventAttributes :: NullOrUndefined (ActivityTaskCanceledEventAttributes), activityTaskCancelRequestedEventAttributes :: NullOrUndefined (ActivityTaskCancelRequestedEventAttributes), workflowExecutionSignaledEventAttributes :: NullOrUndefined (WorkflowExecutionSignaledEventAttributes), markerRecordedEventAttributes :: NullOrUndefined (MarkerRecordedEventAttributes), recordMarkerFailedEventAttributes :: NullOrUndefined (RecordMarkerFailedEventAttributes), timerStartedEventAttributes :: NullOrUndefined (TimerStartedEventAttributes), timerFiredEventAttributes :: NullOrUndefined (TimerFiredEventAttributes), timerCanceledEventAttributes :: NullOrUndefined (TimerCanceledEventAttributes), startChildWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (StartChildWorkflowExecutionInitiatedEventAttributes), childWorkflowExecutionStartedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionStartedEventAttributes), childWorkflowExecutionCompletedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionCompletedEventAttributes), childWorkflowExecutionFailedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionFailedEventAttributes), childWorkflowExecutionTimedOutEventAttributes :: NullOrUndefined (ChildWorkflowExecutionTimedOutEventAttributes), childWorkflowExecutionCanceledEventAttributes :: NullOrUndefined (ChildWorkflowExecutionCanceledEventAttributes), childWorkflowExecutionTerminatedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionTerminatedEventAttributes), signalExternalWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionInitiatedEventAttributes), externalWorkflowExecutionSignaledEventAttributes :: NullOrUndefined (ExternalWorkflowExecutionSignaledEventAttributes), signalExternalWorkflowExecutionFailedEventAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionFailedEventAttributes), externalWorkflowExecutionCancelRequestedEventAttributes :: NullOrUndefined (ExternalWorkflowExecutionCancelRequestedEventAttributes), requestCancelExternalWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes), requestCancelExternalWorkflowExecutionFailedEventAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionFailedEventAttributes), scheduleActivityTaskFailedEventAttributes :: NullOrUndefined (ScheduleActivityTaskFailedEventAttributes), requestCancelActivityTaskFailedEventAttributes :: NullOrUndefined (RequestCancelActivityTaskFailedEventAttributes), startTimerFailedEventAttributes :: NullOrUndefined (StartTimerFailedEventAttributes), cancelTimerFailedEventAttributes :: NullOrUndefined (CancelTimerFailedEventAttributes), startChildWorkflowExecutionFailedEventAttributes :: NullOrUndefined (StartChildWorkflowExecutionFailedEventAttributes), lambdaFunctionScheduledEventAttributes :: NullOrUndefined (LambdaFunctionScheduledEventAttributes), lambdaFunctionStartedEventAttributes :: NullOrUndefined (LambdaFunctionStartedEventAttributes), lambdaFunctionCompletedEventAttributes :: NullOrUndefined (LambdaFunctionCompletedEventAttributes), lambdaFunctionFailedEventAttributes :: NullOrUndefined (LambdaFunctionFailedEventAttributes), lambdaFunctionTimedOutEventAttributes :: NullOrUndefined (LambdaFunctionTimedOutEventAttributes), scheduleLambdaFunctionFailedEventAttributes :: NullOrUndefined (ScheduleLambdaFunctionFailedEventAttributes), startLambdaFunctionFailedEventAttributes :: NullOrUndefined (StartLambdaFunctionFailedEventAttributes) } -> { eventTimestamp :: Timestamp, eventType :: EventType, eventId :: EventId, workflowExecutionStartedEventAttributes :: NullOrUndefined (WorkflowExecutionStartedEventAttributes), workflowExecutionCompletedEventAttributes :: NullOrUndefined (WorkflowExecutionCompletedEventAttributes), completeWorkflowExecutionFailedEventAttributes :: NullOrUndefined (CompleteWorkflowExecutionFailedEventAttributes), workflowExecutionFailedEventAttributes :: NullOrUndefined (WorkflowExecutionFailedEventAttributes), failWorkflowExecutionFailedEventAttributes :: NullOrUndefined (FailWorkflowExecutionFailedEventAttributes), workflowExecutionTimedOutEventAttributes :: NullOrUndefined (WorkflowExecutionTimedOutEventAttributes), workflowExecutionCanceledEventAttributes :: NullOrUndefined (WorkflowExecutionCanceledEventAttributes), cancelWorkflowExecutionFailedEventAttributes :: NullOrUndefined (CancelWorkflowExecutionFailedEventAttributes), workflowExecutionContinuedAsNewEventAttributes :: NullOrUndefined (WorkflowExecutionContinuedAsNewEventAttributes), continueAsNewWorkflowExecutionFailedEventAttributes :: NullOrUndefined (ContinueAsNewWorkflowExecutionFailedEventAttributes), workflowExecutionTerminatedEventAttributes :: NullOrUndefined (WorkflowExecutionTerminatedEventAttributes), workflowExecutionCancelRequestedEventAttributes :: NullOrUndefined (WorkflowExecutionCancelRequestedEventAttributes), decisionTaskScheduledEventAttributes :: NullOrUndefined (DecisionTaskScheduledEventAttributes), decisionTaskStartedEventAttributes :: NullOrUndefined (DecisionTaskStartedEventAttributes), decisionTaskCompletedEventAttributes :: NullOrUndefined (DecisionTaskCompletedEventAttributes), decisionTaskTimedOutEventAttributes :: NullOrUndefined (DecisionTaskTimedOutEventAttributes), activityTaskScheduledEventAttributes :: NullOrUndefined (ActivityTaskScheduledEventAttributes), activityTaskStartedEventAttributes :: NullOrUndefined (ActivityTaskStartedEventAttributes), activityTaskCompletedEventAttributes :: NullOrUndefined (ActivityTaskCompletedEventAttributes), activityTaskFailedEventAttributes :: NullOrUndefined (ActivityTaskFailedEventAttributes), activityTaskTimedOutEventAttributes :: NullOrUndefined (ActivityTaskTimedOutEventAttributes), activityTaskCanceledEventAttributes :: NullOrUndefined (ActivityTaskCanceledEventAttributes), activityTaskCancelRequestedEventAttributes :: NullOrUndefined (ActivityTaskCancelRequestedEventAttributes), workflowExecutionSignaledEventAttributes :: NullOrUndefined (WorkflowExecutionSignaledEventAttributes), markerRecordedEventAttributes :: NullOrUndefined (MarkerRecordedEventAttributes), recordMarkerFailedEventAttributes :: NullOrUndefined (RecordMarkerFailedEventAttributes), timerStartedEventAttributes :: NullOrUndefined (TimerStartedEventAttributes), timerFiredEventAttributes :: NullOrUndefined (TimerFiredEventAttributes), timerCanceledEventAttributes :: NullOrUndefined (TimerCanceledEventAttributes), startChildWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (StartChildWorkflowExecutionInitiatedEventAttributes), childWorkflowExecutionStartedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionStartedEventAttributes), childWorkflowExecutionCompletedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionCompletedEventAttributes), childWorkflowExecutionFailedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionFailedEventAttributes), childWorkflowExecutionTimedOutEventAttributes :: NullOrUndefined (ChildWorkflowExecutionTimedOutEventAttributes), childWorkflowExecutionCanceledEventAttributes :: NullOrUndefined (ChildWorkflowExecutionCanceledEventAttributes), childWorkflowExecutionTerminatedEventAttributes :: NullOrUndefined (ChildWorkflowExecutionTerminatedEventAttributes), signalExternalWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionInitiatedEventAttributes), externalWorkflowExecutionSignaledEventAttributes :: NullOrUndefined (ExternalWorkflowExecutionSignaledEventAttributes), signalExternalWorkflowExecutionFailedEventAttributes :: NullOrUndefined (SignalExternalWorkflowExecutionFailedEventAttributes), externalWorkflowExecutionCancelRequestedEventAttributes :: NullOrUndefined (ExternalWorkflowExecutionCancelRequestedEventAttributes), requestCancelExternalWorkflowExecutionInitiatedEventAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes), requestCancelExternalWorkflowExecutionFailedEventAttributes :: NullOrUndefined (RequestCancelExternalWorkflowExecutionFailedEventAttributes), scheduleActivityTaskFailedEventAttributes :: NullOrUndefined (ScheduleActivityTaskFailedEventAttributes), requestCancelActivityTaskFailedEventAttributes :: NullOrUndefined (RequestCancelActivityTaskFailedEventAttributes), startTimerFailedEventAttributes :: NullOrUndefined (StartTimerFailedEventAttributes), cancelTimerFailedEventAttributes :: NullOrUndefined (CancelTimerFailedEventAttributes), startChildWorkflowExecutionFailedEventAttributes :: NullOrUndefined (StartChildWorkflowExecutionFailedEventAttributes), lambdaFunctionScheduledEventAttributes :: NullOrUndefined (LambdaFunctionScheduledEventAttributes), lambdaFunctionStartedEventAttributes :: NullOrUndefined (LambdaFunctionStartedEventAttributes), lambdaFunctionCompletedEventAttributes :: NullOrUndefined (LambdaFunctionCompletedEventAttributes), lambdaFunctionFailedEventAttributes :: NullOrUndefined (LambdaFunctionFailedEventAttributes), lambdaFunctionTimedOutEventAttributes :: NullOrUndefined (LambdaFunctionTimedOutEventAttributes), scheduleLambdaFunctionFailedEventAttributes :: NullOrUndefined (ScheduleLambdaFunctionFailedEventAttributes), startLambdaFunctionFailedEventAttributes :: NullOrUndefined (StartLambdaFunctionFailedEventAttributes) }) -> HistoryEvent
+newHistoryEvent' :: EventId -> Timestamp -> EventType -> ({ eventTimestamp :: Timestamp, eventType :: EventType, eventId :: EventId, workflowExecutionStartedEventAttributes :: Maybe (WorkflowExecutionStartedEventAttributes), workflowExecutionCompletedEventAttributes :: Maybe (WorkflowExecutionCompletedEventAttributes), completeWorkflowExecutionFailedEventAttributes :: Maybe (CompleteWorkflowExecutionFailedEventAttributes), workflowExecutionFailedEventAttributes :: Maybe (WorkflowExecutionFailedEventAttributes), failWorkflowExecutionFailedEventAttributes :: Maybe (FailWorkflowExecutionFailedEventAttributes), workflowExecutionTimedOutEventAttributes :: Maybe (WorkflowExecutionTimedOutEventAttributes), workflowExecutionCanceledEventAttributes :: Maybe (WorkflowExecutionCanceledEventAttributes), cancelWorkflowExecutionFailedEventAttributes :: Maybe (CancelWorkflowExecutionFailedEventAttributes), workflowExecutionContinuedAsNewEventAttributes :: Maybe (WorkflowExecutionContinuedAsNewEventAttributes), continueAsNewWorkflowExecutionFailedEventAttributes :: Maybe (ContinueAsNewWorkflowExecutionFailedEventAttributes), workflowExecutionTerminatedEventAttributes :: Maybe (WorkflowExecutionTerminatedEventAttributes), workflowExecutionCancelRequestedEventAttributes :: Maybe (WorkflowExecutionCancelRequestedEventAttributes), decisionTaskScheduledEventAttributes :: Maybe (DecisionTaskScheduledEventAttributes), decisionTaskStartedEventAttributes :: Maybe (DecisionTaskStartedEventAttributes), decisionTaskCompletedEventAttributes :: Maybe (DecisionTaskCompletedEventAttributes), decisionTaskTimedOutEventAttributes :: Maybe (DecisionTaskTimedOutEventAttributes), activityTaskScheduledEventAttributes :: Maybe (ActivityTaskScheduledEventAttributes), activityTaskStartedEventAttributes :: Maybe (ActivityTaskStartedEventAttributes), activityTaskCompletedEventAttributes :: Maybe (ActivityTaskCompletedEventAttributes), activityTaskFailedEventAttributes :: Maybe (ActivityTaskFailedEventAttributes), activityTaskTimedOutEventAttributes :: Maybe (ActivityTaskTimedOutEventAttributes), activityTaskCanceledEventAttributes :: Maybe (ActivityTaskCanceledEventAttributes), activityTaskCancelRequestedEventAttributes :: Maybe (ActivityTaskCancelRequestedEventAttributes), workflowExecutionSignaledEventAttributes :: Maybe (WorkflowExecutionSignaledEventAttributes), markerRecordedEventAttributes :: Maybe (MarkerRecordedEventAttributes), recordMarkerFailedEventAttributes :: Maybe (RecordMarkerFailedEventAttributes), timerStartedEventAttributes :: Maybe (TimerStartedEventAttributes), timerFiredEventAttributes :: Maybe (TimerFiredEventAttributes), timerCanceledEventAttributes :: Maybe (TimerCanceledEventAttributes), startChildWorkflowExecutionInitiatedEventAttributes :: Maybe (StartChildWorkflowExecutionInitiatedEventAttributes), childWorkflowExecutionStartedEventAttributes :: Maybe (ChildWorkflowExecutionStartedEventAttributes), childWorkflowExecutionCompletedEventAttributes :: Maybe (ChildWorkflowExecutionCompletedEventAttributes), childWorkflowExecutionFailedEventAttributes :: Maybe (ChildWorkflowExecutionFailedEventAttributes), childWorkflowExecutionTimedOutEventAttributes :: Maybe (ChildWorkflowExecutionTimedOutEventAttributes), childWorkflowExecutionCanceledEventAttributes :: Maybe (ChildWorkflowExecutionCanceledEventAttributes), childWorkflowExecutionTerminatedEventAttributes :: Maybe (ChildWorkflowExecutionTerminatedEventAttributes), signalExternalWorkflowExecutionInitiatedEventAttributes :: Maybe (SignalExternalWorkflowExecutionInitiatedEventAttributes), externalWorkflowExecutionSignaledEventAttributes :: Maybe (ExternalWorkflowExecutionSignaledEventAttributes), signalExternalWorkflowExecutionFailedEventAttributes :: Maybe (SignalExternalWorkflowExecutionFailedEventAttributes), externalWorkflowExecutionCancelRequestedEventAttributes :: Maybe (ExternalWorkflowExecutionCancelRequestedEventAttributes), requestCancelExternalWorkflowExecutionInitiatedEventAttributes :: Maybe (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes), requestCancelExternalWorkflowExecutionFailedEventAttributes :: Maybe (RequestCancelExternalWorkflowExecutionFailedEventAttributes), scheduleActivityTaskFailedEventAttributes :: Maybe (ScheduleActivityTaskFailedEventAttributes), requestCancelActivityTaskFailedEventAttributes :: Maybe (RequestCancelActivityTaskFailedEventAttributes), startTimerFailedEventAttributes :: Maybe (StartTimerFailedEventAttributes), cancelTimerFailedEventAttributes :: Maybe (CancelTimerFailedEventAttributes), startChildWorkflowExecutionFailedEventAttributes :: Maybe (StartChildWorkflowExecutionFailedEventAttributes), lambdaFunctionScheduledEventAttributes :: Maybe (LambdaFunctionScheduledEventAttributes), lambdaFunctionStartedEventAttributes :: Maybe (LambdaFunctionStartedEventAttributes), lambdaFunctionCompletedEventAttributes :: Maybe (LambdaFunctionCompletedEventAttributes), lambdaFunctionFailedEventAttributes :: Maybe (LambdaFunctionFailedEventAttributes), lambdaFunctionTimedOutEventAttributes :: Maybe (LambdaFunctionTimedOutEventAttributes), scheduleLambdaFunctionFailedEventAttributes :: Maybe (ScheduleLambdaFunctionFailedEventAttributes), startLambdaFunctionFailedEventAttributes :: Maybe (StartLambdaFunctionFailedEventAttributes) } -> { eventTimestamp :: Timestamp, eventType :: EventType, eventId :: EventId, workflowExecutionStartedEventAttributes :: Maybe (WorkflowExecutionStartedEventAttributes), workflowExecutionCompletedEventAttributes :: Maybe (WorkflowExecutionCompletedEventAttributes), completeWorkflowExecutionFailedEventAttributes :: Maybe (CompleteWorkflowExecutionFailedEventAttributes), workflowExecutionFailedEventAttributes :: Maybe (WorkflowExecutionFailedEventAttributes), failWorkflowExecutionFailedEventAttributes :: Maybe (FailWorkflowExecutionFailedEventAttributes), workflowExecutionTimedOutEventAttributes :: Maybe (WorkflowExecutionTimedOutEventAttributes), workflowExecutionCanceledEventAttributes :: Maybe (WorkflowExecutionCanceledEventAttributes), cancelWorkflowExecutionFailedEventAttributes :: Maybe (CancelWorkflowExecutionFailedEventAttributes), workflowExecutionContinuedAsNewEventAttributes :: Maybe (WorkflowExecutionContinuedAsNewEventAttributes), continueAsNewWorkflowExecutionFailedEventAttributes :: Maybe (ContinueAsNewWorkflowExecutionFailedEventAttributes), workflowExecutionTerminatedEventAttributes :: Maybe (WorkflowExecutionTerminatedEventAttributes), workflowExecutionCancelRequestedEventAttributes :: Maybe (WorkflowExecutionCancelRequestedEventAttributes), decisionTaskScheduledEventAttributes :: Maybe (DecisionTaskScheduledEventAttributes), decisionTaskStartedEventAttributes :: Maybe (DecisionTaskStartedEventAttributes), decisionTaskCompletedEventAttributes :: Maybe (DecisionTaskCompletedEventAttributes), decisionTaskTimedOutEventAttributes :: Maybe (DecisionTaskTimedOutEventAttributes), activityTaskScheduledEventAttributes :: Maybe (ActivityTaskScheduledEventAttributes), activityTaskStartedEventAttributes :: Maybe (ActivityTaskStartedEventAttributes), activityTaskCompletedEventAttributes :: Maybe (ActivityTaskCompletedEventAttributes), activityTaskFailedEventAttributes :: Maybe (ActivityTaskFailedEventAttributes), activityTaskTimedOutEventAttributes :: Maybe (ActivityTaskTimedOutEventAttributes), activityTaskCanceledEventAttributes :: Maybe (ActivityTaskCanceledEventAttributes), activityTaskCancelRequestedEventAttributes :: Maybe (ActivityTaskCancelRequestedEventAttributes), workflowExecutionSignaledEventAttributes :: Maybe (WorkflowExecutionSignaledEventAttributes), markerRecordedEventAttributes :: Maybe (MarkerRecordedEventAttributes), recordMarkerFailedEventAttributes :: Maybe (RecordMarkerFailedEventAttributes), timerStartedEventAttributes :: Maybe (TimerStartedEventAttributes), timerFiredEventAttributes :: Maybe (TimerFiredEventAttributes), timerCanceledEventAttributes :: Maybe (TimerCanceledEventAttributes), startChildWorkflowExecutionInitiatedEventAttributes :: Maybe (StartChildWorkflowExecutionInitiatedEventAttributes), childWorkflowExecutionStartedEventAttributes :: Maybe (ChildWorkflowExecutionStartedEventAttributes), childWorkflowExecutionCompletedEventAttributes :: Maybe (ChildWorkflowExecutionCompletedEventAttributes), childWorkflowExecutionFailedEventAttributes :: Maybe (ChildWorkflowExecutionFailedEventAttributes), childWorkflowExecutionTimedOutEventAttributes :: Maybe (ChildWorkflowExecutionTimedOutEventAttributes), childWorkflowExecutionCanceledEventAttributes :: Maybe (ChildWorkflowExecutionCanceledEventAttributes), childWorkflowExecutionTerminatedEventAttributes :: Maybe (ChildWorkflowExecutionTerminatedEventAttributes), signalExternalWorkflowExecutionInitiatedEventAttributes :: Maybe (SignalExternalWorkflowExecutionInitiatedEventAttributes), externalWorkflowExecutionSignaledEventAttributes :: Maybe (ExternalWorkflowExecutionSignaledEventAttributes), signalExternalWorkflowExecutionFailedEventAttributes :: Maybe (SignalExternalWorkflowExecutionFailedEventAttributes), externalWorkflowExecutionCancelRequestedEventAttributes :: Maybe (ExternalWorkflowExecutionCancelRequestedEventAttributes), requestCancelExternalWorkflowExecutionInitiatedEventAttributes :: Maybe (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes), requestCancelExternalWorkflowExecutionFailedEventAttributes :: Maybe (RequestCancelExternalWorkflowExecutionFailedEventAttributes), scheduleActivityTaskFailedEventAttributes :: Maybe (ScheduleActivityTaskFailedEventAttributes), requestCancelActivityTaskFailedEventAttributes :: Maybe (RequestCancelActivityTaskFailedEventAttributes), startTimerFailedEventAttributes :: Maybe (StartTimerFailedEventAttributes), cancelTimerFailedEventAttributes :: Maybe (CancelTimerFailedEventAttributes), startChildWorkflowExecutionFailedEventAttributes :: Maybe (StartChildWorkflowExecutionFailedEventAttributes), lambdaFunctionScheduledEventAttributes :: Maybe (LambdaFunctionScheduledEventAttributes), lambdaFunctionStartedEventAttributes :: Maybe (LambdaFunctionStartedEventAttributes), lambdaFunctionCompletedEventAttributes :: Maybe (LambdaFunctionCompletedEventAttributes), lambdaFunctionFailedEventAttributes :: Maybe (LambdaFunctionFailedEventAttributes), lambdaFunctionTimedOutEventAttributes :: Maybe (LambdaFunctionTimedOutEventAttributes), scheduleLambdaFunctionFailedEventAttributes :: Maybe (ScheduleLambdaFunctionFailedEventAttributes), startLambdaFunctionFailedEventAttributes :: Maybe (StartLambdaFunctionFailedEventAttributes) }) -> HistoryEvent
 ```
 
 Constructs HistoryEvent's fields from required parameters
@@ -2604,7 +2604,7 @@ Encode Identity
 
 ``` purescript
 newtype LambdaFunctionCompletedEventAttributes
-  = LambdaFunctionCompletedEventAttributes { scheduledEventId :: EventId, startedEventId :: EventId, result :: NullOrUndefined (Data) }
+  = LambdaFunctionCompletedEventAttributes { scheduledEventId :: EventId, startedEventId :: EventId, result :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>LambdaFunctionCompleted</code> event. It isn't set for other event types.</p>
@@ -2629,7 +2629,7 @@ Constructs LambdaFunctionCompletedEventAttributes from required parameters
 #### `newLambdaFunctionCompletedEventAttributes'`
 
 ``` purescript
-newLambdaFunctionCompletedEventAttributes' :: EventId -> EventId -> ({ scheduledEventId :: EventId, startedEventId :: EventId, result :: NullOrUndefined (Data) } -> { scheduledEventId :: EventId, startedEventId :: EventId, result :: NullOrUndefined (Data) }) -> LambdaFunctionCompletedEventAttributes
+newLambdaFunctionCompletedEventAttributes' :: EventId -> EventId -> ({ scheduledEventId :: EventId, startedEventId :: EventId, result :: Maybe (Data) } -> { scheduledEventId :: EventId, startedEventId :: EventId, result :: Maybe (Data) }) -> LambdaFunctionCompletedEventAttributes
 ```
 
 Constructs LambdaFunctionCompletedEventAttributes's fields from required parameters
@@ -2638,7 +2638,7 @@ Constructs LambdaFunctionCompletedEventAttributes's fields from required paramet
 
 ``` purescript
 newtype LambdaFunctionFailedEventAttributes
-  = LambdaFunctionFailedEventAttributes { scheduledEventId :: EventId, startedEventId :: EventId, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) }
+  = LambdaFunctionFailedEventAttributes { scheduledEventId :: EventId, startedEventId :: EventId, reason :: Maybe (FailureReason), details :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>LambdaFunctionFailed</code> event. It isn't set for other event types.</p>
@@ -2663,7 +2663,7 @@ Constructs LambdaFunctionFailedEventAttributes from required parameters
 #### `newLambdaFunctionFailedEventAttributes'`
 
 ``` purescript
-newLambdaFunctionFailedEventAttributes' :: EventId -> EventId -> ({ scheduledEventId :: EventId, startedEventId :: EventId, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) } -> { scheduledEventId :: EventId, startedEventId :: EventId, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) }) -> LambdaFunctionFailedEventAttributes
+newLambdaFunctionFailedEventAttributes' :: EventId -> EventId -> ({ scheduledEventId :: EventId, startedEventId :: EventId, reason :: Maybe (FailureReason), details :: Maybe (Data) } -> { scheduledEventId :: EventId, startedEventId :: EventId, reason :: Maybe (FailureReason), details :: Maybe (Data) }) -> LambdaFunctionFailedEventAttributes
 ```
 
 Constructs LambdaFunctionFailedEventAttributes's fields from required parameters
@@ -2672,7 +2672,7 @@ Constructs LambdaFunctionFailedEventAttributes's fields from required parameters
 
 ``` purescript
 newtype LambdaFunctionScheduledEventAttributes
-  = LambdaFunctionScheduledEventAttributes { id :: FunctionId, name :: FunctionName, control :: NullOrUndefined (Data), input :: NullOrUndefined (FunctionInput), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), decisionTaskCompletedEventId :: EventId }
+  = LambdaFunctionScheduledEventAttributes { id :: FunctionId, name :: FunctionName, control :: Maybe (Data), input :: Maybe (FunctionInput), startToCloseTimeout :: Maybe (DurationInSecondsOptional), decisionTaskCompletedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>LambdaFunctionScheduled</code> event. It isn't set for other event types.</p>
@@ -2697,7 +2697,7 @@ Constructs LambdaFunctionScheduledEventAttributes from required parameters
 #### `newLambdaFunctionScheduledEventAttributes'`
 
 ``` purescript
-newLambdaFunctionScheduledEventAttributes' :: EventId -> FunctionId -> FunctionName -> ({ id :: FunctionId, name :: FunctionName, control :: NullOrUndefined (Data), input :: NullOrUndefined (FunctionInput), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), decisionTaskCompletedEventId :: EventId } -> { id :: FunctionId, name :: FunctionName, control :: NullOrUndefined (Data), input :: NullOrUndefined (FunctionInput), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), decisionTaskCompletedEventId :: EventId }) -> LambdaFunctionScheduledEventAttributes
+newLambdaFunctionScheduledEventAttributes' :: EventId -> FunctionId -> FunctionName -> ({ id :: FunctionId, name :: FunctionName, control :: Maybe (Data), input :: Maybe (FunctionInput), startToCloseTimeout :: Maybe (DurationInSecondsOptional), decisionTaskCompletedEventId :: EventId } -> { id :: FunctionId, name :: FunctionName, control :: Maybe (Data), input :: Maybe (FunctionInput), startToCloseTimeout :: Maybe (DurationInSecondsOptional), decisionTaskCompletedEventId :: EventId }) -> LambdaFunctionScheduledEventAttributes
 ```
 
 Constructs LambdaFunctionScheduledEventAttributes's fields from required parameters
@@ -2740,7 +2740,7 @@ Constructs LambdaFunctionStartedEventAttributes's fields from required parameter
 
 ``` purescript
 newtype LambdaFunctionTimedOutEventAttributes
-  = LambdaFunctionTimedOutEventAttributes { scheduledEventId :: EventId, startedEventId :: EventId, timeoutType :: NullOrUndefined (LambdaFunctionTimeoutType) }
+  = LambdaFunctionTimedOutEventAttributes { scheduledEventId :: EventId, startedEventId :: EventId, timeoutType :: Maybe (LambdaFunctionTimeoutType) }
 ```
 
 <p>Provides details of the <code>LambdaFunctionTimedOut</code> event.</p>
@@ -2765,7 +2765,7 @@ Constructs LambdaFunctionTimedOutEventAttributes from required parameters
 #### `newLambdaFunctionTimedOutEventAttributes'`
 
 ``` purescript
-newLambdaFunctionTimedOutEventAttributes' :: EventId -> EventId -> ({ scheduledEventId :: EventId, startedEventId :: EventId, timeoutType :: NullOrUndefined (LambdaFunctionTimeoutType) } -> { scheduledEventId :: EventId, startedEventId :: EventId, timeoutType :: NullOrUndefined (LambdaFunctionTimeoutType) }) -> LambdaFunctionTimedOutEventAttributes
+newLambdaFunctionTimedOutEventAttributes' :: EventId -> EventId -> ({ scheduledEventId :: EventId, startedEventId :: EventId, timeoutType :: Maybe (LambdaFunctionTimeoutType) } -> { scheduledEventId :: EventId, startedEventId :: EventId, timeoutType :: Maybe (LambdaFunctionTimeoutType) }) -> LambdaFunctionTimedOutEventAttributes
 ```
 
 Constructs LambdaFunctionTimedOutEventAttributes's fields from required parameters
@@ -2790,7 +2790,7 @@ Encode LambdaFunctionTimeoutType
 
 ``` purescript
 newtype LimitExceededFault
-  = LimitExceededFault { message :: NullOrUndefined (ErrorMessage) }
+  = LimitExceededFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned by any operation if a system imposed limitation has been reached. To address this fault you should either clean up unused resources or increase the limit by contacting AWS.</p>
@@ -2815,7 +2815,7 @@ Constructs LimitExceededFault from required parameters
 #### `newLimitExceededFault'`
 
 ``` purescript
-newLimitExceededFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> LimitExceededFault
+newLimitExceededFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> LimitExceededFault
 ```
 
 Constructs LimitExceededFault's fields from required parameters
@@ -2840,7 +2840,7 @@ Encode LimitedData
 
 ``` purescript
 newtype ListActivityTypesInput
-  = ListActivityTypesInput { domain :: DomainName, name :: NullOrUndefined (Name), registrationStatus :: RegistrationStatus, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }
+  = ListActivityTypesInput { domain :: DomainName, name :: Maybe (Name), registrationStatus :: RegistrationStatus, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }
 ```
 
 ##### Instances
@@ -2863,7 +2863,7 @@ Constructs ListActivityTypesInput from required parameters
 #### `newListActivityTypesInput'`
 
 ``` purescript
-newListActivityTypesInput' :: DomainName -> RegistrationStatus -> ({ domain :: DomainName, name :: NullOrUndefined (Name), registrationStatus :: RegistrationStatus, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) } -> { domain :: DomainName, name :: NullOrUndefined (Name), registrationStatus :: RegistrationStatus, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }) -> ListActivityTypesInput
+newListActivityTypesInput' :: DomainName -> RegistrationStatus -> ({ domain :: DomainName, name :: Maybe (Name), registrationStatus :: RegistrationStatus, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) } -> { domain :: DomainName, name :: Maybe (Name), registrationStatus :: RegistrationStatus, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }) -> ListActivityTypesInput
 ```
 
 Constructs ListActivityTypesInput's fields from required parameters
@@ -2872,7 +2872,7 @@ Constructs ListActivityTypesInput's fields from required parameters
 
 ``` purescript
 newtype ListClosedWorkflowExecutionsInput
-  = ListClosedWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: NullOrUndefined (ExecutionTimeFilter), closeTimeFilter :: NullOrUndefined (ExecutionTimeFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter), closeStatusFilter :: NullOrUndefined (CloseStatusFilter), typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }
+  = ListClosedWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: Maybe (ExecutionTimeFilter), closeTimeFilter :: Maybe (ExecutionTimeFilter), executionFilter :: Maybe (WorkflowExecutionFilter), closeStatusFilter :: Maybe (CloseStatusFilter), typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }
 ```
 
 ##### Instances
@@ -2895,7 +2895,7 @@ Constructs ListClosedWorkflowExecutionsInput from required parameters
 #### `newListClosedWorkflowExecutionsInput'`
 
 ``` purescript
-newListClosedWorkflowExecutionsInput' :: DomainName -> ({ domain :: DomainName, startTimeFilter :: NullOrUndefined (ExecutionTimeFilter), closeTimeFilter :: NullOrUndefined (ExecutionTimeFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter), closeStatusFilter :: NullOrUndefined (CloseStatusFilter), typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) } -> { domain :: DomainName, startTimeFilter :: NullOrUndefined (ExecutionTimeFilter), closeTimeFilter :: NullOrUndefined (ExecutionTimeFilter), executionFilter :: NullOrUndefined (WorkflowExecutionFilter), closeStatusFilter :: NullOrUndefined (CloseStatusFilter), typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }) -> ListClosedWorkflowExecutionsInput
+newListClosedWorkflowExecutionsInput' :: DomainName -> ({ domain :: DomainName, startTimeFilter :: Maybe (ExecutionTimeFilter), closeTimeFilter :: Maybe (ExecutionTimeFilter), executionFilter :: Maybe (WorkflowExecutionFilter), closeStatusFilter :: Maybe (CloseStatusFilter), typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) } -> { domain :: DomainName, startTimeFilter :: Maybe (ExecutionTimeFilter), closeTimeFilter :: Maybe (ExecutionTimeFilter), executionFilter :: Maybe (WorkflowExecutionFilter), closeStatusFilter :: Maybe (CloseStatusFilter), typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }) -> ListClosedWorkflowExecutionsInput
 ```
 
 Constructs ListClosedWorkflowExecutionsInput's fields from required parameters
@@ -2904,7 +2904,7 @@ Constructs ListClosedWorkflowExecutionsInput's fields from required parameters
 
 ``` purescript
 newtype ListDomainsInput
-  = ListDomainsInput { nextPageToken :: NullOrUndefined (PageToken), registrationStatus :: RegistrationStatus, maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }
+  = ListDomainsInput { nextPageToken :: Maybe (PageToken), registrationStatus :: RegistrationStatus, maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }
 ```
 
 ##### Instances
@@ -2927,7 +2927,7 @@ Constructs ListDomainsInput from required parameters
 #### `newListDomainsInput'`
 
 ``` purescript
-newListDomainsInput' :: RegistrationStatus -> ({ nextPageToken :: NullOrUndefined (PageToken), registrationStatus :: RegistrationStatus, maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) } -> { nextPageToken :: NullOrUndefined (PageToken), registrationStatus :: RegistrationStatus, maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }) -> ListDomainsInput
+newListDomainsInput' :: RegistrationStatus -> ({ nextPageToken :: Maybe (PageToken), registrationStatus :: RegistrationStatus, maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) } -> { nextPageToken :: Maybe (PageToken), registrationStatus :: RegistrationStatus, maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }) -> ListDomainsInput
 ```
 
 Constructs ListDomainsInput's fields from required parameters
@@ -2936,7 +2936,7 @@ Constructs ListDomainsInput's fields from required parameters
 
 ``` purescript
 newtype ListOpenWorkflowExecutionsInput
-  = ListOpenWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder), executionFilter :: NullOrUndefined (WorkflowExecutionFilter) }
+  = ListOpenWorkflowExecutionsInput { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder), executionFilter :: Maybe (WorkflowExecutionFilter) }
 ```
 
 ##### Instances
@@ -2959,7 +2959,7 @@ Constructs ListOpenWorkflowExecutionsInput from required parameters
 #### `newListOpenWorkflowExecutionsInput'`
 
 ``` purescript
-newListOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ({ domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder), executionFilter :: NullOrUndefined (WorkflowExecutionFilter) } -> { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: NullOrUndefined (WorkflowTypeFilter), tagFilter :: NullOrUndefined (TagFilter), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder), executionFilter :: NullOrUndefined (WorkflowExecutionFilter) }) -> ListOpenWorkflowExecutionsInput
+newListOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ({ domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder), executionFilter :: Maybe (WorkflowExecutionFilter) } -> { domain :: DomainName, startTimeFilter :: ExecutionTimeFilter, typeFilter :: Maybe (WorkflowTypeFilter), tagFilter :: Maybe (TagFilter), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder), executionFilter :: Maybe (WorkflowExecutionFilter) }) -> ListOpenWorkflowExecutionsInput
 ```
 
 Constructs ListOpenWorkflowExecutionsInput's fields from required parameters
@@ -2968,7 +2968,7 @@ Constructs ListOpenWorkflowExecutionsInput's fields from required parameters
 
 ``` purescript
 newtype ListWorkflowTypesInput
-  = ListWorkflowTypesInput { domain :: DomainName, name :: NullOrUndefined (Name), registrationStatus :: RegistrationStatus, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }
+  = ListWorkflowTypesInput { domain :: DomainName, name :: Maybe (Name), registrationStatus :: RegistrationStatus, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }
 ```
 
 ##### Instances
@@ -2991,7 +2991,7 @@ Constructs ListWorkflowTypesInput from required parameters
 #### `newListWorkflowTypesInput'`
 
 ``` purescript
-newListWorkflowTypesInput' :: DomainName -> RegistrationStatus -> ({ domain :: DomainName, name :: NullOrUndefined (Name), registrationStatus :: RegistrationStatus, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) } -> { domain :: DomainName, name :: NullOrUndefined (Name), registrationStatus :: RegistrationStatus, nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }) -> ListWorkflowTypesInput
+newListWorkflowTypesInput' :: DomainName -> RegistrationStatus -> ({ domain :: DomainName, name :: Maybe (Name), registrationStatus :: RegistrationStatus, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) } -> { domain :: DomainName, name :: Maybe (Name), registrationStatus :: RegistrationStatus, nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }) -> ListWorkflowTypesInput
 ```
 
 Constructs ListWorkflowTypesInput's fields from required parameters
@@ -3016,7 +3016,7 @@ Encode MarkerName
 
 ``` purescript
 newtype MarkerRecordedEventAttributes
-  = MarkerRecordedEventAttributes { markerName :: MarkerName, details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }
+  = MarkerRecordedEventAttributes { markerName :: MarkerName, details :: Maybe (Data), decisionTaskCompletedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>MarkerRecorded</code> event.</p>
@@ -3041,7 +3041,7 @@ Constructs MarkerRecordedEventAttributes from required parameters
 #### `newMarkerRecordedEventAttributes'`
 
 ``` purescript
-newMarkerRecordedEventAttributes' :: EventId -> MarkerName -> ({ markerName :: MarkerName, details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId } -> { markerName :: MarkerName, details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }) -> MarkerRecordedEventAttributes
+newMarkerRecordedEventAttributes' :: EventId -> MarkerName -> ({ markerName :: MarkerName, details :: Maybe (Data), decisionTaskCompletedEventId :: EventId } -> { markerName :: MarkerName, details :: Maybe (Data), decisionTaskCompletedEventId :: EventId }) -> MarkerRecordedEventAttributes
 ```
 
 Constructs MarkerRecordedEventAttributes's fields from required parameters
@@ -3082,7 +3082,7 @@ Encode OpenDecisionTasksCount
 
 ``` purescript
 newtype OperationNotPermittedFault
-  = OperationNotPermittedFault { message :: NullOrUndefined (ErrorMessage) }
+  = OperationNotPermittedFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned when the caller doesn't have sufficient permissions to invoke the action.</p>
@@ -3107,7 +3107,7 @@ Constructs OperationNotPermittedFault from required parameters
 #### `newOperationNotPermittedFault'`
 
 ``` purescript
-newOperationNotPermittedFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> OperationNotPermittedFault
+newOperationNotPermittedFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> OperationNotPermittedFault
 ```
 
 Constructs OperationNotPermittedFault's fields from required parameters
@@ -3148,7 +3148,7 @@ Encode PageToken
 
 ``` purescript
 newtype PendingTaskCount
-  = PendingTaskCount { count :: Count, truncated :: NullOrUndefined (Truncated) }
+  = PendingTaskCount { count :: Count, truncated :: Maybe (Truncated) }
 ```
 
 <p>Contains the count of tasks in a task list.</p>
@@ -3173,7 +3173,7 @@ Constructs PendingTaskCount from required parameters
 #### `newPendingTaskCount'`
 
 ``` purescript
-newPendingTaskCount' :: Count -> ({ count :: Count, truncated :: NullOrUndefined (Truncated) } -> { count :: Count, truncated :: NullOrUndefined (Truncated) }) -> PendingTaskCount
+newPendingTaskCount' :: Count -> ({ count :: Count, truncated :: Maybe (Truncated) } -> { count :: Count, truncated :: Maybe (Truncated) }) -> PendingTaskCount
 ```
 
 Constructs PendingTaskCount's fields from required parameters
@@ -3182,7 +3182,7 @@ Constructs PendingTaskCount's fields from required parameters
 
 ``` purescript
 newtype PollForActivityTaskInput
-  = PollForActivityTaskInput { domain :: DomainName, taskList :: TaskList, identity :: NullOrUndefined (Identity) }
+  = PollForActivityTaskInput { domain :: DomainName, taskList :: TaskList, identity :: Maybe (Identity) }
 ```
 
 ##### Instances
@@ -3205,7 +3205,7 @@ Constructs PollForActivityTaskInput from required parameters
 #### `newPollForActivityTaskInput'`
 
 ``` purescript
-newPollForActivityTaskInput' :: DomainName -> TaskList -> ({ domain :: DomainName, taskList :: TaskList, identity :: NullOrUndefined (Identity) } -> { domain :: DomainName, taskList :: TaskList, identity :: NullOrUndefined (Identity) }) -> PollForActivityTaskInput
+newPollForActivityTaskInput' :: DomainName -> TaskList -> ({ domain :: DomainName, taskList :: TaskList, identity :: Maybe (Identity) } -> { domain :: DomainName, taskList :: TaskList, identity :: Maybe (Identity) }) -> PollForActivityTaskInput
 ```
 
 Constructs PollForActivityTaskInput's fields from required parameters
@@ -3214,7 +3214,7 @@ Constructs PollForActivityTaskInput's fields from required parameters
 
 ``` purescript
 newtype PollForDecisionTaskInput
-  = PollForDecisionTaskInput { domain :: DomainName, taskList :: TaskList, identity :: NullOrUndefined (Identity), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }
+  = PollForDecisionTaskInput { domain :: DomainName, taskList :: TaskList, identity :: Maybe (Identity), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }
 ```
 
 ##### Instances
@@ -3237,7 +3237,7 @@ Constructs PollForDecisionTaskInput from required parameters
 #### `newPollForDecisionTaskInput'`
 
 ``` purescript
-newPollForDecisionTaskInput' :: DomainName -> TaskList -> ({ domain :: DomainName, taskList :: TaskList, identity :: NullOrUndefined (Identity), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) } -> { domain :: DomainName, taskList :: TaskList, identity :: NullOrUndefined (Identity), nextPageToken :: NullOrUndefined (PageToken), maximumPageSize :: NullOrUndefined (PageSize), reverseOrder :: NullOrUndefined (ReverseOrder) }) -> PollForDecisionTaskInput
+newPollForDecisionTaskInput' :: DomainName -> TaskList -> ({ domain :: DomainName, taskList :: TaskList, identity :: Maybe (Identity), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) } -> { domain :: DomainName, taskList :: TaskList, identity :: Maybe (Identity), nextPageToken :: Maybe (PageToken), maximumPageSize :: Maybe (PageSize), reverseOrder :: Maybe (ReverseOrder) }) -> PollForDecisionTaskInput
 ```
 
 Constructs PollForDecisionTaskInput's fields from required parameters
@@ -3246,7 +3246,7 @@ Constructs PollForDecisionTaskInput's fields from required parameters
 
 ``` purescript
 newtype RecordActivityTaskHeartbeatInput
-  = RecordActivityTaskHeartbeatInput { taskToken :: TaskToken, details :: NullOrUndefined (LimitedData) }
+  = RecordActivityTaskHeartbeatInput { taskToken :: TaskToken, details :: Maybe (LimitedData) }
 ```
 
 ##### Instances
@@ -3269,7 +3269,7 @@ Constructs RecordActivityTaskHeartbeatInput from required parameters
 #### `newRecordActivityTaskHeartbeatInput'`
 
 ``` purescript
-newRecordActivityTaskHeartbeatInput' :: TaskToken -> ({ taskToken :: TaskToken, details :: NullOrUndefined (LimitedData) } -> { taskToken :: TaskToken, details :: NullOrUndefined (LimitedData) }) -> RecordActivityTaskHeartbeatInput
+newRecordActivityTaskHeartbeatInput' :: TaskToken -> ({ taskToken :: TaskToken, details :: Maybe (LimitedData) } -> { taskToken :: TaskToken, details :: Maybe (LimitedData) }) -> RecordActivityTaskHeartbeatInput
 ```
 
 Constructs RecordActivityTaskHeartbeatInput's fields from required parameters
@@ -3278,7 +3278,7 @@ Constructs RecordActivityTaskHeartbeatInput's fields from required parameters
 
 ``` purescript
 newtype RecordMarkerDecisionAttributes
-  = RecordMarkerDecisionAttributes { markerName :: MarkerName, details :: NullOrUndefined (Data) }
+  = RecordMarkerDecisionAttributes { markerName :: MarkerName, details :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>RecordMarker</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -3303,7 +3303,7 @@ Constructs RecordMarkerDecisionAttributes from required parameters
 #### `newRecordMarkerDecisionAttributes'`
 
 ``` purescript
-newRecordMarkerDecisionAttributes' :: MarkerName -> ({ markerName :: MarkerName, details :: NullOrUndefined (Data) } -> { markerName :: MarkerName, details :: NullOrUndefined (Data) }) -> RecordMarkerDecisionAttributes
+newRecordMarkerDecisionAttributes' :: MarkerName -> ({ markerName :: MarkerName, details :: Maybe (Data) } -> { markerName :: MarkerName, details :: Maybe (Data) }) -> RecordMarkerDecisionAttributes
 ```
 
 Constructs RecordMarkerDecisionAttributes's fields from required parameters
@@ -3362,7 +3362,7 @@ Constructs RecordMarkerFailedEventAttributes's fields from required parameters
 
 ``` purescript
 newtype RegisterActivityTypeInput
-  = RegisterActivityTypeInput { domain :: DomainName, name :: Name, version :: Version, description :: NullOrUndefined (Description), defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultTaskScheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }
+  = RegisterActivityTypeInput { domain :: DomainName, name :: Name, version :: Version, description :: Maybe (Description), defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultTaskScheduleToStartTimeout :: Maybe (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: Maybe (DurationInSecondsOptional) }
 ```
 
 ##### Instances
@@ -3385,7 +3385,7 @@ Constructs RegisterActivityTypeInput from required parameters
 #### `newRegisterActivityTypeInput'`
 
 ``` purescript
-newRegisterActivityTypeInput' :: DomainName -> Name -> Version -> ({ domain :: DomainName, name :: Name, version :: Version, description :: NullOrUndefined (Description), defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultTaskScheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) } -> { domain :: DomainName, name :: Name, version :: Version, description :: NullOrUndefined (Description), defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultTaskScheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }) -> RegisterActivityTypeInput
+newRegisterActivityTypeInput' :: DomainName -> Name -> Version -> ({ domain :: DomainName, name :: Name, version :: Version, description :: Maybe (Description), defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultTaskScheduleToStartTimeout :: Maybe (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: Maybe (DurationInSecondsOptional) } -> { domain :: DomainName, name :: Name, version :: Version, description :: Maybe (Description), defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskHeartbeatTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultTaskScheduleToStartTimeout :: Maybe (DurationInSecondsOptional), defaultTaskScheduleToCloseTimeout :: Maybe (DurationInSecondsOptional) }) -> RegisterActivityTypeInput
 ```
 
 Constructs RegisterActivityTypeInput's fields from required parameters
@@ -3394,7 +3394,7 @@ Constructs RegisterActivityTypeInput's fields from required parameters
 
 ``` purescript
 newtype RegisterDomainInput
-  = RegisterDomainInput { name :: DomainName, description :: NullOrUndefined (Description), workflowExecutionRetentionPeriodInDays :: DurationInDays }
+  = RegisterDomainInput { name :: DomainName, description :: Maybe (Description), workflowExecutionRetentionPeriodInDays :: DurationInDays }
 ```
 
 ##### Instances
@@ -3417,7 +3417,7 @@ Constructs RegisterDomainInput from required parameters
 #### `newRegisterDomainInput'`
 
 ``` purescript
-newRegisterDomainInput' :: DomainName -> DurationInDays -> ({ name :: DomainName, description :: NullOrUndefined (Description), workflowExecutionRetentionPeriodInDays :: DurationInDays } -> { name :: DomainName, description :: NullOrUndefined (Description), workflowExecutionRetentionPeriodInDays :: DurationInDays }) -> RegisterDomainInput
+newRegisterDomainInput' :: DomainName -> DurationInDays -> ({ name :: DomainName, description :: Maybe (Description), workflowExecutionRetentionPeriodInDays :: DurationInDays } -> { name :: DomainName, description :: Maybe (Description), workflowExecutionRetentionPeriodInDays :: DurationInDays }) -> RegisterDomainInput
 ```
 
 Constructs RegisterDomainInput's fields from required parameters
@@ -3426,7 +3426,7 @@ Constructs RegisterDomainInput's fields from required parameters
 
 ``` purescript
 newtype RegisterWorkflowTypeInput
-  = RegisterWorkflowTypeInput { domain :: DomainName, name :: Name, version :: Version, description :: NullOrUndefined (Description), defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultChildPolicy :: NullOrUndefined (ChildPolicy), defaultLambdaRole :: NullOrUndefined (Arn) }
+  = RegisterWorkflowTypeInput { domain :: DomainName, name :: Name, version :: Version, description :: Maybe (Description), defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultChildPolicy :: Maybe (ChildPolicy), defaultLambdaRole :: Maybe (Arn) }
 ```
 
 ##### Instances
@@ -3449,7 +3449,7 @@ Constructs RegisterWorkflowTypeInput from required parameters
 #### `newRegisterWorkflowTypeInput'`
 
 ``` purescript
-newRegisterWorkflowTypeInput' :: DomainName -> Name -> Version -> ({ domain :: DomainName, name :: Name, version :: Version, description :: NullOrUndefined (Description), defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultChildPolicy :: NullOrUndefined (ChildPolicy), defaultLambdaRole :: NullOrUndefined (Arn) } -> { domain :: DomainName, name :: Name, version :: Version, description :: NullOrUndefined (Description), defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultChildPolicy :: NullOrUndefined (ChildPolicy), defaultLambdaRole :: NullOrUndefined (Arn) }) -> RegisterWorkflowTypeInput
+newRegisterWorkflowTypeInput' :: DomainName -> Name -> Version -> ({ domain :: DomainName, name :: Name, version :: Version, description :: Maybe (Description), defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultChildPolicy :: Maybe (ChildPolicy), defaultLambdaRole :: Maybe (Arn) } -> { domain :: DomainName, name :: Name, version :: Version, description :: Maybe (Description), defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultChildPolicy :: Maybe (ChildPolicy), defaultLambdaRole :: Maybe (Arn) }) -> RegisterWorkflowTypeInput
 ```
 
 Constructs RegisterWorkflowTypeInput's fields from required parameters
@@ -3558,7 +3558,7 @@ Constructs RequestCancelActivityTaskFailedEventAttributes's fields from required
 
 ``` purescript
 newtype RequestCancelExternalWorkflowExecutionDecisionAttributes
-  = RequestCancelExternalWorkflowExecutionDecisionAttributes { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), control :: NullOrUndefined (Data) }
+  = RequestCancelExternalWorkflowExecutionDecisionAttributes { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>RequestCancelExternalWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -3583,7 +3583,7 @@ Constructs RequestCancelExternalWorkflowExecutionDecisionAttributes from require
 #### `newRequestCancelExternalWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newRequestCancelExternalWorkflowExecutionDecisionAttributes' :: WorkflowId -> ({ workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), control :: NullOrUndefined (Data) } -> { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), control :: NullOrUndefined (Data) }) -> RequestCancelExternalWorkflowExecutionDecisionAttributes
+newRequestCancelExternalWorkflowExecutionDecisionAttributes' :: WorkflowId -> ({ workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), control :: Maybe (Data) } -> { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), control :: Maybe (Data) }) -> RequestCancelExternalWorkflowExecutionDecisionAttributes
 ```
 
 Constructs RequestCancelExternalWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -3608,7 +3608,7 @@ Encode RequestCancelExternalWorkflowExecutionFailedCause
 
 ``` purescript
 newtype RequestCancelExternalWorkflowExecutionFailedEventAttributes
-  = RequestCancelExternalWorkflowExecutionFailedEventAttributes { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), cause :: RequestCancelExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }
+  = RequestCancelExternalWorkflowExecutionFailedEventAttributes { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), cause :: RequestCancelExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>RequestCancelExternalWorkflowExecutionFailed</code> event.</p>
@@ -3633,7 +3633,7 @@ Constructs RequestCancelExternalWorkflowExecutionFailedEventAttributes from requ
 #### `newRequestCancelExternalWorkflowExecutionFailedEventAttributes'`
 
 ``` purescript
-newRequestCancelExternalWorkflowExecutionFailedEventAttributes' :: RequestCancelExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), cause :: RequestCancelExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) } -> { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), cause :: RequestCancelExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }) -> RequestCancelExternalWorkflowExecutionFailedEventAttributes
+newRequestCancelExternalWorkflowExecutionFailedEventAttributes' :: RequestCancelExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), cause :: RequestCancelExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) } -> { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), cause :: RequestCancelExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }) -> RequestCancelExternalWorkflowExecutionFailedEventAttributes
 ```
 
 Constructs RequestCancelExternalWorkflowExecutionFailedEventAttributes's fields from required parameters
@@ -3642,7 +3642,7 @@ Constructs RequestCancelExternalWorkflowExecutionFailedEventAttributes's fields 
 
 ``` purescript
 newtype RequestCancelExternalWorkflowExecutionInitiatedEventAttributes
-  = RequestCancelExternalWorkflowExecutionInitiatedEventAttributes { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }
+  = RequestCancelExternalWorkflowExecutionInitiatedEventAttributes { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>RequestCancelExternalWorkflowExecutionInitiated</code> event.</p>
@@ -3667,7 +3667,7 @@ Constructs RequestCancelExternalWorkflowExecutionInitiatedEventAttributes from r
 #### `newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes'`
 
 ``` purescript
-newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) } -> { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }) -> RequestCancelExternalWorkflowExecutionInitiatedEventAttributes
+newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) } -> { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }) -> RequestCancelExternalWorkflowExecutionInitiatedEventAttributes
 ```
 
 Constructs RequestCancelExternalWorkflowExecutionInitiatedEventAttributes's fields from required parameters
@@ -3676,7 +3676,7 @@ Constructs RequestCancelExternalWorkflowExecutionInitiatedEventAttributes's fiel
 
 ``` purescript
 newtype RequestCancelWorkflowExecutionInput
-  = RequestCancelWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional) }
+  = RequestCancelWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional) }
 ```
 
 ##### Instances
@@ -3699,7 +3699,7 @@ Constructs RequestCancelWorkflowExecutionInput from required parameters
 #### `newRequestCancelWorkflowExecutionInput'`
 
 ``` purescript
-newRequestCancelWorkflowExecutionInput' :: DomainName -> WorkflowId -> ({ domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional) } -> { domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional) }) -> RequestCancelWorkflowExecutionInput
+newRequestCancelWorkflowExecutionInput' :: DomainName -> WorkflowId -> ({ domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional) } -> { domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional) }) -> RequestCancelWorkflowExecutionInput
 ```
 
 Constructs RequestCancelWorkflowExecutionInput's fields from required parameters
@@ -3708,7 +3708,7 @@ Constructs RequestCancelWorkflowExecutionInput's fields from required parameters
 
 ``` purescript
 newtype RespondActivityTaskCanceledInput
-  = RespondActivityTaskCanceledInput { taskToken :: TaskToken, details :: NullOrUndefined (Data) }
+  = RespondActivityTaskCanceledInput { taskToken :: TaskToken, details :: Maybe (Data) }
 ```
 
 ##### Instances
@@ -3731,7 +3731,7 @@ Constructs RespondActivityTaskCanceledInput from required parameters
 #### `newRespondActivityTaskCanceledInput'`
 
 ``` purescript
-newRespondActivityTaskCanceledInput' :: TaskToken -> ({ taskToken :: TaskToken, details :: NullOrUndefined (Data) } -> { taskToken :: TaskToken, details :: NullOrUndefined (Data) }) -> RespondActivityTaskCanceledInput
+newRespondActivityTaskCanceledInput' :: TaskToken -> ({ taskToken :: TaskToken, details :: Maybe (Data) } -> { taskToken :: TaskToken, details :: Maybe (Data) }) -> RespondActivityTaskCanceledInput
 ```
 
 Constructs RespondActivityTaskCanceledInput's fields from required parameters
@@ -3740,7 +3740,7 @@ Constructs RespondActivityTaskCanceledInput's fields from required parameters
 
 ``` purescript
 newtype RespondActivityTaskCompletedInput
-  = RespondActivityTaskCompletedInput { taskToken :: TaskToken, result :: NullOrUndefined (Data) }
+  = RespondActivityTaskCompletedInput { taskToken :: TaskToken, result :: Maybe (Data) }
 ```
 
 ##### Instances
@@ -3763,7 +3763,7 @@ Constructs RespondActivityTaskCompletedInput from required parameters
 #### `newRespondActivityTaskCompletedInput'`
 
 ``` purescript
-newRespondActivityTaskCompletedInput' :: TaskToken -> ({ taskToken :: TaskToken, result :: NullOrUndefined (Data) } -> { taskToken :: TaskToken, result :: NullOrUndefined (Data) }) -> RespondActivityTaskCompletedInput
+newRespondActivityTaskCompletedInput' :: TaskToken -> ({ taskToken :: TaskToken, result :: Maybe (Data) } -> { taskToken :: TaskToken, result :: Maybe (Data) }) -> RespondActivityTaskCompletedInput
 ```
 
 Constructs RespondActivityTaskCompletedInput's fields from required parameters
@@ -3772,7 +3772,7 @@ Constructs RespondActivityTaskCompletedInput's fields from required parameters
 
 ``` purescript
 newtype RespondActivityTaskFailedInput
-  = RespondActivityTaskFailedInput { taskToken :: TaskToken, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) }
+  = RespondActivityTaskFailedInput { taskToken :: TaskToken, reason :: Maybe (FailureReason), details :: Maybe (Data) }
 ```
 
 ##### Instances
@@ -3795,7 +3795,7 @@ Constructs RespondActivityTaskFailedInput from required parameters
 #### `newRespondActivityTaskFailedInput'`
 
 ``` purescript
-newRespondActivityTaskFailedInput' :: TaskToken -> ({ taskToken :: TaskToken, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) } -> { taskToken :: TaskToken, reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data) }) -> RespondActivityTaskFailedInput
+newRespondActivityTaskFailedInput' :: TaskToken -> ({ taskToken :: TaskToken, reason :: Maybe (FailureReason), details :: Maybe (Data) } -> { taskToken :: TaskToken, reason :: Maybe (FailureReason), details :: Maybe (Data) }) -> RespondActivityTaskFailedInput
 ```
 
 Constructs RespondActivityTaskFailedInput's fields from required parameters
@@ -3804,7 +3804,7 @@ Constructs RespondActivityTaskFailedInput's fields from required parameters
 
 ``` purescript
 newtype RespondDecisionTaskCompletedInput
-  = RespondDecisionTaskCompletedInput { taskToken :: TaskToken, decisions :: NullOrUndefined (DecisionList), executionContext :: NullOrUndefined (Data) }
+  = RespondDecisionTaskCompletedInput { taskToken :: TaskToken, decisions :: Maybe (DecisionList), executionContext :: Maybe (Data) }
 ```
 
 <p>Input data for a TaskCompleted response to a decision task.</p>
@@ -3829,7 +3829,7 @@ Constructs RespondDecisionTaskCompletedInput from required parameters
 #### `newRespondDecisionTaskCompletedInput'`
 
 ``` purescript
-newRespondDecisionTaskCompletedInput' :: TaskToken -> ({ taskToken :: TaskToken, decisions :: NullOrUndefined (DecisionList), executionContext :: NullOrUndefined (Data) } -> { taskToken :: TaskToken, decisions :: NullOrUndefined (DecisionList), executionContext :: NullOrUndefined (Data) }) -> RespondDecisionTaskCompletedInput
+newRespondDecisionTaskCompletedInput' :: TaskToken -> ({ taskToken :: TaskToken, decisions :: Maybe (DecisionList), executionContext :: Maybe (Data) } -> { taskToken :: TaskToken, decisions :: Maybe (DecisionList), executionContext :: Maybe (Data) }) -> RespondDecisionTaskCompletedInput
 ```
 
 Constructs RespondDecisionTaskCompletedInput's fields from required parameters
@@ -3854,7 +3854,7 @@ Encode ReverseOrder
 
 ``` purescript
 newtype Run
-  = Run { runId :: NullOrUndefined (WorkflowRunId) }
+  = Run { runId :: Maybe (WorkflowRunId) }
 ```
 
 <p>Specifies the <code>runId</code> of a workflow execution.</p>
@@ -3879,7 +3879,7 @@ Constructs Run from required parameters
 #### `newRun'`
 
 ``` purescript
-newRun' :: ({ runId :: NullOrUndefined (WorkflowRunId) } -> { runId :: NullOrUndefined (WorkflowRunId) }) -> Run
+newRun' :: ({ runId :: Maybe (WorkflowRunId) } -> { runId :: Maybe (WorkflowRunId) }) -> Run
 ```
 
 Constructs Run's fields from required parameters
@@ -3888,7 +3888,7 @@ Constructs Run's fields from required parameters
 
 ``` purescript
 newtype ScheduleActivityTaskDecisionAttributes
-  = ScheduleActivityTaskDecisionAttributes { activityType :: ActivityType, activityId :: ActivityId, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), scheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), scheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), heartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional) }
+  = ScheduleActivityTaskDecisionAttributes { activityType :: ActivityType, activityId :: ActivityId, control :: Maybe (Data), input :: Maybe (Data), scheduleToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), scheduleToStartTimeout :: Maybe (DurationInSecondsOptional), startToCloseTimeout :: Maybe (DurationInSecondsOptional), heartbeatTimeout :: Maybe (DurationInSecondsOptional) }
 ```
 
 <p>Provides the details of the <code>ScheduleActivityTask</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>Constrain the following parameters by using a <code>Condition</code> element with the appropriate keys.</p> <ul> <li> <p> <code>activityType.name</code> – String constraint. The key is <code>swf:activityType.name</code>.</p> </li> <li> <p> <code>activityType.version</code> – String constraint. The key is <code>swf:activityType.version</code>.</p> </li> <li> <p> <code>taskList</code> – String constraint. The key is <code>swf:taskList.name</code>.</p> </li> </ul> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -3913,7 +3913,7 @@ Constructs ScheduleActivityTaskDecisionAttributes from required parameters
 #### `newScheduleActivityTaskDecisionAttributes'`
 
 ``` purescript
-newScheduleActivityTaskDecisionAttributes' :: ActivityId -> ActivityType -> ({ activityType :: ActivityType, activityId :: ActivityId, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), scheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), scheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), heartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional) } -> { activityType :: ActivityType, activityId :: ActivityId, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), scheduleToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), scheduleToStartTimeout :: NullOrUndefined (DurationInSecondsOptional), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), heartbeatTimeout :: NullOrUndefined (DurationInSecondsOptional) }) -> ScheduleActivityTaskDecisionAttributes
+newScheduleActivityTaskDecisionAttributes' :: ActivityId -> ActivityType -> ({ activityType :: ActivityType, activityId :: ActivityId, control :: Maybe (Data), input :: Maybe (Data), scheduleToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), scheduleToStartTimeout :: Maybe (DurationInSecondsOptional), startToCloseTimeout :: Maybe (DurationInSecondsOptional), heartbeatTimeout :: Maybe (DurationInSecondsOptional) } -> { activityType :: ActivityType, activityId :: ActivityId, control :: Maybe (Data), input :: Maybe (Data), scheduleToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), scheduleToStartTimeout :: Maybe (DurationInSecondsOptional), startToCloseTimeout :: Maybe (DurationInSecondsOptional), heartbeatTimeout :: Maybe (DurationInSecondsOptional) }) -> ScheduleActivityTaskDecisionAttributes
 ```
 
 Constructs ScheduleActivityTaskDecisionAttributes's fields from required parameters
@@ -3972,7 +3972,7 @@ Constructs ScheduleActivityTaskFailedEventAttributes's fields from required para
 
 ``` purescript
 newtype ScheduleLambdaFunctionDecisionAttributes
-  = ScheduleLambdaFunctionDecisionAttributes { id :: FunctionId, name :: FunctionName, control :: NullOrUndefined (Data), input :: NullOrUndefined (FunctionInput), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }
+  = ScheduleLambdaFunctionDecisionAttributes { id :: FunctionId, name :: FunctionName, control :: Maybe (Data), input :: Maybe (FunctionInput), startToCloseTimeout :: Maybe (DurationInSecondsOptional) }
 ```
 
 <p>Decision attributes specified in <code>scheduleLambdaFunctionDecisionAttributes</code> within the list of decisions <code>decisions</code> passed to <a>RespondDecisionTaskCompleted</a>.</p>
@@ -3997,7 +3997,7 @@ Constructs ScheduleLambdaFunctionDecisionAttributes from required parameters
 #### `newScheduleLambdaFunctionDecisionAttributes'`
 
 ``` purescript
-newScheduleLambdaFunctionDecisionAttributes' :: FunctionId -> FunctionName -> ({ id :: FunctionId, name :: FunctionName, control :: NullOrUndefined (Data), input :: NullOrUndefined (FunctionInput), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) } -> { id :: FunctionId, name :: FunctionName, control :: NullOrUndefined (Data), input :: NullOrUndefined (FunctionInput), startToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional) }) -> ScheduleLambdaFunctionDecisionAttributes
+newScheduleLambdaFunctionDecisionAttributes' :: FunctionId -> FunctionName -> ({ id :: FunctionId, name :: FunctionName, control :: Maybe (Data), input :: Maybe (FunctionInput), startToCloseTimeout :: Maybe (DurationInSecondsOptional) } -> { id :: FunctionId, name :: FunctionName, control :: Maybe (Data), input :: Maybe (FunctionInput), startToCloseTimeout :: Maybe (DurationInSecondsOptional) }) -> ScheduleLambdaFunctionDecisionAttributes
 ```
 
 Constructs ScheduleLambdaFunctionDecisionAttributes's fields from required parameters
@@ -4056,7 +4056,7 @@ Constructs ScheduleLambdaFunctionFailedEventAttributes's fields from required pa
 
 ``` purescript
 newtype SignalExternalWorkflowExecutionDecisionAttributes
-  = SignalExternalWorkflowExecutionDecisionAttributes { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data), control :: NullOrUndefined (Data) }
+  = SignalExternalWorkflowExecutionDecisionAttributes { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data), control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>SignalExternalWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -4081,7 +4081,7 @@ Constructs SignalExternalWorkflowExecutionDecisionAttributes from required param
 #### `newSignalExternalWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newSignalExternalWorkflowExecutionDecisionAttributes' :: SignalName -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data), control :: NullOrUndefined (Data) } -> { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data), control :: NullOrUndefined (Data) }) -> SignalExternalWorkflowExecutionDecisionAttributes
+newSignalExternalWorkflowExecutionDecisionAttributes' :: SignalName -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data), control :: Maybe (Data) } -> { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data), control :: Maybe (Data) }) -> SignalExternalWorkflowExecutionDecisionAttributes
 ```
 
 Constructs SignalExternalWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -4106,7 +4106,7 @@ Encode SignalExternalWorkflowExecutionFailedCause
 
 ``` purescript
 newtype SignalExternalWorkflowExecutionFailedEventAttributes
-  = SignalExternalWorkflowExecutionFailedEventAttributes { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), cause :: SignalExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }
+  = SignalExternalWorkflowExecutionFailedEventAttributes { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), cause :: SignalExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>SignalExternalWorkflowExecutionFailed</code> event.</p>
@@ -4131,7 +4131,7 @@ Constructs SignalExternalWorkflowExecutionFailedEventAttributes from required pa
 #### `newSignalExternalWorkflowExecutionFailedEventAttributes'`
 
 ``` purescript
-newSignalExternalWorkflowExecutionFailedEventAttributes' :: SignalExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), cause :: SignalExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) } -> { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), cause :: SignalExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }) -> SignalExternalWorkflowExecutionFailedEventAttributes
+newSignalExternalWorkflowExecutionFailedEventAttributes' :: SignalExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), cause :: SignalExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) } -> { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), cause :: SignalExternalWorkflowExecutionFailedCause, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }) -> SignalExternalWorkflowExecutionFailedEventAttributes
 ```
 
 Constructs SignalExternalWorkflowExecutionFailedEventAttributes's fields from required parameters
@@ -4140,7 +4140,7 @@ Constructs SignalExternalWorkflowExecutionFailedEventAttributes's fields from re
 
 ``` purescript
 newtype SignalExternalWorkflowExecutionInitiatedEventAttributes
-  = SignalExternalWorkflowExecutionInitiatedEventAttributes { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }
+  = SignalExternalWorkflowExecutionInitiatedEventAttributes { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data), decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>SignalExternalWorkflowExecutionInitiated</code> event.</p>
@@ -4165,7 +4165,7 @@ Constructs SignalExternalWorkflowExecutionInitiatedEventAttributes from required
 #### `newSignalExternalWorkflowExecutionInitiatedEventAttributes'`
 
 ``` purescript
-newSignalExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> SignalName -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) } -> { workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }) -> SignalExternalWorkflowExecutionInitiatedEventAttributes
+newSignalExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> SignalName -> WorkflowId -> ({ workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data), decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) } -> { workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data), decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }) -> SignalExternalWorkflowExecutionInitiatedEventAttributes
 ```
 
 Constructs SignalExternalWorkflowExecutionInitiatedEventAttributes's fields from required parameters
@@ -4190,7 +4190,7 @@ Encode SignalName
 
 ``` purescript
 newtype SignalWorkflowExecutionInput
-  = SignalWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data) }
+  = SignalWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data) }
 ```
 
 ##### Instances
@@ -4213,7 +4213,7 @@ Constructs SignalWorkflowExecutionInput from required parameters
 #### `newSignalWorkflowExecutionInput'`
 
 ``` purescript
-newSignalWorkflowExecutionInput' :: DomainName -> SignalName -> WorkflowId -> ({ domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data) } -> { domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), signalName :: SignalName, input :: NullOrUndefined (Data) }) -> SignalWorkflowExecutionInput
+newSignalWorkflowExecutionInput' :: DomainName -> SignalName -> WorkflowId -> ({ domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data) } -> { domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), signalName :: SignalName, input :: Maybe (Data) }) -> SignalWorkflowExecutionInput
 ```
 
 Constructs SignalWorkflowExecutionInput's fields from required parameters
@@ -4222,7 +4222,7 @@ Constructs SignalWorkflowExecutionInput's fields from required parameters
 
 ``` purescript
 newtype StartChildWorkflowExecutionDecisionAttributes
-  = StartChildWorkflowExecutionDecisionAttributes { workflowType :: WorkflowType, workflowId :: WorkflowId, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), tagList :: NullOrUndefined (TagList), lambdaRole :: NullOrUndefined (Arn) }
+  = StartChildWorkflowExecutionDecisionAttributes { workflowType :: WorkflowType, workflowId :: WorkflowId, control :: Maybe (Data), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), tagList :: Maybe (TagList), lambdaRole :: Maybe (Arn) }
 ```
 
 <p>Provides the details of the <code>StartChildWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>Constrain the following parameters by using a <code>Condition</code> element with the appropriate keys.</p> <ul> <li> <p> <code>tagList.member.N</code> – The key is "swf:tagList.N" where N is the tag number from 0 to 4, inclusive.</p> </li> <li> <p> <code>taskList</code> – String constraint. The key is <code>swf:taskList.name</code>.</p> </li> <li> <p> <code>workflowType.name</code> – String constraint. The key is <code>swf:workflowType.name</code>.</p> </li> <li> <p> <code>workflowType.version</code> – String constraint. The key is <code>swf:workflowType.version</code>.</p> </li> </ul> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -4247,7 +4247,7 @@ Constructs StartChildWorkflowExecutionDecisionAttributes from required parameter
 #### `newStartChildWorkflowExecutionDecisionAttributes'`
 
 ``` purescript
-newStartChildWorkflowExecutionDecisionAttributes' :: WorkflowId -> WorkflowType -> ({ workflowType :: WorkflowType, workflowId :: WorkflowId, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), tagList :: NullOrUndefined (TagList), lambdaRole :: NullOrUndefined (Arn) } -> { workflowType :: WorkflowType, workflowId :: WorkflowId, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), tagList :: NullOrUndefined (TagList), lambdaRole :: NullOrUndefined (Arn) }) -> StartChildWorkflowExecutionDecisionAttributes
+newStartChildWorkflowExecutionDecisionAttributes' :: WorkflowId -> WorkflowType -> ({ workflowType :: WorkflowType, workflowId :: WorkflowId, control :: Maybe (Data), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), tagList :: Maybe (TagList), lambdaRole :: Maybe (Arn) } -> { workflowType :: WorkflowType, workflowId :: WorkflowId, control :: Maybe (Data), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), tagList :: Maybe (TagList), lambdaRole :: Maybe (Arn) }) -> StartChildWorkflowExecutionDecisionAttributes
 ```
 
 Constructs StartChildWorkflowExecutionDecisionAttributes's fields from required parameters
@@ -4272,7 +4272,7 @@ Encode StartChildWorkflowExecutionFailedCause
 
 ``` purescript
 newtype StartChildWorkflowExecutionFailedEventAttributes
-  = StartChildWorkflowExecutionFailedEventAttributes { workflowType :: WorkflowType, cause :: StartChildWorkflowExecutionFailedCause, workflowId :: WorkflowId, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }
+  = StartChildWorkflowExecutionFailedEventAttributes { workflowType :: WorkflowType, cause :: StartChildWorkflowExecutionFailedCause, workflowId :: WorkflowId, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }
 ```
 
 <p>Provides the details of the <code>StartChildWorkflowExecutionFailed</code> event.</p>
@@ -4297,7 +4297,7 @@ Constructs StartChildWorkflowExecutionFailedEventAttributes from required parame
 #### `newStartChildWorkflowExecutionFailedEventAttributes'`
 
 ``` purescript
-newStartChildWorkflowExecutionFailedEventAttributes' :: StartChildWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> WorkflowType -> ({ workflowType :: WorkflowType, cause :: StartChildWorkflowExecutionFailedCause, workflowId :: WorkflowId, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) } -> { workflowType :: WorkflowType, cause :: StartChildWorkflowExecutionFailedCause, workflowId :: WorkflowId, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: NullOrUndefined (Data) }) -> StartChildWorkflowExecutionFailedEventAttributes
+newStartChildWorkflowExecutionFailedEventAttributes' :: StartChildWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> WorkflowType -> ({ workflowType :: WorkflowType, cause :: StartChildWorkflowExecutionFailedCause, workflowId :: WorkflowId, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) } -> { workflowType :: WorkflowType, cause :: StartChildWorkflowExecutionFailedCause, workflowId :: WorkflowId, initiatedEventId :: EventId, decisionTaskCompletedEventId :: EventId, control :: Maybe (Data) }) -> StartChildWorkflowExecutionFailedEventAttributes
 ```
 
 Constructs StartChildWorkflowExecutionFailedEventAttributes's fields from required parameters
@@ -4306,7 +4306,7 @@ Constructs StartChildWorkflowExecutionFailedEventAttributes's fields from requir
 
 ``` purescript
 newtype StartChildWorkflowExecutionInitiatedEventAttributes
-  = StartChildWorkflowExecutionInitiatedEventAttributes { workflowId :: WorkflowId, workflowType :: WorkflowType, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), decisionTaskCompletedEventId :: EventId, childPolicy :: ChildPolicy, taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), tagList :: NullOrUndefined (TagList), lambdaRole :: NullOrUndefined (Arn) }
+  = StartChildWorkflowExecutionInitiatedEventAttributes { workflowId :: WorkflowId, workflowType :: WorkflowType, control :: Maybe (Data), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), decisionTaskCompletedEventId :: EventId, childPolicy :: ChildPolicy, taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), tagList :: Maybe (TagList), lambdaRole :: Maybe (Arn) }
 ```
 
 <p>Provides the details of the <code>StartChildWorkflowExecutionInitiated</code> event.</p>
@@ -4331,7 +4331,7 @@ Constructs StartChildWorkflowExecutionInitiatedEventAttributes from required par
 #### `newStartChildWorkflowExecutionInitiatedEventAttributes'`
 
 ``` purescript
-newStartChildWorkflowExecutionInitiatedEventAttributes' :: ChildPolicy -> EventId -> TaskList -> WorkflowId -> WorkflowType -> ({ workflowId :: WorkflowId, workflowType :: WorkflowType, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), decisionTaskCompletedEventId :: EventId, childPolicy :: ChildPolicy, taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), tagList :: NullOrUndefined (TagList), lambdaRole :: NullOrUndefined (Arn) } -> { workflowId :: WorkflowId, workflowType :: WorkflowType, control :: NullOrUndefined (Data), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), decisionTaskCompletedEventId :: EventId, childPolicy :: ChildPolicy, taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), tagList :: NullOrUndefined (TagList), lambdaRole :: NullOrUndefined (Arn) }) -> StartChildWorkflowExecutionInitiatedEventAttributes
+newStartChildWorkflowExecutionInitiatedEventAttributes' :: ChildPolicy -> EventId -> TaskList -> WorkflowId -> WorkflowType -> ({ workflowId :: WorkflowId, workflowType :: WorkflowType, control :: Maybe (Data), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), decisionTaskCompletedEventId :: EventId, childPolicy :: ChildPolicy, taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), tagList :: Maybe (TagList), lambdaRole :: Maybe (Arn) } -> { workflowId :: WorkflowId, workflowType :: WorkflowType, control :: Maybe (Data), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), decisionTaskCompletedEventId :: EventId, childPolicy :: ChildPolicy, taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), tagList :: Maybe (TagList), lambdaRole :: Maybe (Arn) }) -> StartChildWorkflowExecutionInitiatedEventAttributes
 ```
 
 Constructs StartChildWorkflowExecutionInitiatedEventAttributes's fields from required parameters
@@ -4356,7 +4356,7 @@ Encode StartLambdaFunctionFailedCause
 
 ``` purescript
 newtype StartLambdaFunctionFailedEventAttributes
-  = StartLambdaFunctionFailedEventAttributes { scheduledEventId :: NullOrUndefined (EventId), cause :: NullOrUndefined (StartLambdaFunctionFailedCause), message :: NullOrUndefined (CauseMessage) }
+  = StartLambdaFunctionFailedEventAttributes { scheduledEventId :: Maybe (EventId), cause :: Maybe (StartLambdaFunctionFailedCause), message :: Maybe (CauseMessage) }
 ```
 
 <p>Provides the details of the <code>StartLambdaFunctionFailed</code> event. It isn't set for other event types.</p>
@@ -4381,7 +4381,7 @@ Constructs StartLambdaFunctionFailedEventAttributes from required parameters
 #### `newStartLambdaFunctionFailedEventAttributes'`
 
 ``` purescript
-newStartLambdaFunctionFailedEventAttributes' :: ({ scheduledEventId :: NullOrUndefined (EventId), cause :: NullOrUndefined (StartLambdaFunctionFailedCause), message :: NullOrUndefined (CauseMessage) } -> { scheduledEventId :: NullOrUndefined (EventId), cause :: NullOrUndefined (StartLambdaFunctionFailedCause), message :: NullOrUndefined (CauseMessage) }) -> StartLambdaFunctionFailedEventAttributes
+newStartLambdaFunctionFailedEventAttributes' :: ({ scheduledEventId :: Maybe (EventId), cause :: Maybe (StartLambdaFunctionFailedCause), message :: Maybe (CauseMessage) } -> { scheduledEventId :: Maybe (EventId), cause :: Maybe (StartLambdaFunctionFailedCause), message :: Maybe (CauseMessage) }) -> StartLambdaFunctionFailedEventAttributes
 ```
 
 Constructs StartLambdaFunctionFailedEventAttributes's fields from required parameters
@@ -4390,7 +4390,7 @@ Constructs StartLambdaFunctionFailedEventAttributes's fields from required param
 
 ``` purescript
 newtype StartTimerDecisionAttributes
-  = StartTimerDecisionAttributes { timerId :: TimerId, control :: NullOrUndefined (Data), startToFireTimeout :: DurationInSeconds }
+  = StartTimerDecisionAttributes { timerId :: TimerId, control :: Maybe (Data), startToFireTimeout :: DurationInSeconds }
 ```
 
 <p>Provides the details of the <code>StartTimer</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
@@ -4415,7 +4415,7 @@ Constructs StartTimerDecisionAttributes from required parameters
 #### `newStartTimerDecisionAttributes'`
 
 ``` purescript
-newStartTimerDecisionAttributes' :: DurationInSeconds -> TimerId -> ({ timerId :: TimerId, control :: NullOrUndefined (Data), startToFireTimeout :: DurationInSeconds } -> { timerId :: TimerId, control :: NullOrUndefined (Data), startToFireTimeout :: DurationInSeconds }) -> StartTimerDecisionAttributes
+newStartTimerDecisionAttributes' :: DurationInSeconds -> TimerId -> ({ timerId :: TimerId, control :: Maybe (Data), startToFireTimeout :: DurationInSeconds } -> { timerId :: TimerId, control :: Maybe (Data), startToFireTimeout :: DurationInSeconds }) -> StartTimerDecisionAttributes
 ```
 
 Constructs StartTimerDecisionAttributes's fields from required parameters
@@ -4474,7 +4474,7 @@ Constructs StartTimerFailedEventAttributes's fields from required parameters
 
 ``` purescript
 newtype StartWorkflowExecutionInput
-  = StartWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, workflowType :: WorkflowType, taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), tagList :: NullOrUndefined (TagList), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), lambdaRole :: NullOrUndefined (Arn) }
+  = StartWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, workflowType :: WorkflowType, taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), tagList :: Maybe (TagList), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), lambdaRole :: Maybe (Arn) }
 ```
 
 ##### Instances
@@ -4497,7 +4497,7 @@ Constructs StartWorkflowExecutionInput from required parameters
 #### `newStartWorkflowExecutionInput'`
 
 ``` purescript
-newStartWorkflowExecutionInput' :: DomainName -> WorkflowId -> WorkflowType -> ({ domain :: DomainName, workflowId :: WorkflowId, workflowType :: WorkflowType, taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), tagList :: NullOrUndefined (TagList), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), lambdaRole :: NullOrUndefined (Arn) } -> { domain :: DomainName, workflowId :: WorkflowId, workflowType :: WorkflowType, taskList :: NullOrUndefined (TaskList), taskPriority :: NullOrUndefined (TaskPriority), input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), tagList :: NullOrUndefined (TagList), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: NullOrUndefined (ChildPolicy), lambdaRole :: NullOrUndefined (Arn) }) -> StartWorkflowExecutionInput
+newStartWorkflowExecutionInput' :: DomainName -> WorkflowId -> WorkflowType -> ({ domain :: DomainName, workflowId :: WorkflowId, workflowType :: WorkflowType, taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), tagList :: Maybe (TagList), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), lambdaRole :: Maybe (Arn) } -> { domain :: DomainName, workflowId :: WorkflowId, workflowType :: WorkflowType, taskList :: Maybe (TaskList), taskPriority :: Maybe (TaskPriority), input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), tagList :: Maybe (TagList), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: Maybe (ChildPolicy), lambdaRole :: Maybe (Arn) }) -> StartWorkflowExecutionInput
 ```
 
 Constructs StartWorkflowExecutionInput's fields from required parameters
@@ -4654,7 +4654,7 @@ Encode TerminateReason
 
 ``` purescript
 newtype TerminateWorkflowExecutionInput
-  = TerminateWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), reason :: NullOrUndefined (TerminateReason), details :: NullOrUndefined (Data), childPolicy :: NullOrUndefined (ChildPolicy) }
+  = TerminateWorkflowExecutionInput { domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), reason :: Maybe (TerminateReason), details :: Maybe (Data), childPolicy :: Maybe (ChildPolicy) }
 ```
 
 ##### Instances
@@ -4677,7 +4677,7 @@ Constructs TerminateWorkflowExecutionInput from required parameters
 #### `newTerminateWorkflowExecutionInput'`
 
 ``` purescript
-newTerminateWorkflowExecutionInput' :: DomainName -> WorkflowId -> ({ domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), reason :: NullOrUndefined (TerminateReason), details :: NullOrUndefined (Data), childPolicy :: NullOrUndefined (ChildPolicy) } -> { domain :: DomainName, workflowId :: WorkflowId, runId :: NullOrUndefined (WorkflowRunIdOptional), reason :: NullOrUndefined (TerminateReason), details :: NullOrUndefined (Data), childPolicy :: NullOrUndefined (ChildPolicy) }) -> TerminateWorkflowExecutionInput
+newTerminateWorkflowExecutionInput' :: DomainName -> WorkflowId -> ({ domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), reason :: Maybe (TerminateReason), details :: Maybe (Data), childPolicy :: Maybe (ChildPolicy) } -> { domain :: DomainName, workflowId :: WorkflowId, runId :: Maybe (WorkflowRunIdOptional), reason :: Maybe (TerminateReason), details :: Maybe (Data), childPolicy :: Maybe (ChildPolicy) }) -> TerminateWorkflowExecutionInput
 ```
 
 Constructs TerminateWorkflowExecutionInput's fields from required parameters
@@ -4770,7 +4770,7 @@ Encode TimerId
 
 ``` purescript
 newtype TimerStartedEventAttributes
-  = TimerStartedEventAttributes { timerId :: TimerId, control :: NullOrUndefined (Data), startToFireTimeout :: DurationInSeconds, decisionTaskCompletedEventId :: EventId }
+  = TimerStartedEventAttributes { timerId :: TimerId, control :: Maybe (Data), startToFireTimeout :: DurationInSeconds, decisionTaskCompletedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>TimerStarted</code> event.</p>
@@ -4795,7 +4795,7 @@ Constructs TimerStartedEventAttributes from required parameters
 #### `newTimerStartedEventAttributes'`
 
 ``` purescript
-newTimerStartedEventAttributes' :: EventId -> DurationInSeconds -> TimerId -> ({ timerId :: TimerId, control :: NullOrUndefined (Data), startToFireTimeout :: DurationInSeconds, decisionTaskCompletedEventId :: EventId } -> { timerId :: TimerId, control :: NullOrUndefined (Data), startToFireTimeout :: DurationInSeconds, decisionTaskCompletedEventId :: EventId }) -> TimerStartedEventAttributes
+newTimerStartedEventAttributes' :: EventId -> DurationInSeconds -> TimerId -> ({ timerId :: TimerId, control :: Maybe (Data), startToFireTimeout :: DurationInSeconds, decisionTaskCompletedEventId :: EventId } -> { timerId :: TimerId, control :: Maybe (Data), startToFireTimeout :: DurationInSeconds, decisionTaskCompletedEventId :: EventId }) -> TimerStartedEventAttributes
 ```
 
 Constructs TimerStartedEventAttributes's fields from required parameters
@@ -4820,7 +4820,7 @@ Encode Truncated
 
 ``` purescript
 newtype TypeAlreadyExistsFault
-  = TypeAlreadyExistsFault { message :: NullOrUndefined (ErrorMessage) }
+  = TypeAlreadyExistsFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned if the type already exists in the specified domain. You get this fault even if the existing type is in deprecated status. You can specify another version if the intent is to create a new distinct version of the type.</p>
@@ -4845,7 +4845,7 @@ Constructs TypeAlreadyExistsFault from required parameters
 #### `newTypeAlreadyExistsFault'`
 
 ``` purescript
-newTypeAlreadyExistsFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> TypeAlreadyExistsFault
+newTypeAlreadyExistsFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> TypeAlreadyExistsFault
 ```
 
 Constructs TypeAlreadyExistsFault's fields from required parameters
@@ -4854,7 +4854,7 @@ Constructs TypeAlreadyExistsFault's fields from required parameters
 
 ``` purescript
 newtype TypeDeprecatedFault
-  = TypeDeprecatedFault { message :: NullOrUndefined (ErrorMessage) }
+  = TypeDeprecatedFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned when the specified activity or workflow type was already deprecated.</p>
@@ -4879,7 +4879,7 @@ Constructs TypeDeprecatedFault from required parameters
 #### `newTypeDeprecatedFault'`
 
 ``` purescript
-newTypeDeprecatedFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> TypeDeprecatedFault
+newTypeDeprecatedFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> TypeDeprecatedFault
 ```
 
 Constructs TypeDeprecatedFault's fields from required parameters
@@ -4888,7 +4888,7 @@ Constructs TypeDeprecatedFault's fields from required parameters
 
 ``` purescript
 newtype UnknownResourceFault
-  = UnknownResourceFault { message :: NullOrUndefined (ErrorMessage) }
+  = UnknownResourceFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned when the named resource cannot be found with in the scope of this operation (region or domain). This could happen if the named resource was never created or is no longer available for this operation.</p>
@@ -4913,7 +4913,7 @@ Constructs UnknownResourceFault from required parameters
 #### `newUnknownResourceFault'`
 
 ``` purescript
-newUnknownResourceFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> UnknownResourceFault
+newUnknownResourceFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> UnknownResourceFault
 ```
 
 Constructs UnknownResourceFault's fields from required parameters
@@ -4988,7 +4988,7 @@ Constructs WorkflowExecution's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionAlreadyStartedFault
-  = WorkflowExecutionAlreadyStartedFault { message :: NullOrUndefined (ErrorMessage) }
+  = WorkflowExecutionAlreadyStartedFault { message :: Maybe (ErrorMessage) }
 ```
 
 <p>Returned by <a>StartWorkflowExecution</a> when an open execution with the same workflowId is already running in the specified domain.</p>
@@ -5013,7 +5013,7 @@ Constructs WorkflowExecutionAlreadyStartedFault from required parameters
 #### `newWorkflowExecutionAlreadyStartedFault'`
 
 ``` purescript
-newWorkflowExecutionAlreadyStartedFault' :: ({ message :: NullOrUndefined (ErrorMessage) } -> { message :: NullOrUndefined (ErrorMessage) }) -> WorkflowExecutionAlreadyStartedFault
+newWorkflowExecutionAlreadyStartedFault' :: ({ message :: Maybe (ErrorMessage) } -> { message :: Maybe (ErrorMessage) }) -> WorkflowExecutionAlreadyStartedFault
 ```
 
 Constructs WorkflowExecutionAlreadyStartedFault's fields from required parameters
@@ -5038,7 +5038,7 @@ Encode WorkflowExecutionCancelRequestedCause
 
 ``` purescript
 newtype WorkflowExecutionCancelRequestedEventAttributes
-  = WorkflowExecutionCancelRequestedEventAttributes { externalWorkflowExecution :: NullOrUndefined (WorkflowExecution), externalInitiatedEventId :: NullOrUndefined (EventId), cause :: NullOrUndefined (WorkflowExecutionCancelRequestedCause) }
+  = WorkflowExecutionCancelRequestedEventAttributes { externalWorkflowExecution :: Maybe (WorkflowExecution), externalInitiatedEventId :: Maybe (EventId), cause :: Maybe (WorkflowExecutionCancelRequestedCause) }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionCancelRequested</code> event.</p>
@@ -5063,7 +5063,7 @@ Constructs WorkflowExecutionCancelRequestedEventAttributes from required paramet
 #### `newWorkflowExecutionCancelRequestedEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionCancelRequestedEventAttributes' :: ({ externalWorkflowExecution :: NullOrUndefined (WorkflowExecution), externalInitiatedEventId :: NullOrUndefined (EventId), cause :: NullOrUndefined (WorkflowExecutionCancelRequestedCause) } -> { externalWorkflowExecution :: NullOrUndefined (WorkflowExecution), externalInitiatedEventId :: NullOrUndefined (EventId), cause :: NullOrUndefined (WorkflowExecutionCancelRequestedCause) }) -> WorkflowExecutionCancelRequestedEventAttributes
+newWorkflowExecutionCancelRequestedEventAttributes' :: ({ externalWorkflowExecution :: Maybe (WorkflowExecution), externalInitiatedEventId :: Maybe (EventId), cause :: Maybe (WorkflowExecutionCancelRequestedCause) } -> { externalWorkflowExecution :: Maybe (WorkflowExecution), externalInitiatedEventId :: Maybe (EventId), cause :: Maybe (WorkflowExecutionCancelRequestedCause) }) -> WorkflowExecutionCancelRequestedEventAttributes
 ```
 
 Constructs WorkflowExecutionCancelRequestedEventAttributes's fields from required parameters
@@ -5072,7 +5072,7 @@ Constructs WorkflowExecutionCancelRequestedEventAttributes's fields from require
 
 ``` purescript
 newtype WorkflowExecutionCanceledEventAttributes
-  = WorkflowExecutionCanceledEventAttributes { details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }
+  = WorkflowExecutionCanceledEventAttributes { details :: Maybe (Data), decisionTaskCompletedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionCanceled</code> event.</p>
@@ -5097,7 +5097,7 @@ Constructs WorkflowExecutionCanceledEventAttributes from required parameters
 #### `newWorkflowExecutionCanceledEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionCanceledEventAttributes' :: EventId -> ({ details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId } -> { details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }) -> WorkflowExecutionCanceledEventAttributes
+newWorkflowExecutionCanceledEventAttributes' :: EventId -> ({ details :: Maybe (Data), decisionTaskCompletedEventId :: EventId } -> { details :: Maybe (Data), decisionTaskCompletedEventId :: EventId }) -> WorkflowExecutionCanceledEventAttributes
 ```
 
 Constructs WorkflowExecutionCanceledEventAttributes's fields from required parameters
@@ -5106,7 +5106,7 @@ Constructs WorkflowExecutionCanceledEventAttributes's fields from required param
 
 ``` purescript
 newtype WorkflowExecutionCompletedEventAttributes
-  = WorkflowExecutionCompletedEventAttributes { result :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }
+  = WorkflowExecutionCompletedEventAttributes { result :: Maybe (Data), decisionTaskCompletedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionCompleted</code> event.</p>
@@ -5131,7 +5131,7 @@ Constructs WorkflowExecutionCompletedEventAttributes from required parameters
 #### `newWorkflowExecutionCompletedEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionCompletedEventAttributes' :: EventId -> ({ result :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId } -> { result :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }) -> WorkflowExecutionCompletedEventAttributes
+newWorkflowExecutionCompletedEventAttributes' :: EventId -> ({ result :: Maybe (Data), decisionTaskCompletedEventId :: EventId } -> { result :: Maybe (Data), decisionTaskCompletedEventId :: EventId }) -> WorkflowExecutionCompletedEventAttributes
 ```
 
 Constructs WorkflowExecutionCompletedEventAttributes's fields from required parameters
@@ -5140,7 +5140,7 @@ Constructs WorkflowExecutionCompletedEventAttributes's fields from required para
 
 ``` purescript
 newtype WorkflowExecutionConfiguration
-  = WorkflowExecutionConfiguration { taskStartToCloseTimeout :: DurationInSeconds, executionStartToCloseTimeout :: DurationInSeconds, taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), childPolicy :: ChildPolicy, lambdaRole :: NullOrUndefined (Arn) }
+  = WorkflowExecutionConfiguration { taskStartToCloseTimeout :: DurationInSeconds, executionStartToCloseTimeout :: DurationInSeconds, taskList :: TaskList, taskPriority :: Maybe (TaskPriority), childPolicy :: ChildPolicy, lambdaRole :: Maybe (Arn) }
 ```
 
 <p>The configuration settings for a workflow execution including timeout values, tasklist etc. These configuration settings are determined from the defaults specified when registering the workflow type and those specified when starting the workflow execution.</p>
@@ -5165,7 +5165,7 @@ Constructs WorkflowExecutionConfiguration from required parameters
 #### `newWorkflowExecutionConfiguration'`
 
 ``` purescript
-newWorkflowExecutionConfiguration' :: ChildPolicy -> DurationInSeconds -> TaskList -> DurationInSeconds -> ({ taskStartToCloseTimeout :: DurationInSeconds, executionStartToCloseTimeout :: DurationInSeconds, taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), childPolicy :: ChildPolicy, lambdaRole :: NullOrUndefined (Arn) } -> { taskStartToCloseTimeout :: DurationInSeconds, executionStartToCloseTimeout :: DurationInSeconds, taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), childPolicy :: ChildPolicy, lambdaRole :: NullOrUndefined (Arn) }) -> WorkflowExecutionConfiguration
+newWorkflowExecutionConfiguration' :: ChildPolicy -> DurationInSeconds -> TaskList -> DurationInSeconds -> ({ taskStartToCloseTimeout :: DurationInSeconds, executionStartToCloseTimeout :: DurationInSeconds, taskList :: TaskList, taskPriority :: Maybe (TaskPriority), childPolicy :: ChildPolicy, lambdaRole :: Maybe (Arn) } -> { taskStartToCloseTimeout :: DurationInSeconds, executionStartToCloseTimeout :: DurationInSeconds, taskList :: TaskList, taskPriority :: Maybe (TaskPriority), childPolicy :: ChildPolicy, lambdaRole :: Maybe (Arn) }) -> WorkflowExecutionConfiguration
 ```
 
 Constructs WorkflowExecutionConfiguration's fields from required parameters
@@ -5174,7 +5174,7 @@ Constructs WorkflowExecutionConfiguration's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionContinuedAsNewEventAttributes
-  = WorkflowExecutionContinuedAsNewEventAttributes { input :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId, newExecutionRunId :: WorkflowRunId, executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: ChildPolicy, tagList :: NullOrUndefined (TagList), workflowType :: WorkflowType, lambdaRole :: NullOrUndefined (Arn) }
+  = WorkflowExecutionContinuedAsNewEventAttributes { input :: Maybe (Data), decisionTaskCompletedEventId :: EventId, newExecutionRunId :: WorkflowRunId, executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: ChildPolicy, tagList :: Maybe (TagList), workflowType :: WorkflowType, lambdaRole :: Maybe (Arn) }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionContinuedAsNew</code> event.</p>
@@ -5199,7 +5199,7 @@ Constructs WorkflowExecutionContinuedAsNewEventAttributes from required paramete
 #### `newWorkflowExecutionContinuedAsNewEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionContinuedAsNewEventAttributes' :: ChildPolicy -> EventId -> WorkflowRunId -> TaskList -> WorkflowType -> ({ input :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId, newExecutionRunId :: WorkflowRunId, executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: ChildPolicy, tagList :: NullOrUndefined (TagList), workflowType :: WorkflowType, lambdaRole :: NullOrUndefined (Arn) } -> { input :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId, newExecutionRunId :: WorkflowRunId, executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: ChildPolicy, tagList :: NullOrUndefined (TagList), workflowType :: WorkflowType, lambdaRole :: NullOrUndefined (Arn) }) -> WorkflowExecutionContinuedAsNewEventAttributes
+newWorkflowExecutionContinuedAsNewEventAttributes' :: ChildPolicy -> EventId -> WorkflowRunId -> TaskList -> WorkflowType -> ({ input :: Maybe (Data), decisionTaskCompletedEventId :: EventId, newExecutionRunId :: WorkflowRunId, executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: ChildPolicy, tagList :: Maybe (TagList), workflowType :: WorkflowType, lambdaRole :: Maybe (Arn) } -> { input :: Maybe (Data), decisionTaskCompletedEventId :: EventId, newExecutionRunId :: WorkflowRunId, executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskList :: TaskList, taskPriority :: Maybe (TaskPriority), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: ChildPolicy, tagList :: Maybe (TagList), workflowType :: WorkflowType, lambdaRole :: Maybe (Arn) }) -> WorkflowExecutionContinuedAsNewEventAttributes
 ```
 
 Constructs WorkflowExecutionContinuedAsNewEventAttributes's fields from required parameters
@@ -5208,7 +5208,7 @@ Constructs WorkflowExecutionContinuedAsNewEventAttributes's fields from required
 
 ``` purescript
 newtype WorkflowExecutionCount
-  = WorkflowExecutionCount { count :: Count, truncated :: NullOrUndefined (Truncated) }
+  = WorkflowExecutionCount { count :: Count, truncated :: Maybe (Truncated) }
 ```
 
 <p>Contains the count of workflow executions returned from <a>CountOpenWorkflowExecutions</a> or <a>CountClosedWorkflowExecutions</a> </p>
@@ -5233,7 +5233,7 @@ Constructs WorkflowExecutionCount from required parameters
 #### `newWorkflowExecutionCount'`
 
 ``` purescript
-newWorkflowExecutionCount' :: Count -> ({ count :: Count, truncated :: NullOrUndefined (Truncated) } -> { count :: Count, truncated :: NullOrUndefined (Truncated) }) -> WorkflowExecutionCount
+newWorkflowExecutionCount' :: Count -> ({ count :: Count, truncated :: Maybe (Truncated) } -> { count :: Count, truncated :: Maybe (Truncated) }) -> WorkflowExecutionCount
 ```
 
 Constructs WorkflowExecutionCount's fields from required parameters
@@ -5242,7 +5242,7 @@ Constructs WorkflowExecutionCount's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionDetail
-  = WorkflowExecutionDetail { executionInfo :: WorkflowExecutionInfo, executionConfiguration :: WorkflowExecutionConfiguration, openCounts :: WorkflowExecutionOpenCounts, latestActivityTaskTimestamp :: NullOrUndefined (Timestamp), latestExecutionContext :: NullOrUndefined (Data) }
+  = WorkflowExecutionDetail { executionInfo :: WorkflowExecutionInfo, executionConfiguration :: WorkflowExecutionConfiguration, openCounts :: WorkflowExecutionOpenCounts, latestActivityTaskTimestamp :: Maybe (Timestamp), latestExecutionContext :: Maybe (Data) }
 ```
 
 <p>Contains details about a workflow execution.</p>
@@ -5267,7 +5267,7 @@ Constructs WorkflowExecutionDetail from required parameters
 #### `newWorkflowExecutionDetail'`
 
 ``` purescript
-newWorkflowExecutionDetail' :: WorkflowExecutionConfiguration -> WorkflowExecutionInfo -> WorkflowExecutionOpenCounts -> ({ executionInfo :: WorkflowExecutionInfo, executionConfiguration :: WorkflowExecutionConfiguration, openCounts :: WorkflowExecutionOpenCounts, latestActivityTaskTimestamp :: NullOrUndefined (Timestamp), latestExecutionContext :: NullOrUndefined (Data) } -> { executionInfo :: WorkflowExecutionInfo, executionConfiguration :: WorkflowExecutionConfiguration, openCounts :: WorkflowExecutionOpenCounts, latestActivityTaskTimestamp :: NullOrUndefined (Timestamp), latestExecutionContext :: NullOrUndefined (Data) }) -> WorkflowExecutionDetail
+newWorkflowExecutionDetail' :: WorkflowExecutionConfiguration -> WorkflowExecutionInfo -> WorkflowExecutionOpenCounts -> ({ executionInfo :: WorkflowExecutionInfo, executionConfiguration :: WorkflowExecutionConfiguration, openCounts :: WorkflowExecutionOpenCounts, latestActivityTaskTimestamp :: Maybe (Timestamp), latestExecutionContext :: Maybe (Data) } -> { executionInfo :: WorkflowExecutionInfo, executionConfiguration :: WorkflowExecutionConfiguration, openCounts :: WorkflowExecutionOpenCounts, latestActivityTaskTimestamp :: Maybe (Timestamp), latestExecutionContext :: Maybe (Data) }) -> WorkflowExecutionDetail
 ```
 
 Constructs WorkflowExecutionDetail's fields from required parameters
@@ -5276,7 +5276,7 @@ Constructs WorkflowExecutionDetail's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionFailedEventAttributes
-  = WorkflowExecutionFailedEventAttributes { reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }
+  = WorkflowExecutionFailedEventAttributes { reason :: Maybe (FailureReason), details :: Maybe (Data), decisionTaskCompletedEventId :: EventId }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionFailed</code> event.</p>
@@ -5301,7 +5301,7 @@ Constructs WorkflowExecutionFailedEventAttributes from required parameters
 #### `newWorkflowExecutionFailedEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionFailedEventAttributes' :: EventId -> ({ reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId } -> { reason :: NullOrUndefined (FailureReason), details :: NullOrUndefined (Data), decisionTaskCompletedEventId :: EventId }) -> WorkflowExecutionFailedEventAttributes
+newWorkflowExecutionFailedEventAttributes' :: EventId -> ({ reason :: Maybe (FailureReason), details :: Maybe (Data), decisionTaskCompletedEventId :: EventId } -> { reason :: Maybe (FailureReason), details :: Maybe (Data), decisionTaskCompletedEventId :: EventId }) -> WorkflowExecutionFailedEventAttributes
 ```
 
 Constructs WorkflowExecutionFailedEventAttributes's fields from required parameters
@@ -5344,7 +5344,7 @@ Constructs WorkflowExecutionFilter's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionInfo
-  = WorkflowExecutionInfo { execution :: WorkflowExecution, workflowType :: WorkflowType, startTimestamp :: Timestamp, closeTimestamp :: NullOrUndefined (Timestamp), executionStatus :: ExecutionStatus, closeStatus :: NullOrUndefined (CloseStatus), parent :: NullOrUndefined (WorkflowExecution), tagList :: NullOrUndefined (TagList), cancelRequested :: NullOrUndefined (Canceled) }
+  = WorkflowExecutionInfo { execution :: WorkflowExecution, workflowType :: WorkflowType, startTimestamp :: Timestamp, closeTimestamp :: Maybe (Timestamp), executionStatus :: ExecutionStatus, closeStatus :: Maybe (CloseStatus), parent :: Maybe (WorkflowExecution), tagList :: Maybe (TagList), cancelRequested :: Maybe (Canceled) }
 ```
 
 <p>Contains information about a workflow execution.</p>
@@ -5369,7 +5369,7 @@ Constructs WorkflowExecutionInfo from required parameters
 #### `newWorkflowExecutionInfo'`
 
 ``` purescript
-newWorkflowExecutionInfo' :: WorkflowExecution -> ExecutionStatus -> Timestamp -> WorkflowType -> ({ execution :: WorkflowExecution, workflowType :: WorkflowType, startTimestamp :: Timestamp, closeTimestamp :: NullOrUndefined (Timestamp), executionStatus :: ExecutionStatus, closeStatus :: NullOrUndefined (CloseStatus), parent :: NullOrUndefined (WorkflowExecution), tagList :: NullOrUndefined (TagList), cancelRequested :: NullOrUndefined (Canceled) } -> { execution :: WorkflowExecution, workflowType :: WorkflowType, startTimestamp :: Timestamp, closeTimestamp :: NullOrUndefined (Timestamp), executionStatus :: ExecutionStatus, closeStatus :: NullOrUndefined (CloseStatus), parent :: NullOrUndefined (WorkflowExecution), tagList :: NullOrUndefined (TagList), cancelRequested :: NullOrUndefined (Canceled) }) -> WorkflowExecutionInfo
+newWorkflowExecutionInfo' :: WorkflowExecution -> ExecutionStatus -> Timestamp -> WorkflowType -> ({ execution :: WorkflowExecution, workflowType :: WorkflowType, startTimestamp :: Timestamp, closeTimestamp :: Maybe (Timestamp), executionStatus :: ExecutionStatus, closeStatus :: Maybe (CloseStatus), parent :: Maybe (WorkflowExecution), tagList :: Maybe (TagList), cancelRequested :: Maybe (Canceled) } -> { execution :: WorkflowExecution, workflowType :: WorkflowType, startTimestamp :: Timestamp, closeTimestamp :: Maybe (Timestamp), executionStatus :: ExecutionStatus, closeStatus :: Maybe (CloseStatus), parent :: Maybe (WorkflowExecution), tagList :: Maybe (TagList), cancelRequested :: Maybe (Canceled) }) -> WorkflowExecutionInfo
 ```
 
 Constructs WorkflowExecutionInfo's fields from required parameters
@@ -5394,7 +5394,7 @@ Encode WorkflowExecutionInfoList
 
 ``` purescript
 newtype WorkflowExecutionInfos
-  = WorkflowExecutionInfos { executionInfos :: WorkflowExecutionInfoList, nextPageToken :: NullOrUndefined (PageToken) }
+  = WorkflowExecutionInfos { executionInfos :: WorkflowExecutionInfoList, nextPageToken :: Maybe (PageToken) }
 ```
 
 <p>Contains a paginated list of information about workflow executions.</p>
@@ -5419,7 +5419,7 @@ Constructs WorkflowExecutionInfos from required parameters
 #### `newWorkflowExecutionInfos'`
 
 ``` purescript
-newWorkflowExecutionInfos' :: WorkflowExecutionInfoList -> ({ executionInfos :: WorkflowExecutionInfoList, nextPageToken :: NullOrUndefined (PageToken) } -> { executionInfos :: WorkflowExecutionInfoList, nextPageToken :: NullOrUndefined (PageToken) }) -> WorkflowExecutionInfos
+newWorkflowExecutionInfos' :: WorkflowExecutionInfoList -> ({ executionInfos :: WorkflowExecutionInfoList, nextPageToken :: Maybe (PageToken) } -> { executionInfos :: WorkflowExecutionInfoList, nextPageToken :: Maybe (PageToken) }) -> WorkflowExecutionInfos
 ```
 
 Constructs WorkflowExecutionInfos's fields from required parameters
@@ -5428,7 +5428,7 @@ Constructs WorkflowExecutionInfos's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionOpenCounts
-  = WorkflowExecutionOpenCounts { openActivityTasks :: Count, openDecisionTasks :: OpenDecisionTasksCount, openTimers :: Count, openChildWorkflowExecutions :: Count, openLambdaFunctions :: NullOrUndefined (Count) }
+  = WorkflowExecutionOpenCounts { openActivityTasks :: Count, openDecisionTasks :: OpenDecisionTasksCount, openTimers :: Count, openChildWorkflowExecutions :: Count, openLambdaFunctions :: Maybe (Count) }
 ```
 
 <p>Contains the counts of open tasks, child workflow executions and timers for a workflow execution.</p>
@@ -5453,7 +5453,7 @@ Constructs WorkflowExecutionOpenCounts from required parameters
 #### `newWorkflowExecutionOpenCounts'`
 
 ``` purescript
-newWorkflowExecutionOpenCounts' :: Count -> Count -> OpenDecisionTasksCount -> Count -> ({ openActivityTasks :: Count, openDecisionTasks :: OpenDecisionTasksCount, openTimers :: Count, openChildWorkflowExecutions :: Count, openLambdaFunctions :: NullOrUndefined (Count) } -> { openActivityTasks :: Count, openDecisionTasks :: OpenDecisionTasksCount, openTimers :: Count, openChildWorkflowExecutions :: Count, openLambdaFunctions :: NullOrUndefined (Count) }) -> WorkflowExecutionOpenCounts
+newWorkflowExecutionOpenCounts' :: Count -> Count -> OpenDecisionTasksCount -> Count -> ({ openActivityTasks :: Count, openDecisionTasks :: OpenDecisionTasksCount, openTimers :: Count, openChildWorkflowExecutions :: Count, openLambdaFunctions :: Maybe (Count) } -> { openActivityTasks :: Count, openDecisionTasks :: OpenDecisionTasksCount, openTimers :: Count, openChildWorkflowExecutions :: Count, openLambdaFunctions :: Maybe (Count) }) -> WorkflowExecutionOpenCounts
 ```
 
 Constructs WorkflowExecutionOpenCounts's fields from required parameters
@@ -5462,7 +5462,7 @@ Constructs WorkflowExecutionOpenCounts's fields from required parameters
 
 ``` purescript
 newtype WorkflowExecutionSignaledEventAttributes
-  = WorkflowExecutionSignaledEventAttributes { signalName :: SignalName, input :: NullOrUndefined (Data), externalWorkflowExecution :: NullOrUndefined (WorkflowExecution), externalInitiatedEventId :: NullOrUndefined (EventId) }
+  = WorkflowExecutionSignaledEventAttributes { signalName :: SignalName, input :: Maybe (Data), externalWorkflowExecution :: Maybe (WorkflowExecution), externalInitiatedEventId :: Maybe (EventId) }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionSignaled</code> event.</p>
@@ -5487,7 +5487,7 @@ Constructs WorkflowExecutionSignaledEventAttributes from required parameters
 #### `newWorkflowExecutionSignaledEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionSignaledEventAttributes' :: SignalName -> ({ signalName :: SignalName, input :: NullOrUndefined (Data), externalWorkflowExecution :: NullOrUndefined (WorkflowExecution), externalInitiatedEventId :: NullOrUndefined (EventId) } -> { signalName :: SignalName, input :: NullOrUndefined (Data), externalWorkflowExecution :: NullOrUndefined (WorkflowExecution), externalInitiatedEventId :: NullOrUndefined (EventId) }) -> WorkflowExecutionSignaledEventAttributes
+newWorkflowExecutionSignaledEventAttributes' :: SignalName -> ({ signalName :: SignalName, input :: Maybe (Data), externalWorkflowExecution :: Maybe (WorkflowExecution), externalInitiatedEventId :: Maybe (EventId) } -> { signalName :: SignalName, input :: Maybe (Data), externalWorkflowExecution :: Maybe (WorkflowExecution), externalInitiatedEventId :: Maybe (EventId) }) -> WorkflowExecutionSignaledEventAttributes
 ```
 
 Constructs WorkflowExecutionSignaledEventAttributes's fields from required parameters
@@ -5496,7 +5496,7 @@ Constructs WorkflowExecutionSignaledEventAttributes's fields from required param
 
 ``` purescript
 newtype WorkflowExecutionStartedEventAttributes
-  = WorkflowExecutionStartedEventAttributes { input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: ChildPolicy, taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), workflowType :: WorkflowType, tagList :: NullOrUndefined (TagList), continuedExecutionRunId :: NullOrUndefined (WorkflowRunIdOptional), parentWorkflowExecution :: NullOrUndefined (WorkflowExecution), parentInitiatedEventId :: NullOrUndefined (EventId), lambdaRole :: NullOrUndefined (Arn) }
+  = WorkflowExecutionStartedEventAttributes { input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: ChildPolicy, taskList :: TaskList, taskPriority :: Maybe (TaskPriority), workflowType :: WorkflowType, tagList :: Maybe (TagList), continuedExecutionRunId :: Maybe (WorkflowRunIdOptional), parentWorkflowExecution :: Maybe (WorkflowExecution), parentInitiatedEventId :: Maybe (EventId), lambdaRole :: Maybe (Arn) }
 ```
 
 <p>Provides details of <code>WorkflowExecutionStarted</code> event.</p>
@@ -5521,7 +5521,7 @@ Constructs WorkflowExecutionStartedEventAttributes from required parameters
 #### `newWorkflowExecutionStartedEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionStartedEventAttributes' :: ChildPolicy -> TaskList -> WorkflowType -> ({ input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: ChildPolicy, taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), workflowType :: WorkflowType, tagList :: NullOrUndefined (TagList), continuedExecutionRunId :: NullOrUndefined (WorkflowRunIdOptional), parentWorkflowExecution :: NullOrUndefined (WorkflowExecution), parentInitiatedEventId :: NullOrUndefined (EventId), lambdaRole :: NullOrUndefined (Arn) } -> { input :: NullOrUndefined (Data), executionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), taskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), childPolicy :: ChildPolicy, taskList :: TaskList, taskPriority :: NullOrUndefined (TaskPriority), workflowType :: WorkflowType, tagList :: NullOrUndefined (TagList), continuedExecutionRunId :: NullOrUndefined (WorkflowRunIdOptional), parentWorkflowExecution :: NullOrUndefined (WorkflowExecution), parentInitiatedEventId :: NullOrUndefined (EventId), lambdaRole :: NullOrUndefined (Arn) }) -> WorkflowExecutionStartedEventAttributes
+newWorkflowExecutionStartedEventAttributes' :: ChildPolicy -> TaskList -> WorkflowType -> ({ input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: ChildPolicy, taskList :: TaskList, taskPriority :: Maybe (TaskPriority), workflowType :: WorkflowType, tagList :: Maybe (TagList), continuedExecutionRunId :: Maybe (WorkflowRunIdOptional), parentWorkflowExecution :: Maybe (WorkflowExecution), parentInitiatedEventId :: Maybe (EventId), lambdaRole :: Maybe (Arn) } -> { input :: Maybe (Data), executionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), taskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), childPolicy :: ChildPolicy, taskList :: TaskList, taskPriority :: Maybe (TaskPriority), workflowType :: WorkflowType, tagList :: Maybe (TagList), continuedExecutionRunId :: Maybe (WorkflowRunIdOptional), parentWorkflowExecution :: Maybe (WorkflowExecution), parentInitiatedEventId :: Maybe (EventId), lambdaRole :: Maybe (Arn) }) -> WorkflowExecutionStartedEventAttributes
 ```
 
 Constructs WorkflowExecutionStartedEventAttributes's fields from required parameters
@@ -5546,7 +5546,7 @@ Encode WorkflowExecutionTerminatedCause
 
 ``` purescript
 newtype WorkflowExecutionTerminatedEventAttributes
-  = WorkflowExecutionTerminatedEventAttributes { reason :: NullOrUndefined (TerminateReason), details :: NullOrUndefined (Data), childPolicy :: ChildPolicy, cause :: NullOrUndefined (WorkflowExecutionTerminatedCause) }
+  = WorkflowExecutionTerminatedEventAttributes { reason :: Maybe (TerminateReason), details :: Maybe (Data), childPolicy :: ChildPolicy, cause :: Maybe (WorkflowExecutionTerminatedCause) }
 ```
 
 <p>Provides the details of the <code>WorkflowExecutionTerminated</code> event.</p>
@@ -5571,7 +5571,7 @@ Constructs WorkflowExecutionTerminatedEventAttributes from required parameters
 #### `newWorkflowExecutionTerminatedEventAttributes'`
 
 ``` purescript
-newWorkflowExecutionTerminatedEventAttributes' :: ChildPolicy -> ({ reason :: NullOrUndefined (TerminateReason), details :: NullOrUndefined (Data), childPolicy :: ChildPolicy, cause :: NullOrUndefined (WorkflowExecutionTerminatedCause) } -> { reason :: NullOrUndefined (TerminateReason), details :: NullOrUndefined (Data), childPolicy :: ChildPolicy, cause :: NullOrUndefined (WorkflowExecutionTerminatedCause) }) -> WorkflowExecutionTerminatedEventAttributes
+newWorkflowExecutionTerminatedEventAttributes' :: ChildPolicy -> ({ reason :: Maybe (TerminateReason), details :: Maybe (Data), childPolicy :: ChildPolicy, cause :: Maybe (WorkflowExecutionTerminatedCause) } -> { reason :: Maybe (TerminateReason), details :: Maybe (Data), childPolicy :: ChildPolicy, cause :: Maybe (WorkflowExecutionTerminatedCause) }) -> WorkflowExecutionTerminatedEventAttributes
 ```
 
 Constructs WorkflowExecutionTerminatedEventAttributes's fields from required parameters
@@ -5712,7 +5712,7 @@ Constructs WorkflowType's fields from required parameters
 
 ``` purescript
 newtype WorkflowTypeConfiguration
-  = WorkflowTypeConfiguration { defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultChildPolicy :: NullOrUndefined (ChildPolicy), defaultLambdaRole :: NullOrUndefined (Arn) }
+  = WorkflowTypeConfiguration { defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultChildPolicy :: Maybe (ChildPolicy), defaultLambdaRole :: Maybe (Arn) }
 ```
 
 <p>The configuration settings of a workflow type.</p>
@@ -5737,7 +5737,7 @@ Constructs WorkflowTypeConfiguration from required parameters
 #### `newWorkflowTypeConfiguration'`
 
 ``` purescript
-newWorkflowTypeConfiguration' :: ({ defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultChildPolicy :: NullOrUndefined (ChildPolicy), defaultLambdaRole :: NullOrUndefined (Arn) } -> { defaultTaskStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: NullOrUndefined (DurationInSecondsOptional), defaultTaskList :: NullOrUndefined (TaskList), defaultTaskPriority :: NullOrUndefined (TaskPriority), defaultChildPolicy :: NullOrUndefined (ChildPolicy), defaultLambdaRole :: NullOrUndefined (Arn) }) -> WorkflowTypeConfiguration
+newWorkflowTypeConfiguration' :: ({ defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultChildPolicy :: Maybe (ChildPolicy), defaultLambdaRole :: Maybe (Arn) } -> { defaultTaskStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultExecutionStartToCloseTimeout :: Maybe (DurationInSecondsOptional), defaultTaskList :: Maybe (TaskList), defaultTaskPriority :: Maybe (TaskPriority), defaultChildPolicy :: Maybe (ChildPolicy), defaultLambdaRole :: Maybe (Arn) }) -> WorkflowTypeConfiguration
 ```
 
 Constructs WorkflowTypeConfiguration's fields from required parameters
@@ -5780,7 +5780,7 @@ Constructs WorkflowTypeDetail's fields from required parameters
 
 ``` purescript
 newtype WorkflowTypeFilter
-  = WorkflowTypeFilter { name :: Name, version :: NullOrUndefined (VersionOptional) }
+  = WorkflowTypeFilter { name :: Name, version :: Maybe (VersionOptional) }
 ```
 
 <p>Used to filter workflow execution query results by type. Each parameter, if specified, defines a rule that must be satisfied by each returned result.</p>
@@ -5805,7 +5805,7 @@ Constructs WorkflowTypeFilter from required parameters
 #### `newWorkflowTypeFilter'`
 
 ``` purescript
-newWorkflowTypeFilter' :: Name -> ({ name :: Name, version :: NullOrUndefined (VersionOptional) } -> { name :: Name, version :: NullOrUndefined (VersionOptional) }) -> WorkflowTypeFilter
+newWorkflowTypeFilter' :: Name -> ({ name :: Name, version :: Maybe (VersionOptional) } -> { name :: Name, version :: Maybe (VersionOptional) }) -> WorkflowTypeFilter
 ```
 
 Constructs WorkflowTypeFilter's fields from required parameters
@@ -5814,7 +5814,7 @@ Constructs WorkflowTypeFilter's fields from required parameters
 
 ``` purescript
 newtype WorkflowTypeInfo
-  = WorkflowTypeInfo { workflowType :: WorkflowType, status :: RegistrationStatus, description :: NullOrUndefined (Description), creationDate :: Timestamp, deprecationDate :: NullOrUndefined (Timestamp) }
+  = WorkflowTypeInfo { workflowType :: WorkflowType, status :: RegistrationStatus, description :: Maybe (Description), creationDate :: Timestamp, deprecationDate :: Maybe (Timestamp) }
 ```
 
 <p>Contains information about a workflow type.</p>
@@ -5839,7 +5839,7 @@ Constructs WorkflowTypeInfo from required parameters
 #### `newWorkflowTypeInfo'`
 
 ``` purescript
-newWorkflowTypeInfo' :: Timestamp -> RegistrationStatus -> WorkflowType -> ({ workflowType :: WorkflowType, status :: RegistrationStatus, description :: NullOrUndefined (Description), creationDate :: Timestamp, deprecationDate :: NullOrUndefined (Timestamp) } -> { workflowType :: WorkflowType, status :: RegistrationStatus, description :: NullOrUndefined (Description), creationDate :: Timestamp, deprecationDate :: NullOrUndefined (Timestamp) }) -> WorkflowTypeInfo
+newWorkflowTypeInfo' :: Timestamp -> RegistrationStatus -> WorkflowType -> ({ workflowType :: WorkflowType, status :: RegistrationStatus, description :: Maybe (Description), creationDate :: Timestamp, deprecationDate :: Maybe (Timestamp) } -> { workflowType :: WorkflowType, status :: RegistrationStatus, description :: Maybe (Description), creationDate :: Timestamp, deprecationDate :: Maybe (Timestamp) }) -> WorkflowTypeInfo
 ```
 
 Constructs WorkflowTypeInfo's fields from required parameters
@@ -5864,7 +5864,7 @@ Encode WorkflowTypeInfoList
 
 ``` purescript
 newtype WorkflowTypeInfos
-  = WorkflowTypeInfos { typeInfos :: WorkflowTypeInfoList, nextPageToken :: NullOrUndefined (PageToken) }
+  = WorkflowTypeInfos { typeInfos :: WorkflowTypeInfoList, nextPageToken :: Maybe (PageToken) }
 ```
 
 <p>Contains a paginated list of information structures about workflow types.</p>
@@ -5889,7 +5889,7 @@ Constructs WorkflowTypeInfos from required parameters
 #### `newWorkflowTypeInfos'`
 
 ``` purescript
-newWorkflowTypeInfos' :: WorkflowTypeInfoList -> ({ typeInfos :: WorkflowTypeInfoList, nextPageToken :: NullOrUndefined (PageToken) } -> { typeInfos :: WorkflowTypeInfoList, nextPageToken :: NullOrUndefined (PageToken) }) -> WorkflowTypeInfos
+newWorkflowTypeInfos' :: WorkflowTypeInfoList -> ({ typeInfos :: WorkflowTypeInfoList, nextPageToken :: Maybe (PageToken) } -> { typeInfos :: WorkflowTypeInfoList, nextPageToken :: Maybe (PageToken) }) -> WorkflowTypeInfos
 ```
 
 Constructs WorkflowTypeInfos's fields from required parameters

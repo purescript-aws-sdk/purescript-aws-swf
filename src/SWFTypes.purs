@@ -5,7 +5,6 @@ import Prelude
 import Data.Foreign.Class (class Decode, class Encode)
 import Data.Foreign.Generic (defaultOptions, genericDecode, genericEncode)
 import Data.Foreign.Generic.Types (Options)
-import Data.Foreign.NullOrUndefined (NullOrUndefined(..))
 import Data.Generic.Rep (class Generic)
 import Data.Generic.Rep.Show (genericShow)
 import Data.Maybe (Maybe(..))
@@ -34,7 +33,7 @@ newtype ActivityTask = ActivityTask
   , "startedEventId" :: (EventId)
   , "workflowExecution" :: (WorkflowExecution)
   , "activityType" :: (ActivityType)
-  , "input" :: NullOrUndefined (Data)
+  , "input" :: Maybe (Data)
   }
 derive instance newtypeActivityTask :: Newtype ActivityTask _
 derive instance repGenericActivityTask :: Generic ActivityTask _
@@ -44,12 +43,12 @@ instance encodeActivityTask :: Encode ActivityTask where encode = genericEncode 
 
 -- | Constructs ActivityTask from required parameters
 newActivityTask :: ActivityId -> ActivityType -> EventId -> TaskToken -> WorkflowExecution -> ActivityTask
-newActivityTask _activityId _activityType _startedEventId _taskToken _workflowExecution = ActivityTask { "activityId": _activityId, "activityType": _activityType, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "input": (NullOrUndefined Nothing) }
+newActivityTask _activityId _activityType _startedEventId _taskToken _workflowExecution = ActivityTask { "activityId": _activityId, "activityType": _activityType, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "input": Nothing }
 
 -- | Constructs ActivityTask's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTask' :: ActivityId -> ActivityType -> EventId -> TaskToken -> WorkflowExecution -> ( { "taskToken" :: (TaskToken) , "activityId" :: (ActivityId) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "activityType" :: (ActivityType) , "input" :: NullOrUndefined (Data) } -> {"taskToken" :: (TaskToken) , "activityId" :: (ActivityId) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "activityType" :: (ActivityType) , "input" :: NullOrUndefined (Data) } ) -> ActivityTask
-newActivityTask' _activityId _activityType _startedEventId _taskToken _workflowExecution customize = (ActivityTask <<< customize) { "activityId": _activityId, "activityType": _activityType, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "input": (NullOrUndefined Nothing) }
+newActivityTask' :: ActivityId -> ActivityType -> EventId -> TaskToken -> WorkflowExecution -> ( { "taskToken" :: (TaskToken) , "activityId" :: (ActivityId) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "activityType" :: (ActivityType) , "input" :: Maybe (Data) } -> {"taskToken" :: (TaskToken) , "activityId" :: (ActivityId) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "activityType" :: (ActivityType) , "input" :: Maybe (Data) } ) -> ActivityTask
+newActivityTask' _activityId _activityType _startedEventId _taskToken _workflowExecution customize = (ActivityTask <<< customize) { "activityId": _activityId, "activityType": _activityType, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "input": Nothing }
 
 
 
@@ -77,10 +76,10 @@ newActivityTaskCancelRequestedEventAttributes' _activityId _decisionTaskComplete
 
 -- | <p>Provides the details of the <code>ActivityTaskCanceled</code> event.</p>
 newtype ActivityTaskCanceledEventAttributes = ActivityTaskCanceledEventAttributes 
-  { "details" :: NullOrUndefined (Data)
+  { "details" :: Maybe (Data)
   , "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
-  , "latestCancelRequestedEventId" :: NullOrUndefined (EventId)
+  , "latestCancelRequestedEventId" :: Maybe (EventId)
   }
 derive instance newtypeActivityTaskCanceledEventAttributes :: Newtype ActivityTaskCanceledEventAttributes _
 derive instance repGenericActivityTaskCanceledEventAttributes :: Generic ActivityTaskCanceledEventAttributes _
@@ -90,18 +89,18 @@ instance encodeActivityTaskCanceledEventAttributes :: Encode ActivityTaskCancele
 
 -- | Constructs ActivityTaskCanceledEventAttributes from required parameters
 newActivityTaskCanceledEventAttributes :: EventId -> EventId -> ActivityTaskCanceledEventAttributes
-newActivityTaskCanceledEventAttributes _scheduledEventId _startedEventId = ActivityTaskCanceledEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": (NullOrUndefined Nothing), "latestCancelRequestedEventId": (NullOrUndefined Nothing) }
+newActivityTaskCanceledEventAttributes _scheduledEventId _startedEventId = ActivityTaskCanceledEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": Nothing, "latestCancelRequestedEventId": Nothing }
 
 -- | Constructs ActivityTaskCanceledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTaskCanceledEventAttributes' :: EventId -> EventId -> ( { "details" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "latestCancelRequestedEventId" :: NullOrUndefined (EventId) } -> {"details" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "latestCancelRequestedEventId" :: NullOrUndefined (EventId) } ) -> ActivityTaskCanceledEventAttributes
-newActivityTaskCanceledEventAttributes' _scheduledEventId _startedEventId customize = (ActivityTaskCanceledEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": (NullOrUndefined Nothing), "latestCancelRequestedEventId": (NullOrUndefined Nothing) }
+newActivityTaskCanceledEventAttributes' :: EventId -> EventId -> ( { "details" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "latestCancelRequestedEventId" :: Maybe (EventId) } -> {"details" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "latestCancelRequestedEventId" :: Maybe (EventId) } ) -> ActivityTaskCanceledEventAttributes
+newActivityTaskCanceledEventAttributes' _scheduledEventId _startedEventId customize = (ActivityTaskCanceledEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": Nothing, "latestCancelRequestedEventId": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>ActivityTaskCompleted</code> event.</p>
 newtype ActivityTaskCompletedEventAttributes = ActivityTaskCompletedEventAttributes 
-  { "result" :: NullOrUndefined (Data)
+  { "result" :: Maybe (Data)
   , "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
   }
@@ -113,19 +112,19 @@ instance encodeActivityTaskCompletedEventAttributes :: Encode ActivityTaskComple
 
 -- | Constructs ActivityTaskCompletedEventAttributes from required parameters
 newActivityTaskCompletedEventAttributes :: EventId -> EventId -> ActivityTaskCompletedEventAttributes
-newActivityTaskCompletedEventAttributes _scheduledEventId _startedEventId = ActivityTaskCompletedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": (NullOrUndefined Nothing) }
+newActivityTaskCompletedEventAttributes _scheduledEventId _startedEventId = ActivityTaskCompletedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": Nothing }
 
 -- | Constructs ActivityTaskCompletedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTaskCompletedEventAttributes' :: EventId -> EventId -> ( { "result" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"result" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ActivityTaskCompletedEventAttributes
-newActivityTaskCompletedEventAttributes' _scheduledEventId _startedEventId customize = (ActivityTaskCompletedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": (NullOrUndefined Nothing) }
+newActivityTaskCompletedEventAttributes' :: EventId -> EventId -> ( { "result" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"result" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ActivityTaskCompletedEventAttributes
+newActivityTaskCompletedEventAttributes' _scheduledEventId _startedEventId customize = (ActivityTaskCompletedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>ActivityTaskFailed</code> event.</p>
 newtype ActivityTaskFailedEventAttributes = ActivityTaskFailedEventAttributes 
-  { "reason" :: NullOrUndefined (FailureReason)
-  , "details" :: NullOrUndefined (Data)
+  { "reason" :: Maybe (FailureReason)
+  , "details" :: Maybe (Data)
   , "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
   }
@@ -137,12 +136,12 @@ instance encodeActivityTaskFailedEventAttributes :: Encode ActivityTaskFailedEve
 
 -- | Constructs ActivityTaskFailedEventAttributes from required parameters
 newActivityTaskFailedEventAttributes :: EventId -> EventId -> ActivityTaskFailedEventAttributes
-newActivityTaskFailedEventAttributes _scheduledEventId _startedEventId = ActivityTaskFailedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newActivityTaskFailedEventAttributes _scheduledEventId _startedEventId = ActivityTaskFailedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": Nothing, "reason": Nothing }
 
 -- | Constructs ActivityTaskFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTaskFailedEventAttributes' :: EventId -> EventId -> ( { "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ActivityTaskFailedEventAttributes
-newActivityTaskFailedEventAttributes' _scheduledEventId _startedEventId customize = (ActivityTaskFailedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newActivityTaskFailedEventAttributes' :: EventId -> EventId -> ( { "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ActivityTaskFailedEventAttributes
+newActivityTaskFailedEventAttributes' _scheduledEventId _startedEventId customize = (ActivityTaskFailedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": Nothing, "reason": Nothing }
 
 
 
@@ -150,15 +149,15 @@ newActivityTaskFailedEventAttributes' _scheduledEventId _startedEventId customiz
 newtype ActivityTaskScheduledEventAttributes = ActivityTaskScheduledEventAttributes 
   { "activityType" :: (ActivityType)
   , "activityId" :: (ActivityId)
-  , "input" :: NullOrUndefined (Data)
-  , "control" :: NullOrUndefined (Data)
-  , "scheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "scheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "input" :: Maybe (Data)
+  , "control" :: Maybe (Data)
+  , "scheduleToStartTimeout" :: Maybe (DurationInSecondsOptional)
+  , "scheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   , "taskList" :: (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
+  , "taskPriority" :: Maybe (TaskPriority)
   , "decisionTaskCompletedEventId" :: (EventId)
-  , "heartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "heartbeatTimeout" :: Maybe (DurationInSecondsOptional)
   }
 derive instance newtypeActivityTaskScheduledEventAttributes :: Newtype ActivityTaskScheduledEventAttributes _
 derive instance repGenericActivityTaskScheduledEventAttributes :: Generic ActivityTaskScheduledEventAttributes _
@@ -168,18 +167,18 @@ instance encodeActivityTaskScheduledEventAttributes :: Encode ActivityTaskSchedu
 
 -- | Constructs ActivityTaskScheduledEventAttributes from required parameters
 newActivityTaskScheduledEventAttributes :: ActivityId -> ActivityType -> EventId -> TaskList -> ActivityTaskScheduledEventAttributes
-newActivityTaskScheduledEventAttributes _activityId _activityType _decisionTaskCompletedEventId _taskList = ActivityTaskScheduledEventAttributes { "activityId": _activityId, "activityType": _activityType, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "control": (NullOrUndefined Nothing), "heartbeatTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "scheduleToCloseTimeout": (NullOrUndefined Nothing), "scheduleToStartTimeout": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newActivityTaskScheduledEventAttributes _activityId _activityType _decisionTaskCompletedEventId _taskList = ActivityTaskScheduledEventAttributes { "activityId": _activityId, "activityType": _activityType, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "control": Nothing, "heartbeatTimeout": Nothing, "input": Nothing, "scheduleToCloseTimeout": Nothing, "scheduleToStartTimeout": Nothing, "startToCloseTimeout": Nothing, "taskPriority": Nothing }
 
 -- | Constructs ActivityTaskScheduledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTaskScheduledEventAttributes' :: ActivityId -> ActivityType -> EventId -> TaskList -> ( { "activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "input" :: NullOrUndefined (Data) , "control" :: NullOrUndefined (Data) , "scheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "scheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "heartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) } -> {"activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "input" :: NullOrUndefined (Data) , "control" :: NullOrUndefined (Data) , "scheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "scheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "heartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) } ) -> ActivityTaskScheduledEventAttributes
-newActivityTaskScheduledEventAttributes' _activityId _activityType _decisionTaskCompletedEventId _taskList customize = (ActivityTaskScheduledEventAttributes <<< customize) { "activityId": _activityId, "activityType": _activityType, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "control": (NullOrUndefined Nothing), "heartbeatTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "scheduleToCloseTimeout": (NullOrUndefined Nothing), "scheduleToStartTimeout": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newActivityTaskScheduledEventAttributes' :: ActivityId -> ActivityType -> EventId -> TaskList -> ( { "activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "input" :: Maybe (Data) , "control" :: Maybe (Data) , "scheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "scheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "heartbeatTimeout" :: Maybe (DurationInSecondsOptional) } -> {"activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "input" :: Maybe (Data) , "control" :: Maybe (Data) , "scheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "scheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "heartbeatTimeout" :: Maybe (DurationInSecondsOptional) } ) -> ActivityTaskScheduledEventAttributes
+newActivityTaskScheduledEventAttributes' _activityId _activityType _decisionTaskCompletedEventId _taskList customize = (ActivityTaskScheduledEventAttributes <<< customize) { "activityId": _activityId, "activityType": _activityType, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "control": Nothing, "heartbeatTimeout": Nothing, "input": Nothing, "scheduleToCloseTimeout": Nothing, "scheduleToStartTimeout": Nothing, "startToCloseTimeout": Nothing, "taskPriority": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>ActivityTaskStarted</code> event.</p>
 newtype ActivityTaskStartedEventAttributes = ActivityTaskStartedEventAttributes 
-  { "identity" :: NullOrUndefined (Identity)
+  { "identity" :: Maybe (Identity)
   , "scheduledEventId" :: (EventId)
   }
 derive instance newtypeActivityTaskStartedEventAttributes :: Newtype ActivityTaskStartedEventAttributes _
@@ -190,12 +189,12 @@ instance encodeActivityTaskStartedEventAttributes :: Encode ActivityTaskStartedE
 
 -- | Constructs ActivityTaskStartedEventAttributes from required parameters
 newActivityTaskStartedEventAttributes :: EventId -> ActivityTaskStartedEventAttributes
-newActivityTaskStartedEventAttributes _scheduledEventId = ActivityTaskStartedEventAttributes { "scheduledEventId": _scheduledEventId, "identity": (NullOrUndefined Nothing) }
+newActivityTaskStartedEventAttributes _scheduledEventId = ActivityTaskStartedEventAttributes { "scheduledEventId": _scheduledEventId, "identity": Nothing }
 
 -- | Constructs ActivityTaskStartedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTaskStartedEventAttributes' :: EventId -> ( { "identity" :: NullOrUndefined (Identity) , "scheduledEventId" :: (EventId) } -> {"identity" :: NullOrUndefined (Identity) , "scheduledEventId" :: (EventId) } ) -> ActivityTaskStartedEventAttributes
-newActivityTaskStartedEventAttributes' _scheduledEventId customize = (ActivityTaskStartedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "identity": (NullOrUndefined Nothing) }
+newActivityTaskStartedEventAttributes' :: EventId -> ( { "identity" :: Maybe (Identity) , "scheduledEventId" :: (EventId) } -> {"identity" :: Maybe (Identity) , "scheduledEventId" :: (EventId) } ) -> ActivityTaskStartedEventAttributes
+newActivityTaskStartedEventAttributes' _scheduledEventId customize = (ActivityTaskStartedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "identity": Nothing }
 
 
 
@@ -225,7 +224,7 @@ newtype ActivityTaskTimedOutEventAttributes = ActivityTaskTimedOutEventAttribute
   { "timeoutType" :: (ActivityTaskTimeoutType)
   , "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
-  , "details" :: NullOrUndefined (LimitedData)
+  , "details" :: Maybe (LimitedData)
   }
 derive instance newtypeActivityTaskTimedOutEventAttributes :: Newtype ActivityTaskTimedOutEventAttributes _
 derive instance repGenericActivityTaskTimedOutEventAttributes :: Generic ActivityTaskTimedOutEventAttributes _
@@ -235,12 +234,12 @@ instance encodeActivityTaskTimedOutEventAttributes :: Encode ActivityTaskTimedOu
 
 -- | Constructs ActivityTaskTimedOutEventAttributes from required parameters
 newActivityTaskTimedOutEventAttributes :: EventId -> EventId -> ActivityTaskTimeoutType -> ActivityTaskTimedOutEventAttributes
-newActivityTaskTimedOutEventAttributes _scheduledEventId _startedEventId _timeoutType = ActivityTaskTimedOutEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": _timeoutType, "details": (NullOrUndefined Nothing) }
+newActivityTaskTimedOutEventAttributes _scheduledEventId _startedEventId _timeoutType = ActivityTaskTimedOutEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": _timeoutType, "details": Nothing }
 
 -- | Constructs ActivityTaskTimedOutEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTaskTimedOutEventAttributes' :: EventId -> EventId -> ActivityTaskTimeoutType -> ( { "timeoutType" :: (ActivityTaskTimeoutType) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "details" :: NullOrUndefined (LimitedData) } -> {"timeoutType" :: (ActivityTaskTimeoutType) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "details" :: NullOrUndefined (LimitedData) } ) -> ActivityTaskTimedOutEventAttributes
-newActivityTaskTimedOutEventAttributes' _scheduledEventId _startedEventId _timeoutType customize = (ActivityTaskTimedOutEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": _timeoutType, "details": (NullOrUndefined Nothing) }
+newActivityTaskTimedOutEventAttributes' :: EventId -> EventId -> ActivityTaskTimeoutType -> ( { "timeoutType" :: (ActivityTaskTimeoutType) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "details" :: Maybe (LimitedData) } -> {"timeoutType" :: (ActivityTaskTimeoutType) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "details" :: Maybe (LimitedData) } ) -> ActivityTaskTimedOutEventAttributes
+newActivityTaskTimedOutEventAttributes' _scheduledEventId _startedEventId _timeoutType customize = (ActivityTaskTimedOutEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": _timeoutType, "details": Nothing }
 
 
 
@@ -277,12 +276,12 @@ newActivityType' _name _version customize = (ActivityType <<< customize) { "name
 
 -- | <p>Configuration settings registered with the activity type.</p>
 newtype ActivityTypeConfiguration = ActivityTypeConfiguration 
-  { "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskHeartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskList" :: NullOrUndefined (TaskList)
-  , "defaultTaskPriority" :: NullOrUndefined (TaskPriority)
-  , "defaultTaskScheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskScheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  { "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskHeartbeatTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskList" :: Maybe (TaskList)
+  , "defaultTaskPriority" :: Maybe (TaskPriority)
+  , "defaultTaskScheduleToStartTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskScheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   }
 derive instance newtypeActivityTypeConfiguration :: Newtype ActivityTypeConfiguration _
 derive instance repGenericActivityTypeConfiguration :: Generic ActivityTypeConfiguration _
@@ -292,12 +291,12 @@ instance encodeActivityTypeConfiguration :: Encode ActivityTypeConfiguration whe
 
 -- | Constructs ActivityTypeConfiguration from required parameters
 newActivityTypeConfiguration :: ActivityTypeConfiguration
-newActivityTypeConfiguration  = ActivityTypeConfiguration { "defaultTaskHeartbeatTimeout": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskScheduleToCloseTimeout": (NullOrUndefined Nothing), "defaultTaskScheduleToStartTimeout": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newActivityTypeConfiguration  = ActivityTypeConfiguration { "defaultTaskHeartbeatTimeout": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskScheduleToCloseTimeout": Nothing, "defaultTaskScheduleToStartTimeout": Nothing, "defaultTaskStartToCloseTimeout": Nothing }
 
 -- | Constructs ActivityTypeConfiguration's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTypeConfiguration' :: ( { "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } -> {"defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } ) -> ActivityTypeConfiguration
-newActivityTypeConfiguration'  customize = (ActivityTypeConfiguration <<< customize) { "defaultTaskHeartbeatTimeout": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskScheduleToCloseTimeout": (NullOrUndefined Nothing), "defaultTaskScheduleToStartTimeout": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newActivityTypeConfiguration' :: ( { "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) } -> {"defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) } ) -> ActivityTypeConfiguration
+newActivityTypeConfiguration'  customize = (ActivityTypeConfiguration <<< customize) { "defaultTaskHeartbeatTimeout": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskScheduleToCloseTimeout": Nothing, "defaultTaskScheduleToStartTimeout": Nothing, "defaultTaskStartToCloseTimeout": Nothing }
 
 
 
@@ -327,9 +326,9 @@ newActivityTypeDetail' _configuration _typeInfo customize = (ActivityTypeDetail 
 newtype ActivityTypeInfo = ActivityTypeInfo 
   { "activityType" :: (ActivityType)
   , "status" :: (RegistrationStatus)
-  , "description" :: NullOrUndefined (Description)
+  , "description" :: Maybe (Description)
   , "creationDate" :: (Types.Timestamp)
-  , "deprecationDate" :: NullOrUndefined (Types.Timestamp)
+  , "deprecationDate" :: Maybe (Types.Timestamp)
   }
 derive instance newtypeActivityTypeInfo :: Newtype ActivityTypeInfo _
 derive instance repGenericActivityTypeInfo :: Generic ActivityTypeInfo _
@@ -339,12 +338,12 @@ instance encodeActivityTypeInfo :: Encode ActivityTypeInfo where encode = generi
 
 -- | Constructs ActivityTypeInfo from required parameters
 newActivityTypeInfo :: ActivityType -> Types.Timestamp -> RegistrationStatus -> ActivityTypeInfo
-newActivityTypeInfo _activityType _creationDate _status = ActivityTypeInfo { "activityType": _activityType, "creationDate": _creationDate, "status": _status, "deprecationDate": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newActivityTypeInfo _activityType _creationDate _status = ActivityTypeInfo { "activityType": _activityType, "creationDate": _creationDate, "status": _status, "deprecationDate": Nothing, "description": Nothing }
 
 -- | Constructs ActivityTypeInfo's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTypeInfo' :: ActivityType -> Types.Timestamp -> RegistrationStatus -> ( { "activityType" :: (ActivityType) , "status" :: (RegistrationStatus) , "description" :: NullOrUndefined (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: NullOrUndefined (Types.Timestamp) } -> {"activityType" :: (ActivityType) , "status" :: (RegistrationStatus) , "description" :: NullOrUndefined (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: NullOrUndefined (Types.Timestamp) } ) -> ActivityTypeInfo
-newActivityTypeInfo' _activityType _creationDate _status customize = (ActivityTypeInfo <<< customize) { "activityType": _activityType, "creationDate": _creationDate, "status": _status, "deprecationDate": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newActivityTypeInfo' :: ActivityType -> Types.Timestamp -> RegistrationStatus -> ( { "activityType" :: (ActivityType) , "status" :: (RegistrationStatus) , "description" :: Maybe (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: Maybe (Types.Timestamp) } -> {"activityType" :: (ActivityType) , "status" :: (RegistrationStatus) , "description" :: Maybe (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: Maybe (Types.Timestamp) } ) -> ActivityTypeInfo
+newActivityTypeInfo' _activityType _creationDate _status customize = (ActivityTypeInfo <<< customize) { "activityType": _activityType, "creationDate": _creationDate, "status": _status, "deprecationDate": Nothing, "description": Nothing }
 
 
 
@@ -360,7 +359,7 @@ instance encodeActivityTypeInfoList :: Encode ActivityTypeInfoList where encode 
 -- | <p>Contains a paginated list of activity type information structures.</p>
 newtype ActivityTypeInfos = ActivityTypeInfos 
   { "typeInfos" :: (ActivityTypeInfoList)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
+  , "nextPageToken" :: Maybe (PageToken)
   }
 derive instance newtypeActivityTypeInfos :: Newtype ActivityTypeInfos _
 derive instance repGenericActivityTypeInfos :: Generic ActivityTypeInfos _
@@ -370,12 +369,12 @@ instance encodeActivityTypeInfos :: Encode ActivityTypeInfos where encode = gene
 
 -- | Constructs ActivityTypeInfos from required parameters
 newActivityTypeInfos :: ActivityTypeInfoList -> ActivityTypeInfos
-newActivityTypeInfos _typeInfos = ActivityTypeInfos { "typeInfos": _typeInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newActivityTypeInfos _typeInfos = ActivityTypeInfos { "typeInfos": _typeInfos, "nextPageToken": Nothing }
 
 -- | Constructs ActivityTypeInfos's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newActivityTypeInfos' :: ActivityTypeInfoList -> ( { "typeInfos" :: (ActivityTypeInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } -> {"typeInfos" :: (ActivityTypeInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } ) -> ActivityTypeInfos
-newActivityTypeInfos' _typeInfos customize = (ActivityTypeInfos <<< customize) { "typeInfos": _typeInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newActivityTypeInfos' :: ActivityTypeInfoList -> ( { "typeInfos" :: (ActivityTypeInfoList) , "nextPageToken" :: Maybe (PageToken) } -> {"typeInfos" :: (ActivityTypeInfoList) , "nextPageToken" :: Maybe (PageToken) } ) -> ActivityTypeInfos
+newActivityTypeInfos' _typeInfos customize = (ActivityTypeInfos <<< customize) { "typeInfos": _typeInfos, "nextPageToken": Nothing }
 
 
 
@@ -443,7 +442,7 @@ newCancelTimerFailedEventAttributes' _cause _decisionTaskCompletedEventId _timer
 
 -- | <p>Provides the details of the <code>CancelWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype CancelWorkflowExecutionDecisionAttributes = CancelWorkflowExecutionDecisionAttributes 
-  { "details" :: NullOrUndefined (Data)
+  { "details" :: Maybe (Data)
   }
 derive instance newtypeCancelWorkflowExecutionDecisionAttributes :: Newtype CancelWorkflowExecutionDecisionAttributes _
 derive instance repGenericCancelWorkflowExecutionDecisionAttributes :: Generic CancelWorkflowExecutionDecisionAttributes _
@@ -453,12 +452,12 @@ instance encodeCancelWorkflowExecutionDecisionAttributes :: Encode CancelWorkflo
 
 -- | Constructs CancelWorkflowExecutionDecisionAttributes from required parameters
 newCancelWorkflowExecutionDecisionAttributes :: CancelWorkflowExecutionDecisionAttributes
-newCancelWorkflowExecutionDecisionAttributes  = CancelWorkflowExecutionDecisionAttributes { "details": (NullOrUndefined Nothing) }
+newCancelWorkflowExecutionDecisionAttributes  = CancelWorkflowExecutionDecisionAttributes { "details": Nothing }
 
 -- | Constructs CancelWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCancelWorkflowExecutionDecisionAttributes' :: ( { "details" :: NullOrUndefined (Data) } -> {"details" :: NullOrUndefined (Data) } ) -> CancelWorkflowExecutionDecisionAttributes
-newCancelWorkflowExecutionDecisionAttributes'  customize = (CancelWorkflowExecutionDecisionAttributes <<< customize) { "details": (NullOrUndefined Nothing) }
+newCancelWorkflowExecutionDecisionAttributes' :: ( { "details" :: Maybe (Data) } -> {"details" :: Maybe (Data) } ) -> CancelWorkflowExecutionDecisionAttributes
+newCancelWorkflowExecutionDecisionAttributes'  customize = (CancelWorkflowExecutionDecisionAttributes <<< customize) { "details": Nothing }
 
 
 
@@ -524,7 +523,7 @@ instance encodeChildPolicy :: Encode ChildPolicy where encode = genericEncode op
 newtype ChildWorkflowExecutionCanceledEventAttributes = ChildWorkflowExecutionCanceledEventAttributes 
   { "workflowExecution" :: (WorkflowExecution)
   , "workflowType" :: (WorkflowType)
-  , "details" :: NullOrUndefined (Data)
+  , "details" :: Maybe (Data)
   , "initiatedEventId" :: (EventId)
   , "startedEventId" :: (EventId)
   }
@@ -536,12 +535,12 @@ instance encodeChildWorkflowExecutionCanceledEventAttributes :: Encode ChildWork
 
 -- | Constructs ChildWorkflowExecutionCanceledEventAttributes from required parameters
 newChildWorkflowExecutionCanceledEventAttributes :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ChildWorkflowExecutionCanceledEventAttributes
-newChildWorkflowExecutionCanceledEventAttributes _initiatedEventId _startedEventId _workflowExecution _workflowType = ChildWorkflowExecutionCanceledEventAttributes { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": (NullOrUndefined Nothing) }
+newChildWorkflowExecutionCanceledEventAttributes _initiatedEventId _startedEventId _workflowExecution _workflowType = ChildWorkflowExecutionCanceledEventAttributes { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": Nothing }
 
 -- | Constructs ChildWorkflowExecutionCanceledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newChildWorkflowExecutionCanceledEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ( { "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "details" :: NullOrUndefined (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "details" :: NullOrUndefined (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ChildWorkflowExecutionCanceledEventAttributes
-newChildWorkflowExecutionCanceledEventAttributes' _initiatedEventId _startedEventId _workflowExecution _workflowType customize = (ChildWorkflowExecutionCanceledEventAttributes <<< customize) { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": (NullOrUndefined Nothing) }
+newChildWorkflowExecutionCanceledEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ( { "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "details" :: Maybe (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "details" :: Maybe (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ChildWorkflowExecutionCanceledEventAttributes
+newChildWorkflowExecutionCanceledEventAttributes' _initiatedEventId _startedEventId _workflowExecution _workflowType customize = (ChildWorkflowExecutionCanceledEventAttributes <<< customize) { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": Nothing }
 
 
 
@@ -549,7 +548,7 @@ newChildWorkflowExecutionCanceledEventAttributes' _initiatedEventId _startedEven
 newtype ChildWorkflowExecutionCompletedEventAttributes = ChildWorkflowExecutionCompletedEventAttributes 
   { "workflowExecution" :: (WorkflowExecution)
   , "workflowType" :: (WorkflowType)
-  , "result" :: NullOrUndefined (Data)
+  , "result" :: Maybe (Data)
   , "initiatedEventId" :: (EventId)
   , "startedEventId" :: (EventId)
   }
@@ -561,12 +560,12 @@ instance encodeChildWorkflowExecutionCompletedEventAttributes :: Encode ChildWor
 
 -- | Constructs ChildWorkflowExecutionCompletedEventAttributes from required parameters
 newChildWorkflowExecutionCompletedEventAttributes :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ChildWorkflowExecutionCompletedEventAttributes
-newChildWorkflowExecutionCompletedEventAttributes _initiatedEventId _startedEventId _workflowExecution _workflowType = ChildWorkflowExecutionCompletedEventAttributes { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "result": (NullOrUndefined Nothing) }
+newChildWorkflowExecutionCompletedEventAttributes _initiatedEventId _startedEventId _workflowExecution _workflowType = ChildWorkflowExecutionCompletedEventAttributes { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "result": Nothing }
 
 -- | Constructs ChildWorkflowExecutionCompletedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newChildWorkflowExecutionCompletedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ( { "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "result" :: NullOrUndefined (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "result" :: NullOrUndefined (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ChildWorkflowExecutionCompletedEventAttributes
-newChildWorkflowExecutionCompletedEventAttributes' _initiatedEventId _startedEventId _workflowExecution _workflowType customize = (ChildWorkflowExecutionCompletedEventAttributes <<< customize) { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "result": (NullOrUndefined Nothing) }
+newChildWorkflowExecutionCompletedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ( { "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "result" :: Maybe (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "result" :: Maybe (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ChildWorkflowExecutionCompletedEventAttributes
+newChildWorkflowExecutionCompletedEventAttributes' _initiatedEventId _startedEventId _workflowExecution _workflowType customize = (ChildWorkflowExecutionCompletedEventAttributes <<< customize) { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "result": Nothing }
 
 
 
@@ -574,8 +573,8 @@ newChildWorkflowExecutionCompletedEventAttributes' _initiatedEventId _startedEve
 newtype ChildWorkflowExecutionFailedEventAttributes = ChildWorkflowExecutionFailedEventAttributes 
   { "workflowExecution" :: (WorkflowExecution)
   , "workflowType" :: (WorkflowType)
-  , "reason" :: NullOrUndefined (FailureReason)
-  , "details" :: NullOrUndefined (Data)
+  , "reason" :: Maybe (FailureReason)
+  , "details" :: Maybe (Data)
   , "initiatedEventId" :: (EventId)
   , "startedEventId" :: (EventId)
   }
@@ -587,12 +586,12 @@ instance encodeChildWorkflowExecutionFailedEventAttributes :: Encode ChildWorkfl
 
 -- | Constructs ChildWorkflowExecutionFailedEventAttributes from required parameters
 newChildWorkflowExecutionFailedEventAttributes :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ChildWorkflowExecutionFailedEventAttributes
-newChildWorkflowExecutionFailedEventAttributes _initiatedEventId _startedEventId _workflowExecution _workflowType = ChildWorkflowExecutionFailedEventAttributes { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newChildWorkflowExecutionFailedEventAttributes _initiatedEventId _startedEventId _workflowExecution _workflowType = ChildWorkflowExecutionFailedEventAttributes { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": Nothing, "reason": Nothing }
 
 -- | Constructs ChildWorkflowExecutionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newChildWorkflowExecutionFailedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ( { "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ChildWorkflowExecutionFailedEventAttributes
-newChildWorkflowExecutionFailedEventAttributes' _initiatedEventId _startedEventId _workflowExecution _workflowType customize = (ChildWorkflowExecutionFailedEventAttributes <<< customize) { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newChildWorkflowExecutionFailedEventAttributes' :: EventId -> EventId -> WorkflowExecution -> WorkflowType -> ( { "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) , "initiatedEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> ChildWorkflowExecutionFailedEventAttributes
+newChildWorkflowExecutionFailedEventAttributes' _initiatedEventId _startedEventId _workflowExecution _workflowType customize = (ChildWorkflowExecutionFailedEventAttributes <<< customize) { "initiatedEventId": _initiatedEventId, "startedEventId": _startedEventId, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "details": Nothing, "reason": Nothing }
 
 
 
@@ -700,7 +699,7 @@ newCloseStatusFilter' _status customize = (CloseStatusFilter <<< customize) { "s
 
 -- | <p>Provides the details of the <code>CompleteWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype CompleteWorkflowExecutionDecisionAttributes = CompleteWorkflowExecutionDecisionAttributes 
-  { "result" :: NullOrUndefined (Data)
+  { "result" :: Maybe (Data)
   }
 derive instance newtypeCompleteWorkflowExecutionDecisionAttributes :: Newtype CompleteWorkflowExecutionDecisionAttributes _
 derive instance repGenericCompleteWorkflowExecutionDecisionAttributes :: Generic CompleteWorkflowExecutionDecisionAttributes _
@@ -710,12 +709,12 @@ instance encodeCompleteWorkflowExecutionDecisionAttributes :: Encode CompleteWor
 
 -- | Constructs CompleteWorkflowExecutionDecisionAttributes from required parameters
 newCompleteWorkflowExecutionDecisionAttributes :: CompleteWorkflowExecutionDecisionAttributes
-newCompleteWorkflowExecutionDecisionAttributes  = CompleteWorkflowExecutionDecisionAttributes { "result": (NullOrUndefined Nothing) }
+newCompleteWorkflowExecutionDecisionAttributes  = CompleteWorkflowExecutionDecisionAttributes { "result": Nothing }
 
 -- | Constructs CompleteWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCompleteWorkflowExecutionDecisionAttributes' :: ( { "result" :: NullOrUndefined (Data) } -> {"result" :: NullOrUndefined (Data) } ) -> CompleteWorkflowExecutionDecisionAttributes
-newCompleteWorkflowExecutionDecisionAttributes'  customize = (CompleteWorkflowExecutionDecisionAttributes <<< customize) { "result": (NullOrUndefined Nothing) }
+newCompleteWorkflowExecutionDecisionAttributes' :: ( { "result" :: Maybe (Data) } -> {"result" :: Maybe (Data) } ) -> CompleteWorkflowExecutionDecisionAttributes
+newCompleteWorkflowExecutionDecisionAttributes'  customize = (CompleteWorkflowExecutionDecisionAttributes <<< customize) { "result": Nothing }
 
 
 
@@ -752,15 +751,15 @@ newCompleteWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompleted
 
 -- | <p>Provides the details of the <code>ContinueAsNewWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>Constrain the following parameters by using a <code>Condition</code> element with the appropriate keys.</p> <ul> <li> <p> <code>tag</code> – A tag used to identify the workflow execution</p> </li> <li> <p> <code>taskList</code> – String constraint. The key is <code>swf:taskList.name</code>.</p> </li> <li> <p> <code>workflowType.version</code> – String constraint. The key is <code>swf:workflowType.version</code>.</p> </li> </ul> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype ContinueAsNewWorkflowExecutionDecisionAttributes = ContinueAsNewWorkflowExecutionDecisionAttributes 
-  { "input" :: NullOrUndefined (Data)
-  , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "taskList" :: NullOrUndefined (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
-  , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "childPolicy" :: NullOrUndefined (ChildPolicy)
-  , "tagList" :: NullOrUndefined (TagList)
-  , "workflowTypeVersion" :: NullOrUndefined (Version)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  { "input" :: Maybe (Data)
+  , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "taskList" :: Maybe (TaskList)
+  , "taskPriority" :: Maybe (TaskPriority)
+  , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "childPolicy" :: Maybe (ChildPolicy)
+  , "tagList" :: Maybe (TagList)
+  , "workflowTypeVersion" :: Maybe (Version)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeContinueAsNewWorkflowExecutionDecisionAttributes :: Newtype ContinueAsNewWorkflowExecutionDecisionAttributes _
 derive instance repGenericContinueAsNewWorkflowExecutionDecisionAttributes :: Generic ContinueAsNewWorkflowExecutionDecisionAttributes _
@@ -770,12 +769,12 @@ instance encodeContinueAsNewWorkflowExecutionDecisionAttributes :: Encode Contin
 
 -- | Constructs ContinueAsNewWorkflowExecutionDecisionAttributes from required parameters
 newContinueAsNewWorkflowExecutionDecisionAttributes :: ContinueAsNewWorkflowExecutionDecisionAttributes
-newContinueAsNewWorkflowExecutionDecisionAttributes  = ContinueAsNewWorkflowExecutionDecisionAttributes { "childPolicy": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing), "workflowTypeVersion": (NullOrUndefined Nothing) }
+newContinueAsNewWorkflowExecutionDecisionAttributes  = ContinueAsNewWorkflowExecutionDecisionAttributes { "childPolicy": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing, "workflowTypeVersion": Nothing }
 
 -- | Constructs ContinueAsNewWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newContinueAsNewWorkflowExecutionDecisionAttributes' :: ( { "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: NullOrUndefined (ChildPolicy) , "tagList" :: NullOrUndefined (TagList) , "workflowTypeVersion" :: NullOrUndefined (Version) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: NullOrUndefined (ChildPolicy) , "tagList" :: NullOrUndefined (TagList) , "workflowTypeVersion" :: NullOrUndefined (Version) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> ContinueAsNewWorkflowExecutionDecisionAttributes
-newContinueAsNewWorkflowExecutionDecisionAttributes'  customize = (ContinueAsNewWorkflowExecutionDecisionAttributes <<< customize) { "childPolicy": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing), "workflowTypeVersion": (NullOrUndefined Nothing) }
+newContinueAsNewWorkflowExecutionDecisionAttributes' :: ( { "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: Maybe (ChildPolicy) , "tagList" :: Maybe (TagList) , "workflowTypeVersion" :: Maybe (Version) , "lambdaRole" :: Maybe (Arn) } -> {"input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: Maybe (ChildPolicy) , "tagList" :: Maybe (TagList) , "workflowTypeVersion" :: Maybe (Version) , "lambdaRole" :: Maybe (Arn) } ) -> ContinueAsNewWorkflowExecutionDecisionAttributes
+newContinueAsNewWorkflowExecutionDecisionAttributes'  customize = (ContinueAsNewWorkflowExecutionDecisionAttributes <<< customize) { "childPolicy": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing, "workflowTypeVersion": Nothing }
 
 
 
@@ -821,12 +820,12 @@ instance encodeCount :: Encode Count where encode = genericEncode options
 
 newtype CountClosedWorkflowExecutionsInput = CountClosedWorkflowExecutionsInput 
   { "domain" :: (DomainName)
-  , "startTimeFilter" :: NullOrUndefined (ExecutionTimeFilter)
-  , "closeTimeFilter" :: NullOrUndefined (ExecutionTimeFilter)
-  , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter)
-  , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter)
-  , "tagFilter" :: NullOrUndefined (TagFilter)
-  , "closeStatusFilter" :: NullOrUndefined (CloseStatusFilter)
+  , "startTimeFilter" :: Maybe (ExecutionTimeFilter)
+  , "closeTimeFilter" :: Maybe (ExecutionTimeFilter)
+  , "executionFilter" :: Maybe (WorkflowExecutionFilter)
+  , "typeFilter" :: Maybe (WorkflowTypeFilter)
+  , "tagFilter" :: Maybe (TagFilter)
+  , "closeStatusFilter" :: Maybe (CloseStatusFilter)
   }
 derive instance newtypeCountClosedWorkflowExecutionsInput :: Newtype CountClosedWorkflowExecutionsInput _
 derive instance repGenericCountClosedWorkflowExecutionsInput :: Generic CountClosedWorkflowExecutionsInput _
@@ -836,21 +835,21 @@ instance encodeCountClosedWorkflowExecutionsInput :: Encode CountClosedWorkflowE
 
 -- | Constructs CountClosedWorkflowExecutionsInput from required parameters
 newCountClosedWorkflowExecutionsInput :: DomainName -> CountClosedWorkflowExecutionsInput
-newCountClosedWorkflowExecutionsInput _domain = CountClosedWorkflowExecutionsInput { "domain": _domain, "closeStatusFilter": (NullOrUndefined Nothing), "closeTimeFilter": (NullOrUndefined Nothing), "executionFilter": (NullOrUndefined Nothing), "startTimeFilter": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newCountClosedWorkflowExecutionsInput _domain = CountClosedWorkflowExecutionsInput { "domain": _domain, "closeStatusFilter": Nothing, "closeTimeFilter": Nothing, "executionFilter": Nothing, "startTimeFilter": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 -- | Constructs CountClosedWorkflowExecutionsInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCountClosedWorkflowExecutionsInput' :: DomainName -> ( { "domain" :: (DomainName) , "startTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "closeTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "closeStatusFilter" :: NullOrUndefined (CloseStatusFilter) } -> {"domain" :: (DomainName) , "startTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "closeTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "closeStatusFilter" :: NullOrUndefined (CloseStatusFilter) } ) -> CountClosedWorkflowExecutionsInput
-newCountClosedWorkflowExecutionsInput' _domain customize = (CountClosedWorkflowExecutionsInput <<< customize) { "domain": _domain, "closeStatusFilter": (NullOrUndefined Nothing), "closeTimeFilter": (NullOrUndefined Nothing), "executionFilter": (NullOrUndefined Nothing), "startTimeFilter": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newCountClosedWorkflowExecutionsInput' :: DomainName -> ( { "domain" :: (DomainName) , "startTimeFilter" :: Maybe (ExecutionTimeFilter) , "closeTimeFilter" :: Maybe (ExecutionTimeFilter) , "executionFilter" :: Maybe (WorkflowExecutionFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "closeStatusFilter" :: Maybe (CloseStatusFilter) } -> {"domain" :: (DomainName) , "startTimeFilter" :: Maybe (ExecutionTimeFilter) , "closeTimeFilter" :: Maybe (ExecutionTimeFilter) , "executionFilter" :: Maybe (WorkflowExecutionFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "closeStatusFilter" :: Maybe (CloseStatusFilter) } ) -> CountClosedWorkflowExecutionsInput
+newCountClosedWorkflowExecutionsInput' _domain customize = (CountClosedWorkflowExecutionsInput <<< customize) { "domain": _domain, "closeStatusFilter": Nothing, "closeTimeFilter": Nothing, "executionFilter": Nothing, "startTimeFilter": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 
 
 newtype CountOpenWorkflowExecutionsInput = CountOpenWorkflowExecutionsInput 
   { "domain" :: (DomainName)
   , "startTimeFilter" :: (ExecutionTimeFilter)
-  , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter)
-  , "tagFilter" :: NullOrUndefined (TagFilter)
-  , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter)
+  , "typeFilter" :: Maybe (WorkflowTypeFilter)
+  , "tagFilter" :: Maybe (TagFilter)
+  , "executionFilter" :: Maybe (WorkflowExecutionFilter)
   }
 derive instance newtypeCountOpenWorkflowExecutionsInput :: Newtype CountOpenWorkflowExecutionsInput _
 derive instance repGenericCountOpenWorkflowExecutionsInput :: Generic CountOpenWorkflowExecutionsInput _
@@ -860,12 +859,12 @@ instance encodeCountOpenWorkflowExecutionsInput :: Encode CountOpenWorkflowExecu
 
 -- | Constructs CountOpenWorkflowExecutionsInput from required parameters
 newCountOpenWorkflowExecutionsInput :: DomainName -> ExecutionTimeFilter -> CountOpenWorkflowExecutionsInput
-newCountOpenWorkflowExecutionsInput _domain _startTimeFilter = CountOpenWorkflowExecutionsInput { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newCountOpenWorkflowExecutionsInput _domain _startTimeFilter = CountOpenWorkflowExecutionsInput { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 -- | Constructs CountOpenWorkflowExecutionsInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCountOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ( { "domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) } -> {"domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) } ) -> CountOpenWorkflowExecutionsInput
-newCountOpenWorkflowExecutionsInput' _domain _startTimeFilter customize = (CountOpenWorkflowExecutionsInput <<< customize) { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newCountOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ( { "domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "executionFilter" :: Maybe (WorkflowExecutionFilter) } -> {"domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "executionFilter" :: Maybe (WorkflowExecutionFilter) } ) -> CountOpenWorkflowExecutionsInput
+newCountOpenWorkflowExecutionsInput' _domain _startTimeFilter customize = (CountOpenWorkflowExecutionsInput <<< customize) { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 
 
@@ -923,19 +922,19 @@ instance encodeData :: Encode Data where encode = genericEncode options
 -- | <p>Specifies a decision made by the decider. A decision can be one of these types:</p> <ul> <li> <p> <code>CancelTimer</code> – Cancels a previously started timer and records a <code>TimerCanceled</code> event in the history.</p> </li> <li> <p> <code>CancelWorkflowExecution</code> – Closes the workflow execution and records a <code>WorkflowExecutionCanceled</code> event in the history.</p> </li> <li> <p> <code>CompleteWorkflowExecution</code> – Closes the workflow execution and records a <code>WorkflowExecutionCompleted</code> event in the history .</p> </li> <li> <p> <code>ContinueAsNewWorkflowExecution</code> – Closes the workflow execution and starts a new workflow execution of the same type using the same workflow ID and a unique run Id. A <code>WorkflowExecutionContinuedAsNew</code> event is recorded in the history.</p> </li> <li> <p> <code>FailWorkflowExecution</code> – Closes the workflow execution and records a <code>WorkflowExecutionFailed</code> event in the history.</p> </li> <li> <p> <code>RecordMarker</code> – Records a <code>MarkerRecorded</code> event in the history. Markers can be used for adding custom information in the history for instance to let deciders know that they don't need to look at the history beyond the marker event.</p> </li> <li> <p> <code>RequestCancelActivityTask</code> – Attempts to cancel a previously scheduled activity task. If the activity task was scheduled but has not been assigned to a worker, then it is canceled. If the activity task was already assigned to a worker, then the worker is informed that cancellation has been requested in the response to <a>RecordActivityTaskHeartbeat</a>.</p> </li> <li> <p> <code>RequestCancelExternalWorkflowExecution</code> – Requests that a request be made to cancel the specified external workflow execution and records a <code>RequestCancelExternalWorkflowExecutionInitiated</code> event in the history.</p> </li> <li> <p> <code>ScheduleActivityTask</code> – Schedules an activity task.</p> </li> <li> <p> <code>SignalExternalWorkflowExecution</code> – Requests a signal to be delivered to the specified external workflow execution and records a <code>SignalExternalWorkflowExecutionInitiated</code> event in the history.</p> </li> <li> <p> <code>StartChildWorkflowExecution</code> – Requests that a child workflow execution be started and records a <code>StartChildWorkflowExecutionInitiated</code> event in the history. The child workflow execution is a separate workflow execution with its own history.</p> </li> <li> <p> <code>StartTimer</code> – Starts a timer for this workflow execution and records a <code>TimerStarted</code> event in the history. This timer fires after the specified delay and record a <code>TimerFired</code> event.</p> </li> </ul> <p> <b>Access Control</b> </p> <p>If you grant permission to use <code>RespondDecisionTaskCompleted</code>, you can use IAM policies to express permissions for the list of decisions returned by this action as if they were members of the API. Treating decisions as a pseudo API maintains a uniform conceptual model and helps keep policies readable. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p> <p> <b>Decision Failure</b> </p> <p>Decisions can fail for several reasons</p> <ul> <li> <p>The ordering of decisions should follow a logical flow. Some decisions might not make sense in the current context of the workflow execution and therefore fails.</p> </li> <li> <p>A limit on your account was reached.</p> </li> <li> <p>The decision lacks sufficient permissions.</p> </li> </ul> <p>One of the following events might be added to the history to indicate an error. The event attribute's <code>cause</code> parameter indicates the cause. If <code>cause</code> is set to <code>OPERATION_NOT_PERMITTED</code>, the decision failed because it lacked sufficient permissions. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p> <ul> <li> <p> <code>ScheduleActivityTaskFailed</code> – A <code>ScheduleActivityTask</code> decision failed. This could happen if the activity type specified in the decision isn't registered, is in a deprecated state, or the decision isn't properly configured.</p> </li> <li> <p> <code>RequestCancelActivityTaskFailed</code> – A <code>RequestCancelActivityTask</code> decision failed. This could happen if there is no open activity task with the specified activityId.</p> </li> <li> <p> <code>StartTimerFailed</code> – A <code>StartTimer</code> decision failed. This could happen if there is another open timer with the same timerId.</p> </li> <li> <p> <code>CancelTimerFailed</code> – A <code>CancelTimer</code> decision failed. This could happen if there is no open timer with the specified timerId.</p> </li> <li> <p> <code>StartChildWorkflowExecutionFailed</code> – A <code>StartChildWorkflowExecution</code> decision failed. This could happen if the workflow type specified isn't registered, is deprecated, or the decision isn't properly configured.</p> </li> <li> <p> <code>SignalExternalWorkflowExecutionFailed</code> – A <code>SignalExternalWorkflowExecution</code> decision failed. This could happen if the <code>workflowID</code> specified in the decision was incorrect.</p> </li> <li> <p> <code>RequestCancelExternalWorkflowExecutionFailed</code> – A <code>RequestCancelExternalWorkflowExecution</code> decision failed. This could happen if the <code>workflowID</code> specified in the decision was incorrect.</p> </li> <li> <p> <code>CancelWorkflowExecutionFailed</code> – A <code>CancelWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution.</p> </li> <li> <p> <code>CompleteWorkflowExecutionFailed</code> – A <code>CompleteWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution.</p> </li> <li> <p> <code>ContinueAsNewWorkflowExecutionFailed</code> – A <code>ContinueAsNewWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution or the ContinueAsNewWorkflowExecution decision was not configured correctly.</p> </li> <li> <p> <code>FailWorkflowExecutionFailed</code> – A <code>FailWorkflowExecution</code> decision failed. This could happen if there is an unhandled decision task pending in the workflow execution.</p> </li> </ul> <p>The preceding error events might occur due to an error in the decider logic, which might put the workflow execution in an unstable state The cause field in the event structure for the error event indicates the cause of the error.</p> <note> <p>A workflow execution may be closed by the decider by returning one of the following decisions when completing a decision task: <code>CompleteWorkflowExecution</code>, <code>FailWorkflowExecution</code>, <code>CancelWorkflowExecution</code> and <code>ContinueAsNewWorkflowExecution</code>. An <code>UnhandledDecision</code> fault is returned if a workflow closing decision is specified and a signal or activity event had been added to the history while the decision task was being performed by the decider. Unlike the above situations which are logic issues, this fault is always possible because of race conditions in a distributed system. The right action here is to call <a>RespondDecisionTaskCompleted</a> without any decisions. This would result in another decision task with these new events included in the history. The decider should handle the new events and may decide to close the workflow execution.</p> </note> <p> <b>How to Code a Decision</b> </p> <p>You code a decision by first setting the decision type field to one of the above decision values, and then set the corresponding attributes field shown below:</p> <ul> <li> <p> <code> <a>ScheduleActivityTaskDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>RequestCancelActivityTaskDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>CompleteWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>FailWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>CancelWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>ContinueAsNewWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>RecordMarkerDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>StartTimerDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>CancelTimerDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>SignalExternalWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>RequestCancelExternalWorkflowExecutionDecisionAttributes</a> </code> </p> </li> <li> <p> <code> <a>StartChildWorkflowExecutionDecisionAttributes</a> </code> </p> </li> </ul>
 newtype Decision = Decision 
   { "decisionType" :: (DecisionType)
-  , "scheduleActivityTaskDecisionAttributes" :: NullOrUndefined (ScheduleActivityTaskDecisionAttributes)
-  , "requestCancelActivityTaskDecisionAttributes" :: NullOrUndefined (RequestCancelActivityTaskDecisionAttributes)
-  , "completeWorkflowExecutionDecisionAttributes" :: NullOrUndefined (CompleteWorkflowExecutionDecisionAttributes)
-  , "failWorkflowExecutionDecisionAttributes" :: NullOrUndefined (FailWorkflowExecutionDecisionAttributes)
-  , "cancelWorkflowExecutionDecisionAttributes" :: NullOrUndefined (CancelWorkflowExecutionDecisionAttributes)
-  , "continueAsNewWorkflowExecutionDecisionAttributes" :: NullOrUndefined (ContinueAsNewWorkflowExecutionDecisionAttributes)
-  , "recordMarkerDecisionAttributes" :: NullOrUndefined (RecordMarkerDecisionAttributes)
-  , "startTimerDecisionAttributes" :: NullOrUndefined (StartTimerDecisionAttributes)
-  , "cancelTimerDecisionAttributes" :: NullOrUndefined (CancelTimerDecisionAttributes)
-  , "signalExternalWorkflowExecutionDecisionAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionDecisionAttributes)
-  , "requestCancelExternalWorkflowExecutionDecisionAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionDecisionAttributes)
-  , "startChildWorkflowExecutionDecisionAttributes" :: NullOrUndefined (StartChildWorkflowExecutionDecisionAttributes)
-  , "scheduleLambdaFunctionDecisionAttributes" :: NullOrUndefined (ScheduleLambdaFunctionDecisionAttributes)
+  , "scheduleActivityTaskDecisionAttributes" :: Maybe (ScheduleActivityTaskDecisionAttributes)
+  , "requestCancelActivityTaskDecisionAttributes" :: Maybe (RequestCancelActivityTaskDecisionAttributes)
+  , "completeWorkflowExecutionDecisionAttributes" :: Maybe (CompleteWorkflowExecutionDecisionAttributes)
+  , "failWorkflowExecutionDecisionAttributes" :: Maybe (FailWorkflowExecutionDecisionAttributes)
+  , "cancelWorkflowExecutionDecisionAttributes" :: Maybe (CancelWorkflowExecutionDecisionAttributes)
+  , "continueAsNewWorkflowExecutionDecisionAttributes" :: Maybe (ContinueAsNewWorkflowExecutionDecisionAttributes)
+  , "recordMarkerDecisionAttributes" :: Maybe (RecordMarkerDecisionAttributes)
+  , "startTimerDecisionAttributes" :: Maybe (StartTimerDecisionAttributes)
+  , "cancelTimerDecisionAttributes" :: Maybe (CancelTimerDecisionAttributes)
+  , "signalExternalWorkflowExecutionDecisionAttributes" :: Maybe (SignalExternalWorkflowExecutionDecisionAttributes)
+  , "requestCancelExternalWorkflowExecutionDecisionAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionDecisionAttributes)
+  , "startChildWorkflowExecutionDecisionAttributes" :: Maybe (StartChildWorkflowExecutionDecisionAttributes)
+  , "scheduleLambdaFunctionDecisionAttributes" :: Maybe (ScheduleLambdaFunctionDecisionAttributes)
   }
 derive instance newtypeDecision :: Newtype Decision _
 derive instance repGenericDecision :: Generic Decision _
@@ -945,12 +944,12 @@ instance encodeDecision :: Encode Decision where encode = genericEncode options
 
 -- | Constructs Decision from required parameters
 newDecision :: DecisionType -> Decision
-newDecision _decisionType = Decision { "decisionType": _decisionType, "cancelTimerDecisionAttributes": (NullOrUndefined Nothing), "cancelWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "completeWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "continueAsNewWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "failWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "recordMarkerDecisionAttributes": (NullOrUndefined Nothing), "requestCancelActivityTaskDecisionAttributes": (NullOrUndefined Nothing), "requestCancelExternalWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "scheduleActivityTaskDecisionAttributes": (NullOrUndefined Nothing), "scheduleLambdaFunctionDecisionAttributes": (NullOrUndefined Nothing), "signalExternalWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "startChildWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "startTimerDecisionAttributes": (NullOrUndefined Nothing) }
+newDecision _decisionType = Decision { "decisionType": _decisionType, "cancelTimerDecisionAttributes": Nothing, "cancelWorkflowExecutionDecisionAttributes": Nothing, "completeWorkflowExecutionDecisionAttributes": Nothing, "continueAsNewWorkflowExecutionDecisionAttributes": Nothing, "failWorkflowExecutionDecisionAttributes": Nothing, "recordMarkerDecisionAttributes": Nothing, "requestCancelActivityTaskDecisionAttributes": Nothing, "requestCancelExternalWorkflowExecutionDecisionAttributes": Nothing, "scheduleActivityTaskDecisionAttributes": Nothing, "scheduleLambdaFunctionDecisionAttributes": Nothing, "signalExternalWorkflowExecutionDecisionAttributes": Nothing, "startChildWorkflowExecutionDecisionAttributes": Nothing, "startTimerDecisionAttributes": Nothing }
 
 -- | Constructs Decision's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDecision' :: DecisionType -> ( { "decisionType" :: (DecisionType) , "scheduleActivityTaskDecisionAttributes" :: NullOrUndefined (ScheduleActivityTaskDecisionAttributes) , "requestCancelActivityTaskDecisionAttributes" :: NullOrUndefined (RequestCancelActivityTaskDecisionAttributes) , "completeWorkflowExecutionDecisionAttributes" :: NullOrUndefined (CompleteWorkflowExecutionDecisionAttributes) , "failWorkflowExecutionDecisionAttributes" :: NullOrUndefined (FailWorkflowExecutionDecisionAttributes) , "cancelWorkflowExecutionDecisionAttributes" :: NullOrUndefined (CancelWorkflowExecutionDecisionAttributes) , "continueAsNewWorkflowExecutionDecisionAttributes" :: NullOrUndefined (ContinueAsNewWorkflowExecutionDecisionAttributes) , "recordMarkerDecisionAttributes" :: NullOrUndefined (RecordMarkerDecisionAttributes) , "startTimerDecisionAttributes" :: NullOrUndefined (StartTimerDecisionAttributes) , "cancelTimerDecisionAttributes" :: NullOrUndefined (CancelTimerDecisionAttributes) , "signalExternalWorkflowExecutionDecisionAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionDecisionAttributes) , "requestCancelExternalWorkflowExecutionDecisionAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionDecisionAttributes) , "startChildWorkflowExecutionDecisionAttributes" :: NullOrUndefined (StartChildWorkflowExecutionDecisionAttributes) , "scheduleLambdaFunctionDecisionAttributes" :: NullOrUndefined (ScheduleLambdaFunctionDecisionAttributes) } -> {"decisionType" :: (DecisionType) , "scheduleActivityTaskDecisionAttributes" :: NullOrUndefined (ScheduleActivityTaskDecisionAttributes) , "requestCancelActivityTaskDecisionAttributes" :: NullOrUndefined (RequestCancelActivityTaskDecisionAttributes) , "completeWorkflowExecutionDecisionAttributes" :: NullOrUndefined (CompleteWorkflowExecutionDecisionAttributes) , "failWorkflowExecutionDecisionAttributes" :: NullOrUndefined (FailWorkflowExecutionDecisionAttributes) , "cancelWorkflowExecutionDecisionAttributes" :: NullOrUndefined (CancelWorkflowExecutionDecisionAttributes) , "continueAsNewWorkflowExecutionDecisionAttributes" :: NullOrUndefined (ContinueAsNewWorkflowExecutionDecisionAttributes) , "recordMarkerDecisionAttributes" :: NullOrUndefined (RecordMarkerDecisionAttributes) , "startTimerDecisionAttributes" :: NullOrUndefined (StartTimerDecisionAttributes) , "cancelTimerDecisionAttributes" :: NullOrUndefined (CancelTimerDecisionAttributes) , "signalExternalWorkflowExecutionDecisionAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionDecisionAttributes) , "requestCancelExternalWorkflowExecutionDecisionAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionDecisionAttributes) , "startChildWorkflowExecutionDecisionAttributes" :: NullOrUndefined (StartChildWorkflowExecutionDecisionAttributes) , "scheduleLambdaFunctionDecisionAttributes" :: NullOrUndefined (ScheduleLambdaFunctionDecisionAttributes) } ) -> Decision
-newDecision' _decisionType customize = (Decision <<< customize) { "decisionType": _decisionType, "cancelTimerDecisionAttributes": (NullOrUndefined Nothing), "cancelWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "completeWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "continueAsNewWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "failWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "recordMarkerDecisionAttributes": (NullOrUndefined Nothing), "requestCancelActivityTaskDecisionAttributes": (NullOrUndefined Nothing), "requestCancelExternalWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "scheduleActivityTaskDecisionAttributes": (NullOrUndefined Nothing), "scheduleLambdaFunctionDecisionAttributes": (NullOrUndefined Nothing), "signalExternalWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "startChildWorkflowExecutionDecisionAttributes": (NullOrUndefined Nothing), "startTimerDecisionAttributes": (NullOrUndefined Nothing) }
+newDecision' :: DecisionType -> ( { "decisionType" :: (DecisionType) , "scheduleActivityTaskDecisionAttributes" :: Maybe (ScheduleActivityTaskDecisionAttributes) , "requestCancelActivityTaskDecisionAttributes" :: Maybe (RequestCancelActivityTaskDecisionAttributes) , "completeWorkflowExecutionDecisionAttributes" :: Maybe (CompleteWorkflowExecutionDecisionAttributes) , "failWorkflowExecutionDecisionAttributes" :: Maybe (FailWorkflowExecutionDecisionAttributes) , "cancelWorkflowExecutionDecisionAttributes" :: Maybe (CancelWorkflowExecutionDecisionAttributes) , "continueAsNewWorkflowExecutionDecisionAttributes" :: Maybe (ContinueAsNewWorkflowExecutionDecisionAttributes) , "recordMarkerDecisionAttributes" :: Maybe (RecordMarkerDecisionAttributes) , "startTimerDecisionAttributes" :: Maybe (StartTimerDecisionAttributes) , "cancelTimerDecisionAttributes" :: Maybe (CancelTimerDecisionAttributes) , "signalExternalWorkflowExecutionDecisionAttributes" :: Maybe (SignalExternalWorkflowExecutionDecisionAttributes) , "requestCancelExternalWorkflowExecutionDecisionAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionDecisionAttributes) , "startChildWorkflowExecutionDecisionAttributes" :: Maybe (StartChildWorkflowExecutionDecisionAttributes) , "scheduleLambdaFunctionDecisionAttributes" :: Maybe (ScheduleLambdaFunctionDecisionAttributes) } -> {"decisionType" :: (DecisionType) , "scheduleActivityTaskDecisionAttributes" :: Maybe (ScheduleActivityTaskDecisionAttributes) , "requestCancelActivityTaskDecisionAttributes" :: Maybe (RequestCancelActivityTaskDecisionAttributes) , "completeWorkflowExecutionDecisionAttributes" :: Maybe (CompleteWorkflowExecutionDecisionAttributes) , "failWorkflowExecutionDecisionAttributes" :: Maybe (FailWorkflowExecutionDecisionAttributes) , "cancelWorkflowExecutionDecisionAttributes" :: Maybe (CancelWorkflowExecutionDecisionAttributes) , "continueAsNewWorkflowExecutionDecisionAttributes" :: Maybe (ContinueAsNewWorkflowExecutionDecisionAttributes) , "recordMarkerDecisionAttributes" :: Maybe (RecordMarkerDecisionAttributes) , "startTimerDecisionAttributes" :: Maybe (StartTimerDecisionAttributes) , "cancelTimerDecisionAttributes" :: Maybe (CancelTimerDecisionAttributes) , "signalExternalWorkflowExecutionDecisionAttributes" :: Maybe (SignalExternalWorkflowExecutionDecisionAttributes) , "requestCancelExternalWorkflowExecutionDecisionAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionDecisionAttributes) , "startChildWorkflowExecutionDecisionAttributes" :: Maybe (StartChildWorkflowExecutionDecisionAttributes) , "scheduleLambdaFunctionDecisionAttributes" :: Maybe (ScheduleLambdaFunctionDecisionAttributes) } ) -> Decision
+newDecision' _decisionType customize = (Decision <<< customize) { "decisionType": _decisionType, "cancelTimerDecisionAttributes": Nothing, "cancelWorkflowExecutionDecisionAttributes": Nothing, "completeWorkflowExecutionDecisionAttributes": Nothing, "continueAsNewWorkflowExecutionDecisionAttributes": Nothing, "failWorkflowExecutionDecisionAttributes": Nothing, "recordMarkerDecisionAttributes": Nothing, "requestCancelActivityTaskDecisionAttributes": Nothing, "requestCancelExternalWorkflowExecutionDecisionAttributes": Nothing, "scheduleActivityTaskDecisionAttributes": Nothing, "scheduleLambdaFunctionDecisionAttributes": Nothing, "signalExternalWorkflowExecutionDecisionAttributes": Nothing, "startChildWorkflowExecutionDecisionAttributes": Nothing, "startTimerDecisionAttributes": Nothing }
 
 
 
@@ -970,8 +969,8 @@ newtype DecisionTask = DecisionTask
   , "workflowExecution" :: (WorkflowExecution)
   , "workflowType" :: (WorkflowType)
   , "events" :: (HistoryEventList)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "previousStartedEventId" :: NullOrUndefined (EventId)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "previousStartedEventId" :: Maybe (EventId)
   }
 derive instance newtypeDecisionTask :: Newtype DecisionTask _
 derive instance repGenericDecisionTask :: Generic DecisionTask _
@@ -981,18 +980,18 @@ instance encodeDecisionTask :: Encode DecisionTask where encode = genericEncode 
 
 -- | Constructs DecisionTask from required parameters
 newDecisionTask :: HistoryEventList -> EventId -> TaskToken -> WorkflowExecution -> WorkflowType -> DecisionTask
-newDecisionTask _events _startedEventId _taskToken _workflowExecution _workflowType = DecisionTask { "events": _events, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "nextPageToken": (NullOrUndefined Nothing), "previousStartedEventId": (NullOrUndefined Nothing) }
+newDecisionTask _events _startedEventId _taskToken _workflowExecution _workflowType = DecisionTask { "events": _events, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "nextPageToken": Nothing, "previousStartedEventId": Nothing }
 
 -- | Constructs DecisionTask's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDecisionTask' :: HistoryEventList -> EventId -> TaskToken -> WorkflowExecution -> WorkflowType -> ( { "taskToken" :: (TaskToken) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "events" :: (HistoryEventList) , "nextPageToken" :: NullOrUndefined (PageToken) , "previousStartedEventId" :: NullOrUndefined (EventId) } -> {"taskToken" :: (TaskToken) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "events" :: (HistoryEventList) , "nextPageToken" :: NullOrUndefined (PageToken) , "previousStartedEventId" :: NullOrUndefined (EventId) } ) -> DecisionTask
-newDecisionTask' _events _startedEventId _taskToken _workflowExecution _workflowType customize = (DecisionTask <<< customize) { "events": _events, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "nextPageToken": (NullOrUndefined Nothing), "previousStartedEventId": (NullOrUndefined Nothing) }
+newDecisionTask' :: HistoryEventList -> EventId -> TaskToken -> WorkflowExecution -> WorkflowType -> ( { "taskToken" :: (TaskToken) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "events" :: (HistoryEventList) , "nextPageToken" :: Maybe (PageToken) , "previousStartedEventId" :: Maybe (EventId) } -> {"taskToken" :: (TaskToken) , "startedEventId" :: (EventId) , "workflowExecution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "events" :: (HistoryEventList) , "nextPageToken" :: Maybe (PageToken) , "previousStartedEventId" :: Maybe (EventId) } ) -> DecisionTask
+newDecisionTask' _events _startedEventId _taskToken _workflowExecution _workflowType customize = (DecisionTask <<< customize) { "events": _events, "startedEventId": _startedEventId, "taskToken": _taskToken, "workflowExecution": _workflowExecution, "workflowType": _workflowType, "nextPageToken": Nothing, "previousStartedEventId": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>DecisionTaskCompleted</code> event.</p>
 newtype DecisionTaskCompletedEventAttributes = DecisionTaskCompletedEventAttributes 
-  { "executionContext" :: NullOrUndefined (Data)
+  { "executionContext" :: Maybe (Data)
   , "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
   }
@@ -1004,20 +1003,20 @@ instance encodeDecisionTaskCompletedEventAttributes :: Encode DecisionTaskComple
 
 -- | Constructs DecisionTaskCompletedEventAttributes from required parameters
 newDecisionTaskCompletedEventAttributes :: EventId -> EventId -> DecisionTaskCompletedEventAttributes
-newDecisionTaskCompletedEventAttributes _scheduledEventId _startedEventId = DecisionTaskCompletedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "executionContext": (NullOrUndefined Nothing) }
+newDecisionTaskCompletedEventAttributes _scheduledEventId _startedEventId = DecisionTaskCompletedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "executionContext": Nothing }
 
 -- | Constructs DecisionTaskCompletedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDecisionTaskCompletedEventAttributes' :: EventId -> EventId -> ( { "executionContext" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"executionContext" :: NullOrUndefined (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> DecisionTaskCompletedEventAttributes
-newDecisionTaskCompletedEventAttributes' _scheduledEventId _startedEventId customize = (DecisionTaskCompletedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "executionContext": (NullOrUndefined Nothing) }
+newDecisionTaskCompletedEventAttributes' :: EventId -> EventId -> ( { "executionContext" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } -> {"executionContext" :: Maybe (Data) , "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) } ) -> DecisionTaskCompletedEventAttributes
+newDecisionTaskCompletedEventAttributes' _scheduledEventId _startedEventId customize = (DecisionTaskCompletedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "executionContext": Nothing }
 
 
 
 -- | <p>Provides details about the <code>DecisionTaskScheduled</code> event.</p>
 newtype DecisionTaskScheduledEventAttributes = DecisionTaskScheduledEventAttributes 
   { "taskList" :: (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
-  , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "taskPriority" :: Maybe (TaskPriority)
+  , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   }
 derive instance newtypeDecisionTaskScheduledEventAttributes :: Newtype DecisionTaskScheduledEventAttributes _
 derive instance repGenericDecisionTaskScheduledEventAttributes :: Generic DecisionTaskScheduledEventAttributes _
@@ -1027,18 +1026,18 @@ instance encodeDecisionTaskScheduledEventAttributes :: Encode DecisionTaskSchedu
 
 -- | Constructs DecisionTaskScheduledEventAttributes from required parameters
 newDecisionTaskScheduledEventAttributes :: TaskList -> DecisionTaskScheduledEventAttributes
-newDecisionTaskScheduledEventAttributes _taskList = DecisionTaskScheduledEventAttributes { "taskList": _taskList, "startToCloseTimeout": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newDecisionTaskScheduledEventAttributes _taskList = DecisionTaskScheduledEventAttributes { "taskList": _taskList, "startToCloseTimeout": Nothing, "taskPriority": Nothing }
 
 -- | Constructs DecisionTaskScheduledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDecisionTaskScheduledEventAttributes' :: TaskList -> ( { "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } -> {"taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } ) -> DecisionTaskScheduledEventAttributes
-newDecisionTaskScheduledEventAttributes' _taskList customize = (DecisionTaskScheduledEventAttributes <<< customize) { "taskList": _taskList, "startToCloseTimeout": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newDecisionTaskScheduledEventAttributes' :: TaskList -> ( { "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) } -> {"taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) } ) -> DecisionTaskScheduledEventAttributes
+newDecisionTaskScheduledEventAttributes' _taskList customize = (DecisionTaskScheduledEventAttributes <<< customize) { "taskList": _taskList, "startToCloseTimeout": Nothing, "taskPriority": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>DecisionTaskStarted</code> event.</p>
 newtype DecisionTaskStartedEventAttributes = DecisionTaskStartedEventAttributes 
-  { "identity" :: NullOrUndefined (Identity)
+  { "identity" :: Maybe (Identity)
   , "scheduledEventId" :: (EventId)
   }
 derive instance newtypeDecisionTaskStartedEventAttributes :: Newtype DecisionTaskStartedEventAttributes _
@@ -1049,12 +1048,12 @@ instance encodeDecisionTaskStartedEventAttributes :: Encode DecisionTaskStartedE
 
 -- | Constructs DecisionTaskStartedEventAttributes from required parameters
 newDecisionTaskStartedEventAttributes :: EventId -> DecisionTaskStartedEventAttributes
-newDecisionTaskStartedEventAttributes _scheduledEventId = DecisionTaskStartedEventAttributes { "scheduledEventId": _scheduledEventId, "identity": (NullOrUndefined Nothing) }
+newDecisionTaskStartedEventAttributes _scheduledEventId = DecisionTaskStartedEventAttributes { "scheduledEventId": _scheduledEventId, "identity": Nothing }
 
 -- | Constructs DecisionTaskStartedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDecisionTaskStartedEventAttributes' :: EventId -> ( { "identity" :: NullOrUndefined (Identity) , "scheduledEventId" :: (EventId) } -> {"identity" :: NullOrUndefined (Identity) , "scheduledEventId" :: (EventId) } ) -> DecisionTaskStartedEventAttributes
-newDecisionTaskStartedEventAttributes' _scheduledEventId customize = (DecisionTaskStartedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "identity": (NullOrUndefined Nothing) }
+newDecisionTaskStartedEventAttributes' :: EventId -> ( { "identity" :: Maybe (Identity) , "scheduledEventId" :: (EventId) } -> {"identity" :: Maybe (Identity) , "scheduledEventId" :: (EventId) } ) -> DecisionTaskStartedEventAttributes
+newDecisionTaskStartedEventAttributes' _scheduledEventId customize = (DecisionTaskStartedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "identity": Nothing }
 
 
 
@@ -1101,7 +1100,7 @@ instance encodeDecisionType :: Encode DecisionType where encode = genericEncode 
 
 -- | <p>The <code>StartWorkflowExecution</code> API action was called without the required parameters set.</p> <p>Some workflow execution parameters, such as the decision <code>taskList</code>, must be set to start the execution. However, these parameters might have been set as defaults when the workflow type was registered. In this case, you can omit these parameters from the <code>StartWorkflowExecution</code> call and Amazon SWF uses the values defined in the workflow type.</p> <note> <p>If these parameters aren't set and no default parameters were defined in the workflow type, this error is displayed.</p> </note>
 newtype DefaultUndefinedFault = DefaultUndefinedFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeDefaultUndefinedFault :: Newtype DefaultUndefinedFault _
 derive instance repGenericDefaultUndefinedFault :: Generic DefaultUndefinedFault _
@@ -1111,12 +1110,12 @@ instance encodeDefaultUndefinedFault :: Encode DefaultUndefinedFault where encod
 
 -- | Constructs DefaultUndefinedFault from required parameters
 newDefaultUndefinedFault :: DefaultUndefinedFault
-newDefaultUndefinedFault  = DefaultUndefinedFault { "message": (NullOrUndefined Nothing) }
+newDefaultUndefinedFault  = DefaultUndefinedFault { "message": Nothing }
 
 -- | Constructs DefaultUndefinedFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDefaultUndefinedFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> DefaultUndefinedFault
-newDefaultUndefinedFault'  customize = (DefaultUndefinedFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newDefaultUndefinedFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> DefaultUndefinedFault
+newDefaultUndefinedFault'  customize = (DefaultUndefinedFault <<< customize) { "message": Nothing }
 
 
 
@@ -1276,7 +1275,7 @@ instance encodeDescription :: Encode Description where encode = genericEncode op
 
 -- | <p>Returned if the specified domain already exists. You get this fault even if the existing domain is in deprecated status.</p>
 newtype DomainAlreadyExistsFault = DomainAlreadyExistsFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeDomainAlreadyExistsFault :: Newtype DomainAlreadyExistsFault _
 derive instance repGenericDomainAlreadyExistsFault :: Generic DomainAlreadyExistsFault _
@@ -1286,12 +1285,12 @@ instance encodeDomainAlreadyExistsFault :: Encode DomainAlreadyExistsFault where
 
 -- | Constructs DomainAlreadyExistsFault from required parameters
 newDomainAlreadyExistsFault :: DomainAlreadyExistsFault
-newDomainAlreadyExistsFault  = DomainAlreadyExistsFault { "message": (NullOrUndefined Nothing) }
+newDomainAlreadyExistsFault  = DomainAlreadyExistsFault { "message": Nothing }
 
 -- | Constructs DomainAlreadyExistsFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDomainAlreadyExistsFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> DomainAlreadyExistsFault
-newDomainAlreadyExistsFault'  customize = (DomainAlreadyExistsFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newDomainAlreadyExistsFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> DomainAlreadyExistsFault
+newDomainAlreadyExistsFault'  customize = (DomainAlreadyExistsFault <<< customize) { "message": Nothing }
 
 
 
@@ -1318,7 +1317,7 @@ newDomainConfiguration' _workflowExecutionRetentionPeriodInDays customize = (Dom
 
 -- | <p>Returned when the specified domain has been deprecated.</p>
 newtype DomainDeprecatedFault = DomainDeprecatedFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeDomainDeprecatedFault :: Newtype DomainDeprecatedFault _
 derive instance repGenericDomainDeprecatedFault :: Generic DomainDeprecatedFault _
@@ -1328,12 +1327,12 @@ instance encodeDomainDeprecatedFault :: Encode DomainDeprecatedFault where encod
 
 -- | Constructs DomainDeprecatedFault from required parameters
 newDomainDeprecatedFault :: DomainDeprecatedFault
-newDomainDeprecatedFault  = DomainDeprecatedFault { "message": (NullOrUndefined Nothing) }
+newDomainDeprecatedFault  = DomainDeprecatedFault { "message": Nothing }
 
 -- | Constructs DomainDeprecatedFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDomainDeprecatedFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> DomainDeprecatedFault
-newDomainDeprecatedFault'  customize = (DomainDeprecatedFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newDomainDeprecatedFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> DomainDeprecatedFault
+newDomainDeprecatedFault'  customize = (DomainDeprecatedFault <<< customize) { "message": Nothing }
 
 
 
@@ -1363,7 +1362,7 @@ newDomainDetail' _configuration _domainInfo customize = (DomainDetail <<< custom
 newtype DomainInfo = DomainInfo 
   { "name" :: (DomainName)
   , "status" :: (RegistrationStatus)
-  , "description" :: NullOrUndefined (Description)
+  , "description" :: Maybe (Description)
   }
 derive instance newtypeDomainInfo :: Newtype DomainInfo _
 derive instance repGenericDomainInfo :: Generic DomainInfo _
@@ -1373,12 +1372,12 @@ instance encodeDomainInfo :: Encode DomainInfo where encode = genericEncode opti
 
 -- | Constructs DomainInfo from required parameters
 newDomainInfo :: DomainName -> RegistrationStatus -> DomainInfo
-newDomainInfo _name _status = DomainInfo { "name": _name, "status": _status, "description": (NullOrUndefined Nothing) }
+newDomainInfo _name _status = DomainInfo { "name": _name, "status": _status, "description": Nothing }
 
 -- | Constructs DomainInfo's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDomainInfo' :: DomainName -> RegistrationStatus -> ( { "name" :: (DomainName) , "status" :: (RegistrationStatus) , "description" :: NullOrUndefined (Description) } -> {"name" :: (DomainName) , "status" :: (RegistrationStatus) , "description" :: NullOrUndefined (Description) } ) -> DomainInfo
-newDomainInfo' _name _status customize = (DomainInfo <<< customize) { "name": _name, "status": _status, "description": (NullOrUndefined Nothing) }
+newDomainInfo' :: DomainName -> RegistrationStatus -> ( { "name" :: (DomainName) , "status" :: (RegistrationStatus) , "description" :: Maybe (Description) } -> {"name" :: (DomainName) , "status" :: (RegistrationStatus) , "description" :: Maybe (Description) } ) -> DomainInfo
+newDomainInfo' _name _status customize = (DomainInfo <<< customize) { "name": _name, "status": _status, "description": Nothing }
 
 
 
@@ -1394,7 +1393,7 @@ instance encodeDomainInfoList :: Encode DomainInfoList where encode = genericEnc
 -- | <p>Contains a paginated collection of DomainInfo structures.</p>
 newtype DomainInfos = DomainInfos 
   { "domainInfos" :: (DomainInfoList)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
+  , "nextPageToken" :: Maybe (PageToken)
   }
 derive instance newtypeDomainInfos :: Newtype DomainInfos _
 derive instance repGenericDomainInfos :: Generic DomainInfos _
@@ -1404,12 +1403,12 @@ instance encodeDomainInfos :: Encode DomainInfos where encode = genericEncode op
 
 -- | Constructs DomainInfos from required parameters
 newDomainInfos :: DomainInfoList -> DomainInfos
-newDomainInfos _domainInfos = DomainInfos { "domainInfos": _domainInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newDomainInfos _domainInfos = DomainInfos { "domainInfos": _domainInfos, "nextPageToken": Nothing }
 
 -- | Constructs DomainInfos's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDomainInfos' :: DomainInfoList -> ( { "domainInfos" :: (DomainInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } -> {"domainInfos" :: (DomainInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } ) -> DomainInfos
-newDomainInfos' _domainInfos customize = (DomainInfos <<< customize) { "domainInfos": _domainInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newDomainInfos' :: DomainInfoList -> ( { "domainInfos" :: (DomainInfoList) , "nextPageToken" :: Maybe (PageToken) } -> {"domainInfos" :: (DomainInfoList) , "nextPageToken" :: Maybe (PageToken) } ) -> DomainInfos
+newDomainInfos' _domainInfos customize = (DomainInfos <<< customize) { "domainInfos": _domainInfos, "nextPageToken": Nothing }
 
 
 
@@ -1488,7 +1487,7 @@ instance encodeExecutionStatus :: Encode ExecutionStatus where encode = genericE
 -- | <p>Used to filter the workflow executions in visibility APIs by various time-based rules. Each parameter, if specified, defines a rule that must be satisfied by each returned query result. The parameter values are in the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Time format</a>. For example: <code>"oldestDate": 1325376070.</code> </p>
 newtype ExecutionTimeFilter = ExecutionTimeFilter 
   { "oldestDate" :: (Types.Timestamp)
-  , "latestDate" :: NullOrUndefined (Types.Timestamp)
+  , "latestDate" :: Maybe (Types.Timestamp)
   }
 derive instance newtypeExecutionTimeFilter :: Newtype ExecutionTimeFilter _
 derive instance repGenericExecutionTimeFilter :: Generic ExecutionTimeFilter _
@@ -1498,12 +1497,12 @@ instance encodeExecutionTimeFilter :: Encode ExecutionTimeFilter where encode = 
 
 -- | Constructs ExecutionTimeFilter from required parameters
 newExecutionTimeFilter :: Types.Timestamp -> ExecutionTimeFilter
-newExecutionTimeFilter _oldestDate = ExecutionTimeFilter { "oldestDate": _oldestDate, "latestDate": (NullOrUndefined Nothing) }
+newExecutionTimeFilter _oldestDate = ExecutionTimeFilter { "oldestDate": _oldestDate, "latestDate": Nothing }
 
 -- | Constructs ExecutionTimeFilter's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newExecutionTimeFilter' :: Types.Timestamp -> ( { "oldestDate" :: (Types.Timestamp) , "latestDate" :: NullOrUndefined (Types.Timestamp) } -> {"oldestDate" :: (Types.Timestamp) , "latestDate" :: NullOrUndefined (Types.Timestamp) } ) -> ExecutionTimeFilter
-newExecutionTimeFilter' _oldestDate customize = (ExecutionTimeFilter <<< customize) { "oldestDate": _oldestDate, "latestDate": (NullOrUndefined Nothing) }
+newExecutionTimeFilter' :: Types.Timestamp -> ( { "oldestDate" :: (Types.Timestamp) , "latestDate" :: Maybe (Types.Timestamp) } -> {"oldestDate" :: (Types.Timestamp) , "latestDate" :: Maybe (Types.Timestamp) } ) -> ExecutionTimeFilter
+newExecutionTimeFilter' _oldestDate customize = (ExecutionTimeFilter <<< customize) { "oldestDate": _oldestDate, "latestDate": Nothing }
 
 
 
@@ -1553,8 +1552,8 @@ newExternalWorkflowExecutionSignaledEventAttributes' _initiatedEventId _workflow
 
 -- | <p>Provides the details of the <code>FailWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype FailWorkflowExecutionDecisionAttributes = FailWorkflowExecutionDecisionAttributes 
-  { "reason" :: NullOrUndefined (FailureReason)
-  , "details" :: NullOrUndefined (Data)
+  { "reason" :: Maybe (FailureReason)
+  , "details" :: Maybe (Data)
   }
 derive instance newtypeFailWorkflowExecutionDecisionAttributes :: Newtype FailWorkflowExecutionDecisionAttributes _
 derive instance repGenericFailWorkflowExecutionDecisionAttributes :: Generic FailWorkflowExecutionDecisionAttributes _
@@ -1564,12 +1563,12 @@ instance encodeFailWorkflowExecutionDecisionAttributes :: Encode FailWorkflowExe
 
 -- | Constructs FailWorkflowExecutionDecisionAttributes from required parameters
 newFailWorkflowExecutionDecisionAttributes :: FailWorkflowExecutionDecisionAttributes
-newFailWorkflowExecutionDecisionAttributes  = FailWorkflowExecutionDecisionAttributes { "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newFailWorkflowExecutionDecisionAttributes  = FailWorkflowExecutionDecisionAttributes { "details": Nothing, "reason": Nothing }
 
 -- | Constructs FailWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newFailWorkflowExecutionDecisionAttributes' :: ( { "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) } -> {"reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) } ) -> FailWorkflowExecutionDecisionAttributes
-newFailWorkflowExecutionDecisionAttributes'  customize = (FailWorkflowExecutionDecisionAttributes <<< customize) { "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newFailWorkflowExecutionDecisionAttributes' :: ( { "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) } -> {"reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) } ) -> FailWorkflowExecutionDecisionAttributes
+newFailWorkflowExecutionDecisionAttributes'  customize = (FailWorkflowExecutionDecisionAttributes <<< customize) { "details": Nothing, "reason": Nothing }
 
 
 
@@ -1643,9 +1642,9 @@ instance encodeFunctionName :: Encode FunctionName where encode = genericEncode 
 newtype GetWorkflowExecutionHistoryInput = GetWorkflowExecutionHistoryInput 
   { "domain" :: (DomainName)
   , "execution" :: (WorkflowExecution)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
   }
 derive instance newtypeGetWorkflowExecutionHistoryInput :: Newtype GetWorkflowExecutionHistoryInput _
 derive instance repGenericGetWorkflowExecutionHistoryInput :: Generic GetWorkflowExecutionHistoryInput _
@@ -1655,19 +1654,19 @@ instance encodeGetWorkflowExecutionHistoryInput :: Encode GetWorkflowExecutionHi
 
 -- | Constructs GetWorkflowExecutionHistoryInput from required parameters
 newGetWorkflowExecutionHistoryInput :: DomainName -> WorkflowExecution -> GetWorkflowExecutionHistoryInput
-newGetWorkflowExecutionHistoryInput _domain _execution = GetWorkflowExecutionHistoryInput { "domain": _domain, "execution": _execution, "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newGetWorkflowExecutionHistoryInput _domain _execution = GetWorkflowExecutionHistoryInput { "domain": _domain, "execution": _execution, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 -- | Constructs GetWorkflowExecutionHistoryInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetWorkflowExecutionHistoryInput' :: DomainName -> WorkflowExecution -> ( { "domain" :: (DomainName) , "execution" :: (WorkflowExecution) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } -> {"domain" :: (DomainName) , "execution" :: (WorkflowExecution) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } ) -> GetWorkflowExecutionHistoryInput
-newGetWorkflowExecutionHistoryInput' _domain _execution customize = (GetWorkflowExecutionHistoryInput <<< customize) { "domain": _domain, "execution": _execution, "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newGetWorkflowExecutionHistoryInput' :: DomainName -> WorkflowExecution -> ( { "domain" :: (DomainName) , "execution" :: (WorkflowExecution) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } -> {"domain" :: (DomainName) , "execution" :: (WorkflowExecution) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } ) -> GetWorkflowExecutionHistoryInput
+newGetWorkflowExecutionHistoryInput' _domain _execution customize = (GetWorkflowExecutionHistoryInput <<< customize) { "domain": _domain, "execution": _execution, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 
 
 -- | <p>Paginated representation of a workflow history for a workflow execution. This is the up to date, complete and authoritative record of the events related to all tasks and events in the life of the workflow execution.</p>
 newtype History = History 
   { "events" :: (HistoryEventList)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
+  , "nextPageToken" :: Maybe (PageToken)
   }
 derive instance newtypeHistory :: Newtype History _
 derive instance repGenericHistory :: Generic History _
@@ -1677,12 +1676,12 @@ instance encodeHistory :: Encode History where encode = genericEncode options
 
 -- | Constructs History from required parameters
 newHistory :: HistoryEventList -> History
-newHistory _events = History { "events": _events, "nextPageToken": (NullOrUndefined Nothing) }
+newHistory _events = History { "events": _events, "nextPageToken": Nothing }
 
 -- | Constructs History's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newHistory' :: HistoryEventList -> ( { "events" :: (HistoryEventList) , "nextPageToken" :: NullOrUndefined (PageToken) } -> {"events" :: (HistoryEventList) , "nextPageToken" :: NullOrUndefined (PageToken) } ) -> History
-newHistory' _events customize = (History <<< customize) { "events": _events, "nextPageToken": (NullOrUndefined Nothing) }
+newHistory' :: HistoryEventList -> ( { "events" :: (HistoryEventList) , "nextPageToken" :: Maybe (PageToken) } -> {"events" :: (HistoryEventList) , "nextPageToken" :: Maybe (PageToken) } ) -> History
+newHistory' _events customize = (History <<< customize) { "events": _events, "nextPageToken": Nothing }
 
 
 
@@ -1691,60 +1690,60 @@ newtype HistoryEvent = HistoryEvent
   { "eventTimestamp" :: (Types.Timestamp)
   , "eventType" :: (EventType)
   , "eventId" :: (EventId)
-  , "workflowExecutionStartedEventAttributes" :: NullOrUndefined (WorkflowExecutionStartedEventAttributes)
-  , "workflowExecutionCompletedEventAttributes" :: NullOrUndefined (WorkflowExecutionCompletedEventAttributes)
-  , "completeWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (CompleteWorkflowExecutionFailedEventAttributes)
-  , "workflowExecutionFailedEventAttributes" :: NullOrUndefined (WorkflowExecutionFailedEventAttributes)
-  , "failWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (FailWorkflowExecutionFailedEventAttributes)
-  , "workflowExecutionTimedOutEventAttributes" :: NullOrUndefined (WorkflowExecutionTimedOutEventAttributes)
-  , "workflowExecutionCanceledEventAttributes" :: NullOrUndefined (WorkflowExecutionCanceledEventAttributes)
-  , "cancelWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (CancelWorkflowExecutionFailedEventAttributes)
-  , "workflowExecutionContinuedAsNewEventAttributes" :: NullOrUndefined (WorkflowExecutionContinuedAsNewEventAttributes)
-  , "continueAsNewWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (ContinueAsNewWorkflowExecutionFailedEventAttributes)
-  , "workflowExecutionTerminatedEventAttributes" :: NullOrUndefined (WorkflowExecutionTerminatedEventAttributes)
-  , "workflowExecutionCancelRequestedEventAttributes" :: NullOrUndefined (WorkflowExecutionCancelRequestedEventAttributes)
-  , "decisionTaskScheduledEventAttributes" :: NullOrUndefined (DecisionTaskScheduledEventAttributes)
-  , "decisionTaskStartedEventAttributes" :: NullOrUndefined (DecisionTaskStartedEventAttributes)
-  , "decisionTaskCompletedEventAttributes" :: NullOrUndefined (DecisionTaskCompletedEventAttributes)
-  , "decisionTaskTimedOutEventAttributes" :: NullOrUndefined (DecisionTaskTimedOutEventAttributes)
-  , "activityTaskScheduledEventAttributes" :: NullOrUndefined (ActivityTaskScheduledEventAttributes)
-  , "activityTaskStartedEventAttributes" :: NullOrUndefined (ActivityTaskStartedEventAttributes)
-  , "activityTaskCompletedEventAttributes" :: NullOrUndefined (ActivityTaskCompletedEventAttributes)
-  , "activityTaskFailedEventAttributes" :: NullOrUndefined (ActivityTaskFailedEventAttributes)
-  , "activityTaskTimedOutEventAttributes" :: NullOrUndefined (ActivityTaskTimedOutEventAttributes)
-  , "activityTaskCanceledEventAttributes" :: NullOrUndefined (ActivityTaskCanceledEventAttributes)
-  , "activityTaskCancelRequestedEventAttributes" :: NullOrUndefined (ActivityTaskCancelRequestedEventAttributes)
-  , "workflowExecutionSignaledEventAttributes" :: NullOrUndefined (WorkflowExecutionSignaledEventAttributes)
-  , "markerRecordedEventAttributes" :: NullOrUndefined (MarkerRecordedEventAttributes)
-  , "recordMarkerFailedEventAttributes" :: NullOrUndefined (RecordMarkerFailedEventAttributes)
-  , "timerStartedEventAttributes" :: NullOrUndefined (TimerStartedEventAttributes)
-  , "timerFiredEventAttributes" :: NullOrUndefined (TimerFiredEventAttributes)
-  , "timerCanceledEventAttributes" :: NullOrUndefined (TimerCanceledEventAttributes)
-  , "startChildWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (StartChildWorkflowExecutionInitiatedEventAttributes)
-  , "childWorkflowExecutionStartedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionStartedEventAttributes)
-  , "childWorkflowExecutionCompletedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionCompletedEventAttributes)
-  , "childWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionFailedEventAttributes)
-  , "childWorkflowExecutionTimedOutEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionTimedOutEventAttributes)
-  , "childWorkflowExecutionCanceledEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionCanceledEventAttributes)
-  , "childWorkflowExecutionTerminatedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionTerminatedEventAttributes)
-  , "signalExternalWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionInitiatedEventAttributes)
-  , "externalWorkflowExecutionSignaledEventAttributes" :: NullOrUndefined (ExternalWorkflowExecutionSignaledEventAttributes)
-  , "signalExternalWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionFailedEventAttributes)
-  , "externalWorkflowExecutionCancelRequestedEventAttributes" :: NullOrUndefined (ExternalWorkflowExecutionCancelRequestedEventAttributes)
-  , "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes)
-  , "requestCancelExternalWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionFailedEventAttributes)
-  , "scheduleActivityTaskFailedEventAttributes" :: NullOrUndefined (ScheduleActivityTaskFailedEventAttributes)
-  , "requestCancelActivityTaskFailedEventAttributes" :: NullOrUndefined (RequestCancelActivityTaskFailedEventAttributes)
-  , "startTimerFailedEventAttributes" :: NullOrUndefined (StartTimerFailedEventAttributes)
-  , "cancelTimerFailedEventAttributes" :: NullOrUndefined (CancelTimerFailedEventAttributes)
-  , "startChildWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (StartChildWorkflowExecutionFailedEventAttributes)
-  , "lambdaFunctionScheduledEventAttributes" :: NullOrUndefined (LambdaFunctionScheduledEventAttributes)
-  , "lambdaFunctionStartedEventAttributes" :: NullOrUndefined (LambdaFunctionStartedEventAttributes)
-  , "lambdaFunctionCompletedEventAttributes" :: NullOrUndefined (LambdaFunctionCompletedEventAttributes)
-  , "lambdaFunctionFailedEventAttributes" :: NullOrUndefined (LambdaFunctionFailedEventAttributes)
-  , "lambdaFunctionTimedOutEventAttributes" :: NullOrUndefined (LambdaFunctionTimedOutEventAttributes)
-  , "scheduleLambdaFunctionFailedEventAttributes" :: NullOrUndefined (ScheduleLambdaFunctionFailedEventAttributes)
-  , "startLambdaFunctionFailedEventAttributes" :: NullOrUndefined (StartLambdaFunctionFailedEventAttributes)
+  , "workflowExecutionStartedEventAttributes" :: Maybe (WorkflowExecutionStartedEventAttributes)
+  , "workflowExecutionCompletedEventAttributes" :: Maybe (WorkflowExecutionCompletedEventAttributes)
+  , "completeWorkflowExecutionFailedEventAttributes" :: Maybe (CompleteWorkflowExecutionFailedEventAttributes)
+  , "workflowExecutionFailedEventAttributes" :: Maybe (WorkflowExecutionFailedEventAttributes)
+  , "failWorkflowExecutionFailedEventAttributes" :: Maybe (FailWorkflowExecutionFailedEventAttributes)
+  , "workflowExecutionTimedOutEventAttributes" :: Maybe (WorkflowExecutionTimedOutEventAttributes)
+  , "workflowExecutionCanceledEventAttributes" :: Maybe (WorkflowExecutionCanceledEventAttributes)
+  , "cancelWorkflowExecutionFailedEventAttributes" :: Maybe (CancelWorkflowExecutionFailedEventAttributes)
+  , "workflowExecutionContinuedAsNewEventAttributes" :: Maybe (WorkflowExecutionContinuedAsNewEventAttributes)
+  , "continueAsNewWorkflowExecutionFailedEventAttributes" :: Maybe (ContinueAsNewWorkflowExecutionFailedEventAttributes)
+  , "workflowExecutionTerminatedEventAttributes" :: Maybe (WorkflowExecutionTerminatedEventAttributes)
+  , "workflowExecutionCancelRequestedEventAttributes" :: Maybe (WorkflowExecutionCancelRequestedEventAttributes)
+  , "decisionTaskScheduledEventAttributes" :: Maybe (DecisionTaskScheduledEventAttributes)
+  , "decisionTaskStartedEventAttributes" :: Maybe (DecisionTaskStartedEventAttributes)
+  , "decisionTaskCompletedEventAttributes" :: Maybe (DecisionTaskCompletedEventAttributes)
+  , "decisionTaskTimedOutEventAttributes" :: Maybe (DecisionTaskTimedOutEventAttributes)
+  , "activityTaskScheduledEventAttributes" :: Maybe (ActivityTaskScheduledEventAttributes)
+  , "activityTaskStartedEventAttributes" :: Maybe (ActivityTaskStartedEventAttributes)
+  , "activityTaskCompletedEventAttributes" :: Maybe (ActivityTaskCompletedEventAttributes)
+  , "activityTaskFailedEventAttributes" :: Maybe (ActivityTaskFailedEventAttributes)
+  , "activityTaskTimedOutEventAttributes" :: Maybe (ActivityTaskTimedOutEventAttributes)
+  , "activityTaskCanceledEventAttributes" :: Maybe (ActivityTaskCanceledEventAttributes)
+  , "activityTaskCancelRequestedEventAttributes" :: Maybe (ActivityTaskCancelRequestedEventAttributes)
+  , "workflowExecutionSignaledEventAttributes" :: Maybe (WorkflowExecutionSignaledEventAttributes)
+  , "markerRecordedEventAttributes" :: Maybe (MarkerRecordedEventAttributes)
+  , "recordMarkerFailedEventAttributes" :: Maybe (RecordMarkerFailedEventAttributes)
+  , "timerStartedEventAttributes" :: Maybe (TimerStartedEventAttributes)
+  , "timerFiredEventAttributes" :: Maybe (TimerFiredEventAttributes)
+  , "timerCanceledEventAttributes" :: Maybe (TimerCanceledEventAttributes)
+  , "startChildWorkflowExecutionInitiatedEventAttributes" :: Maybe (StartChildWorkflowExecutionInitiatedEventAttributes)
+  , "childWorkflowExecutionStartedEventAttributes" :: Maybe (ChildWorkflowExecutionStartedEventAttributes)
+  , "childWorkflowExecutionCompletedEventAttributes" :: Maybe (ChildWorkflowExecutionCompletedEventAttributes)
+  , "childWorkflowExecutionFailedEventAttributes" :: Maybe (ChildWorkflowExecutionFailedEventAttributes)
+  , "childWorkflowExecutionTimedOutEventAttributes" :: Maybe (ChildWorkflowExecutionTimedOutEventAttributes)
+  , "childWorkflowExecutionCanceledEventAttributes" :: Maybe (ChildWorkflowExecutionCanceledEventAttributes)
+  , "childWorkflowExecutionTerminatedEventAttributes" :: Maybe (ChildWorkflowExecutionTerminatedEventAttributes)
+  , "signalExternalWorkflowExecutionInitiatedEventAttributes" :: Maybe (SignalExternalWorkflowExecutionInitiatedEventAttributes)
+  , "externalWorkflowExecutionSignaledEventAttributes" :: Maybe (ExternalWorkflowExecutionSignaledEventAttributes)
+  , "signalExternalWorkflowExecutionFailedEventAttributes" :: Maybe (SignalExternalWorkflowExecutionFailedEventAttributes)
+  , "externalWorkflowExecutionCancelRequestedEventAttributes" :: Maybe (ExternalWorkflowExecutionCancelRequestedEventAttributes)
+  , "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes)
+  , "requestCancelExternalWorkflowExecutionFailedEventAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionFailedEventAttributes)
+  , "scheduleActivityTaskFailedEventAttributes" :: Maybe (ScheduleActivityTaskFailedEventAttributes)
+  , "requestCancelActivityTaskFailedEventAttributes" :: Maybe (RequestCancelActivityTaskFailedEventAttributes)
+  , "startTimerFailedEventAttributes" :: Maybe (StartTimerFailedEventAttributes)
+  , "cancelTimerFailedEventAttributes" :: Maybe (CancelTimerFailedEventAttributes)
+  , "startChildWorkflowExecutionFailedEventAttributes" :: Maybe (StartChildWorkflowExecutionFailedEventAttributes)
+  , "lambdaFunctionScheduledEventAttributes" :: Maybe (LambdaFunctionScheduledEventAttributes)
+  , "lambdaFunctionStartedEventAttributes" :: Maybe (LambdaFunctionStartedEventAttributes)
+  , "lambdaFunctionCompletedEventAttributes" :: Maybe (LambdaFunctionCompletedEventAttributes)
+  , "lambdaFunctionFailedEventAttributes" :: Maybe (LambdaFunctionFailedEventAttributes)
+  , "lambdaFunctionTimedOutEventAttributes" :: Maybe (LambdaFunctionTimedOutEventAttributes)
+  , "scheduleLambdaFunctionFailedEventAttributes" :: Maybe (ScheduleLambdaFunctionFailedEventAttributes)
+  , "startLambdaFunctionFailedEventAttributes" :: Maybe (StartLambdaFunctionFailedEventAttributes)
   }
 derive instance newtypeHistoryEvent :: Newtype HistoryEvent _
 derive instance repGenericHistoryEvent :: Generic HistoryEvent _
@@ -1754,12 +1753,12 @@ instance encodeHistoryEvent :: Encode HistoryEvent where encode = genericEncode 
 
 -- | Constructs HistoryEvent from required parameters
 newHistoryEvent :: EventId -> Types.Timestamp -> EventType -> HistoryEvent
-newHistoryEvent _eventId _eventTimestamp _eventType = HistoryEvent { "eventId": _eventId, "eventTimestamp": _eventTimestamp, "eventType": _eventType, "activityTaskCancelRequestedEventAttributes": (NullOrUndefined Nothing), "activityTaskCanceledEventAttributes": (NullOrUndefined Nothing), "activityTaskCompletedEventAttributes": (NullOrUndefined Nothing), "activityTaskFailedEventAttributes": (NullOrUndefined Nothing), "activityTaskScheduledEventAttributes": (NullOrUndefined Nothing), "activityTaskStartedEventAttributes": (NullOrUndefined Nothing), "activityTaskTimedOutEventAttributes": (NullOrUndefined Nothing), "cancelTimerFailedEventAttributes": (NullOrUndefined Nothing), "cancelWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionCanceledEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionCompletedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionStartedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionTerminatedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionTimedOutEventAttributes": (NullOrUndefined Nothing), "completeWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "continueAsNewWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "decisionTaskCompletedEventAttributes": (NullOrUndefined Nothing), "decisionTaskScheduledEventAttributes": (NullOrUndefined Nothing), "decisionTaskStartedEventAttributes": (NullOrUndefined Nothing), "decisionTaskTimedOutEventAttributes": (NullOrUndefined Nothing), "externalWorkflowExecutionCancelRequestedEventAttributes": (NullOrUndefined Nothing), "externalWorkflowExecutionSignaledEventAttributes": (NullOrUndefined Nothing), "failWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionCompletedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionFailedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionScheduledEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionStartedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionTimedOutEventAttributes": (NullOrUndefined Nothing), "markerRecordedEventAttributes": (NullOrUndefined Nothing), "recordMarkerFailedEventAttributes": (NullOrUndefined Nothing), "requestCancelActivityTaskFailedEventAttributes": (NullOrUndefined Nothing), "requestCancelExternalWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": (NullOrUndefined Nothing), "scheduleActivityTaskFailedEventAttributes": (NullOrUndefined Nothing), "scheduleLambdaFunctionFailedEventAttributes": (NullOrUndefined Nothing), "signalExternalWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "signalExternalWorkflowExecutionInitiatedEventAttributes": (NullOrUndefined Nothing), "startChildWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "startChildWorkflowExecutionInitiatedEventAttributes": (NullOrUndefined Nothing), "startLambdaFunctionFailedEventAttributes": (NullOrUndefined Nothing), "startTimerFailedEventAttributes": (NullOrUndefined Nothing), "timerCanceledEventAttributes": (NullOrUndefined Nothing), "timerFiredEventAttributes": (NullOrUndefined Nothing), "timerStartedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionCancelRequestedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionCanceledEventAttributes": (NullOrUndefined Nothing), "workflowExecutionCompletedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionContinuedAsNewEventAttributes": (NullOrUndefined Nothing), "workflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionSignaledEventAttributes": (NullOrUndefined Nothing), "workflowExecutionStartedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionTerminatedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionTimedOutEventAttributes": (NullOrUndefined Nothing) }
+newHistoryEvent _eventId _eventTimestamp _eventType = HistoryEvent { "eventId": _eventId, "eventTimestamp": _eventTimestamp, "eventType": _eventType, "activityTaskCancelRequestedEventAttributes": Nothing, "activityTaskCanceledEventAttributes": Nothing, "activityTaskCompletedEventAttributes": Nothing, "activityTaskFailedEventAttributes": Nothing, "activityTaskScheduledEventAttributes": Nothing, "activityTaskStartedEventAttributes": Nothing, "activityTaskTimedOutEventAttributes": Nothing, "cancelTimerFailedEventAttributes": Nothing, "cancelWorkflowExecutionFailedEventAttributes": Nothing, "childWorkflowExecutionCanceledEventAttributes": Nothing, "childWorkflowExecutionCompletedEventAttributes": Nothing, "childWorkflowExecutionFailedEventAttributes": Nothing, "childWorkflowExecutionStartedEventAttributes": Nothing, "childWorkflowExecutionTerminatedEventAttributes": Nothing, "childWorkflowExecutionTimedOutEventAttributes": Nothing, "completeWorkflowExecutionFailedEventAttributes": Nothing, "continueAsNewWorkflowExecutionFailedEventAttributes": Nothing, "decisionTaskCompletedEventAttributes": Nothing, "decisionTaskScheduledEventAttributes": Nothing, "decisionTaskStartedEventAttributes": Nothing, "decisionTaskTimedOutEventAttributes": Nothing, "externalWorkflowExecutionCancelRequestedEventAttributes": Nothing, "externalWorkflowExecutionSignaledEventAttributes": Nothing, "failWorkflowExecutionFailedEventAttributes": Nothing, "lambdaFunctionCompletedEventAttributes": Nothing, "lambdaFunctionFailedEventAttributes": Nothing, "lambdaFunctionScheduledEventAttributes": Nothing, "lambdaFunctionStartedEventAttributes": Nothing, "lambdaFunctionTimedOutEventAttributes": Nothing, "markerRecordedEventAttributes": Nothing, "recordMarkerFailedEventAttributes": Nothing, "requestCancelActivityTaskFailedEventAttributes": Nothing, "requestCancelExternalWorkflowExecutionFailedEventAttributes": Nothing, "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": Nothing, "scheduleActivityTaskFailedEventAttributes": Nothing, "scheduleLambdaFunctionFailedEventAttributes": Nothing, "signalExternalWorkflowExecutionFailedEventAttributes": Nothing, "signalExternalWorkflowExecutionInitiatedEventAttributes": Nothing, "startChildWorkflowExecutionFailedEventAttributes": Nothing, "startChildWorkflowExecutionInitiatedEventAttributes": Nothing, "startLambdaFunctionFailedEventAttributes": Nothing, "startTimerFailedEventAttributes": Nothing, "timerCanceledEventAttributes": Nothing, "timerFiredEventAttributes": Nothing, "timerStartedEventAttributes": Nothing, "workflowExecutionCancelRequestedEventAttributes": Nothing, "workflowExecutionCanceledEventAttributes": Nothing, "workflowExecutionCompletedEventAttributes": Nothing, "workflowExecutionContinuedAsNewEventAttributes": Nothing, "workflowExecutionFailedEventAttributes": Nothing, "workflowExecutionSignaledEventAttributes": Nothing, "workflowExecutionStartedEventAttributes": Nothing, "workflowExecutionTerminatedEventAttributes": Nothing, "workflowExecutionTimedOutEventAttributes": Nothing }
 
 -- | Constructs HistoryEvent's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newHistoryEvent' :: EventId -> Types.Timestamp -> EventType -> ( { "eventTimestamp" :: (Types.Timestamp) , "eventType" :: (EventType) , "eventId" :: (EventId) , "workflowExecutionStartedEventAttributes" :: NullOrUndefined (WorkflowExecutionStartedEventAttributes) , "workflowExecutionCompletedEventAttributes" :: NullOrUndefined (WorkflowExecutionCompletedEventAttributes) , "completeWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (CompleteWorkflowExecutionFailedEventAttributes) , "workflowExecutionFailedEventAttributes" :: NullOrUndefined (WorkflowExecutionFailedEventAttributes) , "failWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (FailWorkflowExecutionFailedEventAttributes) , "workflowExecutionTimedOutEventAttributes" :: NullOrUndefined (WorkflowExecutionTimedOutEventAttributes) , "workflowExecutionCanceledEventAttributes" :: NullOrUndefined (WorkflowExecutionCanceledEventAttributes) , "cancelWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (CancelWorkflowExecutionFailedEventAttributes) , "workflowExecutionContinuedAsNewEventAttributes" :: NullOrUndefined (WorkflowExecutionContinuedAsNewEventAttributes) , "continueAsNewWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (ContinueAsNewWorkflowExecutionFailedEventAttributes) , "workflowExecutionTerminatedEventAttributes" :: NullOrUndefined (WorkflowExecutionTerminatedEventAttributes) , "workflowExecutionCancelRequestedEventAttributes" :: NullOrUndefined (WorkflowExecutionCancelRequestedEventAttributes) , "decisionTaskScheduledEventAttributes" :: NullOrUndefined (DecisionTaskScheduledEventAttributes) , "decisionTaskStartedEventAttributes" :: NullOrUndefined (DecisionTaskStartedEventAttributes) , "decisionTaskCompletedEventAttributes" :: NullOrUndefined (DecisionTaskCompletedEventAttributes) , "decisionTaskTimedOutEventAttributes" :: NullOrUndefined (DecisionTaskTimedOutEventAttributes) , "activityTaskScheduledEventAttributes" :: NullOrUndefined (ActivityTaskScheduledEventAttributes) , "activityTaskStartedEventAttributes" :: NullOrUndefined (ActivityTaskStartedEventAttributes) , "activityTaskCompletedEventAttributes" :: NullOrUndefined (ActivityTaskCompletedEventAttributes) , "activityTaskFailedEventAttributes" :: NullOrUndefined (ActivityTaskFailedEventAttributes) , "activityTaskTimedOutEventAttributes" :: NullOrUndefined (ActivityTaskTimedOutEventAttributes) , "activityTaskCanceledEventAttributes" :: NullOrUndefined (ActivityTaskCanceledEventAttributes) , "activityTaskCancelRequestedEventAttributes" :: NullOrUndefined (ActivityTaskCancelRequestedEventAttributes) , "workflowExecutionSignaledEventAttributes" :: NullOrUndefined (WorkflowExecutionSignaledEventAttributes) , "markerRecordedEventAttributes" :: NullOrUndefined (MarkerRecordedEventAttributes) , "recordMarkerFailedEventAttributes" :: NullOrUndefined (RecordMarkerFailedEventAttributes) , "timerStartedEventAttributes" :: NullOrUndefined (TimerStartedEventAttributes) , "timerFiredEventAttributes" :: NullOrUndefined (TimerFiredEventAttributes) , "timerCanceledEventAttributes" :: NullOrUndefined (TimerCanceledEventAttributes) , "startChildWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (StartChildWorkflowExecutionInitiatedEventAttributes) , "childWorkflowExecutionStartedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionStartedEventAttributes) , "childWorkflowExecutionCompletedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionCompletedEventAttributes) , "childWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionFailedEventAttributes) , "childWorkflowExecutionTimedOutEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionTimedOutEventAttributes) , "childWorkflowExecutionCanceledEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionCanceledEventAttributes) , "childWorkflowExecutionTerminatedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionTerminatedEventAttributes) , "signalExternalWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionInitiatedEventAttributes) , "externalWorkflowExecutionSignaledEventAttributes" :: NullOrUndefined (ExternalWorkflowExecutionSignaledEventAttributes) , "signalExternalWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionFailedEventAttributes) , "externalWorkflowExecutionCancelRequestedEventAttributes" :: NullOrUndefined (ExternalWorkflowExecutionCancelRequestedEventAttributes) , "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) , "requestCancelExternalWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionFailedEventAttributes) , "scheduleActivityTaskFailedEventAttributes" :: NullOrUndefined (ScheduleActivityTaskFailedEventAttributes) , "requestCancelActivityTaskFailedEventAttributes" :: NullOrUndefined (RequestCancelActivityTaskFailedEventAttributes) , "startTimerFailedEventAttributes" :: NullOrUndefined (StartTimerFailedEventAttributes) , "cancelTimerFailedEventAttributes" :: NullOrUndefined (CancelTimerFailedEventAttributes) , "startChildWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (StartChildWorkflowExecutionFailedEventAttributes) , "lambdaFunctionScheduledEventAttributes" :: NullOrUndefined (LambdaFunctionScheduledEventAttributes) , "lambdaFunctionStartedEventAttributes" :: NullOrUndefined (LambdaFunctionStartedEventAttributes) , "lambdaFunctionCompletedEventAttributes" :: NullOrUndefined (LambdaFunctionCompletedEventAttributes) , "lambdaFunctionFailedEventAttributes" :: NullOrUndefined (LambdaFunctionFailedEventAttributes) , "lambdaFunctionTimedOutEventAttributes" :: NullOrUndefined (LambdaFunctionTimedOutEventAttributes) , "scheduleLambdaFunctionFailedEventAttributes" :: NullOrUndefined (ScheduleLambdaFunctionFailedEventAttributes) , "startLambdaFunctionFailedEventAttributes" :: NullOrUndefined (StartLambdaFunctionFailedEventAttributes) } -> {"eventTimestamp" :: (Types.Timestamp) , "eventType" :: (EventType) , "eventId" :: (EventId) , "workflowExecutionStartedEventAttributes" :: NullOrUndefined (WorkflowExecutionStartedEventAttributes) , "workflowExecutionCompletedEventAttributes" :: NullOrUndefined (WorkflowExecutionCompletedEventAttributes) , "completeWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (CompleteWorkflowExecutionFailedEventAttributes) , "workflowExecutionFailedEventAttributes" :: NullOrUndefined (WorkflowExecutionFailedEventAttributes) , "failWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (FailWorkflowExecutionFailedEventAttributes) , "workflowExecutionTimedOutEventAttributes" :: NullOrUndefined (WorkflowExecutionTimedOutEventAttributes) , "workflowExecutionCanceledEventAttributes" :: NullOrUndefined (WorkflowExecutionCanceledEventAttributes) , "cancelWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (CancelWorkflowExecutionFailedEventAttributes) , "workflowExecutionContinuedAsNewEventAttributes" :: NullOrUndefined (WorkflowExecutionContinuedAsNewEventAttributes) , "continueAsNewWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (ContinueAsNewWorkflowExecutionFailedEventAttributes) , "workflowExecutionTerminatedEventAttributes" :: NullOrUndefined (WorkflowExecutionTerminatedEventAttributes) , "workflowExecutionCancelRequestedEventAttributes" :: NullOrUndefined (WorkflowExecutionCancelRequestedEventAttributes) , "decisionTaskScheduledEventAttributes" :: NullOrUndefined (DecisionTaskScheduledEventAttributes) , "decisionTaskStartedEventAttributes" :: NullOrUndefined (DecisionTaskStartedEventAttributes) , "decisionTaskCompletedEventAttributes" :: NullOrUndefined (DecisionTaskCompletedEventAttributes) , "decisionTaskTimedOutEventAttributes" :: NullOrUndefined (DecisionTaskTimedOutEventAttributes) , "activityTaskScheduledEventAttributes" :: NullOrUndefined (ActivityTaskScheduledEventAttributes) , "activityTaskStartedEventAttributes" :: NullOrUndefined (ActivityTaskStartedEventAttributes) , "activityTaskCompletedEventAttributes" :: NullOrUndefined (ActivityTaskCompletedEventAttributes) , "activityTaskFailedEventAttributes" :: NullOrUndefined (ActivityTaskFailedEventAttributes) , "activityTaskTimedOutEventAttributes" :: NullOrUndefined (ActivityTaskTimedOutEventAttributes) , "activityTaskCanceledEventAttributes" :: NullOrUndefined (ActivityTaskCanceledEventAttributes) , "activityTaskCancelRequestedEventAttributes" :: NullOrUndefined (ActivityTaskCancelRequestedEventAttributes) , "workflowExecutionSignaledEventAttributes" :: NullOrUndefined (WorkflowExecutionSignaledEventAttributes) , "markerRecordedEventAttributes" :: NullOrUndefined (MarkerRecordedEventAttributes) , "recordMarkerFailedEventAttributes" :: NullOrUndefined (RecordMarkerFailedEventAttributes) , "timerStartedEventAttributes" :: NullOrUndefined (TimerStartedEventAttributes) , "timerFiredEventAttributes" :: NullOrUndefined (TimerFiredEventAttributes) , "timerCanceledEventAttributes" :: NullOrUndefined (TimerCanceledEventAttributes) , "startChildWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (StartChildWorkflowExecutionInitiatedEventAttributes) , "childWorkflowExecutionStartedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionStartedEventAttributes) , "childWorkflowExecutionCompletedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionCompletedEventAttributes) , "childWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionFailedEventAttributes) , "childWorkflowExecutionTimedOutEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionTimedOutEventAttributes) , "childWorkflowExecutionCanceledEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionCanceledEventAttributes) , "childWorkflowExecutionTerminatedEventAttributes" :: NullOrUndefined (ChildWorkflowExecutionTerminatedEventAttributes) , "signalExternalWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionInitiatedEventAttributes) , "externalWorkflowExecutionSignaledEventAttributes" :: NullOrUndefined (ExternalWorkflowExecutionSignaledEventAttributes) , "signalExternalWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (SignalExternalWorkflowExecutionFailedEventAttributes) , "externalWorkflowExecutionCancelRequestedEventAttributes" :: NullOrUndefined (ExternalWorkflowExecutionCancelRequestedEventAttributes) , "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) , "requestCancelExternalWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (RequestCancelExternalWorkflowExecutionFailedEventAttributes) , "scheduleActivityTaskFailedEventAttributes" :: NullOrUndefined (ScheduleActivityTaskFailedEventAttributes) , "requestCancelActivityTaskFailedEventAttributes" :: NullOrUndefined (RequestCancelActivityTaskFailedEventAttributes) , "startTimerFailedEventAttributes" :: NullOrUndefined (StartTimerFailedEventAttributes) , "cancelTimerFailedEventAttributes" :: NullOrUndefined (CancelTimerFailedEventAttributes) , "startChildWorkflowExecutionFailedEventAttributes" :: NullOrUndefined (StartChildWorkflowExecutionFailedEventAttributes) , "lambdaFunctionScheduledEventAttributes" :: NullOrUndefined (LambdaFunctionScheduledEventAttributes) , "lambdaFunctionStartedEventAttributes" :: NullOrUndefined (LambdaFunctionStartedEventAttributes) , "lambdaFunctionCompletedEventAttributes" :: NullOrUndefined (LambdaFunctionCompletedEventAttributes) , "lambdaFunctionFailedEventAttributes" :: NullOrUndefined (LambdaFunctionFailedEventAttributes) , "lambdaFunctionTimedOutEventAttributes" :: NullOrUndefined (LambdaFunctionTimedOutEventAttributes) , "scheduleLambdaFunctionFailedEventAttributes" :: NullOrUndefined (ScheduleLambdaFunctionFailedEventAttributes) , "startLambdaFunctionFailedEventAttributes" :: NullOrUndefined (StartLambdaFunctionFailedEventAttributes) } ) -> HistoryEvent
-newHistoryEvent' _eventId _eventTimestamp _eventType customize = (HistoryEvent <<< customize) { "eventId": _eventId, "eventTimestamp": _eventTimestamp, "eventType": _eventType, "activityTaskCancelRequestedEventAttributes": (NullOrUndefined Nothing), "activityTaskCanceledEventAttributes": (NullOrUndefined Nothing), "activityTaskCompletedEventAttributes": (NullOrUndefined Nothing), "activityTaskFailedEventAttributes": (NullOrUndefined Nothing), "activityTaskScheduledEventAttributes": (NullOrUndefined Nothing), "activityTaskStartedEventAttributes": (NullOrUndefined Nothing), "activityTaskTimedOutEventAttributes": (NullOrUndefined Nothing), "cancelTimerFailedEventAttributes": (NullOrUndefined Nothing), "cancelWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionCanceledEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionCompletedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionStartedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionTerminatedEventAttributes": (NullOrUndefined Nothing), "childWorkflowExecutionTimedOutEventAttributes": (NullOrUndefined Nothing), "completeWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "continueAsNewWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "decisionTaskCompletedEventAttributes": (NullOrUndefined Nothing), "decisionTaskScheduledEventAttributes": (NullOrUndefined Nothing), "decisionTaskStartedEventAttributes": (NullOrUndefined Nothing), "decisionTaskTimedOutEventAttributes": (NullOrUndefined Nothing), "externalWorkflowExecutionCancelRequestedEventAttributes": (NullOrUndefined Nothing), "externalWorkflowExecutionSignaledEventAttributes": (NullOrUndefined Nothing), "failWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionCompletedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionFailedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionScheduledEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionStartedEventAttributes": (NullOrUndefined Nothing), "lambdaFunctionTimedOutEventAttributes": (NullOrUndefined Nothing), "markerRecordedEventAttributes": (NullOrUndefined Nothing), "recordMarkerFailedEventAttributes": (NullOrUndefined Nothing), "requestCancelActivityTaskFailedEventAttributes": (NullOrUndefined Nothing), "requestCancelExternalWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": (NullOrUndefined Nothing), "scheduleActivityTaskFailedEventAttributes": (NullOrUndefined Nothing), "scheduleLambdaFunctionFailedEventAttributes": (NullOrUndefined Nothing), "signalExternalWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "signalExternalWorkflowExecutionInitiatedEventAttributes": (NullOrUndefined Nothing), "startChildWorkflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "startChildWorkflowExecutionInitiatedEventAttributes": (NullOrUndefined Nothing), "startLambdaFunctionFailedEventAttributes": (NullOrUndefined Nothing), "startTimerFailedEventAttributes": (NullOrUndefined Nothing), "timerCanceledEventAttributes": (NullOrUndefined Nothing), "timerFiredEventAttributes": (NullOrUndefined Nothing), "timerStartedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionCancelRequestedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionCanceledEventAttributes": (NullOrUndefined Nothing), "workflowExecutionCompletedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionContinuedAsNewEventAttributes": (NullOrUndefined Nothing), "workflowExecutionFailedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionSignaledEventAttributes": (NullOrUndefined Nothing), "workflowExecutionStartedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionTerminatedEventAttributes": (NullOrUndefined Nothing), "workflowExecutionTimedOutEventAttributes": (NullOrUndefined Nothing) }
+newHistoryEvent' :: EventId -> Types.Timestamp -> EventType -> ( { "eventTimestamp" :: (Types.Timestamp) , "eventType" :: (EventType) , "eventId" :: (EventId) , "workflowExecutionStartedEventAttributes" :: Maybe (WorkflowExecutionStartedEventAttributes) , "workflowExecutionCompletedEventAttributes" :: Maybe (WorkflowExecutionCompletedEventAttributes) , "completeWorkflowExecutionFailedEventAttributes" :: Maybe (CompleteWorkflowExecutionFailedEventAttributes) , "workflowExecutionFailedEventAttributes" :: Maybe (WorkflowExecutionFailedEventAttributes) , "failWorkflowExecutionFailedEventAttributes" :: Maybe (FailWorkflowExecutionFailedEventAttributes) , "workflowExecutionTimedOutEventAttributes" :: Maybe (WorkflowExecutionTimedOutEventAttributes) , "workflowExecutionCanceledEventAttributes" :: Maybe (WorkflowExecutionCanceledEventAttributes) , "cancelWorkflowExecutionFailedEventAttributes" :: Maybe (CancelWorkflowExecutionFailedEventAttributes) , "workflowExecutionContinuedAsNewEventAttributes" :: Maybe (WorkflowExecutionContinuedAsNewEventAttributes) , "continueAsNewWorkflowExecutionFailedEventAttributes" :: Maybe (ContinueAsNewWorkflowExecutionFailedEventAttributes) , "workflowExecutionTerminatedEventAttributes" :: Maybe (WorkflowExecutionTerminatedEventAttributes) , "workflowExecutionCancelRequestedEventAttributes" :: Maybe (WorkflowExecutionCancelRequestedEventAttributes) , "decisionTaskScheduledEventAttributes" :: Maybe (DecisionTaskScheduledEventAttributes) , "decisionTaskStartedEventAttributes" :: Maybe (DecisionTaskStartedEventAttributes) , "decisionTaskCompletedEventAttributes" :: Maybe (DecisionTaskCompletedEventAttributes) , "decisionTaskTimedOutEventAttributes" :: Maybe (DecisionTaskTimedOutEventAttributes) , "activityTaskScheduledEventAttributes" :: Maybe (ActivityTaskScheduledEventAttributes) , "activityTaskStartedEventAttributes" :: Maybe (ActivityTaskStartedEventAttributes) , "activityTaskCompletedEventAttributes" :: Maybe (ActivityTaskCompletedEventAttributes) , "activityTaskFailedEventAttributes" :: Maybe (ActivityTaskFailedEventAttributes) , "activityTaskTimedOutEventAttributes" :: Maybe (ActivityTaskTimedOutEventAttributes) , "activityTaskCanceledEventAttributes" :: Maybe (ActivityTaskCanceledEventAttributes) , "activityTaskCancelRequestedEventAttributes" :: Maybe (ActivityTaskCancelRequestedEventAttributes) , "workflowExecutionSignaledEventAttributes" :: Maybe (WorkflowExecutionSignaledEventAttributes) , "markerRecordedEventAttributes" :: Maybe (MarkerRecordedEventAttributes) , "recordMarkerFailedEventAttributes" :: Maybe (RecordMarkerFailedEventAttributes) , "timerStartedEventAttributes" :: Maybe (TimerStartedEventAttributes) , "timerFiredEventAttributes" :: Maybe (TimerFiredEventAttributes) , "timerCanceledEventAttributes" :: Maybe (TimerCanceledEventAttributes) , "startChildWorkflowExecutionInitiatedEventAttributes" :: Maybe (StartChildWorkflowExecutionInitiatedEventAttributes) , "childWorkflowExecutionStartedEventAttributes" :: Maybe (ChildWorkflowExecutionStartedEventAttributes) , "childWorkflowExecutionCompletedEventAttributes" :: Maybe (ChildWorkflowExecutionCompletedEventAttributes) , "childWorkflowExecutionFailedEventAttributes" :: Maybe (ChildWorkflowExecutionFailedEventAttributes) , "childWorkflowExecutionTimedOutEventAttributes" :: Maybe (ChildWorkflowExecutionTimedOutEventAttributes) , "childWorkflowExecutionCanceledEventAttributes" :: Maybe (ChildWorkflowExecutionCanceledEventAttributes) , "childWorkflowExecutionTerminatedEventAttributes" :: Maybe (ChildWorkflowExecutionTerminatedEventAttributes) , "signalExternalWorkflowExecutionInitiatedEventAttributes" :: Maybe (SignalExternalWorkflowExecutionInitiatedEventAttributes) , "externalWorkflowExecutionSignaledEventAttributes" :: Maybe (ExternalWorkflowExecutionSignaledEventAttributes) , "signalExternalWorkflowExecutionFailedEventAttributes" :: Maybe (SignalExternalWorkflowExecutionFailedEventAttributes) , "externalWorkflowExecutionCancelRequestedEventAttributes" :: Maybe (ExternalWorkflowExecutionCancelRequestedEventAttributes) , "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) , "requestCancelExternalWorkflowExecutionFailedEventAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionFailedEventAttributes) , "scheduleActivityTaskFailedEventAttributes" :: Maybe (ScheduleActivityTaskFailedEventAttributes) , "requestCancelActivityTaskFailedEventAttributes" :: Maybe (RequestCancelActivityTaskFailedEventAttributes) , "startTimerFailedEventAttributes" :: Maybe (StartTimerFailedEventAttributes) , "cancelTimerFailedEventAttributes" :: Maybe (CancelTimerFailedEventAttributes) , "startChildWorkflowExecutionFailedEventAttributes" :: Maybe (StartChildWorkflowExecutionFailedEventAttributes) , "lambdaFunctionScheduledEventAttributes" :: Maybe (LambdaFunctionScheduledEventAttributes) , "lambdaFunctionStartedEventAttributes" :: Maybe (LambdaFunctionStartedEventAttributes) , "lambdaFunctionCompletedEventAttributes" :: Maybe (LambdaFunctionCompletedEventAttributes) , "lambdaFunctionFailedEventAttributes" :: Maybe (LambdaFunctionFailedEventAttributes) , "lambdaFunctionTimedOutEventAttributes" :: Maybe (LambdaFunctionTimedOutEventAttributes) , "scheduleLambdaFunctionFailedEventAttributes" :: Maybe (ScheduleLambdaFunctionFailedEventAttributes) , "startLambdaFunctionFailedEventAttributes" :: Maybe (StartLambdaFunctionFailedEventAttributes) } -> {"eventTimestamp" :: (Types.Timestamp) , "eventType" :: (EventType) , "eventId" :: (EventId) , "workflowExecutionStartedEventAttributes" :: Maybe (WorkflowExecutionStartedEventAttributes) , "workflowExecutionCompletedEventAttributes" :: Maybe (WorkflowExecutionCompletedEventAttributes) , "completeWorkflowExecutionFailedEventAttributes" :: Maybe (CompleteWorkflowExecutionFailedEventAttributes) , "workflowExecutionFailedEventAttributes" :: Maybe (WorkflowExecutionFailedEventAttributes) , "failWorkflowExecutionFailedEventAttributes" :: Maybe (FailWorkflowExecutionFailedEventAttributes) , "workflowExecutionTimedOutEventAttributes" :: Maybe (WorkflowExecutionTimedOutEventAttributes) , "workflowExecutionCanceledEventAttributes" :: Maybe (WorkflowExecutionCanceledEventAttributes) , "cancelWorkflowExecutionFailedEventAttributes" :: Maybe (CancelWorkflowExecutionFailedEventAttributes) , "workflowExecutionContinuedAsNewEventAttributes" :: Maybe (WorkflowExecutionContinuedAsNewEventAttributes) , "continueAsNewWorkflowExecutionFailedEventAttributes" :: Maybe (ContinueAsNewWorkflowExecutionFailedEventAttributes) , "workflowExecutionTerminatedEventAttributes" :: Maybe (WorkflowExecutionTerminatedEventAttributes) , "workflowExecutionCancelRequestedEventAttributes" :: Maybe (WorkflowExecutionCancelRequestedEventAttributes) , "decisionTaskScheduledEventAttributes" :: Maybe (DecisionTaskScheduledEventAttributes) , "decisionTaskStartedEventAttributes" :: Maybe (DecisionTaskStartedEventAttributes) , "decisionTaskCompletedEventAttributes" :: Maybe (DecisionTaskCompletedEventAttributes) , "decisionTaskTimedOutEventAttributes" :: Maybe (DecisionTaskTimedOutEventAttributes) , "activityTaskScheduledEventAttributes" :: Maybe (ActivityTaskScheduledEventAttributes) , "activityTaskStartedEventAttributes" :: Maybe (ActivityTaskStartedEventAttributes) , "activityTaskCompletedEventAttributes" :: Maybe (ActivityTaskCompletedEventAttributes) , "activityTaskFailedEventAttributes" :: Maybe (ActivityTaskFailedEventAttributes) , "activityTaskTimedOutEventAttributes" :: Maybe (ActivityTaskTimedOutEventAttributes) , "activityTaskCanceledEventAttributes" :: Maybe (ActivityTaskCanceledEventAttributes) , "activityTaskCancelRequestedEventAttributes" :: Maybe (ActivityTaskCancelRequestedEventAttributes) , "workflowExecutionSignaledEventAttributes" :: Maybe (WorkflowExecutionSignaledEventAttributes) , "markerRecordedEventAttributes" :: Maybe (MarkerRecordedEventAttributes) , "recordMarkerFailedEventAttributes" :: Maybe (RecordMarkerFailedEventAttributes) , "timerStartedEventAttributes" :: Maybe (TimerStartedEventAttributes) , "timerFiredEventAttributes" :: Maybe (TimerFiredEventAttributes) , "timerCanceledEventAttributes" :: Maybe (TimerCanceledEventAttributes) , "startChildWorkflowExecutionInitiatedEventAttributes" :: Maybe (StartChildWorkflowExecutionInitiatedEventAttributes) , "childWorkflowExecutionStartedEventAttributes" :: Maybe (ChildWorkflowExecutionStartedEventAttributes) , "childWorkflowExecutionCompletedEventAttributes" :: Maybe (ChildWorkflowExecutionCompletedEventAttributes) , "childWorkflowExecutionFailedEventAttributes" :: Maybe (ChildWorkflowExecutionFailedEventAttributes) , "childWorkflowExecutionTimedOutEventAttributes" :: Maybe (ChildWorkflowExecutionTimedOutEventAttributes) , "childWorkflowExecutionCanceledEventAttributes" :: Maybe (ChildWorkflowExecutionCanceledEventAttributes) , "childWorkflowExecutionTerminatedEventAttributes" :: Maybe (ChildWorkflowExecutionTerminatedEventAttributes) , "signalExternalWorkflowExecutionInitiatedEventAttributes" :: Maybe (SignalExternalWorkflowExecutionInitiatedEventAttributes) , "externalWorkflowExecutionSignaledEventAttributes" :: Maybe (ExternalWorkflowExecutionSignaledEventAttributes) , "signalExternalWorkflowExecutionFailedEventAttributes" :: Maybe (SignalExternalWorkflowExecutionFailedEventAttributes) , "externalWorkflowExecutionCancelRequestedEventAttributes" :: Maybe (ExternalWorkflowExecutionCancelRequestedEventAttributes) , "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) , "requestCancelExternalWorkflowExecutionFailedEventAttributes" :: Maybe (RequestCancelExternalWorkflowExecutionFailedEventAttributes) , "scheduleActivityTaskFailedEventAttributes" :: Maybe (ScheduleActivityTaskFailedEventAttributes) , "requestCancelActivityTaskFailedEventAttributes" :: Maybe (RequestCancelActivityTaskFailedEventAttributes) , "startTimerFailedEventAttributes" :: Maybe (StartTimerFailedEventAttributes) , "cancelTimerFailedEventAttributes" :: Maybe (CancelTimerFailedEventAttributes) , "startChildWorkflowExecutionFailedEventAttributes" :: Maybe (StartChildWorkflowExecutionFailedEventAttributes) , "lambdaFunctionScheduledEventAttributes" :: Maybe (LambdaFunctionScheduledEventAttributes) , "lambdaFunctionStartedEventAttributes" :: Maybe (LambdaFunctionStartedEventAttributes) , "lambdaFunctionCompletedEventAttributes" :: Maybe (LambdaFunctionCompletedEventAttributes) , "lambdaFunctionFailedEventAttributes" :: Maybe (LambdaFunctionFailedEventAttributes) , "lambdaFunctionTimedOutEventAttributes" :: Maybe (LambdaFunctionTimedOutEventAttributes) , "scheduleLambdaFunctionFailedEventAttributes" :: Maybe (ScheduleLambdaFunctionFailedEventAttributes) , "startLambdaFunctionFailedEventAttributes" :: Maybe (StartLambdaFunctionFailedEventAttributes) } ) -> HistoryEvent
+newHistoryEvent' _eventId _eventTimestamp _eventType customize = (HistoryEvent <<< customize) { "eventId": _eventId, "eventTimestamp": _eventTimestamp, "eventType": _eventType, "activityTaskCancelRequestedEventAttributes": Nothing, "activityTaskCanceledEventAttributes": Nothing, "activityTaskCompletedEventAttributes": Nothing, "activityTaskFailedEventAttributes": Nothing, "activityTaskScheduledEventAttributes": Nothing, "activityTaskStartedEventAttributes": Nothing, "activityTaskTimedOutEventAttributes": Nothing, "cancelTimerFailedEventAttributes": Nothing, "cancelWorkflowExecutionFailedEventAttributes": Nothing, "childWorkflowExecutionCanceledEventAttributes": Nothing, "childWorkflowExecutionCompletedEventAttributes": Nothing, "childWorkflowExecutionFailedEventAttributes": Nothing, "childWorkflowExecutionStartedEventAttributes": Nothing, "childWorkflowExecutionTerminatedEventAttributes": Nothing, "childWorkflowExecutionTimedOutEventAttributes": Nothing, "completeWorkflowExecutionFailedEventAttributes": Nothing, "continueAsNewWorkflowExecutionFailedEventAttributes": Nothing, "decisionTaskCompletedEventAttributes": Nothing, "decisionTaskScheduledEventAttributes": Nothing, "decisionTaskStartedEventAttributes": Nothing, "decisionTaskTimedOutEventAttributes": Nothing, "externalWorkflowExecutionCancelRequestedEventAttributes": Nothing, "externalWorkflowExecutionSignaledEventAttributes": Nothing, "failWorkflowExecutionFailedEventAttributes": Nothing, "lambdaFunctionCompletedEventAttributes": Nothing, "lambdaFunctionFailedEventAttributes": Nothing, "lambdaFunctionScheduledEventAttributes": Nothing, "lambdaFunctionStartedEventAttributes": Nothing, "lambdaFunctionTimedOutEventAttributes": Nothing, "markerRecordedEventAttributes": Nothing, "recordMarkerFailedEventAttributes": Nothing, "requestCancelActivityTaskFailedEventAttributes": Nothing, "requestCancelExternalWorkflowExecutionFailedEventAttributes": Nothing, "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": Nothing, "scheduleActivityTaskFailedEventAttributes": Nothing, "scheduleLambdaFunctionFailedEventAttributes": Nothing, "signalExternalWorkflowExecutionFailedEventAttributes": Nothing, "signalExternalWorkflowExecutionInitiatedEventAttributes": Nothing, "startChildWorkflowExecutionFailedEventAttributes": Nothing, "startChildWorkflowExecutionInitiatedEventAttributes": Nothing, "startLambdaFunctionFailedEventAttributes": Nothing, "startTimerFailedEventAttributes": Nothing, "timerCanceledEventAttributes": Nothing, "timerFiredEventAttributes": Nothing, "timerStartedEventAttributes": Nothing, "workflowExecutionCancelRequestedEventAttributes": Nothing, "workflowExecutionCanceledEventAttributes": Nothing, "workflowExecutionCompletedEventAttributes": Nothing, "workflowExecutionContinuedAsNewEventAttributes": Nothing, "workflowExecutionFailedEventAttributes": Nothing, "workflowExecutionSignaledEventAttributes": Nothing, "workflowExecutionStartedEventAttributes": Nothing, "workflowExecutionTerminatedEventAttributes": Nothing, "workflowExecutionTimedOutEventAttributes": Nothing }
 
 
 
@@ -1785,7 +1784,7 @@ instance encodeIdentity :: Encode Identity where encode = genericEncode options
 newtype LambdaFunctionCompletedEventAttributes = LambdaFunctionCompletedEventAttributes 
   { "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
-  , "result" :: NullOrUndefined (Data)
+  , "result" :: Maybe (Data)
   }
 derive instance newtypeLambdaFunctionCompletedEventAttributes :: Newtype LambdaFunctionCompletedEventAttributes _
 derive instance repGenericLambdaFunctionCompletedEventAttributes :: Generic LambdaFunctionCompletedEventAttributes _
@@ -1795,12 +1794,12 @@ instance encodeLambdaFunctionCompletedEventAttributes :: Encode LambdaFunctionCo
 
 -- | Constructs LambdaFunctionCompletedEventAttributes from required parameters
 newLambdaFunctionCompletedEventAttributes :: EventId -> EventId -> LambdaFunctionCompletedEventAttributes
-newLambdaFunctionCompletedEventAttributes _scheduledEventId _startedEventId = LambdaFunctionCompletedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": (NullOrUndefined Nothing) }
+newLambdaFunctionCompletedEventAttributes _scheduledEventId _startedEventId = LambdaFunctionCompletedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": Nothing }
 
 -- | Constructs LambdaFunctionCompletedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLambdaFunctionCompletedEventAttributes' :: EventId -> EventId -> ( { "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "result" :: NullOrUndefined (Data) } -> {"scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "result" :: NullOrUndefined (Data) } ) -> LambdaFunctionCompletedEventAttributes
-newLambdaFunctionCompletedEventAttributes' _scheduledEventId _startedEventId customize = (LambdaFunctionCompletedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": (NullOrUndefined Nothing) }
+newLambdaFunctionCompletedEventAttributes' :: EventId -> EventId -> ( { "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "result" :: Maybe (Data) } -> {"scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "result" :: Maybe (Data) } ) -> LambdaFunctionCompletedEventAttributes
+newLambdaFunctionCompletedEventAttributes' _scheduledEventId _startedEventId customize = (LambdaFunctionCompletedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "result": Nothing }
 
 
 
@@ -1808,8 +1807,8 @@ newLambdaFunctionCompletedEventAttributes' _scheduledEventId _startedEventId cus
 newtype LambdaFunctionFailedEventAttributes = LambdaFunctionFailedEventAttributes 
   { "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
-  , "reason" :: NullOrUndefined (FailureReason)
-  , "details" :: NullOrUndefined (Data)
+  , "reason" :: Maybe (FailureReason)
+  , "details" :: Maybe (Data)
   }
 derive instance newtypeLambdaFunctionFailedEventAttributes :: Newtype LambdaFunctionFailedEventAttributes _
 derive instance repGenericLambdaFunctionFailedEventAttributes :: Generic LambdaFunctionFailedEventAttributes _
@@ -1819,12 +1818,12 @@ instance encodeLambdaFunctionFailedEventAttributes :: Encode LambdaFunctionFaile
 
 -- | Constructs LambdaFunctionFailedEventAttributes from required parameters
 newLambdaFunctionFailedEventAttributes :: EventId -> EventId -> LambdaFunctionFailedEventAttributes
-newLambdaFunctionFailedEventAttributes _scheduledEventId _startedEventId = LambdaFunctionFailedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newLambdaFunctionFailedEventAttributes _scheduledEventId _startedEventId = LambdaFunctionFailedEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": Nothing, "reason": Nothing }
 
 -- | Constructs LambdaFunctionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLambdaFunctionFailedEventAttributes' :: EventId -> EventId -> ( { "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) } -> {"scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) } ) -> LambdaFunctionFailedEventAttributes
-newLambdaFunctionFailedEventAttributes' _scheduledEventId _startedEventId customize = (LambdaFunctionFailedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newLambdaFunctionFailedEventAttributes' :: EventId -> EventId -> ( { "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) } -> {"scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) } ) -> LambdaFunctionFailedEventAttributes
+newLambdaFunctionFailedEventAttributes' _scheduledEventId _startedEventId customize = (LambdaFunctionFailedEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "details": Nothing, "reason": Nothing }
 
 
 
@@ -1832,9 +1831,9 @@ newLambdaFunctionFailedEventAttributes' _scheduledEventId _startedEventId custom
 newtype LambdaFunctionScheduledEventAttributes = LambdaFunctionScheduledEventAttributes 
   { "id" :: (FunctionId)
   , "name" :: (FunctionName)
-  , "control" :: NullOrUndefined (Data)
-  , "input" :: NullOrUndefined (FunctionInput)
-  , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "control" :: Maybe (Data)
+  , "input" :: Maybe (FunctionInput)
+  , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   , "decisionTaskCompletedEventId" :: (EventId)
   }
 derive instance newtypeLambdaFunctionScheduledEventAttributes :: Newtype LambdaFunctionScheduledEventAttributes _
@@ -1845,12 +1844,12 @@ instance encodeLambdaFunctionScheduledEventAttributes :: Encode LambdaFunctionSc
 
 -- | Constructs LambdaFunctionScheduledEventAttributes from required parameters
 newLambdaFunctionScheduledEventAttributes :: EventId -> FunctionId -> FunctionName -> LambdaFunctionScheduledEventAttributes
-newLambdaFunctionScheduledEventAttributes _decisionTaskCompletedEventId _id _name = LambdaFunctionScheduledEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "id": _id, "name": _name, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing) }
+newLambdaFunctionScheduledEventAttributes _decisionTaskCompletedEventId _id _name = LambdaFunctionScheduledEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "id": _id, "name": _name, "control": Nothing, "input": Nothing, "startToCloseTimeout": Nothing }
 
 -- | Constructs LambdaFunctionScheduledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLambdaFunctionScheduledEventAttributes' :: EventId -> FunctionId -> FunctionName -> ( { "id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (FunctionInput) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "decisionTaskCompletedEventId" :: (EventId) } -> {"id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (FunctionInput) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "decisionTaskCompletedEventId" :: (EventId) } ) -> LambdaFunctionScheduledEventAttributes
-newLambdaFunctionScheduledEventAttributes' _decisionTaskCompletedEventId _id _name customize = (LambdaFunctionScheduledEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "id": _id, "name": _name, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing) }
+newLambdaFunctionScheduledEventAttributes' :: EventId -> FunctionId -> FunctionName -> ( { "id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: Maybe (Data) , "input" :: Maybe (FunctionInput) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "decisionTaskCompletedEventId" :: (EventId) } -> {"id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: Maybe (Data) , "input" :: Maybe (FunctionInput) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "decisionTaskCompletedEventId" :: (EventId) } ) -> LambdaFunctionScheduledEventAttributes
+newLambdaFunctionScheduledEventAttributes' _decisionTaskCompletedEventId _id _name customize = (LambdaFunctionScheduledEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "id": _id, "name": _name, "control": Nothing, "input": Nothing, "startToCloseTimeout": Nothing }
 
 
 
@@ -1879,7 +1878,7 @@ newLambdaFunctionStartedEventAttributes' _scheduledEventId customize = (LambdaFu
 newtype LambdaFunctionTimedOutEventAttributes = LambdaFunctionTimedOutEventAttributes 
   { "scheduledEventId" :: (EventId)
   , "startedEventId" :: (EventId)
-  , "timeoutType" :: NullOrUndefined (LambdaFunctionTimeoutType)
+  , "timeoutType" :: Maybe (LambdaFunctionTimeoutType)
   }
 derive instance newtypeLambdaFunctionTimedOutEventAttributes :: Newtype LambdaFunctionTimedOutEventAttributes _
 derive instance repGenericLambdaFunctionTimedOutEventAttributes :: Generic LambdaFunctionTimedOutEventAttributes _
@@ -1889,12 +1888,12 @@ instance encodeLambdaFunctionTimedOutEventAttributes :: Encode LambdaFunctionTim
 
 -- | Constructs LambdaFunctionTimedOutEventAttributes from required parameters
 newLambdaFunctionTimedOutEventAttributes :: EventId -> EventId -> LambdaFunctionTimedOutEventAttributes
-newLambdaFunctionTimedOutEventAttributes _scheduledEventId _startedEventId = LambdaFunctionTimedOutEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": (NullOrUndefined Nothing) }
+newLambdaFunctionTimedOutEventAttributes _scheduledEventId _startedEventId = LambdaFunctionTimedOutEventAttributes { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": Nothing }
 
 -- | Constructs LambdaFunctionTimedOutEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLambdaFunctionTimedOutEventAttributes' :: EventId -> EventId -> ( { "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "timeoutType" :: NullOrUndefined (LambdaFunctionTimeoutType) } -> {"scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "timeoutType" :: NullOrUndefined (LambdaFunctionTimeoutType) } ) -> LambdaFunctionTimedOutEventAttributes
-newLambdaFunctionTimedOutEventAttributes' _scheduledEventId _startedEventId customize = (LambdaFunctionTimedOutEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": (NullOrUndefined Nothing) }
+newLambdaFunctionTimedOutEventAttributes' :: EventId -> EventId -> ( { "scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "timeoutType" :: Maybe (LambdaFunctionTimeoutType) } -> {"scheduledEventId" :: (EventId) , "startedEventId" :: (EventId) , "timeoutType" :: Maybe (LambdaFunctionTimeoutType) } ) -> LambdaFunctionTimedOutEventAttributes
+newLambdaFunctionTimedOutEventAttributes' _scheduledEventId _startedEventId customize = (LambdaFunctionTimedOutEventAttributes <<< customize) { "scheduledEventId": _scheduledEventId, "startedEventId": _startedEventId, "timeoutType": Nothing }
 
 
 
@@ -1909,7 +1908,7 @@ instance encodeLambdaFunctionTimeoutType :: Encode LambdaFunctionTimeoutType whe
 
 -- | <p>Returned by any operation if a system imposed limitation has been reached. To address this fault you should either clean up unused resources or increase the limit by contacting AWS.</p>
 newtype LimitExceededFault = LimitExceededFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeLimitExceededFault :: Newtype LimitExceededFault _
 derive instance repGenericLimitExceededFault :: Generic LimitExceededFault _
@@ -1919,12 +1918,12 @@ instance encodeLimitExceededFault :: Encode LimitExceededFault where encode = ge
 
 -- | Constructs LimitExceededFault from required parameters
 newLimitExceededFault :: LimitExceededFault
-newLimitExceededFault  = LimitExceededFault { "message": (NullOrUndefined Nothing) }
+newLimitExceededFault  = LimitExceededFault { "message": Nothing }
 
 -- | Constructs LimitExceededFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLimitExceededFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> LimitExceededFault
-newLimitExceededFault'  customize = (LimitExceededFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newLimitExceededFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> LimitExceededFault
+newLimitExceededFault'  customize = (LimitExceededFault <<< customize) { "message": Nothing }
 
 
 
@@ -1939,11 +1938,11 @@ instance encodeLimitedData :: Encode LimitedData where encode = genericEncode op
 
 newtype ListActivityTypesInput = ListActivityTypesInput 
   { "domain" :: (DomainName)
-  , "name" :: NullOrUndefined (Name)
+  , "name" :: Maybe (Name)
   , "registrationStatus" :: (RegistrationStatus)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
   }
 derive instance newtypeListActivityTypesInput :: Newtype ListActivityTypesInput _
 derive instance repGenericListActivityTypesInput :: Generic ListActivityTypesInput _
@@ -1953,26 +1952,26 @@ instance encodeListActivityTypesInput :: Encode ListActivityTypesInput where enc
 
 -- | Constructs ListActivityTypesInput from required parameters
 newListActivityTypesInput :: DomainName -> RegistrationStatus -> ListActivityTypesInput
-newListActivityTypesInput _domain _registrationStatus = ListActivityTypesInput { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": (NullOrUndefined Nothing), "name": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newListActivityTypesInput _domain _registrationStatus = ListActivityTypesInput { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": Nothing, "name": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 -- | Constructs ListActivityTypesInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListActivityTypesInput' :: DomainName -> RegistrationStatus -> ( { "domain" :: (DomainName) , "name" :: NullOrUndefined (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } -> {"domain" :: (DomainName) , "name" :: NullOrUndefined (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } ) -> ListActivityTypesInput
-newListActivityTypesInput' _domain _registrationStatus customize = (ListActivityTypesInput <<< customize) { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": (NullOrUndefined Nothing), "name": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newListActivityTypesInput' :: DomainName -> RegistrationStatus -> ( { "domain" :: (DomainName) , "name" :: Maybe (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } -> {"domain" :: (DomainName) , "name" :: Maybe (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } ) -> ListActivityTypesInput
+newListActivityTypesInput' _domain _registrationStatus customize = (ListActivityTypesInput <<< customize) { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": Nothing, "name": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 
 
 newtype ListClosedWorkflowExecutionsInput = ListClosedWorkflowExecutionsInput 
   { "domain" :: (DomainName)
-  , "startTimeFilter" :: NullOrUndefined (ExecutionTimeFilter)
-  , "closeTimeFilter" :: NullOrUndefined (ExecutionTimeFilter)
-  , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter)
-  , "closeStatusFilter" :: NullOrUndefined (CloseStatusFilter)
-  , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter)
-  , "tagFilter" :: NullOrUndefined (TagFilter)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
+  , "startTimeFilter" :: Maybe (ExecutionTimeFilter)
+  , "closeTimeFilter" :: Maybe (ExecutionTimeFilter)
+  , "executionFilter" :: Maybe (WorkflowExecutionFilter)
+  , "closeStatusFilter" :: Maybe (CloseStatusFilter)
+  , "typeFilter" :: Maybe (WorkflowTypeFilter)
+  , "tagFilter" :: Maybe (TagFilter)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
   }
 derive instance newtypeListClosedWorkflowExecutionsInput :: Newtype ListClosedWorkflowExecutionsInput _
 derive instance repGenericListClosedWorkflowExecutionsInput :: Generic ListClosedWorkflowExecutionsInput _
@@ -1982,20 +1981,20 @@ instance encodeListClosedWorkflowExecutionsInput :: Encode ListClosedWorkflowExe
 
 -- | Constructs ListClosedWorkflowExecutionsInput from required parameters
 newListClosedWorkflowExecutionsInput :: DomainName -> ListClosedWorkflowExecutionsInput
-newListClosedWorkflowExecutionsInput _domain = ListClosedWorkflowExecutionsInput { "domain": _domain, "closeStatusFilter": (NullOrUndefined Nothing), "closeTimeFilter": (NullOrUndefined Nothing), "executionFilter": (NullOrUndefined Nothing), "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing), "startTimeFilter": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newListClosedWorkflowExecutionsInput _domain = ListClosedWorkflowExecutionsInput { "domain": _domain, "closeStatusFilter": Nothing, "closeTimeFilter": Nothing, "executionFilter": Nothing, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing, "startTimeFilter": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 -- | Constructs ListClosedWorkflowExecutionsInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListClosedWorkflowExecutionsInput' :: DomainName -> ( { "domain" :: (DomainName) , "startTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "closeTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) , "closeStatusFilter" :: NullOrUndefined (CloseStatusFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } -> {"domain" :: (DomainName) , "startTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "closeTimeFilter" :: NullOrUndefined (ExecutionTimeFilter) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) , "closeStatusFilter" :: NullOrUndefined (CloseStatusFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } ) -> ListClosedWorkflowExecutionsInput
-newListClosedWorkflowExecutionsInput' _domain customize = (ListClosedWorkflowExecutionsInput <<< customize) { "domain": _domain, "closeStatusFilter": (NullOrUndefined Nothing), "closeTimeFilter": (NullOrUndefined Nothing), "executionFilter": (NullOrUndefined Nothing), "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing), "startTimeFilter": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newListClosedWorkflowExecutionsInput' :: DomainName -> ( { "domain" :: (DomainName) , "startTimeFilter" :: Maybe (ExecutionTimeFilter) , "closeTimeFilter" :: Maybe (ExecutionTimeFilter) , "executionFilter" :: Maybe (WorkflowExecutionFilter) , "closeStatusFilter" :: Maybe (CloseStatusFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } -> {"domain" :: (DomainName) , "startTimeFilter" :: Maybe (ExecutionTimeFilter) , "closeTimeFilter" :: Maybe (ExecutionTimeFilter) , "executionFilter" :: Maybe (WorkflowExecutionFilter) , "closeStatusFilter" :: Maybe (CloseStatusFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } ) -> ListClosedWorkflowExecutionsInput
+newListClosedWorkflowExecutionsInput' _domain customize = (ListClosedWorkflowExecutionsInput <<< customize) { "domain": _domain, "closeStatusFilter": Nothing, "closeTimeFilter": Nothing, "executionFilter": Nothing, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing, "startTimeFilter": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 
 
 newtype ListDomainsInput = ListDomainsInput 
-  { "nextPageToken" :: NullOrUndefined (PageToken)
+  { "nextPageToken" :: Maybe (PageToken)
   , "registrationStatus" :: (RegistrationStatus)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
   }
 derive instance newtypeListDomainsInput :: Newtype ListDomainsInput _
 derive instance repGenericListDomainsInput :: Generic ListDomainsInput _
@@ -2005,24 +2004,24 @@ instance encodeListDomainsInput :: Encode ListDomainsInput where encode = generi
 
 -- | Constructs ListDomainsInput from required parameters
 newListDomainsInput :: RegistrationStatus -> ListDomainsInput
-newListDomainsInput _registrationStatus = ListDomainsInput { "registrationStatus": _registrationStatus, "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newListDomainsInput _registrationStatus = ListDomainsInput { "registrationStatus": _registrationStatus, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 -- | Constructs ListDomainsInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListDomainsInput' :: RegistrationStatus -> ( { "nextPageToken" :: NullOrUndefined (PageToken) , "registrationStatus" :: (RegistrationStatus) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } -> {"nextPageToken" :: NullOrUndefined (PageToken) , "registrationStatus" :: (RegistrationStatus) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } ) -> ListDomainsInput
-newListDomainsInput' _registrationStatus customize = (ListDomainsInput <<< customize) { "registrationStatus": _registrationStatus, "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newListDomainsInput' :: RegistrationStatus -> ( { "nextPageToken" :: Maybe (PageToken) , "registrationStatus" :: (RegistrationStatus) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } -> {"nextPageToken" :: Maybe (PageToken) , "registrationStatus" :: (RegistrationStatus) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } ) -> ListDomainsInput
+newListDomainsInput' _registrationStatus customize = (ListDomainsInput <<< customize) { "registrationStatus": _registrationStatus, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 
 
 newtype ListOpenWorkflowExecutionsInput = ListOpenWorkflowExecutionsInput 
   { "domain" :: (DomainName)
   , "startTimeFilter" :: (ExecutionTimeFilter)
-  , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter)
-  , "tagFilter" :: NullOrUndefined (TagFilter)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
-  , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter)
+  , "typeFilter" :: Maybe (WorkflowTypeFilter)
+  , "tagFilter" :: Maybe (TagFilter)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
+  , "executionFilter" :: Maybe (WorkflowExecutionFilter)
   }
 derive instance newtypeListOpenWorkflowExecutionsInput :: Newtype ListOpenWorkflowExecutionsInput _
 derive instance repGenericListOpenWorkflowExecutionsInput :: Generic ListOpenWorkflowExecutionsInput _
@@ -2032,22 +2031,22 @@ instance encodeListOpenWorkflowExecutionsInput :: Encode ListOpenWorkflowExecuti
 
 -- | Constructs ListOpenWorkflowExecutionsInput from required parameters
 newListOpenWorkflowExecutionsInput :: DomainName -> ExecutionTimeFilter -> ListOpenWorkflowExecutionsInput
-newListOpenWorkflowExecutionsInput _domain _startTimeFilter = ListOpenWorkflowExecutionsInput { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": (NullOrUndefined Nothing), "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newListOpenWorkflowExecutionsInput _domain _startTimeFilter = ListOpenWorkflowExecutionsInput { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": Nothing, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 -- | Constructs ListOpenWorkflowExecutionsInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ( { "domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) } -> {"domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: NullOrUndefined (WorkflowTypeFilter) , "tagFilter" :: NullOrUndefined (TagFilter) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) , "executionFilter" :: NullOrUndefined (WorkflowExecutionFilter) } ) -> ListOpenWorkflowExecutionsInput
-newListOpenWorkflowExecutionsInput' _domain _startTimeFilter customize = (ListOpenWorkflowExecutionsInput <<< customize) { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": (NullOrUndefined Nothing), "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing), "tagFilter": (NullOrUndefined Nothing), "typeFilter": (NullOrUndefined Nothing) }
+newListOpenWorkflowExecutionsInput' :: DomainName -> ExecutionTimeFilter -> ( { "domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) , "executionFilter" :: Maybe (WorkflowExecutionFilter) } -> {"domain" :: (DomainName) , "startTimeFilter" :: (ExecutionTimeFilter) , "typeFilter" :: Maybe (WorkflowTypeFilter) , "tagFilter" :: Maybe (TagFilter) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) , "executionFilter" :: Maybe (WorkflowExecutionFilter) } ) -> ListOpenWorkflowExecutionsInput
+newListOpenWorkflowExecutionsInput' _domain _startTimeFilter customize = (ListOpenWorkflowExecutionsInput <<< customize) { "domain": _domain, "startTimeFilter": _startTimeFilter, "executionFilter": Nothing, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing, "tagFilter": Nothing, "typeFilter": Nothing }
 
 
 
 newtype ListWorkflowTypesInput = ListWorkflowTypesInput 
   { "domain" :: (DomainName)
-  , "name" :: NullOrUndefined (Name)
+  , "name" :: Maybe (Name)
   , "registrationStatus" :: (RegistrationStatus)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
   }
 derive instance newtypeListWorkflowTypesInput :: Newtype ListWorkflowTypesInput _
 derive instance repGenericListWorkflowTypesInput :: Generic ListWorkflowTypesInput _
@@ -2057,12 +2056,12 @@ instance encodeListWorkflowTypesInput :: Encode ListWorkflowTypesInput where enc
 
 -- | Constructs ListWorkflowTypesInput from required parameters
 newListWorkflowTypesInput :: DomainName -> RegistrationStatus -> ListWorkflowTypesInput
-newListWorkflowTypesInput _domain _registrationStatus = ListWorkflowTypesInput { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": (NullOrUndefined Nothing), "name": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newListWorkflowTypesInput _domain _registrationStatus = ListWorkflowTypesInput { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": Nothing, "name": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 -- | Constructs ListWorkflowTypesInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListWorkflowTypesInput' :: DomainName -> RegistrationStatus -> ( { "domain" :: (DomainName) , "name" :: NullOrUndefined (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } -> {"domain" :: (DomainName) , "name" :: NullOrUndefined (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } ) -> ListWorkflowTypesInput
-newListWorkflowTypesInput' _domain _registrationStatus customize = (ListWorkflowTypesInput <<< customize) { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": (NullOrUndefined Nothing), "name": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newListWorkflowTypesInput' :: DomainName -> RegistrationStatus -> ( { "domain" :: (DomainName) , "name" :: Maybe (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } -> {"domain" :: (DomainName) , "name" :: Maybe (Name) , "registrationStatus" :: (RegistrationStatus) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } ) -> ListWorkflowTypesInput
+newListWorkflowTypesInput' _domain _registrationStatus customize = (ListWorkflowTypesInput <<< customize) { "domain": _domain, "registrationStatus": _registrationStatus, "maximumPageSize": Nothing, "name": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 
 
@@ -2078,7 +2077,7 @@ instance encodeMarkerName :: Encode MarkerName where encode = genericEncode opti
 -- | <p>Provides the details of the <code>MarkerRecorded</code> event.</p>
 newtype MarkerRecordedEventAttributes = MarkerRecordedEventAttributes 
   { "markerName" :: (MarkerName)
-  , "details" :: NullOrUndefined (Data)
+  , "details" :: Maybe (Data)
   , "decisionTaskCompletedEventId" :: (EventId)
   }
 derive instance newtypeMarkerRecordedEventAttributes :: Newtype MarkerRecordedEventAttributes _
@@ -2089,12 +2088,12 @@ instance encodeMarkerRecordedEventAttributes :: Encode MarkerRecordedEventAttrib
 
 -- | Constructs MarkerRecordedEventAttributes from required parameters
 newMarkerRecordedEventAttributes :: EventId -> MarkerName -> MarkerRecordedEventAttributes
-newMarkerRecordedEventAttributes _decisionTaskCompletedEventId _markerName = MarkerRecordedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "markerName": _markerName, "details": (NullOrUndefined Nothing) }
+newMarkerRecordedEventAttributes _decisionTaskCompletedEventId _markerName = MarkerRecordedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "markerName": _markerName, "details": Nothing }
 
 -- | Constructs MarkerRecordedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newMarkerRecordedEventAttributes' :: EventId -> MarkerName -> ( { "markerName" :: (MarkerName) , "details" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"markerName" :: (MarkerName) , "details" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> MarkerRecordedEventAttributes
-newMarkerRecordedEventAttributes' _decisionTaskCompletedEventId _markerName customize = (MarkerRecordedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "markerName": _markerName, "details": (NullOrUndefined Nothing) }
+newMarkerRecordedEventAttributes' :: EventId -> MarkerName -> ( { "markerName" :: (MarkerName) , "details" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"markerName" :: (MarkerName) , "details" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> MarkerRecordedEventAttributes
+newMarkerRecordedEventAttributes' _decisionTaskCompletedEventId _markerName customize = (MarkerRecordedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "markerName": _markerName, "details": Nothing }
 
 
 
@@ -2118,7 +2117,7 @@ instance encodeOpenDecisionTasksCount :: Encode OpenDecisionTasksCount where enc
 
 -- | <p>Returned when the caller doesn't have sufficient permissions to invoke the action.</p>
 newtype OperationNotPermittedFault = OperationNotPermittedFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeOperationNotPermittedFault :: Newtype OperationNotPermittedFault _
 derive instance repGenericOperationNotPermittedFault :: Generic OperationNotPermittedFault _
@@ -2128,12 +2127,12 @@ instance encodeOperationNotPermittedFault :: Encode OperationNotPermittedFault w
 
 -- | Constructs OperationNotPermittedFault from required parameters
 newOperationNotPermittedFault :: OperationNotPermittedFault
-newOperationNotPermittedFault  = OperationNotPermittedFault { "message": (NullOrUndefined Nothing) }
+newOperationNotPermittedFault  = OperationNotPermittedFault { "message": Nothing }
 
 -- | Constructs OperationNotPermittedFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newOperationNotPermittedFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> OperationNotPermittedFault
-newOperationNotPermittedFault'  customize = (OperationNotPermittedFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newOperationNotPermittedFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> OperationNotPermittedFault
+newOperationNotPermittedFault'  customize = (OperationNotPermittedFault <<< customize) { "message": Nothing }
 
 
 
@@ -2158,7 +2157,7 @@ instance encodePageToken :: Encode PageToken where encode = genericEncode option
 -- | <p>Contains the count of tasks in a task list.</p>
 newtype PendingTaskCount = PendingTaskCount 
   { "count" :: (Count)
-  , "truncated" :: NullOrUndefined (Truncated)
+  , "truncated" :: Maybe (Truncated)
   }
 derive instance newtypePendingTaskCount :: Newtype PendingTaskCount _
 derive instance repGenericPendingTaskCount :: Generic PendingTaskCount _
@@ -2168,19 +2167,19 @@ instance encodePendingTaskCount :: Encode PendingTaskCount where encode = generi
 
 -- | Constructs PendingTaskCount from required parameters
 newPendingTaskCount :: Count -> PendingTaskCount
-newPendingTaskCount _count = PendingTaskCount { "count": _count, "truncated": (NullOrUndefined Nothing) }
+newPendingTaskCount _count = PendingTaskCount { "count": _count, "truncated": Nothing }
 
 -- | Constructs PendingTaskCount's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newPendingTaskCount' :: Count -> ( { "count" :: (Count) , "truncated" :: NullOrUndefined (Truncated) } -> {"count" :: (Count) , "truncated" :: NullOrUndefined (Truncated) } ) -> PendingTaskCount
-newPendingTaskCount' _count customize = (PendingTaskCount <<< customize) { "count": _count, "truncated": (NullOrUndefined Nothing) }
+newPendingTaskCount' :: Count -> ( { "count" :: (Count) , "truncated" :: Maybe (Truncated) } -> {"count" :: (Count) , "truncated" :: Maybe (Truncated) } ) -> PendingTaskCount
+newPendingTaskCount' _count customize = (PendingTaskCount <<< customize) { "count": _count, "truncated": Nothing }
 
 
 
 newtype PollForActivityTaskInput = PollForActivityTaskInput 
   { "domain" :: (DomainName)
   , "taskList" :: (TaskList)
-  , "identity" :: NullOrUndefined (Identity)
+  , "identity" :: Maybe (Identity)
   }
 derive instance newtypePollForActivityTaskInput :: Newtype PollForActivityTaskInput _
 derive instance repGenericPollForActivityTaskInput :: Generic PollForActivityTaskInput _
@@ -2190,22 +2189,22 @@ instance encodePollForActivityTaskInput :: Encode PollForActivityTaskInput where
 
 -- | Constructs PollForActivityTaskInput from required parameters
 newPollForActivityTaskInput :: DomainName -> TaskList -> PollForActivityTaskInput
-newPollForActivityTaskInput _domain _taskList = PollForActivityTaskInput { "domain": _domain, "taskList": _taskList, "identity": (NullOrUndefined Nothing) }
+newPollForActivityTaskInput _domain _taskList = PollForActivityTaskInput { "domain": _domain, "taskList": _taskList, "identity": Nothing }
 
 -- | Constructs PollForActivityTaskInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newPollForActivityTaskInput' :: DomainName -> TaskList -> ( { "domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: NullOrUndefined (Identity) } -> {"domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: NullOrUndefined (Identity) } ) -> PollForActivityTaskInput
-newPollForActivityTaskInput' _domain _taskList customize = (PollForActivityTaskInput <<< customize) { "domain": _domain, "taskList": _taskList, "identity": (NullOrUndefined Nothing) }
+newPollForActivityTaskInput' :: DomainName -> TaskList -> ( { "domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: Maybe (Identity) } -> {"domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: Maybe (Identity) } ) -> PollForActivityTaskInput
+newPollForActivityTaskInput' _domain _taskList customize = (PollForActivityTaskInput <<< customize) { "domain": _domain, "taskList": _taskList, "identity": Nothing }
 
 
 
 newtype PollForDecisionTaskInput = PollForDecisionTaskInput 
   { "domain" :: (DomainName)
   , "taskList" :: (TaskList)
-  , "identity" :: NullOrUndefined (Identity)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
-  , "maximumPageSize" :: NullOrUndefined (PageSize)
-  , "reverseOrder" :: NullOrUndefined (ReverseOrder)
+  , "identity" :: Maybe (Identity)
+  , "nextPageToken" :: Maybe (PageToken)
+  , "maximumPageSize" :: Maybe (PageSize)
+  , "reverseOrder" :: Maybe (ReverseOrder)
   }
 derive instance newtypePollForDecisionTaskInput :: Newtype PollForDecisionTaskInput _
 derive instance repGenericPollForDecisionTaskInput :: Generic PollForDecisionTaskInput _
@@ -2215,18 +2214,18 @@ instance encodePollForDecisionTaskInput :: Encode PollForDecisionTaskInput where
 
 -- | Constructs PollForDecisionTaskInput from required parameters
 newPollForDecisionTaskInput :: DomainName -> TaskList -> PollForDecisionTaskInput
-newPollForDecisionTaskInput _domain _taskList = PollForDecisionTaskInput { "domain": _domain, "taskList": _taskList, "identity": (NullOrUndefined Nothing), "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newPollForDecisionTaskInput _domain _taskList = PollForDecisionTaskInput { "domain": _domain, "taskList": _taskList, "identity": Nothing, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 -- | Constructs PollForDecisionTaskInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newPollForDecisionTaskInput' :: DomainName -> TaskList -> ( { "domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: NullOrUndefined (Identity) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } -> {"domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: NullOrUndefined (Identity) , "nextPageToken" :: NullOrUndefined (PageToken) , "maximumPageSize" :: NullOrUndefined (PageSize) , "reverseOrder" :: NullOrUndefined (ReverseOrder) } ) -> PollForDecisionTaskInput
-newPollForDecisionTaskInput' _domain _taskList customize = (PollForDecisionTaskInput <<< customize) { "domain": _domain, "taskList": _taskList, "identity": (NullOrUndefined Nothing), "maximumPageSize": (NullOrUndefined Nothing), "nextPageToken": (NullOrUndefined Nothing), "reverseOrder": (NullOrUndefined Nothing) }
+newPollForDecisionTaskInput' :: DomainName -> TaskList -> ( { "domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: Maybe (Identity) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } -> {"domain" :: (DomainName) , "taskList" :: (TaskList) , "identity" :: Maybe (Identity) , "nextPageToken" :: Maybe (PageToken) , "maximumPageSize" :: Maybe (PageSize) , "reverseOrder" :: Maybe (ReverseOrder) } ) -> PollForDecisionTaskInput
+newPollForDecisionTaskInput' _domain _taskList customize = (PollForDecisionTaskInput <<< customize) { "domain": _domain, "taskList": _taskList, "identity": Nothing, "maximumPageSize": Nothing, "nextPageToken": Nothing, "reverseOrder": Nothing }
 
 
 
 newtype RecordActivityTaskHeartbeatInput = RecordActivityTaskHeartbeatInput 
   { "taskToken" :: (TaskToken)
-  , "details" :: NullOrUndefined (LimitedData)
+  , "details" :: Maybe (LimitedData)
   }
 derive instance newtypeRecordActivityTaskHeartbeatInput :: Newtype RecordActivityTaskHeartbeatInput _
 derive instance repGenericRecordActivityTaskHeartbeatInput :: Generic RecordActivityTaskHeartbeatInput _
@@ -2236,19 +2235,19 @@ instance encodeRecordActivityTaskHeartbeatInput :: Encode RecordActivityTaskHear
 
 -- | Constructs RecordActivityTaskHeartbeatInput from required parameters
 newRecordActivityTaskHeartbeatInput :: TaskToken -> RecordActivityTaskHeartbeatInput
-newRecordActivityTaskHeartbeatInput _taskToken = RecordActivityTaskHeartbeatInput { "taskToken": _taskToken, "details": (NullOrUndefined Nothing) }
+newRecordActivityTaskHeartbeatInput _taskToken = RecordActivityTaskHeartbeatInput { "taskToken": _taskToken, "details": Nothing }
 
 -- | Constructs RecordActivityTaskHeartbeatInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRecordActivityTaskHeartbeatInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "details" :: NullOrUndefined (LimitedData) } -> {"taskToken" :: (TaskToken) , "details" :: NullOrUndefined (LimitedData) } ) -> RecordActivityTaskHeartbeatInput
-newRecordActivityTaskHeartbeatInput' _taskToken customize = (RecordActivityTaskHeartbeatInput <<< customize) { "taskToken": _taskToken, "details": (NullOrUndefined Nothing) }
+newRecordActivityTaskHeartbeatInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "details" :: Maybe (LimitedData) } -> {"taskToken" :: (TaskToken) , "details" :: Maybe (LimitedData) } ) -> RecordActivityTaskHeartbeatInput
+newRecordActivityTaskHeartbeatInput' _taskToken customize = (RecordActivityTaskHeartbeatInput <<< customize) { "taskToken": _taskToken, "details": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>RecordMarker</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype RecordMarkerDecisionAttributes = RecordMarkerDecisionAttributes 
   { "markerName" :: (MarkerName)
-  , "details" :: NullOrUndefined (Data)
+  , "details" :: Maybe (Data)
   }
 derive instance newtypeRecordMarkerDecisionAttributes :: Newtype RecordMarkerDecisionAttributes _
 derive instance repGenericRecordMarkerDecisionAttributes :: Generic RecordMarkerDecisionAttributes _
@@ -2258,12 +2257,12 @@ instance encodeRecordMarkerDecisionAttributes :: Encode RecordMarkerDecisionAttr
 
 -- | Constructs RecordMarkerDecisionAttributes from required parameters
 newRecordMarkerDecisionAttributes :: MarkerName -> RecordMarkerDecisionAttributes
-newRecordMarkerDecisionAttributes _markerName = RecordMarkerDecisionAttributes { "markerName": _markerName, "details": (NullOrUndefined Nothing) }
+newRecordMarkerDecisionAttributes _markerName = RecordMarkerDecisionAttributes { "markerName": _markerName, "details": Nothing }
 
 -- | Constructs RecordMarkerDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRecordMarkerDecisionAttributes' :: MarkerName -> ( { "markerName" :: (MarkerName) , "details" :: NullOrUndefined (Data) } -> {"markerName" :: (MarkerName) , "details" :: NullOrUndefined (Data) } ) -> RecordMarkerDecisionAttributes
-newRecordMarkerDecisionAttributes' _markerName customize = (RecordMarkerDecisionAttributes <<< customize) { "markerName": _markerName, "details": (NullOrUndefined Nothing) }
+newRecordMarkerDecisionAttributes' :: MarkerName -> ( { "markerName" :: (MarkerName) , "details" :: Maybe (Data) } -> {"markerName" :: (MarkerName) , "details" :: Maybe (Data) } ) -> RecordMarkerDecisionAttributes
+newRecordMarkerDecisionAttributes' _markerName customize = (RecordMarkerDecisionAttributes <<< customize) { "markerName": _markerName, "details": Nothing }
 
 
 
@@ -2303,13 +2302,13 @@ newtype RegisterActivityTypeInput = RegisterActivityTypeInput
   { "domain" :: (DomainName)
   , "name" :: (Name)
   , "version" :: (Version)
-  , "description" :: NullOrUndefined (Description)
-  , "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskHeartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskList" :: NullOrUndefined (TaskList)
-  , "defaultTaskPriority" :: NullOrUndefined (TaskPriority)
-  , "defaultTaskScheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskScheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "description" :: Maybe (Description)
+  , "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskHeartbeatTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskList" :: Maybe (TaskList)
+  , "defaultTaskPriority" :: Maybe (TaskPriority)
+  , "defaultTaskScheduleToStartTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskScheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   }
 derive instance newtypeRegisterActivityTypeInput :: Newtype RegisterActivityTypeInput _
 derive instance repGenericRegisterActivityTypeInput :: Generic RegisterActivityTypeInput _
@@ -2319,18 +2318,18 @@ instance encodeRegisterActivityTypeInput :: Encode RegisterActivityTypeInput whe
 
 -- | Constructs RegisterActivityTypeInput from required parameters
 newRegisterActivityTypeInput :: DomainName -> Name -> Version -> RegisterActivityTypeInput
-newRegisterActivityTypeInput _domain _name _version = RegisterActivityTypeInput { "domain": _domain, "name": _name, "version": _version, "defaultTaskHeartbeatTimeout": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskScheduleToCloseTimeout": (NullOrUndefined Nothing), "defaultTaskScheduleToStartTimeout": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newRegisterActivityTypeInput _domain _name _version = RegisterActivityTypeInput { "domain": _domain, "name": _name, "version": _version, "defaultTaskHeartbeatTimeout": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskScheduleToCloseTimeout": Nothing, "defaultTaskScheduleToStartTimeout": Nothing, "defaultTaskStartToCloseTimeout": Nothing, "description": Nothing }
 
 -- | Constructs RegisterActivityTypeInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRegisterActivityTypeInput' :: DomainName -> Name -> Version -> ( { "domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: NullOrUndefined (Description) , "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } -> {"domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: NullOrUndefined (Description) , "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } ) -> RegisterActivityTypeInput
-newRegisterActivityTypeInput' _domain _name _version customize = (RegisterActivityTypeInput <<< customize) { "domain": _domain, "name": _name, "version": _version, "defaultTaskHeartbeatTimeout": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskScheduleToCloseTimeout": (NullOrUndefined Nothing), "defaultTaskScheduleToStartTimeout": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newRegisterActivityTypeInput' :: DomainName -> Name -> Version -> ( { "domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: Maybe (Description) , "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) } -> {"domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: Maybe (Description) , "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskHeartbeatTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultTaskScheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskScheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) } ) -> RegisterActivityTypeInput
+newRegisterActivityTypeInput' _domain _name _version customize = (RegisterActivityTypeInput <<< customize) { "domain": _domain, "name": _name, "version": _version, "defaultTaskHeartbeatTimeout": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskScheduleToCloseTimeout": Nothing, "defaultTaskScheduleToStartTimeout": Nothing, "defaultTaskStartToCloseTimeout": Nothing, "description": Nothing }
 
 
 
 newtype RegisterDomainInput = RegisterDomainInput 
   { "name" :: (DomainName)
-  , "description" :: NullOrUndefined (Description)
+  , "description" :: Maybe (Description)
   , "workflowExecutionRetentionPeriodInDays" :: (DurationInDays)
   }
 derive instance newtypeRegisterDomainInput :: Newtype RegisterDomainInput _
@@ -2341,12 +2340,12 @@ instance encodeRegisterDomainInput :: Encode RegisterDomainInput where encode = 
 
 -- | Constructs RegisterDomainInput from required parameters
 newRegisterDomainInput :: DomainName -> DurationInDays -> RegisterDomainInput
-newRegisterDomainInput _name _workflowExecutionRetentionPeriodInDays = RegisterDomainInput { "name": _name, "workflowExecutionRetentionPeriodInDays": _workflowExecutionRetentionPeriodInDays, "description": (NullOrUndefined Nothing) }
+newRegisterDomainInput _name _workflowExecutionRetentionPeriodInDays = RegisterDomainInput { "name": _name, "workflowExecutionRetentionPeriodInDays": _workflowExecutionRetentionPeriodInDays, "description": Nothing }
 
 -- | Constructs RegisterDomainInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRegisterDomainInput' :: DomainName -> DurationInDays -> ( { "name" :: (DomainName) , "description" :: NullOrUndefined (Description) , "workflowExecutionRetentionPeriodInDays" :: (DurationInDays) } -> {"name" :: (DomainName) , "description" :: NullOrUndefined (Description) , "workflowExecutionRetentionPeriodInDays" :: (DurationInDays) } ) -> RegisterDomainInput
-newRegisterDomainInput' _name _workflowExecutionRetentionPeriodInDays customize = (RegisterDomainInput <<< customize) { "name": _name, "workflowExecutionRetentionPeriodInDays": _workflowExecutionRetentionPeriodInDays, "description": (NullOrUndefined Nothing) }
+newRegisterDomainInput' :: DomainName -> DurationInDays -> ( { "name" :: (DomainName) , "description" :: Maybe (Description) , "workflowExecutionRetentionPeriodInDays" :: (DurationInDays) } -> {"name" :: (DomainName) , "description" :: Maybe (Description) , "workflowExecutionRetentionPeriodInDays" :: (DurationInDays) } ) -> RegisterDomainInput
+newRegisterDomainInput' _name _workflowExecutionRetentionPeriodInDays customize = (RegisterDomainInput <<< customize) { "name": _name, "workflowExecutionRetentionPeriodInDays": _workflowExecutionRetentionPeriodInDays, "description": Nothing }
 
 
 
@@ -2354,13 +2353,13 @@ newtype RegisterWorkflowTypeInput = RegisterWorkflowTypeInput
   { "domain" :: (DomainName)
   , "name" :: (Name)
   , "version" :: (Version)
-  , "description" :: NullOrUndefined (Description)
-  , "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultExecutionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskList" :: NullOrUndefined (TaskList)
-  , "defaultTaskPriority" :: NullOrUndefined (TaskPriority)
-  , "defaultChildPolicy" :: NullOrUndefined (ChildPolicy)
-  , "defaultLambdaRole" :: NullOrUndefined (Arn)
+  , "description" :: Maybe (Description)
+  , "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultExecutionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskList" :: Maybe (TaskList)
+  , "defaultTaskPriority" :: Maybe (TaskPriority)
+  , "defaultChildPolicy" :: Maybe (ChildPolicy)
+  , "defaultLambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeRegisterWorkflowTypeInput :: Newtype RegisterWorkflowTypeInput _
 derive instance repGenericRegisterWorkflowTypeInput :: Generic RegisterWorkflowTypeInput _
@@ -2370,12 +2369,12 @@ instance encodeRegisterWorkflowTypeInput :: Encode RegisterWorkflowTypeInput whe
 
 -- | Constructs RegisterWorkflowTypeInput from required parameters
 newRegisterWorkflowTypeInput :: DomainName -> Name -> Version -> RegisterWorkflowTypeInput
-newRegisterWorkflowTypeInput _domain _name _version = RegisterWorkflowTypeInput { "domain": _domain, "name": _name, "version": _version, "defaultChildPolicy": (NullOrUndefined Nothing), "defaultExecutionStartToCloseTimeout": (NullOrUndefined Nothing), "defaultLambdaRole": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newRegisterWorkflowTypeInput _domain _name _version = RegisterWorkflowTypeInput { "domain": _domain, "name": _name, "version": _version, "defaultChildPolicy": Nothing, "defaultExecutionStartToCloseTimeout": Nothing, "defaultLambdaRole": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskStartToCloseTimeout": Nothing, "description": Nothing }
 
 -- | Constructs RegisterWorkflowTypeInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRegisterWorkflowTypeInput' :: DomainName -> Name -> Version -> ( { "domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: NullOrUndefined (Description) , "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultChildPolicy" :: NullOrUndefined (ChildPolicy) , "defaultLambdaRole" :: NullOrUndefined (Arn) } -> {"domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: NullOrUndefined (Description) , "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultChildPolicy" :: NullOrUndefined (ChildPolicy) , "defaultLambdaRole" :: NullOrUndefined (Arn) } ) -> RegisterWorkflowTypeInput
-newRegisterWorkflowTypeInput' _domain _name _version customize = (RegisterWorkflowTypeInput <<< customize) { "domain": _domain, "name": _name, "version": _version, "defaultChildPolicy": (NullOrUndefined Nothing), "defaultExecutionStartToCloseTimeout": (NullOrUndefined Nothing), "defaultLambdaRole": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newRegisterWorkflowTypeInput' :: DomainName -> Name -> Version -> ( { "domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: Maybe (Description) , "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultChildPolicy" :: Maybe (ChildPolicy) , "defaultLambdaRole" :: Maybe (Arn) } -> {"domain" :: (DomainName) , "name" :: (Name) , "version" :: (Version) , "description" :: Maybe (Description) , "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultChildPolicy" :: Maybe (ChildPolicy) , "defaultLambdaRole" :: Maybe (Arn) } ) -> RegisterWorkflowTypeInput
+newRegisterWorkflowTypeInput' _domain _name _version customize = (RegisterWorkflowTypeInput <<< customize) { "domain": _domain, "name": _name, "version": _version, "defaultChildPolicy": Nothing, "defaultExecutionStartToCloseTimeout": Nothing, "defaultLambdaRole": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskStartToCloseTimeout": Nothing, "description": Nothing }
 
 
 
@@ -2444,8 +2443,8 @@ newRequestCancelActivityTaskFailedEventAttributes' _activityId _cause _decisionT
 -- | <p>Provides the details of the <code>RequestCancelExternalWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype RequestCancelExternalWorkflowExecutionDecisionAttributes = RequestCancelExternalWorkflowExecutionDecisionAttributes 
   { "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
-  , "control" :: NullOrUndefined (Data)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeRequestCancelExternalWorkflowExecutionDecisionAttributes :: Newtype RequestCancelExternalWorkflowExecutionDecisionAttributes _
 derive instance repGenericRequestCancelExternalWorkflowExecutionDecisionAttributes :: Generic RequestCancelExternalWorkflowExecutionDecisionAttributes _
@@ -2455,12 +2454,12 @@ instance encodeRequestCancelExternalWorkflowExecutionDecisionAttributes :: Encod
 
 -- | Constructs RequestCancelExternalWorkflowExecutionDecisionAttributes from required parameters
 newRequestCancelExternalWorkflowExecutionDecisionAttributes :: WorkflowId -> RequestCancelExternalWorkflowExecutionDecisionAttributes
-newRequestCancelExternalWorkflowExecutionDecisionAttributes _workflowId = RequestCancelExternalWorkflowExecutionDecisionAttributes { "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newRequestCancelExternalWorkflowExecutionDecisionAttributes _workflowId = RequestCancelExternalWorkflowExecutionDecisionAttributes { "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 -- | Constructs RequestCancelExternalWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRequestCancelExternalWorkflowExecutionDecisionAttributes' :: WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "control" :: NullOrUndefined (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "control" :: NullOrUndefined (Data) } ) -> RequestCancelExternalWorkflowExecutionDecisionAttributes
-newRequestCancelExternalWorkflowExecutionDecisionAttributes' _workflowId customize = (RequestCancelExternalWorkflowExecutionDecisionAttributes <<< customize) { "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newRequestCancelExternalWorkflowExecutionDecisionAttributes' :: WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "control" :: Maybe (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "control" :: Maybe (Data) } ) -> RequestCancelExternalWorkflowExecutionDecisionAttributes
+newRequestCancelExternalWorkflowExecutionDecisionAttributes' _workflowId customize = (RequestCancelExternalWorkflowExecutionDecisionAttributes <<< customize) { "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 
 
@@ -2476,11 +2475,11 @@ instance encodeRequestCancelExternalWorkflowExecutionFailedCause :: Encode Reque
 -- | <p>Provides the details of the <code>RequestCancelExternalWorkflowExecutionFailed</code> event.</p>
 newtype RequestCancelExternalWorkflowExecutionFailedEventAttributes = RequestCancelExternalWorkflowExecutionFailedEventAttributes 
   { "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   , "cause" :: (RequestCancelExternalWorkflowExecutionFailedCause)
   , "initiatedEventId" :: (EventId)
   , "decisionTaskCompletedEventId" :: (EventId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeRequestCancelExternalWorkflowExecutionFailedEventAttributes :: Newtype RequestCancelExternalWorkflowExecutionFailedEventAttributes _
 derive instance repGenericRequestCancelExternalWorkflowExecutionFailedEventAttributes :: Generic RequestCancelExternalWorkflowExecutionFailedEventAttributes _
@@ -2490,21 +2489,21 @@ instance encodeRequestCancelExternalWorkflowExecutionFailedEventAttributes :: En
 
 -- | Constructs RequestCancelExternalWorkflowExecutionFailedEventAttributes from required parameters
 newRequestCancelExternalWorkflowExecutionFailedEventAttributes :: RequestCancelExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> RequestCancelExternalWorkflowExecutionFailedEventAttributes
-newRequestCancelExternalWorkflowExecutionFailedEventAttributes _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId = RequestCancelExternalWorkflowExecutionFailedEventAttributes { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newRequestCancelExternalWorkflowExecutionFailedEventAttributes _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId = RequestCancelExternalWorkflowExecutionFailedEventAttributes { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 -- | Constructs RequestCancelExternalWorkflowExecutionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRequestCancelExternalWorkflowExecutionFailedEventAttributes' :: RequestCancelExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "cause" :: (RequestCancelExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "cause" :: (RequestCancelExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } ) -> RequestCancelExternalWorkflowExecutionFailedEventAttributes
-newRequestCancelExternalWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId customize = (RequestCancelExternalWorkflowExecutionFailedEventAttributes <<< customize) { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newRequestCancelExternalWorkflowExecutionFailedEventAttributes' :: RequestCancelExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "cause" :: (RequestCancelExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "cause" :: (RequestCancelExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } ) -> RequestCancelExternalWorkflowExecutionFailedEventAttributes
+newRequestCancelExternalWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId customize = (RequestCancelExternalWorkflowExecutionFailedEventAttributes <<< customize) { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>RequestCancelExternalWorkflowExecutionInitiated</code> event.</p>
 newtype RequestCancelExternalWorkflowExecutionInitiatedEventAttributes = RequestCancelExternalWorkflowExecutionInitiatedEventAttributes 
   { "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   , "decisionTaskCompletedEventId" :: (EventId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeRequestCancelExternalWorkflowExecutionInitiatedEventAttributes :: Newtype RequestCancelExternalWorkflowExecutionInitiatedEventAttributes _
 derive instance repGenericRequestCancelExternalWorkflowExecutionInitiatedEventAttributes :: Generic RequestCancelExternalWorkflowExecutionInitiatedEventAttributes _
@@ -2514,19 +2513,19 @@ instance encodeRequestCancelExternalWorkflowExecutionInitiatedEventAttributes ::
 
 -- | Constructs RequestCancelExternalWorkflowExecutionInitiatedEventAttributes from required parameters
 newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes :: EventId -> WorkflowId -> RequestCancelExternalWorkflowExecutionInitiatedEventAttributes
-newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes _decisionTaskCompletedEventId _workflowId = RequestCancelExternalWorkflowExecutionInitiatedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes _decisionTaskCompletedEventId _workflowId = RequestCancelExternalWorkflowExecutionInitiatedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 -- | Constructs RequestCancelExternalWorkflowExecutionInitiatedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } ) -> RequestCancelExternalWorkflowExecutionInitiatedEventAttributes
-newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes' _decisionTaskCompletedEventId _workflowId customize = (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } ) -> RequestCancelExternalWorkflowExecutionInitiatedEventAttributes
+newRequestCancelExternalWorkflowExecutionInitiatedEventAttributes' _decisionTaskCompletedEventId _workflowId customize = (RequestCancelExternalWorkflowExecutionInitiatedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 
 
 newtype RequestCancelWorkflowExecutionInput = RequestCancelWorkflowExecutionInput 
   { "domain" :: (DomainName)
   , "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   }
 derive instance newtypeRequestCancelWorkflowExecutionInput :: Newtype RequestCancelWorkflowExecutionInput _
 derive instance repGenericRequestCancelWorkflowExecutionInput :: Generic RequestCancelWorkflowExecutionInput _
@@ -2536,18 +2535,18 @@ instance encodeRequestCancelWorkflowExecutionInput :: Encode RequestCancelWorkfl
 
 -- | Constructs RequestCancelWorkflowExecutionInput from required parameters
 newRequestCancelWorkflowExecutionInput :: DomainName -> WorkflowId -> RequestCancelWorkflowExecutionInput
-newRequestCancelWorkflowExecutionInput _domain _workflowId = RequestCancelWorkflowExecutionInput { "domain": _domain, "workflowId": _workflowId, "runId": (NullOrUndefined Nothing) }
+newRequestCancelWorkflowExecutionInput _domain _workflowId = RequestCancelWorkflowExecutionInput { "domain": _domain, "workflowId": _workflowId, "runId": Nothing }
 
 -- | Constructs RequestCancelWorkflowExecutionInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRequestCancelWorkflowExecutionInput' :: DomainName -> WorkflowId -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) } ) -> RequestCancelWorkflowExecutionInput
-newRequestCancelWorkflowExecutionInput' _domain _workflowId customize = (RequestCancelWorkflowExecutionInput <<< customize) { "domain": _domain, "workflowId": _workflowId, "runId": (NullOrUndefined Nothing) }
+newRequestCancelWorkflowExecutionInput' :: DomainName -> WorkflowId -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) } ) -> RequestCancelWorkflowExecutionInput
+newRequestCancelWorkflowExecutionInput' _domain _workflowId customize = (RequestCancelWorkflowExecutionInput <<< customize) { "domain": _domain, "workflowId": _workflowId, "runId": Nothing }
 
 
 
 newtype RespondActivityTaskCanceledInput = RespondActivityTaskCanceledInput 
   { "taskToken" :: (TaskToken)
-  , "details" :: NullOrUndefined (Data)
+  , "details" :: Maybe (Data)
   }
 derive instance newtypeRespondActivityTaskCanceledInput :: Newtype RespondActivityTaskCanceledInput _
 derive instance repGenericRespondActivityTaskCanceledInput :: Generic RespondActivityTaskCanceledInput _
@@ -2557,18 +2556,18 @@ instance encodeRespondActivityTaskCanceledInput :: Encode RespondActivityTaskCan
 
 -- | Constructs RespondActivityTaskCanceledInput from required parameters
 newRespondActivityTaskCanceledInput :: TaskToken -> RespondActivityTaskCanceledInput
-newRespondActivityTaskCanceledInput _taskToken = RespondActivityTaskCanceledInput { "taskToken": _taskToken, "details": (NullOrUndefined Nothing) }
+newRespondActivityTaskCanceledInput _taskToken = RespondActivityTaskCanceledInput { "taskToken": _taskToken, "details": Nothing }
 
 -- | Constructs RespondActivityTaskCanceledInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRespondActivityTaskCanceledInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "details" :: NullOrUndefined (Data) } -> {"taskToken" :: (TaskToken) , "details" :: NullOrUndefined (Data) } ) -> RespondActivityTaskCanceledInput
-newRespondActivityTaskCanceledInput' _taskToken customize = (RespondActivityTaskCanceledInput <<< customize) { "taskToken": _taskToken, "details": (NullOrUndefined Nothing) }
+newRespondActivityTaskCanceledInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "details" :: Maybe (Data) } -> {"taskToken" :: (TaskToken) , "details" :: Maybe (Data) } ) -> RespondActivityTaskCanceledInput
+newRespondActivityTaskCanceledInput' _taskToken customize = (RespondActivityTaskCanceledInput <<< customize) { "taskToken": _taskToken, "details": Nothing }
 
 
 
 newtype RespondActivityTaskCompletedInput = RespondActivityTaskCompletedInput 
   { "taskToken" :: (TaskToken)
-  , "result" :: NullOrUndefined (Data)
+  , "result" :: Maybe (Data)
   }
 derive instance newtypeRespondActivityTaskCompletedInput :: Newtype RespondActivityTaskCompletedInput _
 derive instance repGenericRespondActivityTaskCompletedInput :: Generic RespondActivityTaskCompletedInput _
@@ -2578,19 +2577,19 @@ instance encodeRespondActivityTaskCompletedInput :: Encode RespondActivityTaskCo
 
 -- | Constructs RespondActivityTaskCompletedInput from required parameters
 newRespondActivityTaskCompletedInput :: TaskToken -> RespondActivityTaskCompletedInput
-newRespondActivityTaskCompletedInput _taskToken = RespondActivityTaskCompletedInput { "taskToken": _taskToken, "result": (NullOrUndefined Nothing) }
+newRespondActivityTaskCompletedInput _taskToken = RespondActivityTaskCompletedInput { "taskToken": _taskToken, "result": Nothing }
 
 -- | Constructs RespondActivityTaskCompletedInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRespondActivityTaskCompletedInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "result" :: NullOrUndefined (Data) } -> {"taskToken" :: (TaskToken) , "result" :: NullOrUndefined (Data) } ) -> RespondActivityTaskCompletedInput
-newRespondActivityTaskCompletedInput' _taskToken customize = (RespondActivityTaskCompletedInput <<< customize) { "taskToken": _taskToken, "result": (NullOrUndefined Nothing) }
+newRespondActivityTaskCompletedInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "result" :: Maybe (Data) } -> {"taskToken" :: (TaskToken) , "result" :: Maybe (Data) } ) -> RespondActivityTaskCompletedInput
+newRespondActivityTaskCompletedInput' _taskToken customize = (RespondActivityTaskCompletedInput <<< customize) { "taskToken": _taskToken, "result": Nothing }
 
 
 
 newtype RespondActivityTaskFailedInput = RespondActivityTaskFailedInput 
   { "taskToken" :: (TaskToken)
-  , "reason" :: NullOrUndefined (FailureReason)
-  , "details" :: NullOrUndefined (Data)
+  , "reason" :: Maybe (FailureReason)
+  , "details" :: Maybe (Data)
   }
 derive instance newtypeRespondActivityTaskFailedInput :: Newtype RespondActivityTaskFailedInput _
 derive instance repGenericRespondActivityTaskFailedInput :: Generic RespondActivityTaskFailedInput _
@@ -2600,20 +2599,20 @@ instance encodeRespondActivityTaskFailedInput :: Encode RespondActivityTaskFaile
 
 -- | Constructs RespondActivityTaskFailedInput from required parameters
 newRespondActivityTaskFailedInput :: TaskToken -> RespondActivityTaskFailedInput
-newRespondActivityTaskFailedInput _taskToken = RespondActivityTaskFailedInput { "taskToken": _taskToken, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newRespondActivityTaskFailedInput _taskToken = RespondActivityTaskFailedInput { "taskToken": _taskToken, "details": Nothing, "reason": Nothing }
 
 -- | Constructs RespondActivityTaskFailedInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRespondActivityTaskFailedInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) } -> {"taskToken" :: (TaskToken) , "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) } ) -> RespondActivityTaskFailedInput
-newRespondActivityTaskFailedInput' _taskToken customize = (RespondActivityTaskFailedInput <<< customize) { "taskToken": _taskToken, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newRespondActivityTaskFailedInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) } -> {"taskToken" :: (TaskToken) , "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) } ) -> RespondActivityTaskFailedInput
+newRespondActivityTaskFailedInput' _taskToken customize = (RespondActivityTaskFailedInput <<< customize) { "taskToken": _taskToken, "details": Nothing, "reason": Nothing }
 
 
 
 -- | <p>Input data for a TaskCompleted response to a decision task.</p>
 newtype RespondDecisionTaskCompletedInput = RespondDecisionTaskCompletedInput 
   { "taskToken" :: (TaskToken)
-  , "decisions" :: NullOrUndefined (DecisionList)
-  , "executionContext" :: NullOrUndefined (Data)
+  , "decisions" :: Maybe (DecisionList)
+  , "executionContext" :: Maybe (Data)
   }
 derive instance newtypeRespondDecisionTaskCompletedInput :: Newtype RespondDecisionTaskCompletedInput _
 derive instance repGenericRespondDecisionTaskCompletedInput :: Generic RespondDecisionTaskCompletedInput _
@@ -2623,12 +2622,12 @@ instance encodeRespondDecisionTaskCompletedInput :: Encode RespondDecisionTaskCo
 
 -- | Constructs RespondDecisionTaskCompletedInput from required parameters
 newRespondDecisionTaskCompletedInput :: TaskToken -> RespondDecisionTaskCompletedInput
-newRespondDecisionTaskCompletedInput _taskToken = RespondDecisionTaskCompletedInput { "taskToken": _taskToken, "decisions": (NullOrUndefined Nothing), "executionContext": (NullOrUndefined Nothing) }
+newRespondDecisionTaskCompletedInput _taskToken = RespondDecisionTaskCompletedInput { "taskToken": _taskToken, "decisions": Nothing, "executionContext": Nothing }
 
 -- | Constructs RespondDecisionTaskCompletedInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRespondDecisionTaskCompletedInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "decisions" :: NullOrUndefined (DecisionList) , "executionContext" :: NullOrUndefined (Data) } -> {"taskToken" :: (TaskToken) , "decisions" :: NullOrUndefined (DecisionList) , "executionContext" :: NullOrUndefined (Data) } ) -> RespondDecisionTaskCompletedInput
-newRespondDecisionTaskCompletedInput' _taskToken customize = (RespondDecisionTaskCompletedInput <<< customize) { "taskToken": _taskToken, "decisions": (NullOrUndefined Nothing), "executionContext": (NullOrUndefined Nothing) }
+newRespondDecisionTaskCompletedInput' :: TaskToken -> ( { "taskToken" :: (TaskToken) , "decisions" :: Maybe (DecisionList) , "executionContext" :: Maybe (Data) } -> {"taskToken" :: (TaskToken) , "decisions" :: Maybe (DecisionList) , "executionContext" :: Maybe (Data) } ) -> RespondDecisionTaskCompletedInput
+newRespondDecisionTaskCompletedInput' _taskToken customize = (RespondDecisionTaskCompletedInput <<< customize) { "taskToken": _taskToken, "decisions": Nothing, "executionContext": Nothing }
 
 
 
@@ -2643,7 +2642,7 @@ instance encodeReverseOrder :: Encode ReverseOrder where encode = genericEncode 
 
 -- | <p>Specifies the <code>runId</code> of a workflow execution.</p>
 newtype Run = Run 
-  { "runId" :: NullOrUndefined (WorkflowRunId)
+  { "runId" :: Maybe (WorkflowRunId)
   }
 derive instance newtypeRun :: Newtype Run _
 derive instance repGenericRun :: Generic Run _
@@ -2653,12 +2652,12 @@ instance encodeRun :: Encode Run where encode = genericEncode options
 
 -- | Constructs Run from required parameters
 newRun :: Run
-newRun  = Run { "runId": (NullOrUndefined Nothing) }
+newRun  = Run { "runId": Nothing }
 
 -- | Constructs Run's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRun' :: ( { "runId" :: NullOrUndefined (WorkflowRunId) } -> {"runId" :: NullOrUndefined (WorkflowRunId) } ) -> Run
-newRun'  customize = (Run <<< customize) { "runId": (NullOrUndefined Nothing) }
+newRun' :: ( { "runId" :: Maybe (WorkflowRunId) } -> {"runId" :: Maybe (WorkflowRunId) } ) -> Run
+newRun'  customize = (Run <<< customize) { "runId": Nothing }
 
 
 
@@ -2666,14 +2665,14 @@ newRun'  customize = (Run <<< customize) { "runId": (NullOrUndefined Nothing) }
 newtype ScheduleActivityTaskDecisionAttributes = ScheduleActivityTaskDecisionAttributes 
   { "activityType" :: (ActivityType)
   , "activityId" :: (ActivityId)
-  , "control" :: NullOrUndefined (Data)
-  , "input" :: NullOrUndefined (Data)
-  , "scheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "taskList" :: NullOrUndefined (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
-  , "scheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "heartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "control" :: Maybe (Data)
+  , "input" :: Maybe (Data)
+  , "scheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "taskList" :: Maybe (TaskList)
+  , "taskPriority" :: Maybe (TaskPriority)
+  , "scheduleToStartTimeout" :: Maybe (DurationInSecondsOptional)
+  , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "heartbeatTimeout" :: Maybe (DurationInSecondsOptional)
   }
 derive instance newtypeScheduleActivityTaskDecisionAttributes :: Newtype ScheduleActivityTaskDecisionAttributes _
 derive instance repGenericScheduleActivityTaskDecisionAttributes :: Generic ScheduleActivityTaskDecisionAttributes _
@@ -2683,12 +2682,12 @@ instance encodeScheduleActivityTaskDecisionAttributes :: Encode ScheduleActivity
 
 -- | Constructs ScheduleActivityTaskDecisionAttributes from required parameters
 newScheduleActivityTaskDecisionAttributes :: ActivityId -> ActivityType -> ScheduleActivityTaskDecisionAttributes
-newScheduleActivityTaskDecisionAttributes _activityId _activityType = ScheduleActivityTaskDecisionAttributes { "activityId": _activityId, "activityType": _activityType, "control": (NullOrUndefined Nothing), "heartbeatTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "scheduleToCloseTimeout": (NullOrUndefined Nothing), "scheduleToStartTimeout": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newScheduleActivityTaskDecisionAttributes _activityId _activityType = ScheduleActivityTaskDecisionAttributes { "activityId": _activityId, "activityType": _activityType, "control": Nothing, "heartbeatTimeout": Nothing, "input": Nothing, "scheduleToCloseTimeout": Nothing, "scheduleToStartTimeout": Nothing, "startToCloseTimeout": Nothing, "taskList": Nothing, "taskPriority": Nothing }
 
 -- | Constructs ScheduleActivityTaskDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newScheduleActivityTaskDecisionAttributes' :: ActivityId -> ActivityType -> ( { "activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (Data) , "scheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "scheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "heartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) } -> {"activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (Data) , "scheduleToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "scheduleToStartTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "heartbeatTimeout" :: NullOrUndefined (DurationInSecondsOptional) } ) -> ScheduleActivityTaskDecisionAttributes
-newScheduleActivityTaskDecisionAttributes' _activityId _activityType customize = (ScheduleActivityTaskDecisionAttributes <<< customize) { "activityId": _activityId, "activityType": _activityType, "control": (NullOrUndefined Nothing), "heartbeatTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "scheduleToCloseTimeout": (NullOrUndefined Nothing), "scheduleToStartTimeout": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newScheduleActivityTaskDecisionAttributes' :: ActivityId -> ActivityType -> ( { "activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "control" :: Maybe (Data) , "input" :: Maybe (Data) , "scheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "scheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "heartbeatTimeout" :: Maybe (DurationInSecondsOptional) } -> {"activityType" :: (ActivityType) , "activityId" :: (ActivityId) , "control" :: Maybe (Data) , "input" :: Maybe (Data) , "scheduleToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "scheduleToStartTimeout" :: Maybe (DurationInSecondsOptional) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "heartbeatTimeout" :: Maybe (DurationInSecondsOptional) } ) -> ScheduleActivityTaskDecisionAttributes
+newScheduleActivityTaskDecisionAttributes' _activityId _activityType customize = (ScheduleActivityTaskDecisionAttributes <<< customize) { "activityId": _activityId, "activityType": _activityType, "control": Nothing, "heartbeatTimeout": Nothing, "input": Nothing, "scheduleToCloseTimeout": Nothing, "scheduleToStartTimeout": Nothing, "startToCloseTimeout": Nothing, "taskList": Nothing, "taskPriority": Nothing }
 
 
 
@@ -2729,9 +2728,9 @@ newScheduleActivityTaskFailedEventAttributes' _activityId _activityType _cause _
 newtype ScheduleLambdaFunctionDecisionAttributes = ScheduleLambdaFunctionDecisionAttributes 
   { "id" :: (FunctionId)
   , "name" :: (FunctionName)
-  , "control" :: NullOrUndefined (Data)
-  , "input" :: NullOrUndefined (FunctionInput)
-  , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "control" :: Maybe (Data)
+  , "input" :: Maybe (FunctionInput)
+  , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   }
 derive instance newtypeScheduleLambdaFunctionDecisionAttributes :: Newtype ScheduleLambdaFunctionDecisionAttributes _
 derive instance repGenericScheduleLambdaFunctionDecisionAttributes :: Generic ScheduleLambdaFunctionDecisionAttributes _
@@ -2741,12 +2740,12 @@ instance encodeScheduleLambdaFunctionDecisionAttributes :: Encode ScheduleLambda
 
 -- | Constructs ScheduleLambdaFunctionDecisionAttributes from required parameters
 newScheduleLambdaFunctionDecisionAttributes :: FunctionId -> FunctionName -> ScheduleLambdaFunctionDecisionAttributes
-newScheduleLambdaFunctionDecisionAttributes _id _name = ScheduleLambdaFunctionDecisionAttributes { "id": _id, "name": _name, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing) }
+newScheduleLambdaFunctionDecisionAttributes _id _name = ScheduleLambdaFunctionDecisionAttributes { "id": _id, "name": _name, "control": Nothing, "input": Nothing, "startToCloseTimeout": Nothing }
 
 -- | Constructs ScheduleLambdaFunctionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newScheduleLambdaFunctionDecisionAttributes' :: FunctionId -> FunctionName -> ( { "id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (FunctionInput) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } -> {"id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (FunctionInput) , "startToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) } ) -> ScheduleLambdaFunctionDecisionAttributes
-newScheduleLambdaFunctionDecisionAttributes' _id _name customize = (ScheduleLambdaFunctionDecisionAttributes <<< customize) { "id": _id, "name": _name, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "startToCloseTimeout": (NullOrUndefined Nothing) }
+newScheduleLambdaFunctionDecisionAttributes' :: FunctionId -> FunctionName -> ( { "id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: Maybe (Data) , "input" :: Maybe (FunctionInput) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) } -> {"id" :: (FunctionId) , "name" :: (FunctionName) , "control" :: Maybe (Data) , "input" :: Maybe (FunctionInput) , "startToCloseTimeout" :: Maybe (DurationInSecondsOptional) } ) -> ScheduleLambdaFunctionDecisionAttributes
+newScheduleLambdaFunctionDecisionAttributes' _id _name customize = (ScheduleLambdaFunctionDecisionAttributes <<< customize) { "id": _id, "name": _name, "control": Nothing, "input": Nothing, "startToCloseTimeout": Nothing }
 
 
 
@@ -2786,10 +2785,10 @@ newScheduleLambdaFunctionFailedEventAttributes' _cause _decisionTaskCompletedEve
 -- | <p>Provides the details of the <code>SignalExternalWorkflowExecution</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype SignalExternalWorkflowExecutionDecisionAttributes = SignalExternalWorkflowExecutionDecisionAttributes 
   { "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   , "signalName" :: (SignalName)
-  , "input" :: NullOrUndefined (Data)
-  , "control" :: NullOrUndefined (Data)
+  , "input" :: Maybe (Data)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeSignalExternalWorkflowExecutionDecisionAttributes :: Newtype SignalExternalWorkflowExecutionDecisionAttributes _
 derive instance repGenericSignalExternalWorkflowExecutionDecisionAttributes :: Generic SignalExternalWorkflowExecutionDecisionAttributes _
@@ -2799,12 +2798,12 @@ instance encodeSignalExternalWorkflowExecutionDecisionAttributes :: Encode Signa
 
 -- | Constructs SignalExternalWorkflowExecutionDecisionAttributes from required parameters
 newSignalExternalWorkflowExecutionDecisionAttributes :: SignalName -> WorkflowId -> SignalExternalWorkflowExecutionDecisionAttributes
-newSignalExternalWorkflowExecutionDecisionAttributes _signalName _workflowId = SignalExternalWorkflowExecutionDecisionAttributes { "signalName": _signalName, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalExternalWorkflowExecutionDecisionAttributes _signalName _workflowId = SignalExternalWorkflowExecutionDecisionAttributes { "signalName": _signalName, "workflowId": _workflowId, "control": Nothing, "input": Nothing, "runId": Nothing }
 
 -- | Constructs SignalExternalWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSignalExternalWorkflowExecutionDecisionAttributes' :: SignalName -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) , "control" :: NullOrUndefined (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) , "control" :: NullOrUndefined (Data) } ) -> SignalExternalWorkflowExecutionDecisionAttributes
-newSignalExternalWorkflowExecutionDecisionAttributes' _signalName _workflowId customize = (SignalExternalWorkflowExecutionDecisionAttributes <<< customize) { "signalName": _signalName, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalExternalWorkflowExecutionDecisionAttributes' :: SignalName -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: Maybe (Data) , "control" :: Maybe (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: Maybe (Data) , "control" :: Maybe (Data) } ) -> SignalExternalWorkflowExecutionDecisionAttributes
+newSignalExternalWorkflowExecutionDecisionAttributes' _signalName _workflowId customize = (SignalExternalWorkflowExecutionDecisionAttributes <<< customize) { "signalName": _signalName, "workflowId": _workflowId, "control": Nothing, "input": Nothing, "runId": Nothing }
 
 
 
@@ -2820,11 +2819,11 @@ instance encodeSignalExternalWorkflowExecutionFailedCause :: Encode SignalExtern
 -- | <p>Provides the details of the <code>SignalExternalWorkflowExecutionFailed</code> event.</p>
 newtype SignalExternalWorkflowExecutionFailedEventAttributes = SignalExternalWorkflowExecutionFailedEventAttributes 
   { "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   , "cause" :: (SignalExternalWorkflowExecutionFailedCause)
   , "initiatedEventId" :: (EventId)
   , "decisionTaskCompletedEventId" :: (EventId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeSignalExternalWorkflowExecutionFailedEventAttributes :: Newtype SignalExternalWorkflowExecutionFailedEventAttributes _
 derive instance repGenericSignalExternalWorkflowExecutionFailedEventAttributes :: Generic SignalExternalWorkflowExecutionFailedEventAttributes _
@@ -2834,23 +2833,23 @@ instance encodeSignalExternalWorkflowExecutionFailedEventAttributes :: Encode Si
 
 -- | Constructs SignalExternalWorkflowExecutionFailedEventAttributes from required parameters
 newSignalExternalWorkflowExecutionFailedEventAttributes :: SignalExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> SignalExternalWorkflowExecutionFailedEventAttributes
-newSignalExternalWorkflowExecutionFailedEventAttributes _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId = SignalExternalWorkflowExecutionFailedEventAttributes { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalExternalWorkflowExecutionFailedEventAttributes _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId = SignalExternalWorkflowExecutionFailedEventAttributes { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 -- | Constructs SignalExternalWorkflowExecutionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSignalExternalWorkflowExecutionFailedEventAttributes' :: SignalExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "cause" :: (SignalExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "cause" :: (SignalExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } ) -> SignalExternalWorkflowExecutionFailedEventAttributes
-newSignalExternalWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId customize = (SignalExternalWorkflowExecutionFailedEventAttributes <<< customize) { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalExternalWorkflowExecutionFailedEventAttributes' :: SignalExternalWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "cause" :: (SignalExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "cause" :: (SignalExternalWorkflowExecutionFailedCause) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } ) -> SignalExternalWorkflowExecutionFailedEventAttributes
+newSignalExternalWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId customize = (SignalExternalWorkflowExecutionFailedEventAttributes <<< customize) { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "control": Nothing, "runId": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>SignalExternalWorkflowExecutionInitiated</code> event.</p>
 newtype SignalExternalWorkflowExecutionInitiatedEventAttributes = SignalExternalWorkflowExecutionInitiatedEventAttributes 
   { "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   , "signalName" :: (SignalName)
-  , "input" :: NullOrUndefined (Data)
+  , "input" :: Maybe (Data)
   , "decisionTaskCompletedEventId" :: (EventId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeSignalExternalWorkflowExecutionInitiatedEventAttributes :: Newtype SignalExternalWorkflowExecutionInitiatedEventAttributes _
 derive instance repGenericSignalExternalWorkflowExecutionInitiatedEventAttributes :: Generic SignalExternalWorkflowExecutionInitiatedEventAttributes _
@@ -2860,12 +2859,12 @@ instance encodeSignalExternalWorkflowExecutionInitiatedEventAttributes :: Encode
 
 -- | Constructs SignalExternalWorkflowExecutionInitiatedEventAttributes from required parameters
 newSignalExternalWorkflowExecutionInitiatedEventAttributes :: EventId -> SignalName -> WorkflowId -> SignalExternalWorkflowExecutionInitiatedEventAttributes
-newSignalExternalWorkflowExecutionInitiatedEventAttributes _decisionTaskCompletedEventId _signalName _workflowId = SignalExternalWorkflowExecutionInitiatedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "signalName": _signalName, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalExternalWorkflowExecutionInitiatedEventAttributes _decisionTaskCompletedEventId _signalName _workflowId = SignalExternalWorkflowExecutionInitiatedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "signalName": _signalName, "workflowId": _workflowId, "control": Nothing, "input": Nothing, "runId": Nothing }
 
 -- | Constructs SignalExternalWorkflowExecutionInitiatedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSignalExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> SignalName -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } ) -> SignalExternalWorkflowExecutionInitiatedEventAttributes
-newSignalExternalWorkflowExecutionInitiatedEventAttributes' _decisionTaskCompletedEventId _signalName _workflowId customize = (SignalExternalWorkflowExecutionInitiatedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "signalName": _signalName, "workflowId": _workflowId, "control": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalExternalWorkflowExecutionInitiatedEventAttributes' :: EventId -> SignalName -> WorkflowId -> ( { "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } -> {"workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } ) -> SignalExternalWorkflowExecutionInitiatedEventAttributes
+newSignalExternalWorkflowExecutionInitiatedEventAttributes' _decisionTaskCompletedEventId _signalName _workflowId customize = (SignalExternalWorkflowExecutionInitiatedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "signalName": _signalName, "workflowId": _workflowId, "control": Nothing, "input": Nothing, "runId": Nothing }
 
 
 
@@ -2881,9 +2880,9 @@ instance encodeSignalName :: Encode SignalName where encode = genericEncode opti
 newtype SignalWorkflowExecutionInput = SignalWorkflowExecutionInput 
   { "domain" :: (DomainName)
   , "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
   , "signalName" :: (SignalName)
-  , "input" :: NullOrUndefined (Data)
+  , "input" :: Maybe (Data)
   }
 derive instance newtypeSignalWorkflowExecutionInput :: Newtype SignalWorkflowExecutionInput _
 derive instance repGenericSignalWorkflowExecutionInput :: Generic SignalWorkflowExecutionInput _
@@ -2893,12 +2892,12 @@ instance encodeSignalWorkflowExecutionInput :: Encode SignalWorkflowExecutionInp
 
 -- | Constructs SignalWorkflowExecutionInput from required parameters
 newSignalWorkflowExecutionInput :: DomainName -> SignalName -> WorkflowId -> SignalWorkflowExecutionInput
-newSignalWorkflowExecutionInput _domain _signalName _workflowId = SignalWorkflowExecutionInput { "domain": _domain, "signalName": _signalName, "workflowId": _workflowId, "input": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalWorkflowExecutionInput _domain _signalName _workflowId = SignalWorkflowExecutionInput { "domain": _domain, "signalName": _signalName, "workflowId": _workflowId, "input": Nothing, "runId": Nothing }
 
 -- | Constructs SignalWorkflowExecutionInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSignalWorkflowExecutionInput' :: DomainName -> SignalName -> WorkflowId -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) } ) -> SignalWorkflowExecutionInput
-newSignalWorkflowExecutionInput' _domain _signalName _workflowId customize = (SignalWorkflowExecutionInput <<< customize) { "domain": _domain, "signalName": _signalName, "workflowId": _workflowId, "input": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newSignalWorkflowExecutionInput' :: DomainName -> SignalName -> WorkflowId -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: Maybe (Data) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "signalName" :: (SignalName) , "input" :: Maybe (Data) } ) -> SignalWorkflowExecutionInput
+newSignalWorkflowExecutionInput' _domain _signalName _workflowId customize = (SignalWorkflowExecutionInput <<< customize) { "domain": _domain, "signalName": _signalName, "workflowId": _workflowId, "input": Nothing, "runId": Nothing }
 
 
 
@@ -2906,15 +2905,15 @@ newSignalWorkflowExecutionInput' _domain _signalName _workflowId customize = (Si
 newtype StartChildWorkflowExecutionDecisionAttributes = StartChildWorkflowExecutionDecisionAttributes 
   { "workflowType" :: (WorkflowType)
   , "workflowId" :: (WorkflowId)
-  , "control" :: NullOrUndefined (Data)
-  , "input" :: NullOrUndefined (Data)
-  , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "taskList" :: NullOrUndefined (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
-  , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "childPolicy" :: NullOrUndefined (ChildPolicy)
-  , "tagList" :: NullOrUndefined (TagList)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  , "control" :: Maybe (Data)
+  , "input" :: Maybe (Data)
+  , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "taskList" :: Maybe (TaskList)
+  , "taskPriority" :: Maybe (TaskPriority)
+  , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "childPolicy" :: Maybe (ChildPolicy)
+  , "tagList" :: Maybe (TagList)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeStartChildWorkflowExecutionDecisionAttributes :: Newtype StartChildWorkflowExecutionDecisionAttributes _
 derive instance repGenericStartChildWorkflowExecutionDecisionAttributes :: Generic StartChildWorkflowExecutionDecisionAttributes _
@@ -2924,12 +2923,12 @@ instance encodeStartChildWorkflowExecutionDecisionAttributes :: Encode StartChil
 
 -- | Constructs StartChildWorkflowExecutionDecisionAttributes from required parameters
 newStartChildWorkflowExecutionDecisionAttributes :: WorkflowId -> WorkflowType -> StartChildWorkflowExecutionDecisionAttributes
-newStartChildWorkflowExecutionDecisionAttributes _workflowId _workflowType = StartChildWorkflowExecutionDecisionAttributes { "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": (NullOrUndefined Nothing), "control": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newStartChildWorkflowExecutionDecisionAttributes _workflowId _workflowType = StartChildWorkflowExecutionDecisionAttributes { "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": Nothing, "control": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 -- | Constructs StartChildWorkflowExecutionDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newStartChildWorkflowExecutionDecisionAttributes' :: WorkflowId -> WorkflowType -> ( { "workflowType" :: (WorkflowType) , "workflowId" :: (WorkflowId) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: NullOrUndefined (ChildPolicy) , "tagList" :: NullOrUndefined (TagList) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"workflowType" :: (WorkflowType) , "workflowId" :: (WorkflowId) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: NullOrUndefined (ChildPolicy) , "tagList" :: NullOrUndefined (TagList) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> StartChildWorkflowExecutionDecisionAttributes
-newStartChildWorkflowExecutionDecisionAttributes' _workflowId _workflowType customize = (StartChildWorkflowExecutionDecisionAttributes <<< customize) { "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": (NullOrUndefined Nothing), "control": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newStartChildWorkflowExecutionDecisionAttributes' :: WorkflowId -> WorkflowType -> ( { "workflowType" :: (WorkflowType) , "workflowId" :: (WorkflowId) , "control" :: Maybe (Data) , "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: Maybe (ChildPolicy) , "tagList" :: Maybe (TagList) , "lambdaRole" :: Maybe (Arn) } -> {"workflowType" :: (WorkflowType) , "workflowId" :: (WorkflowId) , "control" :: Maybe (Data) , "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: Maybe (ChildPolicy) , "tagList" :: Maybe (TagList) , "lambdaRole" :: Maybe (Arn) } ) -> StartChildWorkflowExecutionDecisionAttributes
+newStartChildWorkflowExecutionDecisionAttributes' _workflowId _workflowType customize = (StartChildWorkflowExecutionDecisionAttributes <<< customize) { "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": Nothing, "control": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 
 
@@ -2949,7 +2948,7 @@ newtype StartChildWorkflowExecutionFailedEventAttributes = StartChildWorkflowExe
   , "workflowId" :: (WorkflowId)
   , "initiatedEventId" :: (EventId)
   , "decisionTaskCompletedEventId" :: (EventId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   }
 derive instance newtypeStartChildWorkflowExecutionFailedEventAttributes :: Newtype StartChildWorkflowExecutionFailedEventAttributes _
 derive instance repGenericStartChildWorkflowExecutionFailedEventAttributes :: Generic StartChildWorkflowExecutionFailedEventAttributes _
@@ -2959,12 +2958,12 @@ instance encodeStartChildWorkflowExecutionFailedEventAttributes :: Encode StartC
 
 -- | Constructs StartChildWorkflowExecutionFailedEventAttributes from required parameters
 newStartChildWorkflowExecutionFailedEventAttributes :: StartChildWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> WorkflowType -> StartChildWorkflowExecutionFailedEventAttributes
-newStartChildWorkflowExecutionFailedEventAttributes _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId _workflowType = StartChildWorkflowExecutionFailedEventAttributes { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "workflowType": _workflowType, "control": (NullOrUndefined Nothing) }
+newStartChildWorkflowExecutionFailedEventAttributes _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId _workflowType = StartChildWorkflowExecutionFailedEventAttributes { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "workflowType": _workflowType, "control": Nothing }
 
 -- | Constructs StartChildWorkflowExecutionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newStartChildWorkflowExecutionFailedEventAttributes' :: StartChildWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> WorkflowType -> ( { "workflowType" :: (WorkflowType) , "cause" :: (StartChildWorkflowExecutionFailedCause) , "workflowId" :: (WorkflowId) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } -> {"workflowType" :: (WorkflowType) , "cause" :: (StartChildWorkflowExecutionFailedCause) , "workflowId" :: (WorkflowId) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: NullOrUndefined (Data) } ) -> StartChildWorkflowExecutionFailedEventAttributes
-newStartChildWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId _workflowType customize = (StartChildWorkflowExecutionFailedEventAttributes <<< customize) { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "workflowType": _workflowType, "control": (NullOrUndefined Nothing) }
+newStartChildWorkflowExecutionFailedEventAttributes' :: StartChildWorkflowExecutionFailedCause -> EventId -> EventId -> WorkflowId -> WorkflowType -> ( { "workflowType" :: (WorkflowType) , "cause" :: (StartChildWorkflowExecutionFailedCause) , "workflowId" :: (WorkflowId) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } -> {"workflowType" :: (WorkflowType) , "cause" :: (StartChildWorkflowExecutionFailedCause) , "workflowId" :: (WorkflowId) , "initiatedEventId" :: (EventId) , "decisionTaskCompletedEventId" :: (EventId) , "control" :: Maybe (Data) } ) -> StartChildWorkflowExecutionFailedEventAttributes
+newStartChildWorkflowExecutionFailedEventAttributes' _cause _decisionTaskCompletedEventId _initiatedEventId _workflowId _workflowType customize = (StartChildWorkflowExecutionFailedEventAttributes <<< customize) { "cause": _cause, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "initiatedEventId": _initiatedEventId, "workflowId": _workflowId, "workflowType": _workflowType, "control": Nothing }
 
 
 
@@ -2972,16 +2971,16 @@ newStartChildWorkflowExecutionFailedEventAttributes' _cause _decisionTaskComplet
 newtype StartChildWorkflowExecutionInitiatedEventAttributes = StartChildWorkflowExecutionInitiatedEventAttributes 
   { "workflowId" :: (WorkflowId)
   , "workflowType" :: (WorkflowType)
-  , "control" :: NullOrUndefined (Data)
-  , "input" :: NullOrUndefined (Data)
-  , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "control" :: Maybe (Data)
+  , "input" :: Maybe (Data)
+  , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   , "taskList" :: (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
+  , "taskPriority" :: Maybe (TaskPriority)
   , "decisionTaskCompletedEventId" :: (EventId)
   , "childPolicy" :: (ChildPolicy)
-  , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "tagList" :: NullOrUndefined (TagList)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "tagList" :: Maybe (TagList)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeStartChildWorkflowExecutionInitiatedEventAttributes :: Newtype StartChildWorkflowExecutionInitiatedEventAttributes _
 derive instance repGenericStartChildWorkflowExecutionInitiatedEventAttributes :: Generic StartChildWorkflowExecutionInitiatedEventAttributes _
@@ -2991,12 +2990,12 @@ instance encodeStartChildWorkflowExecutionInitiatedEventAttributes :: Encode Sta
 
 -- | Constructs StartChildWorkflowExecutionInitiatedEventAttributes from required parameters
 newStartChildWorkflowExecutionInitiatedEventAttributes :: ChildPolicy -> EventId -> TaskList -> WorkflowId -> WorkflowType -> StartChildWorkflowExecutionInitiatedEventAttributes
-newStartChildWorkflowExecutionInitiatedEventAttributes _childPolicy _decisionTaskCompletedEventId _taskList _workflowId _workflowType = StartChildWorkflowExecutionInitiatedEventAttributes { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "workflowId": _workflowId, "workflowType": _workflowType, "control": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newStartChildWorkflowExecutionInitiatedEventAttributes _childPolicy _decisionTaskCompletedEventId _taskList _workflowId _workflowType = StartChildWorkflowExecutionInitiatedEventAttributes { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "workflowId": _workflowId, "workflowType": _workflowType, "control": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 -- | Constructs StartChildWorkflowExecutionInitiatedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newStartChildWorkflowExecutionInitiatedEventAttributes' :: ChildPolicy -> EventId -> TaskList -> WorkflowId -> WorkflowType -> ( { "workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "childPolicy" :: (ChildPolicy) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "tagList" :: NullOrUndefined (TagList) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "control" :: NullOrUndefined (Data) , "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "childPolicy" :: (ChildPolicy) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "tagList" :: NullOrUndefined (TagList) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> StartChildWorkflowExecutionInitiatedEventAttributes
-newStartChildWorkflowExecutionInitiatedEventAttributes' _childPolicy _decisionTaskCompletedEventId _taskList _workflowId _workflowType customize = (StartChildWorkflowExecutionInitiatedEventAttributes <<< customize) { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "workflowId": _workflowId, "workflowType": _workflowType, "control": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newStartChildWorkflowExecutionInitiatedEventAttributes' :: ChildPolicy -> EventId -> TaskList -> WorkflowId -> WorkflowType -> ( { "workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "control" :: Maybe (Data) , "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "childPolicy" :: (ChildPolicy) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "tagList" :: Maybe (TagList) , "lambdaRole" :: Maybe (Arn) } -> {"workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "control" :: Maybe (Data) , "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "decisionTaskCompletedEventId" :: (EventId) , "childPolicy" :: (ChildPolicy) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "tagList" :: Maybe (TagList) , "lambdaRole" :: Maybe (Arn) } ) -> StartChildWorkflowExecutionInitiatedEventAttributes
+newStartChildWorkflowExecutionInitiatedEventAttributes' _childPolicy _decisionTaskCompletedEventId _taskList _workflowId _workflowType customize = (StartChildWorkflowExecutionInitiatedEventAttributes <<< customize) { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "taskList": _taskList, "workflowId": _workflowId, "workflowType": _workflowType, "control": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 
 
@@ -3011,9 +3010,9 @@ instance encodeStartLambdaFunctionFailedCause :: Encode StartLambdaFunctionFaile
 
 -- | <p>Provides the details of the <code>StartLambdaFunctionFailed</code> event. It isn't set for other event types.</p>
 newtype StartLambdaFunctionFailedEventAttributes = StartLambdaFunctionFailedEventAttributes 
-  { "scheduledEventId" :: NullOrUndefined (EventId)
-  , "cause" :: NullOrUndefined (StartLambdaFunctionFailedCause)
-  , "message" :: NullOrUndefined (CauseMessage)
+  { "scheduledEventId" :: Maybe (EventId)
+  , "cause" :: Maybe (StartLambdaFunctionFailedCause)
+  , "message" :: Maybe (CauseMessage)
   }
 derive instance newtypeStartLambdaFunctionFailedEventAttributes :: Newtype StartLambdaFunctionFailedEventAttributes _
 derive instance repGenericStartLambdaFunctionFailedEventAttributes :: Generic StartLambdaFunctionFailedEventAttributes _
@@ -3023,19 +3022,19 @@ instance encodeStartLambdaFunctionFailedEventAttributes :: Encode StartLambdaFun
 
 -- | Constructs StartLambdaFunctionFailedEventAttributes from required parameters
 newStartLambdaFunctionFailedEventAttributes :: StartLambdaFunctionFailedEventAttributes
-newStartLambdaFunctionFailedEventAttributes  = StartLambdaFunctionFailedEventAttributes { "cause": (NullOrUndefined Nothing), "message": (NullOrUndefined Nothing), "scheduledEventId": (NullOrUndefined Nothing) }
+newStartLambdaFunctionFailedEventAttributes  = StartLambdaFunctionFailedEventAttributes { "cause": Nothing, "message": Nothing, "scheduledEventId": Nothing }
 
 -- | Constructs StartLambdaFunctionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newStartLambdaFunctionFailedEventAttributes' :: ( { "scheduledEventId" :: NullOrUndefined (EventId) , "cause" :: NullOrUndefined (StartLambdaFunctionFailedCause) , "message" :: NullOrUndefined (CauseMessage) } -> {"scheduledEventId" :: NullOrUndefined (EventId) , "cause" :: NullOrUndefined (StartLambdaFunctionFailedCause) , "message" :: NullOrUndefined (CauseMessage) } ) -> StartLambdaFunctionFailedEventAttributes
-newStartLambdaFunctionFailedEventAttributes'  customize = (StartLambdaFunctionFailedEventAttributes <<< customize) { "cause": (NullOrUndefined Nothing), "message": (NullOrUndefined Nothing), "scheduledEventId": (NullOrUndefined Nothing) }
+newStartLambdaFunctionFailedEventAttributes' :: ( { "scheduledEventId" :: Maybe (EventId) , "cause" :: Maybe (StartLambdaFunctionFailedCause) , "message" :: Maybe (CauseMessage) } -> {"scheduledEventId" :: Maybe (EventId) , "cause" :: Maybe (StartLambdaFunctionFailedCause) , "message" :: Maybe (CauseMessage) } ) -> StartLambdaFunctionFailedEventAttributes
+newStartLambdaFunctionFailedEventAttributes'  customize = (StartLambdaFunctionFailedEventAttributes <<< customize) { "cause": Nothing, "message": Nothing, "scheduledEventId": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>StartTimer</code> decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to control this decision's access to Amazon SWF resources as follows:</p> <ul> <li> <p>Use a <code>Resource</code> element with the domain name to limit the action to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element to allow or deny permission to call this action.</p> </li> <li> <p>You cannot use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's <code>cause</code> parameter is set to <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see <a href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer Guide</i>.</p>
 newtype StartTimerDecisionAttributes = StartTimerDecisionAttributes 
   { "timerId" :: (TimerId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   , "startToFireTimeout" :: (DurationInSeconds)
   }
 derive instance newtypeStartTimerDecisionAttributes :: Newtype StartTimerDecisionAttributes _
@@ -3046,12 +3045,12 @@ instance encodeStartTimerDecisionAttributes :: Encode StartTimerDecisionAttribut
 
 -- | Constructs StartTimerDecisionAttributes from required parameters
 newStartTimerDecisionAttributes :: DurationInSeconds -> TimerId -> StartTimerDecisionAttributes
-newStartTimerDecisionAttributes _startToFireTimeout _timerId = StartTimerDecisionAttributes { "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": (NullOrUndefined Nothing) }
+newStartTimerDecisionAttributes _startToFireTimeout _timerId = StartTimerDecisionAttributes { "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": Nothing }
 
 -- | Constructs StartTimerDecisionAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newStartTimerDecisionAttributes' :: DurationInSeconds -> TimerId -> ( { "timerId" :: (TimerId) , "control" :: NullOrUndefined (Data) , "startToFireTimeout" :: (DurationInSeconds) } -> {"timerId" :: (TimerId) , "control" :: NullOrUndefined (Data) , "startToFireTimeout" :: (DurationInSeconds) } ) -> StartTimerDecisionAttributes
-newStartTimerDecisionAttributes' _startToFireTimeout _timerId customize = (StartTimerDecisionAttributes <<< customize) { "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": (NullOrUndefined Nothing) }
+newStartTimerDecisionAttributes' :: DurationInSeconds -> TimerId -> ( { "timerId" :: (TimerId) , "control" :: Maybe (Data) , "startToFireTimeout" :: (DurationInSeconds) } -> {"timerId" :: (TimerId) , "control" :: Maybe (Data) , "startToFireTimeout" :: (DurationInSeconds) } ) -> StartTimerDecisionAttributes
+newStartTimerDecisionAttributes' _startToFireTimeout _timerId customize = (StartTimerDecisionAttributes <<< customize) { "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": Nothing }
 
 
 
@@ -3091,14 +3090,14 @@ newtype StartWorkflowExecutionInput = StartWorkflowExecutionInput
   { "domain" :: (DomainName)
   , "workflowId" :: (WorkflowId)
   , "workflowType" :: (WorkflowType)
-  , "taskList" :: NullOrUndefined (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
-  , "input" :: NullOrUndefined (Data)
-  , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "tagList" :: NullOrUndefined (TagList)
-  , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "childPolicy" :: NullOrUndefined (ChildPolicy)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  , "taskList" :: Maybe (TaskList)
+  , "taskPriority" :: Maybe (TaskPriority)
+  , "input" :: Maybe (Data)
+  , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "tagList" :: Maybe (TagList)
+  , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "childPolicy" :: Maybe (ChildPolicy)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeStartWorkflowExecutionInput :: Newtype StartWorkflowExecutionInput _
 derive instance repGenericStartWorkflowExecutionInput :: Generic StartWorkflowExecutionInput _
@@ -3108,12 +3107,12 @@ instance encodeStartWorkflowExecutionInput :: Encode StartWorkflowExecutionInput
 
 -- | Constructs StartWorkflowExecutionInput from required parameters
 newStartWorkflowExecutionInput :: DomainName -> WorkflowId -> WorkflowType -> StartWorkflowExecutionInput
-newStartWorkflowExecutionInput _domain _workflowId _workflowType = StartWorkflowExecutionInput { "domain": _domain, "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newStartWorkflowExecutionInput _domain _workflowId _workflowType = StartWorkflowExecutionInput { "domain": _domain, "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 -- | Constructs StartWorkflowExecutionInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newStartWorkflowExecutionInput' :: DomainName -> WorkflowId -> WorkflowType -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "tagList" :: NullOrUndefined (TagList) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: NullOrUndefined (ChildPolicy) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "taskList" :: NullOrUndefined (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "tagList" :: NullOrUndefined (TagList) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: NullOrUndefined (ChildPolicy) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> StartWorkflowExecutionInput
-newStartWorkflowExecutionInput' _domain _workflowId _workflowType customize = (StartWorkflowExecutionInput <<< customize) { "domain": _domain, "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newStartWorkflowExecutionInput' :: DomainName -> WorkflowId -> WorkflowType -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "tagList" :: Maybe (TagList) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: Maybe (ChildPolicy) , "lambdaRole" :: Maybe (Arn) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "workflowType" :: (WorkflowType) , "taskList" :: Maybe (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "tagList" :: Maybe (TagList) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: Maybe (ChildPolicy) , "lambdaRole" :: Maybe (Arn) } ) -> StartWorkflowExecutionInput
+newStartWorkflowExecutionInput' _domain _workflowId _workflowType customize = (StartWorkflowExecutionInput <<< customize) { "domain": _domain, "workflowId": _workflowId, "workflowType": _workflowType, "childPolicy": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 
 
@@ -3207,10 +3206,10 @@ instance encodeTerminateReason :: Encode TerminateReason where encode = genericE
 newtype TerminateWorkflowExecutionInput = TerminateWorkflowExecutionInput 
   { "domain" :: (DomainName)
   , "workflowId" :: (WorkflowId)
-  , "runId" :: NullOrUndefined (WorkflowRunIdOptional)
-  , "reason" :: NullOrUndefined (TerminateReason)
-  , "details" :: NullOrUndefined (Data)
-  , "childPolicy" :: NullOrUndefined (ChildPolicy)
+  , "runId" :: Maybe (WorkflowRunIdOptional)
+  , "reason" :: Maybe (TerminateReason)
+  , "details" :: Maybe (Data)
+  , "childPolicy" :: Maybe (ChildPolicy)
   }
 derive instance newtypeTerminateWorkflowExecutionInput :: Newtype TerminateWorkflowExecutionInput _
 derive instance repGenericTerminateWorkflowExecutionInput :: Generic TerminateWorkflowExecutionInput _
@@ -3220,12 +3219,12 @@ instance encodeTerminateWorkflowExecutionInput :: Encode TerminateWorkflowExecut
 
 -- | Constructs TerminateWorkflowExecutionInput from required parameters
 newTerminateWorkflowExecutionInput :: DomainName -> WorkflowId -> TerminateWorkflowExecutionInput
-newTerminateWorkflowExecutionInput _domain _workflowId = TerminateWorkflowExecutionInput { "domain": _domain, "workflowId": _workflowId, "childPolicy": (NullOrUndefined Nothing), "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newTerminateWorkflowExecutionInput _domain _workflowId = TerminateWorkflowExecutionInput { "domain": _domain, "workflowId": _workflowId, "childPolicy": Nothing, "details": Nothing, "reason": Nothing, "runId": Nothing }
 
 -- | Constructs TerminateWorkflowExecutionInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newTerminateWorkflowExecutionInput' :: DomainName -> WorkflowId -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "reason" :: NullOrUndefined (TerminateReason) , "details" :: NullOrUndefined (Data) , "childPolicy" :: NullOrUndefined (ChildPolicy) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: NullOrUndefined (WorkflowRunIdOptional) , "reason" :: NullOrUndefined (TerminateReason) , "details" :: NullOrUndefined (Data) , "childPolicy" :: NullOrUndefined (ChildPolicy) } ) -> TerminateWorkflowExecutionInput
-newTerminateWorkflowExecutionInput' _domain _workflowId customize = (TerminateWorkflowExecutionInput <<< customize) { "domain": _domain, "workflowId": _workflowId, "childPolicy": (NullOrUndefined Nothing), "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing), "runId": (NullOrUndefined Nothing) }
+newTerminateWorkflowExecutionInput' :: DomainName -> WorkflowId -> ( { "domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "reason" :: Maybe (TerminateReason) , "details" :: Maybe (Data) , "childPolicy" :: Maybe (ChildPolicy) } -> {"domain" :: (DomainName) , "workflowId" :: (WorkflowId) , "runId" :: Maybe (WorkflowRunIdOptional) , "reason" :: Maybe (TerminateReason) , "details" :: Maybe (Data) , "childPolicy" :: Maybe (ChildPolicy) } ) -> TerminateWorkflowExecutionInput
+newTerminateWorkflowExecutionInput' _domain _workflowId customize = (TerminateWorkflowExecutionInput <<< customize) { "domain": _domain, "workflowId": _workflowId, "childPolicy": Nothing, "details": Nothing, "reason": Nothing, "runId": Nothing }
 
 
 
@@ -3286,7 +3285,7 @@ instance encodeTimerId :: Encode TimerId where encode = genericEncode options
 -- | <p>Provides the details of the <code>TimerStarted</code> event.</p>
 newtype TimerStartedEventAttributes = TimerStartedEventAttributes 
   { "timerId" :: (TimerId)
-  , "control" :: NullOrUndefined (Data)
+  , "control" :: Maybe (Data)
   , "startToFireTimeout" :: (DurationInSeconds)
   , "decisionTaskCompletedEventId" :: (EventId)
   }
@@ -3298,12 +3297,12 @@ instance encodeTimerStartedEventAttributes :: Encode TimerStartedEventAttributes
 
 -- | Constructs TimerStartedEventAttributes from required parameters
 newTimerStartedEventAttributes :: EventId -> DurationInSeconds -> TimerId -> TimerStartedEventAttributes
-newTimerStartedEventAttributes _decisionTaskCompletedEventId _startToFireTimeout _timerId = TimerStartedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": (NullOrUndefined Nothing) }
+newTimerStartedEventAttributes _decisionTaskCompletedEventId _startToFireTimeout _timerId = TimerStartedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": Nothing }
 
 -- | Constructs TimerStartedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newTimerStartedEventAttributes' :: EventId -> DurationInSeconds -> TimerId -> ( { "timerId" :: (TimerId) , "control" :: NullOrUndefined (Data) , "startToFireTimeout" :: (DurationInSeconds) , "decisionTaskCompletedEventId" :: (EventId) } -> {"timerId" :: (TimerId) , "control" :: NullOrUndefined (Data) , "startToFireTimeout" :: (DurationInSeconds) , "decisionTaskCompletedEventId" :: (EventId) } ) -> TimerStartedEventAttributes
-newTimerStartedEventAttributes' _decisionTaskCompletedEventId _startToFireTimeout _timerId customize = (TimerStartedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": (NullOrUndefined Nothing) }
+newTimerStartedEventAttributes' :: EventId -> DurationInSeconds -> TimerId -> ( { "timerId" :: (TimerId) , "control" :: Maybe (Data) , "startToFireTimeout" :: (DurationInSeconds) , "decisionTaskCompletedEventId" :: (EventId) } -> {"timerId" :: (TimerId) , "control" :: Maybe (Data) , "startToFireTimeout" :: (DurationInSeconds) , "decisionTaskCompletedEventId" :: (EventId) } ) -> TimerStartedEventAttributes
+newTimerStartedEventAttributes' _decisionTaskCompletedEventId _startToFireTimeout _timerId customize = (TimerStartedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "startToFireTimeout": _startToFireTimeout, "timerId": _timerId, "control": Nothing }
 
 
 
@@ -3318,7 +3317,7 @@ instance encodeTruncated :: Encode Truncated where encode = genericEncode option
 
 -- | <p>Returned if the type already exists in the specified domain. You get this fault even if the existing type is in deprecated status. You can specify another version if the intent is to create a new distinct version of the type.</p>
 newtype TypeAlreadyExistsFault = TypeAlreadyExistsFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeTypeAlreadyExistsFault :: Newtype TypeAlreadyExistsFault _
 derive instance repGenericTypeAlreadyExistsFault :: Generic TypeAlreadyExistsFault _
@@ -3328,18 +3327,18 @@ instance encodeTypeAlreadyExistsFault :: Encode TypeAlreadyExistsFault where enc
 
 -- | Constructs TypeAlreadyExistsFault from required parameters
 newTypeAlreadyExistsFault :: TypeAlreadyExistsFault
-newTypeAlreadyExistsFault  = TypeAlreadyExistsFault { "message": (NullOrUndefined Nothing) }
+newTypeAlreadyExistsFault  = TypeAlreadyExistsFault { "message": Nothing }
 
 -- | Constructs TypeAlreadyExistsFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newTypeAlreadyExistsFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> TypeAlreadyExistsFault
-newTypeAlreadyExistsFault'  customize = (TypeAlreadyExistsFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newTypeAlreadyExistsFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> TypeAlreadyExistsFault
+newTypeAlreadyExistsFault'  customize = (TypeAlreadyExistsFault <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Returned when the specified activity or workflow type was already deprecated.</p>
 newtype TypeDeprecatedFault = TypeDeprecatedFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeTypeDeprecatedFault :: Newtype TypeDeprecatedFault _
 derive instance repGenericTypeDeprecatedFault :: Generic TypeDeprecatedFault _
@@ -3349,18 +3348,18 @@ instance encodeTypeDeprecatedFault :: Encode TypeDeprecatedFault where encode = 
 
 -- | Constructs TypeDeprecatedFault from required parameters
 newTypeDeprecatedFault :: TypeDeprecatedFault
-newTypeDeprecatedFault  = TypeDeprecatedFault { "message": (NullOrUndefined Nothing) }
+newTypeDeprecatedFault  = TypeDeprecatedFault { "message": Nothing }
 
 -- | Constructs TypeDeprecatedFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newTypeDeprecatedFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> TypeDeprecatedFault
-newTypeDeprecatedFault'  customize = (TypeDeprecatedFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newTypeDeprecatedFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> TypeDeprecatedFault
+newTypeDeprecatedFault'  customize = (TypeDeprecatedFault <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Returned when the named resource cannot be found with in the scope of this operation (region or domain). This could happen if the named resource was never created or is no longer available for this operation.</p>
 newtype UnknownResourceFault = UnknownResourceFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeUnknownResourceFault :: Newtype UnknownResourceFault _
 derive instance repGenericUnknownResourceFault :: Generic UnknownResourceFault _
@@ -3370,12 +3369,12 @@ instance encodeUnknownResourceFault :: Encode UnknownResourceFault where encode 
 
 -- | Constructs UnknownResourceFault from required parameters
 newUnknownResourceFault :: UnknownResourceFault
-newUnknownResourceFault  = UnknownResourceFault { "message": (NullOrUndefined Nothing) }
+newUnknownResourceFault  = UnknownResourceFault { "message": Nothing }
 
 -- | Constructs UnknownResourceFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newUnknownResourceFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> UnknownResourceFault
-newUnknownResourceFault'  customize = (UnknownResourceFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newUnknownResourceFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> UnknownResourceFault
+newUnknownResourceFault'  customize = (UnknownResourceFault <<< customize) { "message": Nothing }
 
 
 
@@ -3421,7 +3420,7 @@ newWorkflowExecution' _runId _workflowId customize = (WorkflowExecution <<< cust
 
 -- | <p>Returned by <a>StartWorkflowExecution</a> when an open execution with the same workflowId is already running in the specified domain.</p>
 newtype WorkflowExecutionAlreadyStartedFault = WorkflowExecutionAlreadyStartedFault 
-  { "message" :: NullOrUndefined (ErrorMessage)
+  { "message" :: Maybe (ErrorMessage)
   }
 derive instance newtypeWorkflowExecutionAlreadyStartedFault :: Newtype WorkflowExecutionAlreadyStartedFault _
 derive instance repGenericWorkflowExecutionAlreadyStartedFault :: Generic WorkflowExecutionAlreadyStartedFault _
@@ -3431,12 +3430,12 @@ instance encodeWorkflowExecutionAlreadyStartedFault :: Encode WorkflowExecutionA
 
 -- | Constructs WorkflowExecutionAlreadyStartedFault from required parameters
 newWorkflowExecutionAlreadyStartedFault :: WorkflowExecutionAlreadyStartedFault
-newWorkflowExecutionAlreadyStartedFault  = WorkflowExecutionAlreadyStartedFault { "message": (NullOrUndefined Nothing) }
+newWorkflowExecutionAlreadyStartedFault  = WorkflowExecutionAlreadyStartedFault { "message": Nothing }
 
 -- | Constructs WorkflowExecutionAlreadyStartedFault's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionAlreadyStartedFault' :: ( { "message" :: NullOrUndefined (ErrorMessage) } -> {"message" :: NullOrUndefined (ErrorMessage) } ) -> WorkflowExecutionAlreadyStartedFault
-newWorkflowExecutionAlreadyStartedFault'  customize = (WorkflowExecutionAlreadyStartedFault <<< customize) { "message": (NullOrUndefined Nothing) }
+newWorkflowExecutionAlreadyStartedFault' :: ( { "message" :: Maybe (ErrorMessage) } -> {"message" :: Maybe (ErrorMessage) } ) -> WorkflowExecutionAlreadyStartedFault
+newWorkflowExecutionAlreadyStartedFault'  customize = (WorkflowExecutionAlreadyStartedFault <<< customize) { "message": Nothing }
 
 
 
@@ -3451,9 +3450,9 @@ instance encodeWorkflowExecutionCancelRequestedCause :: Encode WorkflowExecution
 
 -- | <p>Provides the details of the <code>WorkflowExecutionCancelRequested</code> event.</p>
 newtype WorkflowExecutionCancelRequestedEventAttributes = WorkflowExecutionCancelRequestedEventAttributes 
-  { "externalWorkflowExecution" :: NullOrUndefined (WorkflowExecution)
-  , "externalInitiatedEventId" :: NullOrUndefined (EventId)
-  , "cause" :: NullOrUndefined (WorkflowExecutionCancelRequestedCause)
+  { "externalWorkflowExecution" :: Maybe (WorkflowExecution)
+  , "externalInitiatedEventId" :: Maybe (EventId)
+  , "cause" :: Maybe (WorkflowExecutionCancelRequestedCause)
   }
 derive instance newtypeWorkflowExecutionCancelRequestedEventAttributes :: Newtype WorkflowExecutionCancelRequestedEventAttributes _
 derive instance repGenericWorkflowExecutionCancelRequestedEventAttributes :: Generic WorkflowExecutionCancelRequestedEventAttributes _
@@ -3463,18 +3462,18 @@ instance encodeWorkflowExecutionCancelRequestedEventAttributes :: Encode Workflo
 
 -- | Constructs WorkflowExecutionCancelRequestedEventAttributes from required parameters
 newWorkflowExecutionCancelRequestedEventAttributes :: WorkflowExecutionCancelRequestedEventAttributes
-newWorkflowExecutionCancelRequestedEventAttributes  = WorkflowExecutionCancelRequestedEventAttributes { "cause": (NullOrUndefined Nothing), "externalInitiatedEventId": (NullOrUndefined Nothing), "externalWorkflowExecution": (NullOrUndefined Nothing) }
+newWorkflowExecutionCancelRequestedEventAttributes  = WorkflowExecutionCancelRequestedEventAttributes { "cause": Nothing, "externalInitiatedEventId": Nothing, "externalWorkflowExecution": Nothing }
 
 -- | Constructs WorkflowExecutionCancelRequestedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionCancelRequestedEventAttributes' :: ( { "externalWorkflowExecution" :: NullOrUndefined (WorkflowExecution) , "externalInitiatedEventId" :: NullOrUndefined (EventId) , "cause" :: NullOrUndefined (WorkflowExecutionCancelRequestedCause) } -> {"externalWorkflowExecution" :: NullOrUndefined (WorkflowExecution) , "externalInitiatedEventId" :: NullOrUndefined (EventId) , "cause" :: NullOrUndefined (WorkflowExecutionCancelRequestedCause) } ) -> WorkflowExecutionCancelRequestedEventAttributes
-newWorkflowExecutionCancelRequestedEventAttributes'  customize = (WorkflowExecutionCancelRequestedEventAttributes <<< customize) { "cause": (NullOrUndefined Nothing), "externalInitiatedEventId": (NullOrUndefined Nothing), "externalWorkflowExecution": (NullOrUndefined Nothing) }
+newWorkflowExecutionCancelRequestedEventAttributes' :: ( { "externalWorkflowExecution" :: Maybe (WorkflowExecution) , "externalInitiatedEventId" :: Maybe (EventId) , "cause" :: Maybe (WorkflowExecutionCancelRequestedCause) } -> {"externalWorkflowExecution" :: Maybe (WorkflowExecution) , "externalInitiatedEventId" :: Maybe (EventId) , "cause" :: Maybe (WorkflowExecutionCancelRequestedCause) } ) -> WorkflowExecutionCancelRequestedEventAttributes
+newWorkflowExecutionCancelRequestedEventAttributes'  customize = (WorkflowExecutionCancelRequestedEventAttributes <<< customize) { "cause": Nothing, "externalInitiatedEventId": Nothing, "externalWorkflowExecution": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>WorkflowExecutionCanceled</code> event.</p>
 newtype WorkflowExecutionCanceledEventAttributes = WorkflowExecutionCanceledEventAttributes 
-  { "details" :: NullOrUndefined (Data)
+  { "details" :: Maybe (Data)
   , "decisionTaskCompletedEventId" :: (EventId)
   }
 derive instance newtypeWorkflowExecutionCanceledEventAttributes :: Newtype WorkflowExecutionCanceledEventAttributes _
@@ -3485,18 +3484,18 @@ instance encodeWorkflowExecutionCanceledEventAttributes :: Encode WorkflowExecut
 
 -- | Constructs WorkflowExecutionCanceledEventAttributes from required parameters
 newWorkflowExecutionCanceledEventAttributes :: EventId -> WorkflowExecutionCanceledEventAttributes
-newWorkflowExecutionCanceledEventAttributes _decisionTaskCompletedEventId = WorkflowExecutionCanceledEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": (NullOrUndefined Nothing) }
+newWorkflowExecutionCanceledEventAttributes _decisionTaskCompletedEventId = WorkflowExecutionCanceledEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": Nothing }
 
 -- | Constructs WorkflowExecutionCanceledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionCanceledEventAttributes' :: EventId -> ( { "details" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"details" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> WorkflowExecutionCanceledEventAttributes
-newWorkflowExecutionCanceledEventAttributes' _decisionTaskCompletedEventId customize = (WorkflowExecutionCanceledEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": (NullOrUndefined Nothing) }
+newWorkflowExecutionCanceledEventAttributes' :: EventId -> ( { "details" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"details" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> WorkflowExecutionCanceledEventAttributes
+newWorkflowExecutionCanceledEventAttributes' _decisionTaskCompletedEventId customize = (WorkflowExecutionCanceledEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>WorkflowExecutionCompleted</code> event.</p>
 newtype WorkflowExecutionCompletedEventAttributes = WorkflowExecutionCompletedEventAttributes 
-  { "result" :: NullOrUndefined (Data)
+  { "result" :: Maybe (Data)
   , "decisionTaskCompletedEventId" :: (EventId)
   }
 derive instance newtypeWorkflowExecutionCompletedEventAttributes :: Newtype WorkflowExecutionCompletedEventAttributes _
@@ -3507,12 +3506,12 @@ instance encodeWorkflowExecutionCompletedEventAttributes :: Encode WorkflowExecu
 
 -- | Constructs WorkflowExecutionCompletedEventAttributes from required parameters
 newWorkflowExecutionCompletedEventAttributes :: EventId -> WorkflowExecutionCompletedEventAttributes
-newWorkflowExecutionCompletedEventAttributes _decisionTaskCompletedEventId = WorkflowExecutionCompletedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "result": (NullOrUndefined Nothing) }
+newWorkflowExecutionCompletedEventAttributes _decisionTaskCompletedEventId = WorkflowExecutionCompletedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "result": Nothing }
 
 -- | Constructs WorkflowExecutionCompletedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionCompletedEventAttributes' :: EventId -> ( { "result" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"result" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> WorkflowExecutionCompletedEventAttributes
-newWorkflowExecutionCompletedEventAttributes' _decisionTaskCompletedEventId customize = (WorkflowExecutionCompletedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "result": (NullOrUndefined Nothing) }
+newWorkflowExecutionCompletedEventAttributes' :: EventId -> ( { "result" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"result" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> WorkflowExecutionCompletedEventAttributes
+newWorkflowExecutionCompletedEventAttributes' _decisionTaskCompletedEventId customize = (WorkflowExecutionCompletedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "result": Nothing }
 
 
 
@@ -3521,9 +3520,9 @@ newtype WorkflowExecutionConfiguration = WorkflowExecutionConfiguration
   { "taskStartToCloseTimeout" :: (DurationInSeconds)
   , "executionStartToCloseTimeout" :: (DurationInSeconds)
   , "taskList" :: (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
+  , "taskPriority" :: Maybe (TaskPriority)
   , "childPolicy" :: (ChildPolicy)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeWorkflowExecutionConfiguration :: Newtype WorkflowExecutionConfiguration _
 derive instance repGenericWorkflowExecutionConfiguration :: Generic WorkflowExecutionConfiguration _
@@ -3533,28 +3532,28 @@ instance encodeWorkflowExecutionConfiguration :: Encode WorkflowExecutionConfigu
 
 -- | Constructs WorkflowExecutionConfiguration from required parameters
 newWorkflowExecutionConfiguration :: ChildPolicy -> DurationInSeconds -> TaskList -> DurationInSeconds -> WorkflowExecutionConfiguration
-newWorkflowExecutionConfiguration _childPolicy _executionStartToCloseTimeout _taskList _taskStartToCloseTimeout = WorkflowExecutionConfiguration { "childPolicy": _childPolicy, "executionStartToCloseTimeout": _executionStartToCloseTimeout, "taskList": _taskList, "taskStartToCloseTimeout": _taskStartToCloseTimeout, "lambdaRole": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newWorkflowExecutionConfiguration _childPolicy _executionStartToCloseTimeout _taskList _taskStartToCloseTimeout = WorkflowExecutionConfiguration { "childPolicy": _childPolicy, "executionStartToCloseTimeout": _executionStartToCloseTimeout, "taskList": _taskList, "taskStartToCloseTimeout": _taskStartToCloseTimeout, "lambdaRole": Nothing, "taskPriority": Nothing }
 
 -- | Constructs WorkflowExecutionConfiguration's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionConfiguration' :: ChildPolicy -> DurationInSeconds -> TaskList -> DurationInSeconds -> ( { "taskStartToCloseTimeout" :: (DurationInSeconds) , "executionStartToCloseTimeout" :: (DurationInSeconds) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "childPolicy" :: (ChildPolicy) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"taskStartToCloseTimeout" :: (DurationInSeconds) , "executionStartToCloseTimeout" :: (DurationInSeconds) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "childPolicy" :: (ChildPolicy) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> WorkflowExecutionConfiguration
-newWorkflowExecutionConfiguration' _childPolicy _executionStartToCloseTimeout _taskList _taskStartToCloseTimeout customize = (WorkflowExecutionConfiguration <<< customize) { "childPolicy": _childPolicy, "executionStartToCloseTimeout": _executionStartToCloseTimeout, "taskList": _taskList, "taskStartToCloseTimeout": _taskStartToCloseTimeout, "lambdaRole": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing) }
+newWorkflowExecutionConfiguration' :: ChildPolicy -> DurationInSeconds -> TaskList -> DurationInSeconds -> ( { "taskStartToCloseTimeout" :: (DurationInSeconds) , "executionStartToCloseTimeout" :: (DurationInSeconds) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "childPolicy" :: (ChildPolicy) , "lambdaRole" :: Maybe (Arn) } -> {"taskStartToCloseTimeout" :: (DurationInSeconds) , "executionStartToCloseTimeout" :: (DurationInSeconds) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "childPolicy" :: (ChildPolicy) , "lambdaRole" :: Maybe (Arn) } ) -> WorkflowExecutionConfiguration
+newWorkflowExecutionConfiguration' _childPolicy _executionStartToCloseTimeout _taskList _taskStartToCloseTimeout customize = (WorkflowExecutionConfiguration <<< customize) { "childPolicy": _childPolicy, "executionStartToCloseTimeout": _executionStartToCloseTimeout, "taskList": _taskList, "taskStartToCloseTimeout": _taskStartToCloseTimeout, "lambdaRole": Nothing, "taskPriority": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>WorkflowExecutionContinuedAsNew</code> event.</p>
 newtype WorkflowExecutionContinuedAsNewEventAttributes = WorkflowExecutionContinuedAsNewEventAttributes 
-  { "input" :: NullOrUndefined (Data)
+  { "input" :: Maybe (Data)
   , "decisionTaskCompletedEventId" :: (EventId)
   , "newExecutionRunId" :: (WorkflowRunId)
-  , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   , "taskList" :: (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
-  , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  , "taskPriority" :: Maybe (TaskPriority)
+  , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   , "childPolicy" :: (ChildPolicy)
-  , "tagList" :: NullOrUndefined (TagList)
+  , "tagList" :: Maybe (TagList)
   , "workflowType" :: (WorkflowType)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeWorkflowExecutionContinuedAsNewEventAttributes :: Newtype WorkflowExecutionContinuedAsNewEventAttributes _
 derive instance repGenericWorkflowExecutionContinuedAsNewEventAttributes :: Generic WorkflowExecutionContinuedAsNewEventAttributes _
@@ -3564,19 +3563,19 @@ instance encodeWorkflowExecutionContinuedAsNewEventAttributes :: Encode Workflow
 
 -- | Constructs WorkflowExecutionContinuedAsNewEventAttributes from required parameters
 newWorkflowExecutionContinuedAsNewEventAttributes :: ChildPolicy -> EventId -> WorkflowRunId -> TaskList -> WorkflowType -> WorkflowExecutionContinuedAsNewEventAttributes
-newWorkflowExecutionContinuedAsNewEventAttributes _childPolicy _decisionTaskCompletedEventId _newExecutionRunId _taskList _workflowType = WorkflowExecutionContinuedAsNewEventAttributes { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "newExecutionRunId": _newExecutionRunId, "taskList": _taskList, "workflowType": _workflowType, "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newWorkflowExecutionContinuedAsNewEventAttributes _childPolicy _decisionTaskCompletedEventId _newExecutionRunId _taskList _workflowType = WorkflowExecutionContinuedAsNewEventAttributes { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "newExecutionRunId": _newExecutionRunId, "taskList": _taskList, "workflowType": _workflowType, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 -- | Constructs WorkflowExecutionContinuedAsNewEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionContinuedAsNewEventAttributes' :: ChildPolicy -> EventId -> WorkflowRunId -> TaskList -> WorkflowType -> ( { "input" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) , "newExecutionRunId" :: (WorkflowRunId) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "tagList" :: NullOrUndefined (TagList) , "workflowType" :: (WorkflowType) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"input" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) , "newExecutionRunId" :: (WorkflowRunId) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "tagList" :: NullOrUndefined (TagList) , "workflowType" :: (WorkflowType) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> WorkflowExecutionContinuedAsNewEventAttributes
-newWorkflowExecutionContinuedAsNewEventAttributes' _childPolicy _decisionTaskCompletedEventId _newExecutionRunId _taskList _workflowType customize = (WorkflowExecutionContinuedAsNewEventAttributes <<< customize) { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "newExecutionRunId": _newExecutionRunId, "taskList": _taskList, "workflowType": _workflowType, "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newWorkflowExecutionContinuedAsNewEventAttributes' :: ChildPolicy -> EventId -> WorkflowRunId -> TaskList -> WorkflowType -> ( { "input" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) , "newExecutionRunId" :: (WorkflowRunId) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "tagList" :: Maybe (TagList) , "workflowType" :: (WorkflowType) , "lambdaRole" :: Maybe (Arn) } -> {"input" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) , "newExecutionRunId" :: (WorkflowRunId) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "tagList" :: Maybe (TagList) , "workflowType" :: (WorkflowType) , "lambdaRole" :: Maybe (Arn) } ) -> WorkflowExecutionContinuedAsNewEventAttributes
+newWorkflowExecutionContinuedAsNewEventAttributes' _childPolicy _decisionTaskCompletedEventId _newExecutionRunId _taskList _workflowType customize = (WorkflowExecutionContinuedAsNewEventAttributes <<< customize) { "childPolicy": _childPolicy, "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "newExecutionRunId": _newExecutionRunId, "taskList": _taskList, "workflowType": _workflowType, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "tagList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 
 
 -- | <p>Contains the count of workflow executions returned from <a>CountOpenWorkflowExecutions</a> or <a>CountClosedWorkflowExecutions</a> </p>
 newtype WorkflowExecutionCount = WorkflowExecutionCount 
   { "count" :: (Count)
-  , "truncated" :: NullOrUndefined (Truncated)
+  , "truncated" :: Maybe (Truncated)
   }
 derive instance newtypeWorkflowExecutionCount :: Newtype WorkflowExecutionCount _
 derive instance repGenericWorkflowExecutionCount :: Generic WorkflowExecutionCount _
@@ -3586,12 +3585,12 @@ instance encodeWorkflowExecutionCount :: Encode WorkflowExecutionCount where enc
 
 -- | Constructs WorkflowExecutionCount from required parameters
 newWorkflowExecutionCount :: Count -> WorkflowExecutionCount
-newWorkflowExecutionCount _count = WorkflowExecutionCount { "count": _count, "truncated": (NullOrUndefined Nothing) }
+newWorkflowExecutionCount _count = WorkflowExecutionCount { "count": _count, "truncated": Nothing }
 
 -- | Constructs WorkflowExecutionCount's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionCount' :: Count -> ( { "count" :: (Count) , "truncated" :: NullOrUndefined (Truncated) } -> {"count" :: (Count) , "truncated" :: NullOrUndefined (Truncated) } ) -> WorkflowExecutionCount
-newWorkflowExecutionCount' _count customize = (WorkflowExecutionCount <<< customize) { "count": _count, "truncated": (NullOrUndefined Nothing) }
+newWorkflowExecutionCount' :: Count -> ( { "count" :: (Count) , "truncated" :: Maybe (Truncated) } -> {"count" :: (Count) , "truncated" :: Maybe (Truncated) } ) -> WorkflowExecutionCount
+newWorkflowExecutionCount' _count customize = (WorkflowExecutionCount <<< customize) { "count": _count, "truncated": Nothing }
 
 
 
@@ -3600,8 +3599,8 @@ newtype WorkflowExecutionDetail = WorkflowExecutionDetail
   { "executionInfo" :: (WorkflowExecutionInfo)
   , "executionConfiguration" :: (WorkflowExecutionConfiguration)
   , "openCounts" :: (WorkflowExecutionOpenCounts)
-  , "latestActivityTaskTimestamp" :: NullOrUndefined (Types.Timestamp)
-  , "latestExecutionContext" :: NullOrUndefined (Data)
+  , "latestActivityTaskTimestamp" :: Maybe (Types.Timestamp)
+  , "latestExecutionContext" :: Maybe (Data)
   }
 derive instance newtypeWorkflowExecutionDetail :: Newtype WorkflowExecutionDetail _
 derive instance repGenericWorkflowExecutionDetail :: Generic WorkflowExecutionDetail _
@@ -3611,19 +3610,19 @@ instance encodeWorkflowExecutionDetail :: Encode WorkflowExecutionDetail where e
 
 -- | Constructs WorkflowExecutionDetail from required parameters
 newWorkflowExecutionDetail :: WorkflowExecutionConfiguration -> WorkflowExecutionInfo -> WorkflowExecutionOpenCounts -> WorkflowExecutionDetail
-newWorkflowExecutionDetail _executionConfiguration _executionInfo _openCounts = WorkflowExecutionDetail { "executionConfiguration": _executionConfiguration, "executionInfo": _executionInfo, "openCounts": _openCounts, "latestActivityTaskTimestamp": (NullOrUndefined Nothing), "latestExecutionContext": (NullOrUndefined Nothing) }
+newWorkflowExecutionDetail _executionConfiguration _executionInfo _openCounts = WorkflowExecutionDetail { "executionConfiguration": _executionConfiguration, "executionInfo": _executionInfo, "openCounts": _openCounts, "latestActivityTaskTimestamp": Nothing, "latestExecutionContext": Nothing }
 
 -- | Constructs WorkflowExecutionDetail's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionDetail' :: WorkflowExecutionConfiguration -> WorkflowExecutionInfo -> WorkflowExecutionOpenCounts -> ( { "executionInfo" :: (WorkflowExecutionInfo) , "executionConfiguration" :: (WorkflowExecutionConfiguration) , "openCounts" :: (WorkflowExecutionOpenCounts) , "latestActivityTaskTimestamp" :: NullOrUndefined (Types.Timestamp) , "latestExecutionContext" :: NullOrUndefined (Data) } -> {"executionInfo" :: (WorkflowExecutionInfo) , "executionConfiguration" :: (WorkflowExecutionConfiguration) , "openCounts" :: (WorkflowExecutionOpenCounts) , "latestActivityTaskTimestamp" :: NullOrUndefined (Types.Timestamp) , "latestExecutionContext" :: NullOrUndefined (Data) } ) -> WorkflowExecutionDetail
-newWorkflowExecutionDetail' _executionConfiguration _executionInfo _openCounts customize = (WorkflowExecutionDetail <<< customize) { "executionConfiguration": _executionConfiguration, "executionInfo": _executionInfo, "openCounts": _openCounts, "latestActivityTaskTimestamp": (NullOrUndefined Nothing), "latestExecutionContext": (NullOrUndefined Nothing) }
+newWorkflowExecutionDetail' :: WorkflowExecutionConfiguration -> WorkflowExecutionInfo -> WorkflowExecutionOpenCounts -> ( { "executionInfo" :: (WorkflowExecutionInfo) , "executionConfiguration" :: (WorkflowExecutionConfiguration) , "openCounts" :: (WorkflowExecutionOpenCounts) , "latestActivityTaskTimestamp" :: Maybe (Types.Timestamp) , "latestExecutionContext" :: Maybe (Data) } -> {"executionInfo" :: (WorkflowExecutionInfo) , "executionConfiguration" :: (WorkflowExecutionConfiguration) , "openCounts" :: (WorkflowExecutionOpenCounts) , "latestActivityTaskTimestamp" :: Maybe (Types.Timestamp) , "latestExecutionContext" :: Maybe (Data) } ) -> WorkflowExecutionDetail
+newWorkflowExecutionDetail' _executionConfiguration _executionInfo _openCounts customize = (WorkflowExecutionDetail <<< customize) { "executionConfiguration": _executionConfiguration, "executionInfo": _executionInfo, "openCounts": _openCounts, "latestActivityTaskTimestamp": Nothing, "latestExecutionContext": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>WorkflowExecutionFailed</code> event.</p>
 newtype WorkflowExecutionFailedEventAttributes = WorkflowExecutionFailedEventAttributes 
-  { "reason" :: NullOrUndefined (FailureReason)
-  , "details" :: NullOrUndefined (Data)
+  { "reason" :: Maybe (FailureReason)
+  , "details" :: Maybe (Data)
   , "decisionTaskCompletedEventId" :: (EventId)
   }
 derive instance newtypeWorkflowExecutionFailedEventAttributes :: Newtype WorkflowExecutionFailedEventAttributes _
@@ -3634,12 +3633,12 @@ instance encodeWorkflowExecutionFailedEventAttributes :: Encode WorkflowExecutio
 
 -- | Constructs WorkflowExecutionFailedEventAttributes from required parameters
 newWorkflowExecutionFailedEventAttributes :: EventId -> WorkflowExecutionFailedEventAttributes
-newWorkflowExecutionFailedEventAttributes _decisionTaskCompletedEventId = WorkflowExecutionFailedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newWorkflowExecutionFailedEventAttributes _decisionTaskCompletedEventId = WorkflowExecutionFailedEventAttributes { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": Nothing, "reason": Nothing }
 
 -- | Constructs WorkflowExecutionFailedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionFailedEventAttributes' :: EventId -> ( { "reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"reason" :: NullOrUndefined (FailureReason) , "details" :: NullOrUndefined (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> WorkflowExecutionFailedEventAttributes
-newWorkflowExecutionFailedEventAttributes' _decisionTaskCompletedEventId customize = (WorkflowExecutionFailedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newWorkflowExecutionFailedEventAttributes' :: EventId -> ( { "reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } -> {"reason" :: Maybe (FailureReason) , "details" :: Maybe (Data) , "decisionTaskCompletedEventId" :: (EventId) } ) -> WorkflowExecutionFailedEventAttributes
+newWorkflowExecutionFailedEventAttributes' _decisionTaskCompletedEventId customize = (WorkflowExecutionFailedEventAttributes <<< customize) { "decisionTaskCompletedEventId": _decisionTaskCompletedEventId, "details": Nothing, "reason": Nothing }
 
 
 
@@ -3669,12 +3668,12 @@ newtype WorkflowExecutionInfo = WorkflowExecutionInfo
   { "execution" :: (WorkflowExecution)
   , "workflowType" :: (WorkflowType)
   , "startTimestamp" :: (Types.Timestamp)
-  , "closeTimestamp" :: NullOrUndefined (Types.Timestamp)
+  , "closeTimestamp" :: Maybe (Types.Timestamp)
   , "executionStatus" :: (ExecutionStatus)
-  , "closeStatus" :: NullOrUndefined (CloseStatus)
-  , "parent" :: NullOrUndefined (WorkflowExecution)
-  , "tagList" :: NullOrUndefined (TagList)
-  , "cancelRequested" :: NullOrUndefined (Canceled)
+  , "closeStatus" :: Maybe (CloseStatus)
+  , "parent" :: Maybe (WorkflowExecution)
+  , "tagList" :: Maybe (TagList)
+  , "cancelRequested" :: Maybe (Canceled)
   }
 derive instance newtypeWorkflowExecutionInfo :: Newtype WorkflowExecutionInfo _
 derive instance repGenericWorkflowExecutionInfo :: Generic WorkflowExecutionInfo _
@@ -3684,12 +3683,12 @@ instance encodeWorkflowExecutionInfo :: Encode WorkflowExecutionInfo where encod
 
 -- | Constructs WorkflowExecutionInfo from required parameters
 newWorkflowExecutionInfo :: WorkflowExecution -> ExecutionStatus -> Types.Timestamp -> WorkflowType -> WorkflowExecutionInfo
-newWorkflowExecutionInfo _execution _executionStatus _startTimestamp _workflowType = WorkflowExecutionInfo { "execution": _execution, "executionStatus": _executionStatus, "startTimestamp": _startTimestamp, "workflowType": _workflowType, "cancelRequested": (NullOrUndefined Nothing), "closeStatus": (NullOrUndefined Nothing), "closeTimestamp": (NullOrUndefined Nothing), "parent": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing) }
+newWorkflowExecutionInfo _execution _executionStatus _startTimestamp _workflowType = WorkflowExecutionInfo { "execution": _execution, "executionStatus": _executionStatus, "startTimestamp": _startTimestamp, "workflowType": _workflowType, "cancelRequested": Nothing, "closeStatus": Nothing, "closeTimestamp": Nothing, "parent": Nothing, "tagList": Nothing }
 
 -- | Constructs WorkflowExecutionInfo's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionInfo' :: WorkflowExecution -> ExecutionStatus -> Types.Timestamp -> WorkflowType -> ( { "execution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "startTimestamp" :: (Types.Timestamp) , "closeTimestamp" :: NullOrUndefined (Types.Timestamp) , "executionStatus" :: (ExecutionStatus) , "closeStatus" :: NullOrUndefined (CloseStatus) , "parent" :: NullOrUndefined (WorkflowExecution) , "tagList" :: NullOrUndefined (TagList) , "cancelRequested" :: NullOrUndefined (Canceled) } -> {"execution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "startTimestamp" :: (Types.Timestamp) , "closeTimestamp" :: NullOrUndefined (Types.Timestamp) , "executionStatus" :: (ExecutionStatus) , "closeStatus" :: NullOrUndefined (CloseStatus) , "parent" :: NullOrUndefined (WorkflowExecution) , "tagList" :: NullOrUndefined (TagList) , "cancelRequested" :: NullOrUndefined (Canceled) } ) -> WorkflowExecutionInfo
-newWorkflowExecutionInfo' _execution _executionStatus _startTimestamp _workflowType customize = (WorkflowExecutionInfo <<< customize) { "execution": _execution, "executionStatus": _executionStatus, "startTimestamp": _startTimestamp, "workflowType": _workflowType, "cancelRequested": (NullOrUndefined Nothing), "closeStatus": (NullOrUndefined Nothing), "closeTimestamp": (NullOrUndefined Nothing), "parent": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing) }
+newWorkflowExecutionInfo' :: WorkflowExecution -> ExecutionStatus -> Types.Timestamp -> WorkflowType -> ( { "execution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "startTimestamp" :: (Types.Timestamp) , "closeTimestamp" :: Maybe (Types.Timestamp) , "executionStatus" :: (ExecutionStatus) , "closeStatus" :: Maybe (CloseStatus) , "parent" :: Maybe (WorkflowExecution) , "tagList" :: Maybe (TagList) , "cancelRequested" :: Maybe (Canceled) } -> {"execution" :: (WorkflowExecution) , "workflowType" :: (WorkflowType) , "startTimestamp" :: (Types.Timestamp) , "closeTimestamp" :: Maybe (Types.Timestamp) , "executionStatus" :: (ExecutionStatus) , "closeStatus" :: Maybe (CloseStatus) , "parent" :: Maybe (WorkflowExecution) , "tagList" :: Maybe (TagList) , "cancelRequested" :: Maybe (Canceled) } ) -> WorkflowExecutionInfo
+newWorkflowExecutionInfo' _execution _executionStatus _startTimestamp _workflowType customize = (WorkflowExecutionInfo <<< customize) { "execution": _execution, "executionStatus": _executionStatus, "startTimestamp": _startTimestamp, "workflowType": _workflowType, "cancelRequested": Nothing, "closeStatus": Nothing, "closeTimestamp": Nothing, "parent": Nothing, "tagList": Nothing }
 
 
 
@@ -3705,7 +3704,7 @@ instance encodeWorkflowExecutionInfoList :: Encode WorkflowExecutionInfoList whe
 -- | <p>Contains a paginated list of information about workflow executions.</p>
 newtype WorkflowExecutionInfos = WorkflowExecutionInfos 
   { "executionInfos" :: (WorkflowExecutionInfoList)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
+  , "nextPageToken" :: Maybe (PageToken)
   }
 derive instance newtypeWorkflowExecutionInfos :: Newtype WorkflowExecutionInfos _
 derive instance repGenericWorkflowExecutionInfos :: Generic WorkflowExecutionInfos _
@@ -3715,12 +3714,12 @@ instance encodeWorkflowExecutionInfos :: Encode WorkflowExecutionInfos where enc
 
 -- | Constructs WorkflowExecutionInfos from required parameters
 newWorkflowExecutionInfos :: WorkflowExecutionInfoList -> WorkflowExecutionInfos
-newWorkflowExecutionInfos _executionInfos = WorkflowExecutionInfos { "executionInfos": _executionInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newWorkflowExecutionInfos _executionInfos = WorkflowExecutionInfos { "executionInfos": _executionInfos, "nextPageToken": Nothing }
 
 -- | Constructs WorkflowExecutionInfos's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionInfos' :: WorkflowExecutionInfoList -> ( { "executionInfos" :: (WorkflowExecutionInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } -> {"executionInfos" :: (WorkflowExecutionInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } ) -> WorkflowExecutionInfos
-newWorkflowExecutionInfos' _executionInfos customize = (WorkflowExecutionInfos <<< customize) { "executionInfos": _executionInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newWorkflowExecutionInfos' :: WorkflowExecutionInfoList -> ( { "executionInfos" :: (WorkflowExecutionInfoList) , "nextPageToken" :: Maybe (PageToken) } -> {"executionInfos" :: (WorkflowExecutionInfoList) , "nextPageToken" :: Maybe (PageToken) } ) -> WorkflowExecutionInfos
+newWorkflowExecutionInfos' _executionInfos customize = (WorkflowExecutionInfos <<< customize) { "executionInfos": _executionInfos, "nextPageToken": Nothing }
 
 
 
@@ -3730,7 +3729,7 @@ newtype WorkflowExecutionOpenCounts = WorkflowExecutionOpenCounts
   , "openDecisionTasks" :: (OpenDecisionTasksCount)
   , "openTimers" :: (Count)
   , "openChildWorkflowExecutions" :: (Count)
-  , "openLambdaFunctions" :: NullOrUndefined (Count)
+  , "openLambdaFunctions" :: Maybe (Count)
   }
 derive instance newtypeWorkflowExecutionOpenCounts :: Newtype WorkflowExecutionOpenCounts _
 derive instance repGenericWorkflowExecutionOpenCounts :: Generic WorkflowExecutionOpenCounts _
@@ -3740,21 +3739,21 @@ instance encodeWorkflowExecutionOpenCounts :: Encode WorkflowExecutionOpenCounts
 
 -- | Constructs WorkflowExecutionOpenCounts from required parameters
 newWorkflowExecutionOpenCounts :: Count -> Count -> OpenDecisionTasksCount -> Count -> WorkflowExecutionOpenCounts
-newWorkflowExecutionOpenCounts _openActivityTasks _openChildWorkflowExecutions _openDecisionTasks _openTimers = WorkflowExecutionOpenCounts { "openActivityTasks": _openActivityTasks, "openChildWorkflowExecutions": _openChildWorkflowExecutions, "openDecisionTasks": _openDecisionTasks, "openTimers": _openTimers, "openLambdaFunctions": (NullOrUndefined Nothing) }
+newWorkflowExecutionOpenCounts _openActivityTasks _openChildWorkflowExecutions _openDecisionTasks _openTimers = WorkflowExecutionOpenCounts { "openActivityTasks": _openActivityTasks, "openChildWorkflowExecutions": _openChildWorkflowExecutions, "openDecisionTasks": _openDecisionTasks, "openTimers": _openTimers, "openLambdaFunctions": Nothing }
 
 -- | Constructs WorkflowExecutionOpenCounts's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionOpenCounts' :: Count -> Count -> OpenDecisionTasksCount -> Count -> ( { "openActivityTasks" :: (Count) , "openDecisionTasks" :: (OpenDecisionTasksCount) , "openTimers" :: (Count) , "openChildWorkflowExecutions" :: (Count) , "openLambdaFunctions" :: NullOrUndefined (Count) } -> {"openActivityTasks" :: (Count) , "openDecisionTasks" :: (OpenDecisionTasksCount) , "openTimers" :: (Count) , "openChildWorkflowExecutions" :: (Count) , "openLambdaFunctions" :: NullOrUndefined (Count) } ) -> WorkflowExecutionOpenCounts
-newWorkflowExecutionOpenCounts' _openActivityTasks _openChildWorkflowExecutions _openDecisionTasks _openTimers customize = (WorkflowExecutionOpenCounts <<< customize) { "openActivityTasks": _openActivityTasks, "openChildWorkflowExecutions": _openChildWorkflowExecutions, "openDecisionTasks": _openDecisionTasks, "openTimers": _openTimers, "openLambdaFunctions": (NullOrUndefined Nothing) }
+newWorkflowExecutionOpenCounts' :: Count -> Count -> OpenDecisionTasksCount -> Count -> ( { "openActivityTasks" :: (Count) , "openDecisionTasks" :: (OpenDecisionTasksCount) , "openTimers" :: (Count) , "openChildWorkflowExecutions" :: (Count) , "openLambdaFunctions" :: Maybe (Count) } -> {"openActivityTasks" :: (Count) , "openDecisionTasks" :: (OpenDecisionTasksCount) , "openTimers" :: (Count) , "openChildWorkflowExecutions" :: (Count) , "openLambdaFunctions" :: Maybe (Count) } ) -> WorkflowExecutionOpenCounts
+newWorkflowExecutionOpenCounts' _openActivityTasks _openChildWorkflowExecutions _openDecisionTasks _openTimers customize = (WorkflowExecutionOpenCounts <<< customize) { "openActivityTasks": _openActivityTasks, "openChildWorkflowExecutions": _openChildWorkflowExecutions, "openDecisionTasks": _openDecisionTasks, "openTimers": _openTimers, "openLambdaFunctions": Nothing }
 
 
 
 -- | <p>Provides the details of the <code>WorkflowExecutionSignaled</code> event.</p>
 newtype WorkflowExecutionSignaledEventAttributes = WorkflowExecutionSignaledEventAttributes 
   { "signalName" :: (SignalName)
-  , "input" :: NullOrUndefined (Data)
-  , "externalWorkflowExecution" :: NullOrUndefined (WorkflowExecution)
-  , "externalInitiatedEventId" :: NullOrUndefined (EventId)
+  , "input" :: Maybe (Data)
+  , "externalWorkflowExecution" :: Maybe (WorkflowExecution)
+  , "externalInitiatedEventId" :: Maybe (EventId)
   }
 derive instance newtypeWorkflowExecutionSignaledEventAttributes :: Newtype WorkflowExecutionSignaledEventAttributes _
 derive instance repGenericWorkflowExecutionSignaledEventAttributes :: Generic WorkflowExecutionSignaledEventAttributes _
@@ -3764,29 +3763,29 @@ instance encodeWorkflowExecutionSignaledEventAttributes :: Encode WorkflowExecut
 
 -- | Constructs WorkflowExecutionSignaledEventAttributes from required parameters
 newWorkflowExecutionSignaledEventAttributes :: SignalName -> WorkflowExecutionSignaledEventAttributes
-newWorkflowExecutionSignaledEventAttributes _signalName = WorkflowExecutionSignaledEventAttributes { "signalName": _signalName, "externalInitiatedEventId": (NullOrUndefined Nothing), "externalWorkflowExecution": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing) }
+newWorkflowExecutionSignaledEventAttributes _signalName = WorkflowExecutionSignaledEventAttributes { "signalName": _signalName, "externalInitiatedEventId": Nothing, "externalWorkflowExecution": Nothing, "input": Nothing }
 
 -- | Constructs WorkflowExecutionSignaledEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionSignaledEventAttributes' :: SignalName -> ( { "signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) , "externalWorkflowExecution" :: NullOrUndefined (WorkflowExecution) , "externalInitiatedEventId" :: NullOrUndefined (EventId) } -> {"signalName" :: (SignalName) , "input" :: NullOrUndefined (Data) , "externalWorkflowExecution" :: NullOrUndefined (WorkflowExecution) , "externalInitiatedEventId" :: NullOrUndefined (EventId) } ) -> WorkflowExecutionSignaledEventAttributes
-newWorkflowExecutionSignaledEventAttributes' _signalName customize = (WorkflowExecutionSignaledEventAttributes <<< customize) { "signalName": _signalName, "externalInitiatedEventId": (NullOrUndefined Nothing), "externalWorkflowExecution": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing) }
+newWorkflowExecutionSignaledEventAttributes' :: SignalName -> ( { "signalName" :: (SignalName) , "input" :: Maybe (Data) , "externalWorkflowExecution" :: Maybe (WorkflowExecution) , "externalInitiatedEventId" :: Maybe (EventId) } -> {"signalName" :: (SignalName) , "input" :: Maybe (Data) , "externalWorkflowExecution" :: Maybe (WorkflowExecution) , "externalInitiatedEventId" :: Maybe (EventId) } ) -> WorkflowExecutionSignaledEventAttributes
+newWorkflowExecutionSignaledEventAttributes' _signalName customize = (WorkflowExecutionSignaledEventAttributes <<< customize) { "signalName": _signalName, "externalInitiatedEventId": Nothing, "externalWorkflowExecution": Nothing, "input": Nothing }
 
 
 
 -- | <p>Provides details of <code>WorkflowExecutionStarted</code> event.</p>
 newtype WorkflowExecutionStartedEventAttributes = WorkflowExecutionStartedEventAttributes 
-  { "input" :: NullOrUndefined (Data)
-  , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
+  { "input" :: Maybe (Data)
+  , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
   , "childPolicy" :: (ChildPolicy)
   , "taskList" :: (TaskList)
-  , "taskPriority" :: NullOrUndefined (TaskPriority)
+  , "taskPriority" :: Maybe (TaskPriority)
   , "workflowType" :: (WorkflowType)
-  , "tagList" :: NullOrUndefined (TagList)
-  , "continuedExecutionRunId" :: NullOrUndefined (WorkflowRunIdOptional)
-  , "parentWorkflowExecution" :: NullOrUndefined (WorkflowExecution)
-  , "parentInitiatedEventId" :: NullOrUndefined (EventId)
-  , "lambdaRole" :: NullOrUndefined (Arn)
+  , "tagList" :: Maybe (TagList)
+  , "continuedExecutionRunId" :: Maybe (WorkflowRunIdOptional)
+  , "parentWorkflowExecution" :: Maybe (WorkflowExecution)
+  , "parentInitiatedEventId" :: Maybe (EventId)
+  , "lambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeWorkflowExecutionStartedEventAttributes :: Newtype WorkflowExecutionStartedEventAttributes _
 derive instance repGenericWorkflowExecutionStartedEventAttributes :: Generic WorkflowExecutionStartedEventAttributes _
@@ -3796,12 +3795,12 @@ instance encodeWorkflowExecutionStartedEventAttributes :: Encode WorkflowExecuti
 
 -- | Constructs WorkflowExecutionStartedEventAttributes from required parameters
 newWorkflowExecutionStartedEventAttributes :: ChildPolicy -> TaskList -> WorkflowType -> WorkflowExecutionStartedEventAttributes
-newWorkflowExecutionStartedEventAttributes _childPolicy _taskList _workflowType = WorkflowExecutionStartedEventAttributes { "childPolicy": _childPolicy, "taskList": _taskList, "workflowType": _workflowType, "continuedExecutionRunId": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "parentInitiatedEventId": (NullOrUndefined Nothing), "parentWorkflowExecution": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newWorkflowExecutionStartedEventAttributes _childPolicy _taskList _workflowType = WorkflowExecutionStartedEventAttributes { "childPolicy": _childPolicy, "taskList": _taskList, "workflowType": _workflowType, "continuedExecutionRunId": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "parentInitiatedEventId": Nothing, "parentWorkflowExecution": Nothing, "tagList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 -- | Constructs WorkflowExecutionStartedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionStartedEventAttributes' :: ChildPolicy -> TaskList -> WorkflowType -> ( { "input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "workflowType" :: (WorkflowType) , "tagList" :: NullOrUndefined (TagList) , "continuedExecutionRunId" :: NullOrUndefined (WorkflowRunIdOptional) , "parentWorkflowExecution" :: NullOrUndefined (WorkflowExecution) , "parentInitiatedEventId" :: NullOrUndefined (EventId) , "lambdaRole" :: NullOrUndefined (Arn) } -> {"input" :: NullOrUndefined (Data) , "executionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "taskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "taskList" :: (TaskList) , "taskPriority" :: NullOrUndefined (TaskPriority) , "workflowType" :: (WorkflowType) , "tagList" :: NullOrUndefined (TagList) , "continuedExecutionRunId" :: NullOrUndefined (WorkflowRunIdOptional) , "parentWorkflowExecution" :: NullOrUndefined (WorkflowExecution) , "parentInitiatedEventId" :: NullOrUndefined (EventId) , "lambdaRole" :: NullOrUndefined (Arn) } ) -> WorkflowExecutionStartedEventAttributes
-newWorkflowExecutionStartedEventAttributes' _childPolicy _taskList _workflowType customize = (WorkflowExecutionStartedEventAttributes <<< customize) { "childPolicy": _childPolicy, "taskList": _taskList, "workflowType": _workflowType, "continuedExecutionRunId": (NullOrUndefined Nothing), "executionStartToCloseTimeout": (NullOrUndefined Nothing), "input": (NullOrUndefined Nothing), "lambdaRole": (NullOrUndefined Nothing), "parentInitiatedEventId": (NullOrUndefined Nothing), "parentWorkflowExecution": (NullOrUndefined Nothing), "tagList": (NullOrUndefined Nothing), "taskPriority": (NullOrUndefined Nothing), "taskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newWorkflowExecutionStartedEventAttributes' :: ChildPolicy -> TaskList -> WorkflowType -> ( { "input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "workflowType" :: (WorkflowType) , "tagList" :: Maybe (TagList) , "continuedExecutionRunId" :: Maybe (WorkflowRunIdOptional) , "parentWorkflowExecution" :: Maybe (WorkflowExecution) , "parentInitiatedEventId" :: Maybe (EventId) , "lambdaRole" :: Maybe (Arn) } -> {"input" :: Maybe (Data) , "executionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "taskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "childPolicy" :: (ChildPolicy) , "taskList" :: (TaskList) , "taskPriority" :: Maybe (TaskPriority) , "workflowType" :: (WorkflowType) , "tagList" :: Maybe (TagList) , "continuedExecutionRunId" :: Maybe (WorkflowRunIdOptional) , "parentWorkflowExecution" :: Maybe (WorkflowExecution) , "parentInitiatedEventId" :: Maybe (EventId) , "lambdaRole" :: Maybe (Arn) } ) -> WorkflowExecutionStartedEventAttributes
+newWorkflowExecutionStartedEventAttributes' _childPolicy _taskList _workflowType customize = (WorkflowExecutionStartedEventAttributes <<< customize) { "childPolicy": _childPolicy, "taskList": _taskList, "workflowType": _workflowType, "continuedExecutionRunId": Nothing, "executionStartToCloseTimeout": Nothing, "input": Nothing, "lambdaRole": Nothing, "parentInitiatedEventId": Nothing, "parentWorkflowExecution": Nothing, "tagList": Nothing, "taskPriority": Nothing, "taskStartToCloseTimeout": Nothing }
 
 
 
@@ -3816,10 +3815,10 @@ instance encodeWorkflowExecutionTerminatedCause :: Encode WorkflowExecutionTermi
 
 -- | <p>Provides the details of the <code>WorkflowExecutionTerminated</code> event.</p>
 newtype WorkflowExecutionTerminatedEventAttributes = WorkflowExecutionTerminatedEventAttributes 
-  { "reason" :: NullOrUndefined (TerminateReason)
-  , "details" :: NullOrUndefined (Data)
+  { "reason" :: Maybe (TerminateReason)
+  , "details" :: Maybe (Data)
   , "childPolicy" :: (ChildPolicy)
-  , "cause" :: NullOrUndefined (WorkflowExecutionTerminatedCause)
+  , "cause" :: Maybe (WorkflowExecutionTerminatedCause)
   }
 derive instance newtypeWorkflowExecutionTerminatedEventAttributes :: Newtype WorkflowExecutionTerminatedEventAttributes _
 derive instance repGenericWorkflowExecutionTerminatedEventAttributes :: Generic WorkflowExecutionTerminatedEventAttributes _
@@ -3829,12 +3828,12 @@ instance encodeWorkflowExecutionTerminatedEventAttributes :: Encode WorkflowExec
 
 -- | Constructs WorkflowExecutionTerminatedEventAttributes from required parameters
 newWorkflowExecutionTerminatedEventAttributes :: ChildPolicy -> WorkflowExecutionTerminatedEventAttributes
-newWorkflowExecutionTerminatedEventAttributes _childPolicy = WorkflowExecutionTerminatedEventAttributes { "childPolicy": _childPolicy, "cause": (NullOrUndefined Nothing), "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newWorkflowExecutionTerminatedEventAttributes _childPolicy = WorkflowExecutionTerminatedEventAttributes { "childPolicy": _childPolicy, "cause": Nothing, "details": Nothing, "reason": Nothing }
 
 -- | Constructs WorkflowExecutionTerminatedEventAttributes's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowExecutionTerminatedEventAttributes' :: ChildPolicy -> ( { "reason" :: NullOrUndefined (TerminateReason) , "details" :: NullOrUndefined (Data) , "childPolicy" :: (ChildPolicy) , "cause" :: NullOrUndefined (WorkflowExecutionTerminatedCause) } -> {"reason" :: NullOrUndefined (TerminateReason) , "details" :: NullOrUndefined (Data) , "childPolicy" :: (ChildPolicy) , "cause" :: NullOrUndefined (WorkflowExecutionTerminatedCause) } ) -> WorkflowExecutionTerminatedEventAttributes
-newWorkflowExecutionTerminatedEventAttributes' _childPolicy customize = (WorkflowExecutionTerminatedEventAttributes <<< customize) { "childPolicy": _childPolicy, "cause": (NullOrUndefined Nothing), "details": (NullOrUndefined Nothing), "reason": (NullOrUndefined Nothing) }
+newWorkflowExecutionTerminatedEventAttributes' :: ChildPolicy -> ( { "reason" :: Maybe (TerminateReason) , "details" :: Maybe (Data) , "childPolicy" :: (ChildPolicy) , "cause" :: Maybe (WorkflowExecutionTerminatedCause) } -> {"reason" :: Maybe (TerminateReason) , "details" :: Maybe (Data) , "childPolicy" :: (ChildPolicy) , "cause" :: Maybe (WorkflowExecutionTerminatedCause) } ) -> WorkflowExecutionTerminatedEventAttributes
+newWorkflowExecutionTerminatedEventAttributes' _childPolicy customize = (WorkflowExecutionTerminatedEventAttributes <<< customize) { "childPolicy": _childPolicy, "cause": Nothing, "details": Nothing, "reason": Nothing }
 
 
 
@@ -3920,12 +3919,12 @@ newWorkflowType' _name _version customize = (WorkflowType <<< customize) { "name
 
 -- | <p>The configuration settings of a workflow type.</p>
 newtype WorkflowTypeConfiguration = WorkflowTypeConfiguration 
-  { "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultExecutionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional)
-  , "defaultTaskList" :: NullOrUndefined (TaskList)
-  , "defaultTaskPriority" :: NullOrUndefined (TaskPriority)
-  , "defaultChildPolicy" :: NullOrUndefined (ChildPolicy)
-  , "defaultLambdaRole" :: NullOrUndefined (Arn)
+  { "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultExecutionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional)
+  , "defaultTaskList" :: Maybe (TaskList)
+  , "defaultTaskPriority" :: Maybe (TaskPriority)
+  , "defaultChildPolicy" :: Maybe (ChildPolicy)
+  , "defaultLambdaRole" :: Maybe (Arn)
   }
 derive instance newtypeWorkflowTypeConfiguration :: Newtype WorkflowTypeConfiguration _
 derive instance repGenericWorkflowTypeConfiguration :: Generic WorkflowTypeConfiguration _
@@ -3935,12 +3934,12 @@ instance encodeWorkflowTypeConfiguration :: Encode WorkflowTypeConfiguration whe
 
 -- | Constructs WorkflowTypeConfiguration from required parameters
 newWorkflowTypeConfiguration :: WorkflowTypeConfiguration
-newWorkflowTypeConfiguration  = WorkflowTypeConfiguration { "defaultChildPolicy": (NullOrUndefined Nothing), "defaultExecutionStartToCloseTimeout": (NullOrUndefined Nothing), "defaultLambdaRole": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newWorkflowTypeConfiguration  = WorkflowTypeConfiguration { "defaultChildPolicy": Nothing, "defaultExecutionStartToCloseTimeout": Nothing, "defaultLambdaRole": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskStartToCloseTimeout": Nothing }
 
 -- | Constructs WorkflowTypeConfiguration's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowTypeConfiguration' :: ( { "defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultChildPolicy" :: NullOrUndefined (ChildPolicy) , "defaultLambdaRole" :: NullOrUndefined (Arn) } -> {"defaultTaskStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: NullOrUndefined (DurationInSecondsOptional) , "defaultTaskList" :: NullOrUndefined (TaskList) , "defaultTaskPriority" :: NullOrUndefined (TaskPriority) , "defaultChildPolicy" :: NullOrUndefined (ChildPolicy) , "defaultLambdaRole" :: NullOrUndefined (Arn) } ) -> WorkflowTypeConfiguration
-newWorkflowTypeConfiguration'  customize = (WorkflowTypeConfiguration <<< customize) { "defaultChildPolicy": (NullOrUndefined Nothing), "defaultExecutionStartToCloseTimeout": (NullOrUndefined Nothing), "defaultLambdaRole": (NullOrUndefined Nothing), "defaultTaskList": (NullOrUndefined Nothing), "defaultTaskPriority": (NullOrUndefined Nothing), "defaultTaskStartToCloseTimeout": (NullOrUndefined Nothing) }
+newWorkflowTypeConfiguration' :: ( { "defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultChildPolicy" :: Maybe (ChildPolicy) , "defaultLambdaRole" :: Maybe (Arn) } -> {"defaultTaskStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultExecutionStartToCloseTimeout" :: Maybe (DurationInSecondsOptional) , "defaultTaskList" :: Maybe (TaskList) , "defaultTaskPriority" :: Maybe (TaskPriority) , "defaultChildPolicy" :: Maybe (ChildPolicy) , "defaultLambdaRole" :: Maybe (Arn) } ) -> WorkflowTypeConfiguration
+newWorkflowTypeConfiguration'  customize = (WorkflowTypeConfiguration <<< customize) { "defaultChildPolicy": Nothing, "defaultExecutionStartToCloseTimeout": Nothing, "defaultLambdaRole": Nothing, "defaultTaskList": Nothing, "defaultTaskPriority": Nothing, "defaultTaskStartToCloseTimeout": Nothing }
 
 
 
@@ -3969,7 +3968,7 @@ newWorkflowTypeDetail' _configuration _typeInfo customize = (WorkflowTypeDetail 
 -- | <p>Used to filter workflow execution query results by type. Each parameter, if specified, defines a rule that must be satisfied by each returned result.</p>
 newtype WorkflowTypeFilter = WorkflowTypeFilter 
   { "name" :: (Name)
-  , "version" :: NullOrUndefined (VersionOptional)
+  , "version" :: Maybe (VersionOptional)
   }
 derive instance newtypeWorkflowTypeFilter :: Newtype WorkflowTypeFilter _
 derive instance repGenericWorkflowTypeFilter :: Generic WorkflowTypeFilter _
@@ -3979,12 +3978,12 @@ instance encodeWorkflowTypeFilter :: Encode WorkflowTypeFilter where encode = ge
 
 -- | Constructs WorkflowTypeFilter from required parameters
 newWorkflowTypeFilter :: Name -> WorkflowTypeFilter
-newWorkflowTypeFilter _name = WorkflowTypeFilter { "name": _name, "version": (NullOrUndefined Nothing) }
+newWorkflowTypeFilter _name = WorkflowTypeFilter { "name": _name, "version": Nothing }
 
 -- | Constructs WorkflowTypeFilter's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowTypeFilter' :: Name -> ( { "name" :: (Name) , "version" :: NullOrUndefined (VersionOptional) } -> {"name" :: (Name) , "version" :: NullOrUndefined (VersionOptional) } ) -> WorkflowTypeFilter
-newWorkflowTypeFilter' _name customize = (WorkflowTypeFilter <<< customize) { "name": _name, "version": (NullOrUndefined Nothing) }
+newWorkflowTypeFilter' :: Name -> ( { "name" :: (Name) , "version" :: Maybe (VersionOptional) } -> {"name" :: (Name) , "version" :: Maybe (VersionOptional) } ) -> WorkflowTypeFilter
+newWorkflowTypeFilter' _name customize = (WorkflowTypeFilter <<< customize) { "name": _name, "version": Nothing }
 
 
 
@@ -3992,9 +3991,9 @@ newWorkflowTypeFilter' _name customize = (WorkflowTypeFilter <<< customize) { "n
 newtype WorkflowTypeInfo = WorkflowTypeInfo 
   { "workflowType" :: (WorkflowType)
   , "status" :: (RegistrationStatus)
-  , "description" :: NullOrUndefined (Description)
+  , "description" :: Maybe (Description)
   , "creationDate" :: (Types.Timestamp)
-  , "deprecationDate" :: NullOrUndefined (Types.Timestamp)
+  , "deprecationDate" :: Maybe (Types.Timestamp)
   }
 derive instance newtypeWorkflowTypeInfo :: Newtype WorkflowTypeInfo _
 derive instance repGenericWorkflowTypeInfo :: Generic WorkflowTypeInfo _
@@ -4004,12 +4003,12 @@ instance encodeWorkflowTypeInfo :: Encode WorkflowTypeInfo where encode = generi
 
 -- | Constructs WorkflowTypeInfo from required parameters
 newWorkflowTypeInfo :: Types.Timestamp -> RegistrationStatus -> WorkflowType -> WorkflowTypeInfo
-newWorkflowTypeInfo _creationDate _status _workflowType = WorkflowTypeInfo { "creationDate": _creationDate, "status": _status, "workflowType": _workflowType, "deprecationDate": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newWorkflowTypeInfo _creationDate _status _workflowType = WorkflowTypeInfo { "creationDate": _creationDate, "status": _status, "workflowType": _workflowType, "deprecationDate": Nothing, "description": Nothing }
 
 -- | Constructs WorkflowTypeInfo's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowTypeInfo' :: Types.Timestamp -> RegistrationStatus -> WorkflowType -> ( { "workflowType" :: (WorkflowType) , "status" :: (RegistrationStatus) , "description" :: NullOrUndefined (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: NullOrUndefined (Types.Timestamp) } -> {"workflowType" :: (WorkflowType) , "status" :: (RegistrationStatus) , "description" :: NullOrUndefined (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: NullOrUndefined (Types.Timestamp) } ) -> WorkflowTypeInfo
-newWorkflowTypeInfo' _creationDate _status _workflowType customize = (WorkflowTypeInfo <<< customize) { "creationDate": _creationDate, "status": _status, "workflowType": _workflowType, "deprecationDate": (NullOrUndefined Nothing), "description": (NullOrUndefined Nothing) }
+newWorkflowTypeInfo' :: Types.Timestamp -> RegistrationStatus -> WorkflowType -> ( { "workflowType" :: (WorkflowType) , "status" :: (RegistrationStatus) , "description" :: Maybe (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: Maybe (Types.Timestamp) } -> {"workflowType" :: (WorkflowType) , "status" :: (RegistrationStatus) , "description" :: Maybe (Description) , "creationDate" :: (Types.Timestamp) , "deprecationDate" :: Maybe (Types.Timestamp) } ) -> WorkflowTypeInfo
+newWorkflowTypeInfo' _creationDate _status _workflowType customize = (WorkflowTypeInfo <<< customize) { "creationDate": _creationDate, "status": _status, "workflowType": _workflowType, "deprecationDate": Nothing, "description": Nothing }
 
 
 
@@ -4025,7 +4024,7 @@ instance encodeWorkflowTypeInfoList :: Encode WorkflowTypeInfoList where encode 
 -- | <p>Contains a paginated list of information structures about workflow types.</p>
 newtype WorkflowTypeInfos = WorkflowTypeInfos 
   { "typeInfos" :: (WorkflowTypeInfoList)
-  , "nextPageToken" :: NullOrUndefined (PageToken)
+  , "nextPageToken" :: Maybe (PageToken)
   }
 derive instance newtypeWorkflowTypeInfos :: Newtype WorkflowTypeInfos _
 derive instance repGenericWorkflowTypeInfos :: Generic WorkflowTypeInfos _
@@ -4035,10 +4034,10 @@ instance encodeWorkflowTypeInfos :: Encode WorkflowTypeInfos where encode = gene
 
 -- | Constructs WorkflowTypeInfos from required parameters
 newWorkflowTypeInfos :: WorkflowTypeInfoList -> WorkflowTypeInfos
-newWorkflowTypeInfos _typeInfos = WorkflowTypeInfos { "typeInfos": _typeInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newWorkflowTypeInfos _typeInfos = WorkflowTypeInfos { "typeInfos": _typeInfos, "nextPageToken": Nothing }
 
 -- | Constructs WorkflowTypeInfos's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newWorkflowTypeInfos' :: WorkflowTypeInfoList -> ( { "typeInfos" :: (WorkflowTypeInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } -> {"typeInfos" :: (WorkflowTypeInfoList) , "nextPageToken" :: NullOrUndefined (PageToken) } ) -> WorkflowTypeInfos
-newWorkflowTypeInfos' _typeInfos customize = (WorkflowTypeInfos <<< customize) { "typeInfos": _typeInfos, "nextPageToken": (NullOrUndefined Nothing) }
+newWorkflowTypeInfos' :: WorkflowTypeInfoList -> ( { "typeInfos" :: (WorkflowTypeInfoList) , "nextPageToken" :: Maybe (PageToken) } -> {"typeInfos" :: (WorkflowTypeInfoList) , "nextPageToken" :: Maybe (PageToken) } ) -> WorkflowTypeInfos
+newWorkflowTypeInfos' _typeInfos customize = (WorkflowTypeInfos <<< customize) { "typeInfos": _typeInfos, "nextPageToken": Nothing }
 
